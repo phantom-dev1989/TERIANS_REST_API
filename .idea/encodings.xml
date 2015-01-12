@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
+    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/config/Neo4JConfig.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/controller/UserController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/filter/CORSFilter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/jpa/model/TeriansUser.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/jpa/repository/TeriansUserRepository.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/properties/JPADatabaseProperties.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/properties/Neo4JDatabaseProperties.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/security/TeriansUserDetailsService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/database.properties" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/neo4j.properties" charset="UTF-8" />
+  </component>
+</project>
