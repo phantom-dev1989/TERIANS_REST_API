@@ -1,10 +1,10 @@
 package com.terians.neo4j.model;
 
-import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.GraphId;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
-import org.springframework.data.neo4j.annotation.RelatedTo;
+
+import java.util.UUID;
 
 /**
  * Created by stromero on 12/11/2014.
@@ -12,11 +12,13 @@ import org.springframework.data.neo4j.annotation.RelatedTo;
 @NodeEntity
 public class Issue {
 
+    // Properties
     @GraphId
     private Long id;
     @Indexed
-    @RelatedTo(type = "NEXT", direction = Direction.OUTGOING)
-    private Issue issue;
+    private String teriansId;
+    @Indexed
+    private String issue;
     @Indexed
     private String description;
     @Indexed
@@ -42,12 +44,13 @@ public class Issue {
     @Indexed
     private String techDebtMinutes;
 
-    public String getTechDebtMinutes() {
-        return techDebtMinutes;
+    // Getters and Setters
+    public void setTeriansId(String teriansId) {
+        this.teriansId = teriansId;
     }
 
-    public void setTechDebtMinutes(String techDebtMinutes) {
-        this.techDebtMinutes = techDebtMinutes;
+    public String getTeriansId() {
+        return teriansId;
     }
 
     public String getCategory() {
@@ -98,14 +101,6 @@ public class Issue {
         this.id = id;
     }
 
-    public Issue getIssue() {
-        return issue;
-    }
-
-    public void setIssue(Issue issue) {
-        this.issue = issue;
-    }
-
     public String getIssueType() {
         return issueType;
     }
@@ -152,5 +147,86 @@ public class Issue {
 
     public void setSeverity(String severity) {
         this.severity = severity;
+    }
+
+    public String getTechDebtMinutes() {
+        return techDebtMinutes;
+    }
+
+    public void setTechDebtMinutes(String techDebtMinutes) {
+        this.techDebtMinutes = techDebtMinutes;
+    }
+
+    public String getIssue() {
+        return issue;
+    }
+
+    public void setIssue(String issue) {
+        this.issue = issue;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Issue issue1 = (Issue) o;
+
+        if (category != null ? !category.equals(issue1.category) : issue1.category != null) return false;
+        if (className != null ? !className.equals(issue1.className) : issue1.className != null) return false;
+        if (description != null ? !description.equals(issue1.description) : issue1.description != null) return false;
+        if (fileName != null ? !fileName.equals(issue1.fileName) : issue1.fileName != null) return false;
+        if (filePath != null ? !filePath.equals(issue1.filePath) : issue1.filePath != null) return false;
+        if (id != null ? !id.equals(issue1.id) : issue1.id != null) return false;
+        if (issue != null ? !issue.equals(issue1.issue) : issue1.issue != null) return false;
+        if (issueType != null ? !issueType.equals(issue1.issueType) : issue1.issueType != null) return false;
+        if (lineNumber != null ? !lineNumber.equals(issue1.lineNumber) : issue1.lineNumber != null) return false;
+        if (packageName != null ? !packageName.equals(issue1.packageName) : issue1.packageName != null) return false;
+        if (priority != null ? !priority.equals(issue1.priority) : issue1.priority != null) return false;
+        if (scanTool != null ? !scanTool.equals(issue1.scanTool) : issue1.scanTool != null) return false;
+        if (severity != null ? !severity.equals(issue1.severity) : issue1.severity != null) return false;
+        if (techDebtMinutes != null ? !techDebtMinutes.equals(issue1.techDebtMinutes) : issue1.techDebtMinutes != null)
+            return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (issue != null ? issue.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (fileName != null ? fileName.hashCode() : 0);
+        result = 31 * result + (severity != null ? severity.hashCode() : 0);
+        result = 31 * result + (lineNumber != null ? lineNumber.hashCode() : 0);
+        result = 31 * result + (packageName != null ? packageName.hashCode() : 0);
+        result = 31 * result + (className != null ? className.hashCode() : 0);
+        result = 31 * result + (priority != null ? priority.hashCode() : 0);
+        result = 31 * result + (scanTool != null ? scanTool.hashCode() : 0);
+        result = 31 * result + (issueType != null ? issueType.hashCode() : 0);
+        result = 31 * result + (category != null ? category.hashCode() : 0);
+        result = 31 * result + (filePath != null ? filePath.hashCode() : 0);
+        result = 31 * result + (techDebtMinutes != null ? techDebtMinutes.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Issue{" +
+                "category='" + category + '\'' +
+                ", id=" + id +
+                ", issue='" + issue + '\'' +
+                ", description='" + description + '\'' +
+                ", fileName='" + fileName + '\'' +
+                ", severity='" + severity + '\'' +
+                ", lineNumber='" + lineNumber + '\'' +
+                ", packageName='" + packageName + '\'' +
+                ", className='" + className + '\'' +
+                ", priority='" + priority + '\'' +
+                ", scanTool='" + scanTool + '\'' +
+                ", issueType='" + issueType + '\'' +
+                ", filePath='" + filePath + '\'' +
+                ", techDebtMinutes='" + techDebtMinutes + '\'' +
+                '}';
     }
 }

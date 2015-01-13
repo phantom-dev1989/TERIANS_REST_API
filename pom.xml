@@ -18,6 +18,8 @@
         <guava.version>15.0</guava.version>
         <spring.neo4j>3.2.1.RELEASE</spring.neo4j>
         <hsqldb.version>2.3.2</hsqldb.version>
+        <javax.servlet.version>3.1.0</javax.servlet.version>
+        <javax.validation.version>1.1.0.Final</javax.validation.version>
     </properties>
 
     <dependencies>
@@ -70,13 +72,13 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
+            <version>${javax.servlet.version}</version>
         </dependency>
 
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
-            <version>1.1.0.Final</version>
+            <version>${javax.validation.version}</version>
         </dependency>
 
 

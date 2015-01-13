@@ -1,11 +1,9 @@
 package com.terians.neo4j.model;
 
-import org.springframework.data.neo4j.annotation.GraphId;
-import org.springframework.data.neo4j.annotation.Indexed;
-import org.springframework.data.neo4j.annotation.NodeEntity;
-import org.springframework.data.neo4j.annotation.RelatedTo;
+import org.springframework.data.neo4j.annotation.*;
 
 import java.util.Set;
+import java.util.UUID;
 
 /**
  * Created by stromero on 12/11/2014.
@@ -13,23 +11,26 @@ import java.util.Set;
 @NodeEntity
 public class Project {
 
+    // Properties
     @GraphId
     private Long id;
-    @Indexed
-    @RelatedTo(type = "HAS")
-    private Set<Scan> scans;
-    @Indexed
-    @RelatedTo(type = "HAS")
-    private Set<Issue> issues;
     @Indexed(unique = true)
     private String name;
+    @Indexed
+    private String teriansId;
 
-    public String getName() {
-        return name;
+    // Relationships
+    @Fetch
+    @RelatedTo(type = "HAS")
+    private Set<Scan> scans;
+
+    // Getters and Setters
+    public void setTeriansId(String teriansId) {
+        this.teriansId = teriansId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getTeriansId() {
+        return teriansId;
     }
 
     public Long getId() {
@@ -40,12 +41,12 @@ public class Project {
         this.id = id;
     }
 
-    public Set<Issue> getIssues() {
-        return issues;
+    public String getName() {
+        return name;
     }
 
-    public void setIssues(Set<Issue> issues) {
-        this.issues = issues;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Set<Scan> getScans() {
@@ -56,4 +57,32 @@ public class Project {
         this.scans = scans;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Project project = (Project) o;
+
+        if (id != null ? !id.equals(project.id) : project.id != null) return false;
+        if (name != null ? !name.equals(project.name) : project.name != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", scans=" + scans +
+                '}';
+    }
 }
