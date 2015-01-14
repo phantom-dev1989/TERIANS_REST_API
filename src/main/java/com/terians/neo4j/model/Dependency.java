@@ -120,32 +120,6 @@ public class Dependency {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Dependency that = (Dependency) o;
-
-        if (description != null ? !description.equals(that.description) : that.description != null) return false;
-        if (fileName != null ? !fileName.equals(that.fileName) : that.fileName != null) return false;
-        if (filePath != null ? !filePath.equals(that.filePath) : that.filePath != null) return false;
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (license != null ? !license.equals(that.license) : that.license != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (fileName != null ? fileName.hashCode() : 0);
-        result = 31 * result + (filePath != null ? filePath.hashCode() : 0);
-        result = 31 * result + (license != null ? license.hashCode() : 0);
-        return result;
-    }
-
-    @Override
     public String toString() {
         return "Dependency{" +
                 "dependencies=" + dependencies +
@@ -159,5 +133,40 @@ public class Dependency {
                 ", issues=" + issues +
                 ", method=" + method +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Dependency that = (Dependency) o;
+
+        if (dependencies != null ? !dependencies.equals(that.dependencies) : that.dependencies != null) return false;
+        if (description != null ? !description.equals(that.description) : that.description != null) return false;
+        if (fileName != null ? !fileName.equals(that.fileName) : that.fileName != null) return false;
+        if (filePath != null ? !filePath.equals(that.filePath) : that.filePath != null) return false;
+        if (issues != null ? !issues.equals(that.issues) : that.issues != null) return false;
+        if (license != null ? !license.equals(that.license) : that.license != null) return false;
+        if (method != null ? !method.equals(that.method) : that.method != null) return false;
+        if (teriansId != null ? !teriansId.equals(that.teriansId) : that.teriansId != null) return false;
+        if (vulnerabilities != null ? !vulnerabilities.equals(that.vulnerabilities) : that.vulnerabilities != null)
+            return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = teriansId != null ? teriansId.hashCode() : 0;
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (fileName != null ? fileName.hashCode() : 0);
+        result = 31 * result + (filePath != null ? filePath.hashCode() : 0);
+        result = 31 * result + (license != null ? license.hashCode() : 0);
+        result = 31 * result + (vulnerabilities != null ? vulnerabilities.hashCode() : 0);
+        result = 31 * result + (issues != null ? issues.hashCode() : 0);
+        result = 31 * result + (dependencies != null ? dependencies.hashCode() : 0);
+        result = 31 * result + (method != null ? method.hashCode() : 0);
+        return result;
     }
 }

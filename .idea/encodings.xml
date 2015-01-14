@@ -8,26 +8,18 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/jpa/repository/TeriansUserRepository.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Clazz.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Clazz.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Clazz.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Dependency.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Dependency.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Dependency.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Issue.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Issue.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Issue.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Method.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Method.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Method.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Package.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Package.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Package.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Project.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Project.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Project.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Scan.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Scan.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Scan.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Vulnerability.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Vulnerability.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Vulnerability.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/repository/ClazzRepository.java" charset="UTF-8" />

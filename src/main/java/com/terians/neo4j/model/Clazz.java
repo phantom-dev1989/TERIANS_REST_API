@@ -18,15 +18,15 @@ public class Clazz {
     @Indexed
     private String name;
     @Indexed
-    private Integer afferent;
+    private Double afferent;
     @Indexed
-    private Integer efferent;
+    private Double efferent;
     @Indexed
-    private Integer cyclomaticCom;
+    private Double cyclomaticCom;
 
     //Relationships
     @Fetch
-    @RelatedTo(type = "HAS", elementClass = Method.class)
+    @RelatedTo(type = "HAS_METHOD", elementClass = Method.class)
     private Set<Method> methods;
 
     // Getters and Setters
@@ -38,27 +38,27 @@ public class Clazz {
         return teriansId;
     }
 
-    public Integer getAfferent() {
+    public Double getAfferent() {
         return afferent;
     }
 
-    public void setAfferent(Integer afferent) {
+    public void setAfferent(Double afferent) {
         this.afferent = afferent;
     }
 
-    public Integer getCyclomaticCom() {
+    public Double getCyclomaticCom() {
         return cyclomaticCom;
     }
 
-    public void setCyclomaticCom(Integer cyclomaticCom) {
+    public void setCyclomaticCom(Double cyclomaticCom) {
         this.cyclomaticCom = cyclomaticCom;
     }
 
-    public Integer getEfferent() {
+    public Double getEfferent() {
         return efferent;
     }
 
-    public void setEfferent(Integer efferent) {
+    public void setEfferent(Double efferent) {
         this.efferent = efferent;
     }
 
@@ -87,6 +87,19 @@ public class Clazz {
     }
 
     @Override
+    public String toString() {
+        return "Clazz{" +
+                "afferent=" + afferent +
+                ", id=" + id +
+                ", teriansId='" + teriansId + '\'' +
+                ", name='" + name + '\'' +
+                ", efferent=" + efferent +
+                ", cyclomaticCom=" + cyclomaticCom +
+                ", methods=" + methods +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -97,31 +110,21 @@ public class Clazz {
         if (cyclomaticCom != null ? !cyclomaticCom.equals(clazz.cyclomaticCom) : clazz.cyclomaticCom != null)
             return false;
         if (efferent != null ? !efferent.equals(clazz.efferent) : clazz.efferent != null) return false;
-        if (id != null ? !id.equals(clazz.id) : clazz.id != null) return false;
+        if (methods != null ? !methods.equals(clazz.methods) : clazz.methods != null) return false;
         if (name != null ? !name.equals(clazz.name) : clazz.name != null) return false;
+        if (teriansId != null ? !teriansId.equals(clazz.teriansId) : clazz.teriansId != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = teriansId != null ? teriansId.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (afferent != null ? afferent.hashCode() : 0);
         result = 31 * result + (efferent != null ? efferent.hashCode() : 0);
         result = 31 * result + (cyclomaticCom != null ? cyclomaticCom.hashCode() : 0);
+        result = 31 * result + (methods != null ? methods.hashCode() : 0);
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Clazz{" +
-                "afferent=" + afferent +
-                ", id=" + id +
-                ", name='" + name + '\'' +
-                ", efferent=" + efferent +
-                ", cyclomaticCom=" + cyclomaticCom +
-                ", methods=" + methods +
-                '}';
     }
 }

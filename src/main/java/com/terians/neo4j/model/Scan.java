@@ -101,38 +101,47 @@ public class Scan {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Scan scan = (Scan) o;
-
-        if (date != null ? !date.equals(scan.date) : scan.date != null) return false;
-        if (id != null ? !id.equals(scan.id) : scan.id != null) return false;
-        if (projectVersion != null ? !projectVersion.equals(scan.projectVersion) : scan.projectVersion != null)
-            return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (projectVersion != null ? projectVersion.hashCode() : 0);
-        result = 31 * result + (date != null ? date.hashCode() : 0);
-        return result;
-    }
-
-    @Override
     public String toString() {
         return "Scan{" +
                 "date=" + date +
                 ", id=" + id +
+                ", teriansId='" + teriansId + '\'' +
                 ", projectVersion='" + projectVersion + '\'' +
                 ", scan=" + scan +
                 ", issues=" + issues +
                 ", dependencies=" + dependencies +
                 ", packages=" + packages +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Scan scan1 = (Scan) o;
+
+        if (date != null ? !date.equals(scan1.date) : scan1.date != null) return false;
+        if (dependencies != null ? !dependencies.equals(scan1.dependencies) : scan1.dependencies != null) return false;
+        if (issues != null ? !issues.equals(scan1.issues) : scan1.issues != null) return false;
+        if (packages != null ? !packages.equals(scan1.packages) : scan1.packages != null) return false;
+        if (projectVersion != null ? !projectVersion.equals(scan1.projectVersion) : scan1.projectVersion != null)
+            return false;
+        if (scan != null ? !scan.equals(scan1.scan) : scan1.scan != null) return false;
+        if (teriansId != null ? !teriansId.equals(scan1.teriansId) : scan1.teriansId != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = teriansId != null ? teriansId.hashCode() : 0;
+        result = 31 * result + (projectVersion != null ? projectVersion.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + (scan != null ? scan.hashCode() : 0);
+        result = 31 * result + (issues != null ? issues.hashCode() : 0);
+        result = 31 * result + (dependencies != null ? dependencies.hashCode() : 0);
+        result = 31 * result + (packages != null ? packages.hashCode() : 0);
+        return result;
     }
 }

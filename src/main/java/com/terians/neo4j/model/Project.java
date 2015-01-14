@@ -57,31 +57,34 @@ public class Project {
     }
 
     @Override
+    public String toString() {
+        return "Project{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", teriansId='" + teriansId + '\'' +
+                ", scans=" + scans +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         Project project = (Project) o;
 
-        if (id != null ? !id.equals(project.id) : project.id != null) return false;
         if (name != null ? !name.equals(project.name) : project.name != null) return false;
+        if (scans != null ? !scans.equals(project.scans) : project.scans != null) return false;
+        if (teriansId != null ? !teriansId.equals(project.teriansId) : project.teriansId != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (teriansId != null ? teriansId.hashCode() : 0);
+        result = 31 * result + (scans != null ? scans.hashCode() : 0);
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Project{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", scans=" + scans +
-                '}';
     }
 }

@@ -164,6 +164,27 @@ public class Issue {
     }
 
     @Override
+    public String toString() {
+        return "Issue{" +
+                "category='" + category + '\'' +
+                ", id=" + id +
+                ", teriansId='" + teriansId + '\'' +
+                ", issue='" + issue + '\'' +
+                ", description='" + description + '\'' +
+                ", fileName='" + fileName + '\'' +
+                ", severity='" + severity + '\'' +
+                ", lineNumber='" + lineNumber + '\'' +
+                ", packageName='" + packageName + '\'' +
+                ", className='" + className + '\'' +
+                ", priority='" + priority + '\'' +
+                ", scanTool='" + scanTool + '\'' +
+                ", issueType='" + issueType + '\'' +
+                ", filePath='" + filePath + '\'' +
+                ", techDebtMinutes='" + techDebtMinutes + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -175,7 +196,6 @@ public class Issue {
         if (description != null ? !description.equals(issue1.description) : issue1.description != null) return false;
         if (fileName != null ? !fileName.equals(issue1.fileName) : issue1.fileName != null) return false;
         if (filePath != null ? !filePath.equals(issue1.filePath) : issue1.filePath != null) return false;
-        if (id != null ? !id.equals(issue1.id) : issue1.id != null) return false;
         if (issue != null ? !issue.equals(issue1.issue) : issue1.issue != null) return false;
         if (issueType != null ? !issueType.equals(issue1.issueType) : issue1.issueType != null) return false;
         if (lineNumber != null ? !lineNumber.equals(issue1.lineNumber) : issue1.lineNumber != null) return false;
@@ -185,13 +205,14 @@ public class Issue {
         if (severity != null ? !severity.equals(issue1.severity) : issue1.severity != null) return false;
         if (techDebtMinutes != null ? !techDebtMinutes.equals(issue1.techDebtMinutes) : issue1.techDebtMinutes != null)
             return false;
+        if (teriansId != null ? !teriansId.equals(issue1.teriansId) : issue1.teriansId != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = teriansId != null ? teriansId.hashCode() : 0;
         result = 31 * result + (issue != null ? issue.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (fileName != null ? fileName.hashCode() : 0);
@@ -206,25 +227,5 @@ public class Issue {
         result = 31 * result + (filePath != null ? filePath.hashCode() : 0);
         result = 31 * result + (techDebtMinutes != null ? techDebtMinutes.hashCode() : 0);
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Issue{" +
-                "category='" + category + '\'' +
-                ", id=" + id +
-                ", issue='" + issue + '\'' +
-                ", description='" + description + '\'' +
-                ", fileName='" + fileName + '\'' +
-                ", severity='" + severity + '\'' +
-                ", lineNumber='" + lineNumber + '\'' +
-                ", packageName='" + packageName + '\'' +
-                ", className='" + className + '\'' +
-                ", priority='" + priority + '\'' +
-                ", scanTool='" + scanTool + '\'' +
-                ", issueType='" + issueType + '\'' +
-                ", filePath='" + filePath + '\'' +
-                ", techDebtMinutes='" + techDebtMinutes + '\'' +
-                '}';
     }
 }
