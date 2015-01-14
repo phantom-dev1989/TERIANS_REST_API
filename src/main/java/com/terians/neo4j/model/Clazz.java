@@ -3,7 +3,6 @@ package com.terians.neo4j.model;
 import org.springframework.data.neo4j.annotation.*;
 
 import java.util.Set;
-import java.util.UUID;
 
 /**
  * Created by stromero on 1/5/2015.
@@ -27,7 +26,7 @@ public class Clazz {
 
     //Relationships
     @Fetch
-    @RelatedTo(type = "HAS")
+    @RelatedTo(type = "HAS", elementClass = Method.class)
     private Set<Method> methods;
 
     // Getters and Setters

@@ -4,8 +4,6 @@ import org.springframework.data.neo4j.annotation.GraphId;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
-import java.util.UUID;
-
 /**
  * Created by stromero on 1/5/2015.
  */
@@ -25,8 +23,6 @@ public class Method {
     private Integer efferent;
     @Indexed
     private Integer cyclomaticCom;
-    @Indexed
-    private String invokes;
 
     // Getters and Setters
     public void setTeriansId(String teriansId) {
@@ -37,13 +33,6 @@ public class Method {
         return teriansId;
     }
 
-    public String getInvokes() {
-        return invokes;
-    }
-
-    public void setInvokes(String invokes) {
-        this.invokes = invokes;
-    }
     public Integer getAfferent() {
         return afferent;
     }

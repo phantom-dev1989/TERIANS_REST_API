@@ -4,8 +4,6 @@ import org.springframework.data.neo4j.annotation.GraphId;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
-import java.util.UUID;
-
 /**
  * Created by stromero on 12/11/2014.
  */

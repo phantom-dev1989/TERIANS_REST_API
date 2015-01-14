@@ -3,7 +3,6 @@ package com.terians.neo4j.model;
 import org.springframework.data.neo4j.annotation.*;
 
 import java.util.Set;
-import java.util.UUID;
 
 /**
  * Created by stromero on 12/11/2014.
@@ -21,7 +20,7 @@ public class Project {
 
     // Relationships
     @Fetch
-    @RelatedTo(type = "HAS")
+    @RelatedTo(type = "HAS_SCAN",elementClass = Scan.class)
     private Set<Scan> scans;
 
     // Getters and Setters

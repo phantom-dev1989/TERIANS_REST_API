@@ -4,6 +4,7 @@ import com.terians.jpa.service.TeriansUserService;
 import com.terians.jpa.service.TeriansUserServiceImpl;
 // import com.terians.security.OAuth2Config;
 // import com.terians.security.WebAppSecurityConfig;
+import com.terians.neo4j.service.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +30,54 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
    //   WebAppSecurityConfig.class
 })
 public class WebAppConfig extends WebMvcConfigurerAdapter {
+
+    @Bean
+    public ClazzService clazzService(){
+
+        return new ClazzServiceImpl();
+    }
+
+    @Bean
+    public IssueService issueService(){
+
+        return new IssueServiceImpl();
+    }
+
+    @Bean
+    public MethodService methodService(){
+
+        return new MethodServiceImpl();
+    }
+
+    @Bean
+    public PackageService packageService(){
+
+        return new PackageServiceImpl();
+    }
+
+    @Bean
+    public VulnerabilityService vulnerabilityService(){
+
+        return new VulnerabilityServiceImpl();
+    }
+
+    @Bean
+    public ScanService scanService(){
+
+        return new ScanServiceImpl();
+    }
+
+    @Bean
+    public DependencyService dependencyService(){
+
+        return new DependencyServiceImpl();
+    }
+
+    @Bean
+    public ProjectService projectService(){
+
+        return new ProjectServiceImpl();
+    }
 
     @Bean
     public TeriansUserService teriansUserService(){

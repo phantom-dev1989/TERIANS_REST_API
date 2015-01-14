@@ -1,12 +1,8 @@
 package com.terians.neo4j.model;
 
-import org.springframework.data.neo4j.annotation.GraphId;
-import org.springframework.data.neo4j.annotation.Indexed;
-import org.springframework.data.neo4j.annotation.NodeEntity;
-import org.springframework.data.neo4j.annotation.RelatedTo;
+import org.springframework.data.neo4j.annotation.*;
 
 import java.util.Set;
-import java.util.UUID;
 
 /**
  * Created by stromero on 12/11/2014.
@@ -29,14 +25,18 @@ public class Dependency {
     private String license;
 
     // Relationships
-    @RelatedTo(type = "HAS")
+    @Fetch
+    @RelatedTo(type = "HAS_VULN",elementClass = Vulnerability.class)
     private Set<Vulnerability> vulnerabilities;
-    @RelatedTo(type = "HAS")
+    @Fetch
+    @RelatedTo(type = "HAS_ISSUE",elementClass = Issue.class)
     private Set<Issue> issues;
-    @RelatedTo(type = "RELATED_DEPENDENCIES")
+    @Fetch
+    @RelatedTo(type = "RELATED_DEPENDENCIES",elementClass = Dependency.class)
     private Set<Dependency> dependencies;
-    @RelatedTo(type = "IS_USED_BY")
-    private Method method;
+    @Fetch
+    @RelatedTo(type = "USED_BY",elementClass = Method.class)
+    private Set<Method> method;
 
     // Getters and Setters
     public void setTeriansId(String teriansId) {
@@ -111,11 +111,11 @@ public class Dependency {
         this.vulnerabilities = vulnerabilities;
     }
 
-    public Method getMethod() {
+    public Set<Method> getMethod() {
         return method;
     }
 
-    public void setMethod(Method method) {
+    public void setMethod(Set<Method> method) {
         this.method = method;
     }
 
@@ -150,6 +150,7 @@ public class Dependency {
         return "Dependency{" +
                 "dependencies=" + dependencies +
                 ", id=" + id +
+                ", teriansId='" + teriansId + '\'' +
                 ", description='" + description + '\'' +
                 ", fileName='" + fileName + '\'' +
                 ", filePath='" + filePath + '\'' +
