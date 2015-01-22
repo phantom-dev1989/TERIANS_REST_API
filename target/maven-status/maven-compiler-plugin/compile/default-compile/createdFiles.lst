@@ -46,6 +46,7 @@ com\terians\neo4j\model\Clazz.class
 com\terians\controller\UserController.class
 com\terians\neo4j\service\DependencyService.class
 com\terians\neo4j\repository\IssueRepository.class
+com\terians\config\CacheConfig.class
 com\terians\neo4j\service\PackageServiceImpl.class
 com\terians\filter\CORSFilter.class
 com\terians\neo4j\model\Dependency.class
