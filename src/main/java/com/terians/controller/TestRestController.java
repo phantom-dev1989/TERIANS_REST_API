@@ -1,6 +1,8 @@
 package com.terians.controller;
 
 import com.terians.jpa.model.Hello;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.atomic.AtomicLong;
@@ -9,6 +11,8 @@ import java.util.concurrent.atomic.AtomicLong;
 @RestController
 @RequestMapping("/api/data/message")
 public class TestRestController {
+
+    private static final Logger logger = LoggerFactory.getLogger(TestRestController.class);
 
     private final AtomicLong counter = new AtomicLong();
 

@@ -19,7 +19,8 @@
         <spring.neo4j>3.2.1.RELEASE</spring.neo4j>
         <hsqldb.version>2.3.2</hsqldb.version>
         <ehcache.version>2.9.0</ehcache.version>
-        <logback.version>1.0.13</logback.version>
+        <logback.version>1.1.2</logback.version>
+        <jcloverslf4j.version>1.7.10</jcloverslf4j.version>
         <javax.servlet.version>3.1.0</javax.servlet.version>
         <javax.validation.version>1.1.0.Final</javax.validation.version>
     </properties>
@@ -36,7 +37,14 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>${spring.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
@@ -99,6 +107,12 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${hibernate.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- HSQLDB JDBC Driver -->
@@ -128,6 +142,11 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${jcloverslf4j.version}</version>
         </dependency>
 
     </dependencies>
