@@ -15,6 +15,7 @@ com\terians\controller\DependenciesController.class
 com\terians\neo4j\repository\DependencyRepository.class
 com\terians\controller\ProjectsController.class
 com\terians\neo4j\service\IssueService.class
+com\terians\config\MongoDBConfig.class
 com\terians\neo4j\service\VulnerabilityService.class
 com\terians\jpa\model\Hello.class
 com\terians\neo4j\service\VulnerabilityServiceImpl.class
