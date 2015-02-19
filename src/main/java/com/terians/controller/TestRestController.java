@@ -1,6 +1,5 @@
 package com.terians.controller;
 
-import com.terians.jpa.model.Hello;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +15,7 @@ public class TestRestController {
 
     private final AtomicLong counter = new AtomicLong();
 
-    @RequestMapping(value ="/{msg}", method = RequestMethod.GET)
+/*    @RequestMapping(value ="/{msg}", method = RequestMethod.GET)
     public Hello getMessage(@PathVariable("msg") String message){
 
         Hello messageObj = new Hello();
@@ -24,6 +23,6 @@ public class TestRestController {
         messageObj.setMessage(message);
 
         return messageObj;
-    }
+    }*/
 }
 

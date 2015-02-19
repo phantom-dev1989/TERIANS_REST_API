@@ -1,9 +1,5 @@
 package com.terians.config;
 
-import com.terians.jpa.service.TeriansUserService;
-import com.terians.jpa.service.TeriansUserServiceImpl;
-// import com.terians.security.OAuth2Config;
-// import com.terians.security.WebAppSecurityConfig;
 import com.terians.neo4j.service.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -24,8 +20,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 // Same as <context:component-scan base-package="com.terians" />
 @ComponentScan(basePackages = {"com.terians"})
 @Import({
-        JPAConfig.class,
+        MongoDBConfig.class,
         Neo4JConfig.class,
+        CacheConfig.class,
    //   OAuth2Config.class,
    //   WebAppSecurityConfig.class
 })
@@ -77,12 +74,6 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     public ProjectService projectService(){
 
         return new ProjectServiceImpl();
-    }
-
-    @Bean
-    public TeriansUserService teriansUserService(){
-
-        return new TeriansUserServiceImpl();
     }
 
     /**

@@ -12,13 +12,10 @@
         <java-version>1.8</java-version>
         <spring.version>4.0.9.RELEASE</spring.version>
         <spring.security.version>3.2.5.RELEASE</spring.security.version>
-        <jpa.version>1.7.0.RELEASE</jpa.version>
-        <hibernate.version>4.3.5.Final</hibernate.version>
         <jackson.version>2.3.0</jackson.version>
         <guava.version>15.0</guava.version>
         <spring.neo4j.version>3.2.1.RELEASE</spring.neo4j.version>
         <spring.mongodb.version>1.6.2.RELEASE</spring.mongodb.version>
-        <hsqldb.version>2.3.2</hsqldb.version>
         <ehcache.version>2.9.0</ehcache.version>
         <logback.version>1.1.2</logback.version>
         <jcloverslf4j.version>1.7.10</jcloverslf4j.version>
@@ -59,11 +56,11 @@
 
         <!-- Spring Security -->
 
-        <dependency>
+ <!--       <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
             <version>${spring.security.version}</version>
-        </dependency>
+        </dependency> -->
 
 <!--        <dependency>
             <groupId>org.springframework.security.oauth</groupId>
@@ -113,31 +110,6 @@
             <version>${spring.neo4j.version}</version>
         </dependency>
 
-        <!-- Spring Data JPA and Hibernate -->
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-jpa</artifactId>
-            <version>${jpa.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>${hibernate.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <!-- HSQLDB JDBC Driver -->
-        <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <version>${hsqldb.version}</version>
-        </dependency>
 
         <!-- Ehcache -->
         <dependency>
