@@ -3,9 +3,15 @@
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/config/Neo4JConfig.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/controller/UserController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/dto/Clazz.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/dto/Dependency.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/dto/Issue.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/dto/Method.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/dto/Package.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/dto/Project.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/dto/Scan.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/dto/Vulnerability.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/filter/CORSFilter.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/jpa/model/TeriansUser.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/jpa/repository/TeriansUserRepository.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Clazz.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Dependency.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Issue.java" charset="UTF-8" />
@@ -38,10 +44,8 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/service/ScanServiceImpl.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/service/VulnerabilityService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/service/VulnerabilityServiceImpl.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/properties/JPADatabaseProperties.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/properties/Neo4JDatabaseProperties.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/security/oauth/TeriansUserDetailsService.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/database.properties" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/neo4j.properties" charset="UTF-8" />
   </component>
 </project>
