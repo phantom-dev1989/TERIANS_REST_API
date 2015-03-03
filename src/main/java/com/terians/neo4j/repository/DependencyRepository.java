@@ -15,9 +15,9 @@ import java.util.Set;
 public interface DependencyRepository extends GraphRepository<Dependency> {
 
     // Find all dependencies by Scan teriansId
-    @Cacheable("teriansCache")
+    //@Cacheable("teriansCache")
     @Query("MATCH(s:Scan)-[:HAS_DEPENDENCY]->(d:Dependency) WHERE s.teriansId = {0} RETURN d")
-    public Set<Dependency> findByScanId(String scanId);
+    public Set<Dependency> findByScan(String teriansId);
 
-    public Dependency findByTeriansId(String dependencyId);
+    public Dependency findById(String dependencyId);
 }

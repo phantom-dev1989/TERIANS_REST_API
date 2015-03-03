@@ -1,6 +1,7 @@
 package com.terians.neo4j.service;
 
-import com.terians.neo4j.model.Project;
+import com.terians.dto.ProjectDTO;
+import com.terians.dto.ProjectsDTO;
 import com.terians.neo4j.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,22 +11,20 @@ import org.springframework.transaction.annotation.Transactional;
  * Created by stromero on 1/4/2015.
  */
 @Service
+@Transactional
 public class ProjectServiceImpl implements ProjectService {
 
     @Autowired
     private ProjectRepository repository;
 
-    @Override
-    @Transactional
-    public Project findByName(String projectName){
 
-        return repository.findByName(projectName);
+    @Override
+    public ProjectsDTO findAllProjects() {
+        return null;
     }
 
     @Override
-    @Transactional
-    public Project save(Project project){
-
-        return repository.save(project);
+    public ProjectDTO findProjectById(String teriansId) {
+        return null;
     }
 }

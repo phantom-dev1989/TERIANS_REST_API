@@ -3,14 +3,14 @@
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/config/Neo4JConfig.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/controller/UserController.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/dto/Clazz.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/dto/Dependency.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/dto/Issue.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/dto/Method.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/dto/Package.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/dto/Project.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/dto/Scan.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/dto/Vulnerability.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/dto/ClazzDTO.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/dto/DependencyDTO.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/dto/IssueDTO.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/dto/MethodDTO.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/dto/PackageDTO.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/dto/ProjectDTO.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/dto/ScanDTO.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/dto/VulnerabilityDTO.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/filter/CORSFilter.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Clazz.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/model/Dependency.java" charset="UTF-8" />

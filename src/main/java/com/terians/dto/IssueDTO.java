@@ -1,9 +1,12 @@
 package com.terians.dto;
 
+import com.fasterxml.jackson.annotation.JsonRootName;
+
 /**
  * Created by stromero on 12/11/2014.
  */
-public class Issue {
+@JsonRootName("Issue")
+public class IssueDTO {
 
     // Properties
     private String teriansId;
@@ -21,12 +24,12 @@ public class Issue {
     private String filePath;
     private String techDebtMinutes;
 
-    public Issue() {
+    public IssueDTO() {
     }
 
-    public Issue(String category, String className, String description, String fileName, String filePath,
-                 String issue, String issueType, String lineNumber, String packageName, String priority,
-                 String scanTool, String severity, String techDebtMinutes, String teriansId) {
+    public IssueDTO(String category, String className, String description, String fileName, String filePath,
+                    String issue, String issueType, String lineNumber, String packageName, String priority,
+                    String scanTool, String severity, String techDebtMinutes, String teriansId) {
 
         this.category = category;
         this.className = className;

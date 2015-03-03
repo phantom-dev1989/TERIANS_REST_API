@@ -1,21 +1,24 @@
 package com.terians.dto;
 
+import com.fasterxml.jackson.annotation.JsonRootName;
+
 /**
  * Created by stromero on 12/11/2014.
  */
-public class Project {
+@JsonRootName("Project")
+public class ProjectDTO {
 
     // Properties
     private String name;
     private String teriansId;
-    private Scans scans;
+    private ScansDTO scansDTO;
 
-    public Project() {
+    public ProjectDTO() {
     }
 
-    public Project(String name, Scans scans, String teriansId) {
+    public ProjectDTO(String name, ScansDTO scansDTO, String teriansId) {
         this.name = name;
-        this.scans = scans;
+        this.scansDTO = scansDTO;
         this.teriansId = teriansId;
     }
 
@@ -36,11 +39,11 @@ public class Project {
         this.name = name;
     }
 
-    public Scans getScans() {
-        return scans;
+    public ScansDTO getScansDTO() {
+        return scansDTO;
     }
 
-    public void setScans(Scans scans) {
-        this.scans = scans;
+    public void setScansDTO(ScansDTO scansDTO) {
+        this.scansDTO = scansDTO;
     }
 }

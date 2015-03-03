@@ -1,9 +1,12 @@
 package com.terians.dto;
 
+import com.fasterxml.jackson.annotation.JsonRootName;
+
 /**
  * Created by stromero on 12/11/2014.
  */
-public class Dependency {
+@JsonRootName("Dependency")
+public class DependencyDTO {
 
     // Properties
     private String teriansId;
@@ -11,23 +14,24 @@ public class Dependency {
     private String fileName;
     private String filePath;
     private String license;
-    private Issues issues;
-    private Dependencies dependencies;
-    private Vulnerabilities vulnerabilities;
+    private IssuesDTO issuesDTO;
+    private DependenciesDTO dependenciesDTO;
+    private VulnerabilitiesDTO vulnerabilitiesDTO;
 
-    public Dependency() {
+    public DependencyDTO() {
 
     }
 
-    public Dependency(Dependencies dependencies, String description, String fileName, String filePath, Issues issues, String license, String teriansId, Vulnerabilities vulnerabilities) {
-        this.dependencies = dependencies;
+    public DependencyDTO(DependenciesDTO dependenciesDTO, String description, String fileName, String filePath,
+                         IssuesDTO issuesDTO, String license, String teriansId, VulnerabilitiesDTO vulnerabilitiesDTO) {
+        this.dependenciesDTO = dependenciesDTO;
         this.description = description;
         this.fileName = fileName;
         this.filePath = filePath;
-        this.issues = issues;
+        this.issuesDTO = issuesDTO;
         this.license = license;
         this.teriansId = teriansId;
-        this.vulnerabilities = vulnerabilities;
+        this.vulnerabilitiesDTO = vulnerabilitiesDTO;
     }
 
     // Getters and Setters
@@ -71,27 +75,27 @@ public class Dependency {
         this.license = license;
     }
 
-    public Dependencies getDependencies() {
-        return dependencies;
+    public DependenciesDTO getDependenciesDTO() {
+        return dependenciesDTO;
     }
 
-    public void setDependencies(Dependencies dependencies) {
-        this.dependencies = dependencies;
+    public void setDependenciesDTO(DependenciesDTO dependenciesDTO) {
+        this.dependenciesDTO = dependenciesDTO;
     }
 
-    public Issues getIssues() {
-        return issues;
+    public IssuesDTO getIssuesDTO() {
+        return issuesDTO;
     }
 
-    public void setIssues(Issues issues) {
-        this.issues = issues;
+    public void setIssuesDTO(IssuesDTO issuesDTO) {
+        this.issuesDTO = issuesDTO;
     }
 
-    public Vulnerabilities getVulnerabilities() {
-        return vulnerabilities;
+    public VulnerabilitiesDTO getVulnerabilitiesDTO() {
+        return vulnerabilitiesDTO;
     }
 
-    public void setVulnerabilities(Vulnerabilities vulnerabilities) {
-        this.vulnerabilities = vulnerabilities;
+    public void setVulnerabilitiesDTO(VulnerabilitiesDTO vulnerabilitiesDTO) {
+        this.vulnerabilitiesDTO = vulnerabilitiesDTO;
     }
 }

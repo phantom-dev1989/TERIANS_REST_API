@@ -1,52 +1,33 @@
 package com.terians.dto;
 
+import com.fasterxml.jackson.annotation.JsonRootName;
+
 /**
  * Created by stromero on 1/5/2015.
  */
-public class Package {
+@JsonRootName("Clazz")
+public class ClazzDTO {
 
-    // Properties
     private String teriansId;
     private String name;
     private Double afferent;
     private Double efferent;
     private Double cyclomaticCom;
-    private Double instability;
-    private Double abstractness;
-    private Clazzes clazzes;
+    private MethodsDTO methodsDTO;
 
-    public Package() {
-
+    public ClazzDTO() {
     }
 
-    public Package(Double abstractness, Double afferent, Clazzes clazzes, Double cyclomaticCom, Double efferent, Double instability, String name, String teriansId) {
-        this.abstractness = abstractness;
+    public ClazzDTO(Double afferent, Double cyclomaticCom, Double efferent, MethodsDTO methodsDTO, String name, String teriansId) {
         this.afferent = afferent;
-        this.clazzes = clazzes;
         this.cyclomaticCom = cyclomaticCom;
         this.efferent = efferent;
-        this.instability = instability;
+        this.methodsDTO = methodsDTO;
         this.name = name;
         this.teriansId = teriansId;
     }
 
     // Getters and Setters
-    public Double getAbstractness() {
-        return abstractness;
-    }
-
-    public void setAbstractness(Double abstractness) {
-        this.abstractness = abstractness;
-    }
-
-    public Double getInstability() {
-        return instability;
-    }
-
-    public void setInstability(Double instability) {
-        this.instability = instability;
-    }
-
     public void setTeriansId(String teriansId) {
         this.teriansId = teriansId;
     }
@@ -79,6 +60,14 @@ public class Package {
         this.efferent = efferent;
     }
 
+    public MethodsDTO getMethodsDTO() {
+        return methodsDTO;
+    }
+
+    public void setMethodsDTO(MethodsDTO methodsDTO) {
+        this.methodsDTO = methodsDTO;
+    }
+
     public String getName() {
         return name;
     }
@@ -87,11 +76,4 @@ public class Package {
         this.name = name;
     }
 
-    public Clazzes getClazzes() {
-        return clazzes;
-    }
-
-    public void setClazzes(Clazzes clazzes) {
-        this.clazzes = clazzes;
-    }
 }

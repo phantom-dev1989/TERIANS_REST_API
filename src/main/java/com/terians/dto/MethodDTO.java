@@ -1,25 +1,27 @@
 package com.terians.dto;
 
+import com.fasterxml.jackson.annotation.JsonRootName;
+
 /**
  * Created by stromero on 1/5/2015.
  */
-public class Clazz {
+@JsonRootName("Method")
+public class MethodDTO {
 
+    // Properties
     private String teriansId;
     private String name;
     private Double afferent;
     private Double efferent;
     private Double cyclomaticCom;
-    private Methods methods;
 
-    public Clazz() {
+    public MethodDTO() {
     }
 
-    public Clazz(Double afferent, Double cyclomaticCom, Double efferent, Methods methods, String name, String teriansId) {
+    public MethodDTO(Double afferent, Double cyclomaticCom, Double efferent, String name, String teriansId) {
         this.afferent = afferent;
         this.cyclomaticCom = cyclomaticCom;
         this.efferent = efferent;
-        this.methods = methods;
         this.name = name;
         this.teriansId = teriansId;
     }
@@ -57,14 +59,6 @@ public class Clazz {
         this.efferent = efferent;
     }
 
-    public Methods getMethods() {
-        return methods;
-    }
-
-    public void setMethods(Methods methods) {
-        this.methods = methods;
-    }
-
     public String getName() {
         return name;
     }
@@ -72,5 +66,4 @@ public class Clazz {
     public void setName(String name) {
         this.name = name;
     }
-
 }
