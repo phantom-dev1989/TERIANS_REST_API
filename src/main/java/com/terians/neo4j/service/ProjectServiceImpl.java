@@ -1,7 +1,9 @@
 package com.terians.neo4j.service;
 
+
 import com.terians.dto.ProjectDTO;
 import com.terians.dto.ProjectsDTO;
+import com.terians.dto.transformer.DTOTransformerUtil;
 import com.terians.neo4j.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,11 +22,12 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public ProjectsDTO findAllProjects() {
-        return null;
+        return DTOTransformerUtil.transformProjectSetToProjectsDTO(repository.findAllProjects());
     }
 
     @Override
     public ProjectDTO findProjectById(String teriansId) {
-        return null;
+        return DTOTransformerUtil.transformProjectToProjectDTO(repository.findProjectById(teriansId));
     }
+
 }

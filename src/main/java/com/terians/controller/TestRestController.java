@@ -23,6 +23,16 @@ public class TestRestController {
         messageObj.setMessage(message);
 
         return messageObj;
+
+        @RequestMapping(value ="/{msg}", method = RequestMethod.GET)
+    public Hello getMessage(@PathVariable("msg") String message, @RequestParam(value="page", required=false) String page){
+
+        Hello messageObj = new Hello();
+        messageObj.setId(counter.getAndIncrement());
+        messageObj.setMessage(message);
+
+        return messageObj;
+    }
     }*/
 }
 

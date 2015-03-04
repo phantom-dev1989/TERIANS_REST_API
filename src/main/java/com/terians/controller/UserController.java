@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
  * Created by stromero on 9/21/2014.
  */
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/v1/users")
 public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);

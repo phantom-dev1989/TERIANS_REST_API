@@ -17,7 +17,7 @@ public interface DependencyRepository extends GraphRepository<Dependency> {
     // Find all dependencies by Scan teriansId
     //@Cacheable("teriansCache")
     @Query("MATCH(s:Scan)-[:HAS_DEPENDENCY]->(d:Dependency) WHERE s.teriansId = {0} RETURN d")
-    public Set<Dependency> findByScan(String teriansId);
+    public Set<Dependency> findDependenciesByScan(String teriansId);
 
-    public Dependency findById(String dependencyId);
+    public Dependency findDependencyById(String dependencyId);
 }

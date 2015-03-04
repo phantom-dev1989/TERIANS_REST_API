@@ -23,6 +23,8 @@ public class Method {
     private Double efferent;
     @Indexed
     private Double cyclomaticCom;
+    @Indexed
+    private String sourceCode;
 
     // Getters and Setters
     public void setTeriansId(String teriansId) {
@@ -73,16 +75,12 @@ public class Method {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Method{" +
-                "afferent=" + afferent +
-                ", id=" + id +
-                ", teriansId='" + teriansId + '\'' +
-                ", name='" + name + '\'' +
-                ", efferent=" + efferent +
-                ", cyclomaticCom=" + cyclomaticCom +
-                '}';
+    public String getSourceCode() {
+        return sourceCode;
+    }
+
+    public void setSourceCode(String sourceCode) {
+        this.sourceCode = sourceCode;
     }
 
     @Override
@@ -96,7 +94,9 @@ public class Method {
         if (cyclomaticCom != null ? !cyclomaticCom.equals(method.cyclomaticCom) : method.cyclomaticCom != null)
             return false;
         if (efferent != null ? !efferent.equals(method.efferent) : method.efferent != null) return false;
+        if (id != null ? !id.equals(method.id) : method.id != null) return false;
         if (name != null ? !name.equals(method.name) : method.name != null) return false;
+        if (sourceCode != null ? !sourceCode.equals(method.sourceCode) : method.sourceCode != null) return false;
         if (teriansId != null ? !teriansId.equals(method.teriansId) : method.teriansId != null) return false;
 
         return true;
@@ -104,11 +104,26 @@ public class Method {
 
     @Override
     public int hashCode() {
-        int result = teriansId != null ? teriansId.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (teriansId != null ? teriansId.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (afferent != null ? afferent.hashCode() : 0);
         result = 31 * result + (efferent != null ? efferent.hashCode() : 0);
         result = 31 * result + (cyclomaticCom != null ? cyclomaticCom.hashCode() : 0);
+        result = 31 * result + (sourceCode != null ? sourceCode.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Method{" +
+                "afferent=" + afferent +
+                ", id=" + id +
+                ", teriansId='" + teriansId + '\'' +
+                ", name='" + name + '\'' +
+                ", efferent=" + efferent +
+                ", cyclomaticCom=" + cyclomaticCom +
+                ", sourceCode=" + sourceCode +
+                '}';
     }
 }

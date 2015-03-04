@@ -17,6 +17,6 @@ public class MethodServiceImpl implements MethodService {
 
     @Override
     public Integer findMethodCountByScan(String teriansId) {
-        return null;
+        return repository.findMethodCountByScan(teriansId);
     }
 }

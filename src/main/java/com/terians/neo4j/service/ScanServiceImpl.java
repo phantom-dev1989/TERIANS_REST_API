@@ -2,6 +2,7 @@ package com.terians.neo4j.service;
 
 import com.terians.dto.ScanDTO;
 import com.terians.dto.ScansDTO;
+import com.terians.dto.transformer.DTOTransformerUtil;
 import com.terians.neo4j.repository.ScanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,39 +18,39 @@ public class ScanServiceImpl implements ScanService {
     @Autowired
     private ScanRepository repository;
 
-
     @Override
     public ScanDTO findLatestScan() {
-        return null;
+        return DTOTransformerUtil.transformScanToScanDTO(repository.findLatestScan());
     }
 
     @Override
     public ScansDTO findAllScansByProject(String teriansId) {
-        return null;
+        return DTOTransformerUtil.transformScanSetToScansDTO(repository.findAllScansByProject(teriansId));
     }
 
     @Override
     public ScanDTO findScanById(String teriansId) {
-        return null;
+        return DTOTransformerUtil.transformScanToScanDTO(repository.findScanById(teriansId));
     }
 
     @Override
     public Integer findComplexityByScan(String teriansId) {
-        return null;
+        return repository.findComplexityByScan(teriansId);
     }
 
     @Override
     public Integer findTechDebtByScan(String teriansId) {
-        return null;
+        return repository.findTechDebtByScan(teriansId);
     }
 
     @Override
     public Integer findAbstractnessByScan(String teriansId) {
-        return null;
+        return repository.findAbstractnessByScan(teriansId);
     }
 
     @Override
     public Integer findInstabilityByScan(String teriansId) {
-        return null;
+        return repository.findInstabilityByScan(teriansId);
     }
+
 }

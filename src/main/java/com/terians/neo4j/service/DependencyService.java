@@ -11,9 +11,9 @@ import com.terians.neo4j.model.Dependency;
 public interface DependencyService {
 
     // Find all dependencies by Scan teriansId
-    public DependenciesDTO findByScan(String teriansId);
+    public DependenciesDTO findDependenciesByScan(String teriansId);
 
-    public DependencyDTO findById(String dependencyId);
+    public DependencyDTO findDependencyById(String dependencyId);
 
     public Dependency save(Dependency dependency);
 }

@@ -14,19 +14,30 @@ public class MethodDTO {
     private Double afferent;
     private Double efferent;
     private Double cyclomaticCom;
+    private String sourceCode;
 
     public MethodDTO() {
     }
 
-    public MethodDTO(Double afferent, Double cyclomaticCom, Double efferent, String name, String teriansId) {
+    public MethodDTO(Double afferent, Double cyclomaticCom, Double efferent, String name, String sourceCode, String teriansId) {
         this.afferent = afferent;
         this.cyclomaticCom = cyclomaticCom;
         this.efferent = efferent;
         this.name = name;
+        this.sourceCode = sourceCode;
         this.teriansId = teriansId;
     }
 
-    // Getters and Setters
+// Getters and Setters
+
+    public String getSourceCode() {
+        return sourceCode;
+    }
+
+    public void setSourceCode(String sourceCode) {
+        this.sourceCode = sourceCode;
+    }
+
     public void setTeriansId(String teriansId) {
         this.teriansId = teriansId;
     }

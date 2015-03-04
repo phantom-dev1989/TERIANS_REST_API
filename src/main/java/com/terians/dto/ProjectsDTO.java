@@ -15,6 +15,9 @@ public class ProjectsDTO {
     @JsonProperty("ProjectList")
     private List<ProjectDTO> projects;
 
+    public ProjectsDTO() {
+    }
+
     public ProjectsDTO(List<ProjectDTO> projects, int totalProjects) {
         this.projects = projects;
         this.totalProjects = totalProjects;

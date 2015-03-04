@@ -1,6 +1,7 @@
 package com.terians.neo4j.service;
 
 import com.terians.dto.PackagesDTO;
+import com.terians.dto.transformer.DTOTransformerUtil;
 import com.terians.neo4j.repository.PackageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,16 +19,17 @@ public class PackageServiceImpl implements PackageService {
 
     @Override
     public Integer findPackageCountByScan(String teriansId) {
-        return null;
+        return repository.findPackageCountByScan(teriansId);
     }
 
     @Override
     public PackagesDTO findPackagesByScanOrderedByAfferentCount(String teriansId, int limit) {
-        return null;
+        return DTOTransformerUtil.transformPackageSetToPackagesDTO(repository.findPackagesByScanOrderedByAfferentCount(teriansId, limit));
     }
 
     @Override
     public PackagesDTO findPackagesByScanOrderedByEfferentCount(String teriansId, int limit) {
-        return null;
+        return DTOTransformerUtil.transformPackageSetToPackagesDTO(repository.findPackagesByScanOrderedByEfferentCount(teriansId, limit));
     }
+
 }
