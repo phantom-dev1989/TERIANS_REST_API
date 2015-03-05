@@ -1,4 +1,4 @@
-package com.terians.controller;
+package com.terians.rest.controller;
 
 import com.terians.dto.MethodDTO;
 import com.terians.dto.MethodsDTO;

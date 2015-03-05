@@ -1,4 +1,4 @@
-package com.terians.controller;
+package com.terians.rest.controller;
 
 import com.terians.dto.*;
 import org.slf4j.Logger;
@@ -82,7 +82,7 @@ public class ScansController {
     }
 
     @RequestMapping(value ="/{scanId}/dependencies/{dependencyId}/dependencies", method = RequestMethod.GET)
-    public DependenciesDTO getRelatedDependencies(@PathVariable("scanId") String scanId,
+    public DependenciesDTO getDependencies(@PathVariable("scanId") String scanId,
                                                   @PathVariable("dependencyId") String dependencyId) {
 
 
@@ -90,9 +90,9 @@ public class ScansController {
     }
 
     @RequestMapping(value ="/{scanId}/dependencies/{dependencyId}/dependencies/{dependencyId2}", method = RequestMethod.GET)
-    public DependencyDTO getRelatedDependency(@PathVariable("scanId") String scanId,
-                                              @PathVariable("dependencyId") String dependencyId,
-                                              @PathVariable("dependencyId2") String dependencyId2) {
+    public DependencyDTO getDependency(@PathVariable("scanId") String scanId,
+                                       @PathVariable("dependencyId") String dependencyId,
+                                       @PathVariable("dependencyId2") String dependencyId2) {
 
 
         return null;
@@ -116,10 +116,10 @@ public class ScansController {
     }
 
     @RequestMapping(value ="/{scanId}/dependencies/{dependencyId}/issues", method = RequestMethod.GET)
-    public IssuesDTO getDependencyIssues(@PathVariable("scanId") String scanId,
-                                         @PathVariable("dependencyId") String dependencyId,
-                                         @RequestParam(value="category", required=false) String category,
-                                         @RequestParam(value="orderedBy", required=false) String orderedBy) {
+    public IssuesDTO getIssues(@PathVariable("scanId") String scanId,
+                               @PathVariable("dependencyId") String dependencyId,
+                               @RequestParam(value="category", required=false) String category,
+                               @RequestParam(value="orderedBy", required=false) String orderedBy) {
 
         String[] orderedByValues = orderedBy.split(",");
         String orderedByValue = orderedByValues[0];
@@ -129,9 +129,9 @@ public class ScansController {
     }
 
     @RequestMapping(value ="/{scanId}/dependencies/{dependencyId}/issues/{issueId}", method = RequestMethod.GET)
-    public IssueDTO getDependencyIssue(@PathVariable("scanId") String scanId,
-                                       @PathVariable("dependencyId") String dependencyId,
-                                       @PathVariable("issueId") String issueId) {
+    public IssueDTO getIssue(@PathVariable("scanId") String scanId,
+                             @PathVariable("dependencyId") String dependencyId,
+                             @PathVariable("issueId") String issueId) {
 
         return null;
     }

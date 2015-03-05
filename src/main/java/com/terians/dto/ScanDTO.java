@@ -13,6 +13,10 @@ public class ScanDTO {
     // Properties
     private String teriansId;
     private String projectVersion;
+    private int complexity;
+    private int techdebt;
+    private int abstractness;
+    private int instability;
     private Date date;
     private IssuesDTO issuesDTO;
     private DependenciesDTO dependenciesDTO;
@@ -22,16 +26,54 @@ public class ScanDTO {
 
     }
 
-    public ScanDTO(Date date, DependenciesDTO dependenciesDTO, IssuesDTO issuesDTO, PackagesDTO packagesDTO, String projectVersion, String teriansId) {
+    public ScanDTO(int abstractness, int complexity, Date date, DependenciesDTO dependenciesDTO, int instability,
+                   IssuesDTO issuesDTO, PackagesDTO packagesDTO, String projectVersion, int techdebt, String teriansId) {
+        this.abstractness = abstractness;
+        this.complexity = complexity;
         this.date = date;
         this.dependenciesDTO = dependenciesDTO;
+        this.instability = instability;
         this.issuesDTO = issuesDTO;
         this.packagesDTO = packagesDTO;
         this.projectVersion = projectVersion;
+        this.techdebt = techdebt;
         this.teriansId = teriansId;
     }
 
     // Getters and Setters
+
+    public int getAbstractness() {
+        return abstractness;
+    }
+
+    public void setAbstractness(int abstractness) {
+        this.abstractness = abstractness;
+    }
+
+    public int getComplexity() {
+        return complexity;
+    }
+
+    public void setComplexity(int complexity) {
+        this.complexity = complexity;
+    }
+
+    public int getInstability() {
+        return instability;
+    }
+
+    public void setInstability(int instability) {
+        this.instability = instability;
+    }
+
+    public int getTechdebt() {
+        return techdebt;
+    }
+
+    public void setTechdebt(int techdebt) {
+        this.techdebt = techdebt;
+    }
+
     public void setTeriansId(String teriansId) {
         this.teriansId = teriansId;
     }

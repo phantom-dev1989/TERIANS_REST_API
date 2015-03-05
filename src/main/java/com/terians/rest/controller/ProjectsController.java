@@ -1,4 +1,4 @@
-package com.terians.controller;
+package com.terians.rest.controller;
 
 import com.terians.dto.*;
 import org.slf4j.Logger;
@@ -84,7 +84,7 @@ public class ProjectsController {
     }
 
     @RequestMapping(value ="/{projectId}/scans/{scanId}/dependencies/{dependencyId}/methods", method = RequestMethod.GET)
-    public MethodsDTO getDependencyMethods(@PathVariable("projectId") String projectId,
+    public MethodsDTO getMethods(@PathVariable("projectId") String projectId,
                                            @PathVariable("scanId") String scanId,
                                            @PathVariable("dependencyId") String dependencyId) {
 
@@ -93,7 +93,7 @@ public class ProjectsController {
     }
 
     @RequestMapping(value ="/{projectId}/scans/{scanId}/dependencies/{dependencyId}/methods/{methodId}", method = RequestMethod.GET)
-    public MethodDTO getDependencyMethod(@PathVariable("projectId") String projectId,
+    public MethodDTO getMethod(@PathVariable("projectId") String projectId,
                                          @PathVariable("scanId") String scanId,
                                          @PathVariable("dependencyId") String dependencyId,
                                          @PathVariable("methodId") String methodId) {
@@ -103,7 +103,7 @@ public class ProjectsController {
     }
 
     @RequestMapping(value ="/{projectId}/scans/{scanId}/dependencies/{dependencyId}/dependencies", method = RequestMethod.GET)
-    public DependenciesDTO getRelatedDependencies(@PathVariable("projectId") String projectId,
+    public DependenciesDTO getDependencies(@PathVariable("projectId") String projectId,
                                                   @PathVariable("scanId") String scanId,
                                                   @PathVariable("dependencyId") String dependencyId) {
 
@@ -112,7 +112,7 @@ public class ProjectsController {
     }
 
     @RequestMapping(value ="/{projectId}/scans/{scanId}/dependencies/{dependencyId}/dependencies/{dependencyId2}", method = RequestMethod.GET)
-    public DependencyDTO getRelatedDependency(@PathVariable("projectId") String projectId,
+    public DependencyDTO getDependency(@PathVariable("projectId") String projectId,
                                               @PathVariable("scanId") String scanId,
                                               @PathVariable("dependencyId") String dependencyId,
                                               @PathVariable("dependencyId2") String dependencyId2) {
@@ -141,7 +141,7 @@ public class ProjectsController {
     }
 
     @RequestMapping(value ="/{projectId}/scans/{scanId}/dependencies/{dependencyId}/issues", method = RequestMethod.GET)
-    public IssuesDTO getDependencyIssues(@PathVariable("projectId") String projectId,
+    public IssuesDTO getIssues(@PathVariable("projectId") String projectId,
                                          @PathVariable("scanId") String scanId,
                                          @PathVariable("dependencyId") String dependencyId,
                                          @RequestParam(value="category", required=false) String category,
@@ -155,7 +155,7 @@ public class ProjectsController {
     }
 
     @RequestMapping(value ="/{projectId}/scans/{scanId}/dependencies/{dependencyId}/issues/{issueId}", method = RequestMethod.GET)
-    public IssueDTO getDependencyIssue(@PathVariable("projectId") String projectId,
+    public IssueDTO getIssue(@PathVariable("projectId") String projectId,
                                        @PathVariable("scanId") String scanId,
                                        @PathVariable("dependencyId") String dependencyId,
                                        @PathVariable("issueId") String issueId) {

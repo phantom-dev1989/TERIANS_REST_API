@@ -1,4 +1,4 @@
-package com.terians.controller;
+package com.terians.rest.controller;
 
 import com.terians.dto.VulnerabilitiesDTO;
 import com.terians.dto.VulnerabilityDTO;
