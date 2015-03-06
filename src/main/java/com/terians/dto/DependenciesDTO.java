@@ -13,22 +13,22 @@ public class DependenciesDTO {
 
     private int totalDependencies;
     @JsonProperty("DependencyList")
-    private List<DependencyDTO> dependenciesDTO;
+    private List<DependencyDTO> dependencyDTOList;
 
     public DependenciesDTO() {
     }
 
-    public DependenciesDTO(List<DependencyDTO> dependenciesDTO, int totalDependencies) {
-        this.dependenciesDTO = dependenciesDTO;
+    public DependenciesDTO(List<DependencyDTO> dependencyDTOList, int totalDependencies) {
+        this.dependencyDTOList = dependencyDTOList;
         this.totalDependencies = totalDependencies;
     }
 
-    public List<DependencyDTO> getDependenciesDTO() {
-        return dependenciesDTO;
+    public List<DependencyDTO> getDependencyDTOList() {
+        return dependencyDTOList;
     }
 
-    public void setDependenciesDTO(List<DependencyDTO> dependenciesDTO) {
-        this.dependenciesDTO = dependenciesDTO;
+    public void setDependencyDTOList(List<DependencyDTO> dependencyDTOList) {
+        this.dependencyDTOList = dependencyDTOList;
     }
 
     public int getTotalDependencies() {

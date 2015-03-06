@@ -1,6 +1,7 @@
 package com.terians.neo4j.service;
 
 
+import com.terians.dto.IssueDTO;
 import com.terians.dto.IssuesDTO;
 
 /**
@@ -9,6 +10,8 @@ import com.terians.dto.IssuesDTO;
 public interface IssueService {
     
     public Integer findIssueCountByScan(String teriansId);
+
+    public IssueDTO findIssueById(String issueId);
 
     // Queries for All Issues
     

@@ -1,13 +1,18 @@
 package com.terians.neo4j.service;
 
-import com.terians.dto.DependenciesDTO;
-import com.terians.dto.DependencyDTO;
+import com.terians.dto.*;
 import com.terians.dto.transformer.DTOTransformerUtil;
 import com.terians.neo4j.model.Dependency;
+import com.terians.neo4j.model.Issue;
+import com.terians.neo4j.model.Method;
+import com.terians.neo4j.model.Vulnerability;
 import com.terians.neo4j.repository.DependencyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Set;
 
 
 /**
@@ -18,21 +23,133 @@ import org.springframework.transaction.annotation.Transactional;
 public class DependencyServiceImpl implements DependencyService {
 
     @Autowired
-    private DependencyRepository repository;
+    private Neo4jTemplate template;
+    @Autowired
+    private DependencyRepository dependencyRepository;
 
     @Override
-    public DependenciesDTO findDependenciesByScan(String teriansId) {
-        return DTOTransformerUtil.transformDependencySetToDependenciesDTO(repository.findDependenciesByScan(teriansId));
+    public DependenciesDTO findDependenciesByScan(String scanId) {
+        return DTOTransformerUtil.transformDependencySetToDependenciesDTO(dependencyRepository.findDependenciesByScan(scanId));
     }
 
     @Override
-    public DependencyDTO findDependencyById(String teriansId) {
-        return DTOTransformerUtil.transformDependencyToDependencyDTO(repository.findDependencyById(teriansId));
+    public DependenciesDTO findAllDependencies() {
+        return DTOTransformerUtil.transformDependencySetToDependenciesDTO(dependencyRepository.findAllDependencies());
     }
 
     @Override
-    public Dependency save(Dependency dependency) {
-        return repository.save(dependency);
+    public DependencyDTO findDependencyById(String dependencyId) {
+        return DTOTransformerUtil.transformDependencyToDependencyDTO(dependencyRepository.findDependencyById(dependencyId));
     }
+
+    @Override
+    public MethodsDTO findAllMethods(String dependencyId) {
+
+        Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
+        template.fetch(dependency.getMethods());
+        return DTOTransformerUtil.transformMethodSetToMethodsDTO(dependency.getMethods());
+    }
+
+    @Override
+    public MethodDTO findMethodById(String dependencyId, String methodId) {
+
+        Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
+        template.fetch(dependency.getMethods());
+        Set<Method> methodSet = dependency.getMethods();
+        Method method = null;
+
+        for(Method e : methodSet){
+
+            if(e.getTeriansId().equals(methodId)){
+
+                method = e;
+            }
+        }
+        return DTOTransformerUtil.transformMethodToMethodDTO(method);
+    }
+
+    @Override
+    public DependenciesDTO findAllRelatedDependencies(String dependencyId) {
+
+        Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
+        template.fetch(dependency.getDependencies());
+
+        return DTOTransformerUtil.transformDependencySetToDependenciesDTO(dependency.getDependencies());
+    }
+
+    @Override
+    public DependencyDTO findRelatedDependencyById(String dependencyId, String relatedDependencyId) {
+
+        Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
+        template.fetch(dependency.getDependencies());
+
+        Set<Dependency> dependencySet = dependency.getDependencies();
+        Dependency relatedDependency = null;
+
+        for(Dependency e : dependencySet){
+
+            if(e.getTeriansId().equals(relatedDependencyId)){
+
+                relatedDependency = e;
+            }
+        }
+
+        return DTOTransformerUtil.transformDependencyToDependencyDTO(relatedDependency);
+    }
+
+    @Override
+    public VulnerabilitiesDTO findAllVulnerabilities(String dependencyId) {
+
+        Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
+        template.fetch(dependency.getVulnerabilities());
+
+        return DTOTransformerUtil.transformVulnerabilitySetToVulnerabilitiesDTO(dependency.getVulnerabilities());
+    }
+
+    @Override
+    public VulnerabilityDTO findVulnerabilityById(String dependencyId, String vulnerabilityId) {
+
+        Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
+        template.fetch(dependency.getVulnerabilities());
+
+        Set<Vulnerability> vulnerabilitySet = dependency.getVulnerabilities();
+        Vulnerability vulnerability = null;
+
+        for(Vulnerability e : vulnerabilitySet){
+
+            if(e.getTeriansId().equals(vulnerabilityId)){
+
+                vulnerability = e;
+            }
+        }
+
+        return DTOTransformerUtil.transformVulnerabilityToVulnerabilityDTO(vulnerability);
+    }
+
+    @Override
+    public IssuesDTO findAllIssues(String dependencyId) {
+        return null;
+    }
+
+    @Override
+    public IssueDTO findIssueById(String dependencyId,String issueId) {
+
+        Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
+        template.fetch(dependency.getIssues());
+
+        Set<Issue> issueSet = dependency.getIssues();
+        Issue issue = null;
+
+        for(Issue e : issueSet){
+
+            if(e.getTeriansId().equals(issueId)){
+
+                issue = e;
+            }
+        }
+
+        return DTOTransformerUtil.transformIssueToIssueDTO(issue);
+    }
+
 
 }

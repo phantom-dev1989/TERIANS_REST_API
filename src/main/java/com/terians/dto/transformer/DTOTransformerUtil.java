@@ -25,14 +25,29 @@ public final class DTOTransformerUtil {
             clazzDTO.setCyclomaticCom(e.getCyclomaticCom());
             clazzDTO.setEfferent(e.getEfferent());
             clazzDTO.setName(e.getName());
+            clazzDTO.setSourceCode(e.getSourceCode());
+            clazzDTO.setLineNumbers(e.getLineNumbers());
 
             clazzDTOList.add(clazzDTO);
         }
 
-        clazzesDTO.setClazzDTOs(clazzDTOList);
+        clazzesDTO.setClazzDTOList(clazzDTOList);
         clazzesDTO.setTotalClazzes(clazzDTOList.size());
 
         return clazzesDTO;
+    }
+    public static final ClazzDTO transformClazzToClazzDTO(Clazz clazz){
+
+            ClazzDTO clazzDTO = new ClazzDTO();
+            clazzDTO.setTeriansId(clazz.getTeriansId());
+            clazzDTO.setAfferent(clazz.getAfferent());
+            clazzDTO.setCyclomaticCom(clazz.getCyclomaticCom());
+            clazzDTO.setEfferent(clazz.getEfferent());
+            clazzDTO.setName(clazz.getName());
+            clazzDTO.setSourceCode(clazz.getSourceCode());
+            clazzDTO.setLineNumbers(clazz.getLineNumbers());
+
+        return clazzDTO;
     }
 
     public static final DependencyDTO transformDependencyToDependencyDTO(Dependency dependency){
@@ -63,10 +78,32 @@ public final class DTOTransformerUtil {
             dependencyDTOList.add(dependencyDTO);
         }
 
-        dependenciesDTO.setDependenciesDTO(dependencyDTOList);
+        dependenciesDTO.setDependencyDTOList(dependencyDTOList);
         dependenciesDTO.setTotalDependencies(dependencyDTOList.size());
 
         return dependenciesDTO;
+    }
+
+    public static final IssueDTO transformIssueToIssueDTO(Issue issue){
+
+            IssueDTO issueDTO = new IssueDTO();
+            issueDTO.setTeriansId(issue.getTeriansId());
+            issueDTO.setCategory(issue.getCategory());
+            issueDTO.setClassName(issue.getClassName());
+            issueDTO.setDescription(issue.getDescription());
+            issueDTO.setFileName(issue.getFileName());
+            issueDTO.setFilePath(issue.getFilePath());
+            issueDTO.setLineNumber(issue.getLineNumber());
+            issueDTO.setPackageName(issue.getPackageName());
+            issueDTO.setPriority(issue.getPriority());
+            issueDTO.setScanTool(issue.getScanTool());
+            issueDTO.setSeverity(issue.getSeverity());
+            issueDTO.setTechDebtMinutes(issue.getTechDebtMinutes());
+            issueDTO.setIssue(issue.getIssue());
+            issueDTO.setIssueType(issue.getIssueType());
+
+        return issueDTO;
+
     }
 
     public static final IssuesDTO transformIssuesSetToIssuesDTO(Set<Issue> issueSet){
@@ -94,7 +131,7 @@ public final class DTOTransformerUtil {
             issueDTOList.add(issueDTO);
         }
 
-        issuesDTO.setIssueDTOs(issueDTOList);
+        issuesDTO.setIssueDTOList(issueDTOList);
         issuesDTO.setTotalIssues(issueDTOList.size());
 
         return issuesDTO;
@@ -119,7 +156,7 @@ public final class DTOTransformerUtil {
             packageDTOList.add(packageDTO);
         }
 
-        packagesDTO.setPackageDTOs(packageDTOList);
+        packagesDTO.setPackageDTOList(packageDTOList);
         packagesDTO.setTotalPackages(packageDTOList.size());
 
         return packagesDTO;
@@ -147,7 +184,7 @@ public final class DTOTransformerUtil {
             projectDTOList.add(projectDTO);
         }
 
-        projectsDTO.setProjects(projectDTOList);
+        projectsDTO.setProjectDTOList(projectDTOList);
         projectsDTO.setTotalProjects(projectDTOList.size());
 
         return projectsDTO;
@@ -176,10 +213,84 @@ public final class DTOTransformerUtil {
             scanDTOList.add(scanDTO);
         }
 
-        scansDTO.setScanDTOs(scanDTOList);
+        scansDTO.setScanDTOList(scanDTOList);
         scansDTO.setTotalScans(scanDTOList.size());
 
         return scansDTO;
+    }
+
+    public static final MethodsDTO transformMethodSetToMethodsDTO(Set<Method> methodSet){
+
+        MethodsDTO methodsDTO = new MethodsDTO();
+        List<MethodDTO> methodDTOList = new ArrayList<>();
+        for(Method e: methodSet){
+
+            MethodDTO methodDTO = new MethodDTO();
+            methodDTO.setTeriansId(e.getTeriansId());
+            methodDTO.setAfferent(e.getAfferent());
+            methodDTO.setName(e.getName());
+            methodDTO.setCyclomaticCom(e.getCyclomaticCom());
+            methodDTO.setEfferent(e.getEfferent());
+            methodDTO.setSourceCode(e.getSourceCode());
+            methodDTOList.add(methodDTO);
+        }
+
+        methodsDTO.setMethodDTOList(methodDTOList);
+        methodsDTO.setTotalMethods(methodDTOList.size());
+
+        return methodsDTO;
+    }
+
+    public static final MethodDTO transformMethodToMethodDTO(Method method){
+
+        MethodDTO methodDTO = new MethodDTO();
+        methodDTO.setTeriansId(method.getTeriansId());
+        methodDTO.setAfferent(method.getAfferent());
+        methodDTO.setName(method.getName());
+        methodDTO.setCyclomaticCom(method.getCyclomaticCom());
+        methodDTO.setEfferent(method.getEfferent());
+        methodDTO.setSourceCode(method.getSourceCode());
+
+        return methodDTO;
+    }
+
+    public static final VulnerabilitiesDTO transformVulnerabilitySetToVulnerabilitiesDTO(Set<Vulnerability> vulnerabilitySet){
+
+        VulnerabilitiesDTO vulnerabilitiesDTO = new VulnerabilitiesDTO();
+        List<VulnerabilityDTO> vulnerabilityDTOList = new ArrayList<>();
+
+        for(Vulnerability e: vulnerabilitySet){
+
+            VulnerabilityDTO vulnerabilityDTO = new VulnerabilityDTO();
+            vulnerabilityDTO.setTeriansId(e.getTeriansId());
+            vulnerabilityDTO.setName(e.getName());
+            vulnerabilityDTO.setCve(e.getCve());
+            vulnerabilityDTO.setCvssScore(e.getCvssScore());
+            vulnerabilityDTO.setCwe(e.getCwe());
+            vulnerabilityDTO.setDescription(e.getDescription());
+            vulnerabilityDTO.setSeverity(e.getSeverity());
+
+            vulnerabilityDTOList.add(vulnerabilityDTO);
+        }
+
+        vulnerabilitiesDTO.setVulnerabilityDTOList(vulnerabilityDTOList);
+        vulnerabilitiesDTO.setTotalVulnerabilities(vulnerabilityDTOList.size());
+
+        return vulnerabilitiesDTO;
+    }
+
+    public static final VulnerabilityDTO transformVulnerabilityToVulnerabilityDTO(Vulnerability vulnerability){
+
+        VulnerabilityDTO vulnerabilityDTO = new VulnerabilityDTO();
+        vulnerabilityDTO.setTeriansId(vulnerability.getTeriansId());
+        vulnerabilityDTO.setName(vulnerability.getName());
+        vulnerabilityDTO.setCve(vulnerability.getCve());
+        vulnerabilityDTO.setCvssScore(vulnerability.getCvssScore());
+        vulnerabilityDTO.setCwe(vulnerability.getCwe());
+        vulnerabilityDTO.setDescription(vulnerability.getDescription());
+        vulnerabilityDTO.setSeverity(vulnerability.getSeverity());
+
+        return vulnerabilityDTO;
     }
 
 }

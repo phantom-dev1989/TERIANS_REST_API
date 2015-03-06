@@ -13,22 +13,22 @@ public class ClazzesDTO {
 
     private int totalClazzes;
     @JsonProperty("ClazzList")
-    private List<ClazzDTO> clazzDTOs;
+    private List<ClazzDTO> clazzDTOList;
 
     public ClazzesDTO() {
     }
 
-    public ClazzesDTO(int totalClazzes, List<ClazzDTO> clazzDTOs) {
+    public ClazzesDTO(int totalClazzes, List<ClazzDTO> clazzDTOList) {
         this.totalClazzes = totalClazzes;
-        this.clazzDTOs = clazzDTOs;
+        this.clazzDTOList = clazzDTOList;
     }
 
-    public List<ClazzDTO> getClazzDTOs() {
-        return clazzDTOs;
+    public List<ClazzDTO> getClazzDTOList() {
+        return clazzDTOList;
     }
 
-    public void setClazzDTOs(List<ClazzDTO> clazzDTOs) {
-        this.clazzDTOs = clazzDTOs;
+    public void setClazzDTOList(List<ClazzDTO> clazzDTOList) {
+        this.clazzDTOList = clazzDTOList;
     }
 
     public int getTotalClazzes() {

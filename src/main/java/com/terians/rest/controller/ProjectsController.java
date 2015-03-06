@@ -1,8 +1,10 @@
 package com.terians.rest.controller;
 
 import com.terians.dto.*;
+import com.terians.neo4j.service.ProjectService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -14,25 +16,25 @@ public class ProjectsController {
 
     private static final Logger logger = LoggerFactory.getLogger(ProjectsController.class);
 
+    @Autowired
+    private ProjectService projectService;
+
     @RequestMapping(value ="/", method = RequestMethod.GET)
     public ProjectsDTO getProjects() {
 
-
-        return null;
+        return projectService.findAllProjects();
     }
 
     @RequestMapping(value ="/{projectId}", method = RequestMethod.GET)
     public ProjectDTO getProject(@PathVariable("projectId") String projectId) {
 
-
-        return null;
+        return projectService.findProjectById(projectId);
     }
 
     @RequestMapping(value ="/{projectId}/scans", method = RequestMethod.GET)
     public ScansDTO getScans(@PathVariable("projectId") String projectId) {
 
-
-        return null;
+        return projectService.findAllScansByProject(projectId);
     }
 
     @RequestMapping(value ="/{projectId}/scans/{scanId}", method = RequestMethod.GET)

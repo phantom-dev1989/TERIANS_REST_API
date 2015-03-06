@@ -13,23 +13,23 @@ public class VulnerabilitiesDTO {
 
     private int totalVulnerabilities;
     @JsonProperty("VulnerabilityList")
-    private List<VulnerabilityDTO> vulnerabilities;
+    private List<VulnerabilityDTO> vulnerabilityDTOList;
 
     public VulnerabilitiesDTO() {
 
     }
 
-    public VulnerabilitiesDTO(int totalVulnerabilities, List<VulnerabilityDTO> vulnerabilities) {
+    public VulnerabilitiesDTO(int totalVulnerabilities, List<VulnerabilityDTO> vulnerabilityDTOList) {
         this.totalVulnerabilities = totalVulnerabilities;
-        this.vulnerabilities = vulnerabilities;
+        this.vulnerabilityDTOList = vulnerabilityDTOList;
     }
 
-    public List<VulnerabilityDTO> getVulnerabilities() {
-        return vulnerabilities;
+    public List<VulnerabilityDTO> getVulnerabilityDTOList() {
+        return vulnerabilityDTOList;
     }
 
-    public void setVulnerabilities(List<VulnerabilityDTO> vulnerabilities) {
-        this.vulnerabilities = vulnerabilities;
+    public void setVulnerabilityDTOList(List<VulnerabilityDTO> vulnerabilityDTOList) {
+        this.vulnerabilityDTOList = vulnerabilityDTOList;
     }
 
     public int getTotalVulnerabilities() {

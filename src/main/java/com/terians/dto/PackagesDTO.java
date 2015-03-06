@@ -13,22 +13,22 @@ public class PackagesDTO {
 
     private int totalPackages;
     @JsonProperty("PackageList")
-    private List<PackageDTO> packageDTOs;
+    private List<PackageDTO> packageDTOList;
 
     public PackagesDTO() {
     }
 
-    public PackagesDTO(List<PackageDTO> packageDTOs, int totalPackages) {
-        this.packageDTOs = packageDTOs;
+    public PackagesDTO(List<PackageDTO> packageDTOList, int totalPackages) {
+        this.packageDTOList = packageDTOList;
         this.totalPackages = totalPackages;
     }
 
-    public List<PackageDTO> getPackageDTOs() {
-        return packageDTOs;
+    public List<PackageDTO> getPackageDTOList() {
+        return packageDTOList;
     }
 
-    public void setPackageDTOs(List<PackageDTO> packageDTOs) {
-        this.packageDTOs = packageDTOs;
+    public void setPackageDTOList(List<PackageDTO> packageDTOList) {
+        this.packageDTOList = packageDTOList;
     }
 
     public int getTotalPackages() {

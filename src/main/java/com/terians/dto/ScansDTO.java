@@ -13,22 +13,22 @@ public class ScansDTO {
 
     private int totalScans;
     @JsonProperty("ScanList")
-    private List<ScanDTO> scanDTOs;
+    private List<ScanDTO> scanDTOList;
 
     public ScansDTO() {
     }
 
-    public ScansDTO(List<ScanDTO> scanDTOs, int totalScans) {
-        this.scanDTOs = scanDTOs;
+    public ScansDTO(List<ScanDTO> scanDTOList, int totalScans) {
+        this.scanDTOList = scanDTOList;
         this.totalScans = totalScans;
     }
 
-    public List<ScanDTO> getScanDTOs() {
-        return scanDTOs;
+    public List<ScanDTO> getScanDTOList() {
+        return scanDTOList;
     }
 
-    public void setScanDTOs(List<ScanDTO> scanDTOs) {
-        this.scanDTOs = scanDTOs;
+    public void setScanDTOList(List<ScanDTO> scanDTOList) {
+        this.scanDTOList = scanDTOList;
     }
 
     public int getTotalScans() {

@@ -23,6 +23,10 @@ public class Clazz {
     private Double efferent;
     @Indexed
     private Double cyclomaticCom;
+    @Indexed
+    private String sourceCode;
+    @Indexed
+    private String lineNumbers;
 
     //Relationships
     @Fetch
@@ -30,6 +34,22 @@ public class Clazz {
     private Set<Method> methods;
 
     // Getters and Setters
+    public String getLineNumbers() {
+        return lineNumbers;
+    }
+
+    public void setLineNumbers(String lineNumbers) {
+        this.lineNumbers = lineNumbers;
+    }
+
+    public String getSourceCode() {
+        return sourceCode;
+    }
+
+    public void setSourceCode(String sourceCode) {
+        this.sourceCode = sourceCode;
+    }
+
     public void setTeriansId(String teriansId) {
         this.teriansId = teriansId;
     }

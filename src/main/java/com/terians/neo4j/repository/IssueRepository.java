@@ -1,5 +1,6 @@
 package com.terians.neo4j.repository;
 
+import com.terians.dto.IssueDTO;
 import com.terians.neo4j.model.*;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.repository.GraphRepository;
@@ -15,6 +16,9 @@ public interface IssueRepository extends GraphRepository<Issue> {
 
     @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_ISSUE]->(i:Issue) RETURN count(i)")
     public Integer findIssueCountByScan(String teriansId);
+
+    @Query("MATCH (i:Issue {teriansId:{0}}) RETURN i")
+    public IssueDTO findIssueById(String issueId);
 
     // Queries for All Issues
 

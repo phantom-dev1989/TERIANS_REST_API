@@ -13,22 +13,22 @@ public class IssuesDTO {
 
     private int totalIssues;
     @JsonProperty("IssueList")
-    private List<IssueDTO> issueDTOs;
+    private List<IssueDTO> issueDTOList;
 
     public IssuesDTO() {
     }
 
-    public IssuesDTO(List<IssueDTO> issueDTOs, int totalIssues) {
-        this.issueDTOs = issueDTOs;
+    public IssuesDTO(List<IssueDTO> issueDTOList, int totalIssues) {
+        this.issueDTOList = issueDTOList;
         this.totalIssues = totalIssues;
     }
 
-    public List<IssueDTO> getIssueDTOs() {
-        return issueDTOs;
+    public List<IssueDTO> getIssueDTOList() {
+        return issueDTOList;
     }
 
-    public void setIssueDTOs(List<IssueDTO> issueDTOs) {
-        this.issueDTOs = issueDTOs;
+    public void setIssueDTOList(List<IssueDTO> issueDTOList) {
+        this.issueDTOList = issueDTOList;
     }
 
     public int getTotalIssues() {

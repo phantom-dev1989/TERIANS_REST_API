@@ -5,6 +5,7 @@ import com.terians.dto.ScansDTO;
 import com.terians.dto.transformer.DTOTransformerUtil;
 import com.terians.neo4j.repository.ScanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,41 +17,43 @@ import org.springframework.transaction.annotation.Transactional;
 public class ScanServiceImpl implements ScanService {
 
     @Autowired
-    private ScanRepository repository;
+    private Neo4jTemplate template;
+    @Autowired
+    private ScanRepository scanRepository;
 
     @Override
     public ScanDTO findLatestScan() {
-        return DTOTransformerUtil.transformScanToScanDTO(repository.findLatestScan());
+        return DTOTransformerUtil.transformScanToScanDTO(scanRepository.findLatestScan());
     }
 
     @Override
     public ScansDTO findAllScansByProject(String teriansId) {
-        return DTOTransformerUtil.transformScanSetToScansDTO(repository.findAllScansByProject(teriansId));
+        return DTOTransformerUtil.transformScanSetToScansDTO(scanRepository.findAllScansByProject(teriansId));
     }
 
     @Override
     public ScanDTO findScanById(String teriansId) {
-        return DTOTransformerUtil.transformScanToScanDTO(repository.findScanById(teriansId));
+        return DTOTransformerUtil.transformScanToScanDTO(scanRepository.findScanById(teriansId));
     }
 
     @Override
     public Integer findComplexityByScan(String teriansId) {
-        return repository.findComplexityByScan(teriansId);
+        return scanRepository.findComplexityByScan(teriansId);
     }
 
     @Override
     public Integer findTechDebtByScan(String teriansId) {
-        return repository.findTechDebtByScan(teriansId);
+        return scanRepository.findTechDebtByScan(teriansId);
     }
 
     @Override
     public Integer findAbstractnessByScan(String teriansId) {
-        return repository.findAbstractnessByScan(teriansId);
+        return scanRepository.findAbstractnessByScan(teriansId);
     }
 
     @Override
     public Integer findInstabilityByScan(String teriansId) {
-        return repository.findInstabilityByScan(teriansId);
+        return scanRepository.findInstabilityByScan(teriansId);
     }
 
 }

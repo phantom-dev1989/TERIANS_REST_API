@@ -13,22 +13,22 @@ public class ProjectsDTO {
 
     private int totalProjects;
     @JsonProperty("ProjectList")
-    private List<ProjectDTO> projects;
+    private List<ProjectDTO> projectDTOList;
 
     public ProjectsDTO() {
     }
 
-    public ProjectsDTO(List<ProjectDTO> projects, int totalProjects) {
-        this.projects = projects;
+    public ProjectsDTO(List<ProjectDTO> projectDTOList, int totalProjects) {
+        this.projectDTOList = projectDTOList;
         this.totalProjects = totalProjects;
     }
 
-    public List<ProjectDTO> getProjects() {
-        return projects;
+    public List<ProjectDTO> getProjectDTOList() {
+        return projectDTOList;
     }
 
-    public void setProjects(List<ProjectDTO> projects) {
-        this.projects = projects;
+    public void setProjectDTOList(List<ProjectDTO> projectDTOList) {
+        this.projectDTOList = projectDTOList;
     }
 
     public int getTotalProjects() {

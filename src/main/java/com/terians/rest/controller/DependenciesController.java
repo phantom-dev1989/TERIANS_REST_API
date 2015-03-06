@@ -1,8 +1,10 @@
 package com.terians.rest.controller;
 
 import com.terians.dto.*;
+import com.terians.neo4j.service.DependencyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -14,61 +16,58 @@ public class DependenciesController {
 
     private static final Logger logger = LoggerFactory.getLogger(DependenciesController.class);
 
+    @Autowired
+    private DependencyService dependencyService;
+
     @RequestMapping(value ="/", method = RequestMethod.GET)
     public DependenciesDTO getDependencies() {
 
-        return null;
+        return dependencyService.findAllDependencies();
     }
 
     @RequestMapping(value ="/{dependencyId}", method = RequestMethod.GET)
     public DependencyDTO getDependency(@PathVariable("dependencyId") String dependencyId) {
 
-        return null;
+        return dependencyService.findDependencyById(dependencyId);
     }
 
     @RequestMapping(value ="/{dependencyId}/methods", method = RequestMethod.GET)
     public MethodsDTO getMethods(@PathVariable("dependencyId") String dependencyId) {
 
-
-        return null;
+        return dependencyService.findAllMethods(dependencyId);
     }
 
     @RequestMapping(value ="/{dependencyId}/methods/{methodId}", method = RequestMethod.GET)
     public MethodDTO getMethod(@PathVariable("dependencyId") String dependencyId,
                                @PathVariable("methodId") String methodId) {
 
-
-        return null;
+        return dependencyService.findMethodById(dependencyId, methodId);
     }
 
     @RequestMapping(value ="/{dependencyId}/dependencies", method = RequestMethod.GET)
     public DependenciesDTO getDependencies(@PathVariable("dependencyId") String dependencyId) {
 
-
-        return null;
+        return dependencyService.findAllRelatedDependencies(dependencyId);
     }
 
-    @RequestMapping(value ="/{dependencyId}/dependencies/{dependencyId2}", method = RequestMethod.GET)
+    @RequestMapping(value ="/{dependencyId}/dependencies/{relatedDependencyId}", method = RequestMethod.GET)
     public DependencyDTO getDependency(@PathVariable("dependencyId") String dependencyId,
-                                       @PathVariable("dependencyId2") String dependencyId2) {
+                                       @PathVariable("relatedDependencyId") String relatedDependencyId) {
 
-
-        return null;
+        return dependencyService.findRelatedDependencyById(dependencyId, relatedDependencyId);
     }
 
     @RequestMapping(value ="/{dependencyId}/vulnerabilities", method = RequestMethod.GET)
     public VulnerabilitiesDTO getVulnerabilities(@PathVariable("dependencyId") String dependencyId) {
 
-
-        return null;
+        return dependencyService.findAllVulnerabilities(dependencyId);
     }
 
     @RequestMapping(value ="/{dependencyId}/vulnerabilities/{vulnerabilityId}", method = RequestMethod.GET)
     public VulnerabilityDTO getVulnerability(@PathVariable("dependencyId") String dependencyId,
                                              @PathVariable("vulnerabilityId") String vulnerabilityId) {
 
-
-        return null;
+        return dependencyService.findVulnerabilityById(dependencyId, vulnerabilityId);
     }
 
     @RequestMapping(value ="/{dependencyId}/issues", method = RequestMethod.GET)
@@ -87,7 +86,6 @@ public class DependenciesController {
     public IssueDTO getIssue(@PathVariable("dependencyId") String dependencyId,
                              @PathVariable("issueId") String issueId) {
 
-
-        return null;
+        return dependencyService.findIssueById(dependencyId, issueId);
     }
 }

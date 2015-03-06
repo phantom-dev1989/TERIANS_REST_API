@@ -36,7 +36,7 @@ public class Dependency {
     private Set<Dependency> dependencies;
     @Fetch
     @RelatedTo(type = "USED_BY",elementClass = Method.class)
-    private Set<Method> method;
+    private Set<Method> methods;
 
     // Getters and Setters
     public void setTeriansId(String teriansId) {
@@ -111,12 +111,12 @@ public class Dependency {
         this.vulnerabilities = vulnerabilities;
     }
 
-    public Set<Method> getMethod() {
-        return method;
+    public Set<Method> getMethods() {
+        return methods;
     }
 
-    public void setMethod(Set<Method> method) {
-        this.method = method;
+    public void setMethods(Set<Method> methods) {
+        this.methods = methods;
     }
 
     @Override
@@ -131,7 +131,7 @@ public class Dependency {
                 ", license='" + license + '\'' +
                 ", vulnerabilities=" + vulnerabilities +
                 ", issues=" + issues +
-                ", method=" + method +
+                ", methods=" + methods +
                 '}';
     }
 
@@ -148,7 +148,7 @@ public class Dependency {
         if (filePath != null ? !filePath.equals(that.filePath) : that.filePath != null) return false;
         if (issues != null ? !issues.equals(that.issues) : that.issues != null) return false;
         if (license != null ? !license.equals(that.license) : that.license != null) return false;
-        if (method != null ? !method.equals(that.method) : that.method != null) return false;
+        if (methods != null ? !methods.equals(that.methods) : that.methods != null) return false;
         if (teriansId != null ? !teriansId.equals(that.teriansId) : that.teriansId != null) return false;
         if (vulnerabilities != null ? !vulnerabilities.equals(that.vulnerabilities) : that.vulnerabilities != null)
             return false;
@@ -166,7 +166,7 @@ public class Dependency {
         result = 31 * result + (vulnerabilities != null ? vulnerabilities.hashCode() : 0);
         result = 31 * result + (issues != null ? issues.hashCode() : 0);
         result = 31 * result + (dependencies != null ? dependencies.hashCode() : 0);
-        result = 31 * result + (method != null ? method.hashCode() : 0);
+        result = 31 * result + (methods != null ? methods.hashCode() : 0);
         return result;
     }
 }

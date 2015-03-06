@@ -13,22 +13,22 @@ public class MethodsDTO {
 
     private int totalMethods;
     @JsonProperty("MethodList")
-    private List<MethodDTO> methodDTO;
+    private List<MethodDTO> methodDTOList;
 
     public MethodsDTO() {
     }
 
-    public MethodsDTO(List<MethodDTO> methodDTO, int totalMethods) {
-        this.methodDTO = methodDTO;
+    public MethodsDTO(List<MethodDTO> methodDTOList, int totalMethods) {
+        this.methodDTOList = methodDTOList;
         this.totalMethods = totalMethods;
     }
 
-    public List<MethodDTO> getMethodDTO() {
-        return methodDTO;
+    public List<MethodDTO> getMethodDTOList() {
+        return methodDTOList;
     }
 
-    public void setMethodDTO(List<MethodDTO> methodDTO) {
-        this.methodDTO = methodDTO;
+    public void setMethodDTOList(List<MethodDTO> methodDTOList) {
+        this.methodDTOList = methodDTOList;
     }
 
     public int getTotalMethods() {
