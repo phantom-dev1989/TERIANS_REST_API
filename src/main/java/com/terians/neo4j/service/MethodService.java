@@ -9,11 +9,11 @@ import com.terians.dto.MethodsDTO;
  */
 public interface MethodService {
 
-    public Integer findMethodCountByScan(String scanId);
+    Integer findMethodCountByScan(String scanId);
 
-    public MethodsDTO findAllMethods();
+    MethodsDTO findAllMethods();
 
-    public MethodDTO findMethodById(String methodId);
+    MethodDTO findMethod(String methodId);
 
 }
 

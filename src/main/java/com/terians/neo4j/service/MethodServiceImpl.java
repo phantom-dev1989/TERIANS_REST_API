@@ -29,7 +29,7 @@ public class MethodServiceImpl implements MethodService {
     }
 
     @Override
-    public MethodDTO findMethodById(String methodId) {
+    public MethodDTO findMethod(String methodId) {
         return DTOTransformerUtil.transformMethodToMethodDTO(methodRepository.findMethodById(methodId));
     }
 }

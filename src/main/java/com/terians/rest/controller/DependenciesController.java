@@ -28,7 +28,7 @@ public class DependenciesController {
     @RequestMapping(value ="/{dependencyId}", method = RequestMethod.GET)
     public DependencyDTO getDependency(@PathVariable("dependencyId") String dependencyId) {
 
-        return dependencyService.findDependencyById(dependencyId);
+        return dependencyService.findDependency(dependencyId);
     }
 
     @RequestMapping(value ="/{dependencyId}/methods", method = RequestMethod.GET)
@@ -41,7 +41,7 @@ public class DependenciesController {
     public MethodDTO getMethod(@PathVariable("dependencyId") String dependencyId,
                                @PathVariable("methodId") String methodId) {
 
-        return dependencyService.findMethodById(dependencyId, methodId);
+        return dependencyService.findMethod(dependencyId, methodId);
     }
 
     @RequestMapping(value ="/{dependencyId}/dependencies", method = RequestMethod.GET)
@@ -54,7 +54,7 @@ public class DependenciesController {
     public DependencyDTO getDependency(@PathVariable("dependencyId") String dependencyId,
                                        @PathVariable("relatedDependencyId") String relatedDependencyId) {
 
-        return dependencyService.findRelatedDependencyById(dependencyId, relatedDependencyId);
+        return dependencyService.findRelatedDependency(dependencyId, relatedDependencyId);
     }
 
     @RequestMapping(value ="/{dependencyId}/vulnerabilities", method = RequestMethod.GET)
@@ -67,7 +67,7 @@ public class DependenciesController {
     public VulnerabilityDTO getVulnerability(@PathVariable("dependencyId") String dependencyId,
                                              @PathVariable("vulnerabilityId") String vulnerabilityId) {
 
-        return dependencyService.findVulnerabilityById(dependencyId, vulnerabilityId);
+        return dependencyService.findVulnerability(dependencyId, vulnerabilityId);
     }
 
     @RequestMapping(value ="/{dependencyId}/issues", method = RequestMethod.GET)
@@ -75,17 +75,13 @@ public class DependenciesController {
                                @RequestParam(value="category", required=false) String category,
                                @RequestParam(value="orderedBy", required=false) String orderedBy) {
 
-        String[] orderedByValues = orderedBy.split(",");
-        String orderedByValue = orderedByValues[0];
-
-
-        return null;
+        return dependencyService.findAllIssues(dependencyId,category,orderedBy);
     }
 
     @RequestMapping(value ="/{dependencyId}/issues/{issueId}", method = RequestMethod.GET)
     public IssueDTO getIssue(@PathVariable("dependencyId") String dependencyId,
                              @PathVariable("issueId") String issueId) {
 
-        return dependencyService.findIssueById(dependencyId, issueId);
+        return dependencyService.findIssue(dependencyId, issueId);
     }
 }

@@ -1,8 +1,10 @@
 package com.terians.rest.controller;
 
 import com.terians.dto.*;
+import com.terians.neo4j.service.ScanService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -14,11 +16,13 @@ public class ScansController {
 
     private static final Logger logger = LoggerFactory.getLogger(ScansController.class);
 
+    @Autowired
+    private ScanService scanService;
+
     @RequestMapping(value ="/", method = RequestMethod.GET)
     public ScansDTO getScans() {
 
-
-        return null;
+        return scanService.findAllScans();
     }
 
     @RequestMapping(value ="/{scanId}", method = RequestMethod.GET)
@@ -26,8 +30,7 @@ public class ScansController {
                            @RequestParam(value="metric", required=false) String metric,
                            @RequestParam(value="scanned", required=false) String scanned) {
 
-
-        return null;
+        return scanService.findScan(scanId,metric,scanned);
     }
 
     @RequestMapping(value ="/{scanId}/issues", method = RequestMethod.GET)
@@ -35,41 +38,34 @@ public class ScansController {
                                @RequestParam(value="category", required=false) String category,
                                @RequestParam(value="orderedBy", required=false) String orderedBy) {
 
-        String[] orderedByValues = orderedBy.split(",");
-        String orderedByValue = orderedByValues[0];
-
-
-        return null;
+        return scanService.findAllIssues(scanId, category, orderedBy);
     }
 
     @RequestMapping(value ="/{scanId}/issues/{issueId}", method = RequestMethod.GET)
     public IssueDTO getIssue(@PathVariable("scanId") String scanId,
                              @PathVariable("issueId") String issueId) {
 
-
-        return null;
+        return scanService.findIssue(scanId, issueId);
     }
 
     @RequestMapping(value ="/{scanId}/dependencies", method = RequestMethod.GET)
     public DependenciesDTO getDependencies(@PathVariable("scanId") String scanId) {
 
-        return null;
+        return scanService.findAllDependencies(scanId);
     }
 
     @RequestMapping(value ="/{scanId}/dependencies/{dependencyId}", method = RequestMethod.GET)
     public DependencyDTO getDependency(@PathVariable("scanId") String scanId,
                                        @PathVariable("dependencyId") String dependencyId) {
 
-
-        return null;
+        return scanService.findDependency(scanId, dependencyId);
     }
 
     @RequestMapping(value ="/{scanId}/dependencies/{dependencyId}/methods", method = RequestMethod.GET)
     public MethodsDTO getMethods(@PathVariable("scanId") String scanId,
                                  @PathVariable("dependencyId") String dependencyId) {
 
-
-        return null;
+        return scanService.findAllDependencyMethods(scanId, dependencyId);
     }
 
     @RequestMapping(value ="/{scanId}/dependencies/{dependencyId}/methods/{methodId}", method = RequestMethod.GET)
@@ -77,33 +73,29 @@ public class ScansController {
                                @PathVariable("dependencyId") String dependencyId,
                                @PathVariable("methodId") String methodId) {
 
-
-        return null;
+        return scanService.findDependencyMethod(scanId, dependencyId, methodId);
     }
 
     @RequestMapping(value ="/{scanId}/dependencies/{dependencyId}/dependencies", method = RequestMethod.GET)
     public DependenciesDTO getDependencies(@PathVariable("scanId") String scanId,
-                                                  @PathVariable("dependencyId") String dependencyId) {
+                                           @PathVariable("dependencyId") String dependencyId) {
 
-
-        return null;
+        return scanService.findAllRelatedDependencies(scanId, dependencyId);
     }
 
-    @RequestMapping(value ="/{scanId}/dependencies/{dependencyId}/dependencies/{dependencyId2}", method = RequestMethod.GET)
+    @RequestMapping(value ="/{scanId}/dependencies/{dependencyId}/dependencies/{relatedDependencyId}", method = RequestMethod.GET)
     public DependencyDTO getDependency(@PathVariable("scanId") String scanId,
                                        @PathVariable("dependencyId") String dependencyId,
-                                       @PathVariable("dependencyId2") String dependencyId2) {
+                                       @PathVariable("relatedDependencyId") String relatedDependencyId) {
 
-
-        return null;
+        return scanService.findRelatedDependency(scanId, dependencyId, relatedDependencyId);
     }
 
     @RequestMapping(value ="/{scanId}/dependencies/{dependencyId}/vulnerabilities", method = RequestMethod.GET)
     public VulnerabilitiesDTO getVulnerabilities(@PathVariable("scanId") String scanId,
                                                  @PathVariable("dependencyId") String dependencyId) {
 
-
-        return null;
+        return scanService.findAllVulnerabilities(scanId, dependencyId);
     }
 
     @RequestMapping(value ="/{scanId}/dependencies/{dependencyId}/vulnerabilities/{vulnerabilityId}", method = RequestMethod.GET)
@@ -111,8 +103,7 @@ public class ScansController {
                                              @PathVariable("dependencyId") String dependencyId,
                                              @PathVariable("vulnerabilityId") String vulnerabilityId) {
 
-
-        return null;
+        return scanService.findVulnerability(scanId, dependencyId, vulnerabilityId);
     }
 
     @RequestMapping(value ="/{scanId}/dependencies/{dependencyId}/issues", method = RequestMethod.GET)
@@ -121,11 +112,7 @@ public class ScansController {
                                @RequestParam(value="category", required=false) String category,
                                @RequestParam(value="orderedBy", required=false) String orderedBy) {
 
-        String[] orderedByValues = orderedBy.split(",");
-        String orderedByValue = orderedByValues[0];
-
-
-        return null;
+        return scanService.findAllDependencyIssues(scanId, dependencyId, category, orderedBy);
     }
 
     @RequestMapping(value ="/{scanId}/dependencies/{dependencyId}/issues/{issueId}", method = RequestMethod.GET)
@@ -133,38 +120,35 @@ public class ScansController {
                              @PathVariable("dependencyId") String dependencyId,
                              @PathVariable("issueId") String issueId) {
 
-        return null;
+        return scanService.findDependencyIssue(scanId, dependencyId, issueId);
     }
 
     @RequestMapping(value ="/{scanId}/packages", method = RequestMethod.GET)
     public PackagesDTO getPackages(@PathVariable("scanId") String scanId) {
 
-
-        return null;
+        return scanService.findAllPackges(scanId);
     }
 
     @RequestMapping(value ="/{scanId}/packages/{packageId}", method = RequestMethod.GET)
     public PackageDTO getPackage(@PathVariable("scanId") String scanId,
                                  @PathVariable("packageId") String packageId) {
 
-
-        return null;
+        return scanService.findPackge(scanId, packageId);
     }
 
     @RequestMapping(value ="/{scanId}/packages/{packageId}/clazzes", method = RequestMethod.GET)
     public ClazzesDTO getClazzes(@PathVariable("scanId") String scanId,
                                  @PathVariable("packageId") String packageId) {
 
-
-        return null;
+        return scanService.findAllClazzes(scanId, packageId);
     }
 
     @RequestMapping(value ="/{scanId}/packages/{packageId}/clazzes/{clazzId}", method = RequestMethod.GET)
-    public ClazzDTO getClazz(@PathVariable("packageId") String packageId,
+    public ClazzDTO getClazz(@PathVariable("scanId") String scanId,
+                             @PathVariable("packageId") String packageId,
                              @PathVariable("clazzId") String clazzId) {
 
-
-        return null;
+        return scanService.findClazz(scanId, packageId, clazzId);
     }
 
     @RequestMapping(value ="/{scanId}/packages/{packageId}/clazzes/{clazzId}/methods", method = RequestMethod.GET)
@@ -172,8 +156,7 @@ public class ScansController {
                                  @PathVariable("packageId") String packageId,
                                  @PathVariable("clazzId") String clazzId) {
 
-
-        return null;
+        return scanService.findAllMethods(scanId, packageId, clazzId);
     }
 
     @RequestMapping(value ="/{scanId}/packages/{packageId}/clazzes/{clazzId}/methods/{methodId}", method = RequestMethod.GET)
@@ -182,7 +165,6 @@ public class ScansController {
                                @PathVariable("clazzId") String clazzId,
                                @PathVariable("methodId") String methodId) {
 
-
-        return null;
+        return scanService.findMethod(scanId, packageId, clazzId, methodId);
     }
 }

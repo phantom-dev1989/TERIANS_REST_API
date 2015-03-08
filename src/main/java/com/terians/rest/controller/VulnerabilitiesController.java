@@ -32,6 +32,6 @@ public class VulnerabilitiesController {
     @RequestMapping(value ="/{vulnerabilityId}", method = RequestMethod.GET)
     public VulnerabilityDTO getVulnerability(@PathVariable("vulnerabilityId") String vulnerabilityId) {
 
-        return vulnerabilityService.findVulnerabilityById(vulnerabilityId);
+        return vulnerabilityService.findVulnerability(vulnerabilityId);
     }
 }

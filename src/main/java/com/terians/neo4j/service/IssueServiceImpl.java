@@ -1,5 +1,6 @@
 package com.terians.neo4j.service;
 
+import com.terians.dto.IssueDTO;
 import com.terians.dto.IssuesDTO;
 import com.terians.dto.transformer.DTOTransformerUtil;
 import com.terians.neo4j.repository.IssueRepository;
@@ -21,248 +22,258 @@ public class IssueServiceImpl implements IssueService {
     private IssueRepository issueRepository;
 
     @Override
-    public Integer findIssueCountByScan(String teriansId) {
-        return issueRepository.findIssueCountByScan(teriansId);
+    public Integer findIssueCountByScan(String scanId) {
+        return issueRepository.findIssueCountByScan(scanId);
     }
 
     @Override
-    public IssuesDTO findAllIssuesByScan(String teriansId) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findAllIssuesByScan(teriansId));
+    public IssuesDTO findAllIssues(String category, String orderedBy) {
+        return null;
     }
 
     @Override
-    public IssuesDTO findIssuesByScanOrderedByIssueCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findIssuesByScanOrderedByIssueCountDesc(teriansId, limit));
+    public IssueDTO findIssue(String issueId) {
+        return null;
     }
 
     @Override
-    public IssuesDTO findIssuesByScanOrderedByCategoryCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findIssuesByScanOrderedByCategoryCountDesc(teriansId, limit));
+    public IssuesDTO findAllIssuesByScan(String scanId) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findAllIssuesByScan(scanId));
     }
 
     @Override
-    public IssuesDTO findIssuesByScanOrderedByFileNameCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findIssuesByScanOrderedByFileNameCountDesc(teriansId, limit));
+    public IssuesDTO findIssuesByScanOrderedByIssueCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findIssuesByScanOrderedByIssueCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findIssuesByScanOrderedByPackageCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findIssuesByScanOrderedByPackageCountDesc(teriansId, limit));
+    public IssuesDTO findIssuesByScanOrderedByCategoryCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findIssuesByScanOrderedByCategoryCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findIssuesByScanOrderedByClazzCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findIssuesByScanOrderedByClazzCountDesc(teriansId, limit));
+    public IssuesDTO findIssuesByScanOrderedByFileNameCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findIssuesByScanOrderedByFileNameCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findIssuesByScanOrderedByIssueTypeDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findIssuesByScanOrderedByIssueTypeDesc(teriansId, limit));
+    public IssuesDTO findIssuesByScanOrderedByPackageCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findIssuesByScanOrderedByPackageCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findIssuesByScanOrderedByTechDebtDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findIssuesByScanOrderedByTechDebtDesc(teriansId, limit));
+    public IssuesDTO findIssuesByScanOrderedByClazzCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findIssuesByScanOrderedByClazzCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findAllCriticalIssuesByScan(String teriansId) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findAllCriticalIssuesByScan(teriansId));
+    public IssuesDTO findIssuesByScanOrderedByIssueTypeDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findIssuesByScanOrderedByIssueTypeDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findCriticalIssuesByScanOrderedByIssueCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findCriticalIssuesByScanOrderedByIssueCountDesc(teriansId, limit));
+    public IssuesDTO findIssuesByScanOrderedByTechDebtDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findIssuesByScanOrderedByTechDebtDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findCriticalIssuesByScanOrderedByCategoryCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findCriticalIssuesByScanOrderedByCategoryCountDesc(teriansId, limit));
+    public IssuesDTO findAllCriticalIssuesByScan(String scanId) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findAllCriticalIssuesByScan(scanId));
     }
 
     @Override
-    public IssuesDTO findCriticalIssuesByScanOrderedByFileNameCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findCriticalIssuesByScanOrderedByFileNameCountDesc(teriansId, limit));
+    public IssuesDTO findCriticalIssuesByScanOrderedByIssueCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findCriticalIssuesByScanOrderedByIssueCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findCriticalIssuesByScanOrderedByPackageCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findCriticalIssuesByScanOrderedByPackageCountDesc(teriansId, limit));
+    public IssuesDTO findCriticalIssuesByScanOrderedByCategoryCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findCriticalIssuesByScanOrderedByCategoryCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findCriticalIssuesByScanOrderedByClazzCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findCriticalIssuesByScanOrderedByClazzCountDesc(teriansId, limit));
+    public IssuesDTO findCriticalIssuesByScanOrderedByFileNameCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findCriticalIssuesByScanOrderedByFileNameCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findCriticalIssuesByScanOrderedByIssueTypeDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findCriticalIssuesByScanOrderedByIssueTypeDesc(teriansId, limit));
+    public IssuesDTO findCriticalIssuesByScanOrderedByPackageCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findCriticalIssuesByScanOrderedByPackageCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findCriticalIssuesByScanOrderedByTechDebtDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findCriticalIssuesByScanOrderedByTechDebtDesc(teriansId, limit));
+    public IssuesDTO findCriticalIssuesByScanOrderedByClazzCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findCriticalIssuesByScanOrderedByClazzCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findAllHighIssuesByScan(String teriansId) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findAllHighIssuesByScan(teriansId));
+    public IssuesDTO findCriticalIssuesByScanOrderedByIssueTypeDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findCriticalIssuesByScanOrderedByIssueTypeDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findHighIssuesByScanOrderedByIssueCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findHighIssuesByScanOrderedByIssueCountDesc(teriansId, limit));
+    public IssuesDTO findCriticalIssuesByScanOrderedByTechDebtDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findCriticalIssuesByScanOrderedByTechDebtDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findHighIssuesByScanOrderedByCategoryCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findHighIssuesByScanOrderedByCategoryCountDesc(teriansId, limit));
+    public IssuesDTO findAllHighIssuesByScan(String scanId) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findAllHighIssuesByScan(scanId));
     }
 
     @Override
-    public IssuesDTO findHighIssuesByScanOrderedByFileNameCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findHighIssuesByScanOrderedByFileNameCountDesc(teriansId, limit));
+    public IssuesDTO findHighIssuesByScanOrderedByIssueCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findHighIssuesByScanOrderedByIssueCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findHighIssuesByScanOrderedByPackageCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findHighIssuesByScanOrderedByPackageCountDesc(teriansId, limit));
+    public IssuesDTO findHighIssuesByScanOrderedByCategoryCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findHighIssuesByScanOrderedByCategoryCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findHighIssuesByScanOrderedByClazzCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findHighIssuesByScanOrderedByClazzCountDesc(teriansId, limit));
+    public IssuesDTO findHighIssuesByScanOrderedByFileNameCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findHighIssuesByScanOrderedByFileNameCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findHighIssuesByScanOrderedByIssueTypeDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findHighIssuesByScanOrderedByIssueTypeDesc(teriansId, limit));
+    public IssuesDTO findHighIssuesByScanOrderedByPackageCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findHighIssuesByScanOrderedByPackageCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findHighIssuesByScanOrderedByTechDebtDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findHighIssuesByScanOrderedByTechDebtDesc(teriansId, limit));
+    public IssuesDTO findHighIssuesByScanOrderedByClazzCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findHighIssuesByScanOrderedByClazzCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findAllMediumIssuesByScan(String teriansId) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findAllMediumIssuesByScan(teriansId));
+    public IssuesDTO findHighIssuesByScanOrderedByIssueTypeDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findHighIssuesByScanOrderedByIssueTypeDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findMediumIssuesByScanOrderedByIssueCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findMediumIssuesByScanOrderedByIssueCountDesc(teriansId, limit));
+    public IssuesDTO findHighIssuesByScanOrderedByTechDebtDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findHighIssuesByScanOrderedByTechDebtDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findMediumIssuesByScanOrderedByCategoryCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findMediumIssuesByScanOrderedByCategoryCountDesc(teriansId, limit));
+    public IssuesDTO findAllMediumIssuesByScan(String scanId) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findAllMediumIssuesByScan(scanId));
     }
 
     @Override
-    public IssuesDTO findMediumIssuesByScanOrderedByFileNameCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findMediumIssuesByScanOrderedByFileNameCountDesc(teriansId, limit));
+    public IssuesDTO findMediumIssuesByScanOrderedByIssueCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findMediumIssuesByScanOrderedByIssueCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findMediumIssuesByScanOrderedByPackageCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findMediumIssuesByScanOrderedByPackageCountDesc(teriansId, limit));
+    public IssuesDTO findMediumIssuesByScanOrderedByCategoryCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findMediumIssuesByScanOrderedByCategoryCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findMediumIssuesByScanOrderedByClazzCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findMediumIssuesByScanOrderedByClazzCountDesc(teriansId, limit));
+    public IssuesDTO findMediumIssuesByScanOrderedByFileNameCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findMediumIssuesByScanOrderedByFileNameCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findMediumIssuesByScanOrderedByIssueTypeDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findMediumIssuesByScanOrderedByIssueTypeDesc(teriansId, limit));
+    public IssuesDTO findMediumIssuesByScanOrderedByPackageCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findMediumIssuesByScanOrderedByPackageCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findMediumIssuesByScanOrderedByTechDebtDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findMediumIssuesByScanOrderedByTechDebtDesc(teriansId, limit));
+    public IssuesDTO findMediumIssuesByScanOrderedByClazzCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findMediumIssuesByScanOrderedByClazzCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findAllLowIssuesByScan(String teriansId) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findAllLowIssuesByScan(teriansId));
+    public IssuesDTO findMediumIssuesByScanOrderedByIssueTypeDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findMediumIssuesByScanOrderedByIssueTypeDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findLowIssuesByScanOrderedByIssueCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findLowIssuesByScanOrderedByIssueCountDesc(teriansId, limit));
+    public IssuesDTO findMediumIssuesByScanOrderedByTechDebtDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findMediumIssuesByScanOrderedByTechDebtDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findMLowIssuesByScanOrderedByCategoryCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findMLowIssuesByScanOrderedByCategoryCountDesc(teriansId, limit));
+    public IssuesDTO findAllLowIssuesByScan(String scanId) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findAllLowIssuesByScan(scanId));
     }
 
     @Override
-    public IssuesDTO findLowIssuesByScanOrderedByFileNameCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findLowIssuesByScanOrderedByFileNameCountDesc(teriansId, limit));
+    public IssuesDTO findLowIssuesByScanOrderedByIssueCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findLowIssuesByScanOrderedByIssueCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findLowIssuesByScanOrderedByPackageCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findLowIssuesByScanOrderedByPackageCountDesc(teriansId, limit));
+    public IssuesDTO findMLowIssuesByScanOrderedByCategoryCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findMLowIssuesByScanOrderedByCategoryCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findLowIssuesByScanOrderedByClazzCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findLowIssuesByScanOrderedByClazzCountDesc(teriansId, limit));
+    public IssuesDTO findLowIssuesByScanOrderedByFileNameCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findLowIssuesByScanOrderedByFileNameCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findLowIssuesByScanOrderedByIssueTypeDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findLowIssuesByScanOrderedByIssueTypeDesc(teriansId, limit));
+    public IssuesDTO findLowIssuesByScanOrderedByPackageCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findLowIssuesByScanOrderedByPackageCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findLowIssuesByScanOrderedByTechDebtDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findLowIssuesByScanOrderedByTechDebtDesc(teriansId, limit));
+    public IssuesDTO findLowIssuesByScanOrderedByClazzCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findLowIssuesByScanOrderedByClazzCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findAllBestPracticesIssuesByScan(String teriansId) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findAllBestPracticesIssuesByScan(teriansId));
+    public IssuesDTO findLowIssuesByScanOrderedByIssueTypeDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findLowIssuesByScanOrderedByIssueTypeDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findBestPracticesIssuesByScanOrderedByIssueCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findBestPracticesIssuesByScanOrderedByIssueCountDesc(teriansId, limit));
+    public IssuesDTO findLowIssuesByScanOrderedByTechDebtDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findLowIssuesByScanOrderedByTechDebtDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findBestPracticesIssuesByScanOrderedByCategoryCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findBestPracticesIssuesByScanOrderedByCategoryCountDesc(teriansId, limit));
+    public IssuesDTO findAllBestPracticesIssuesByScan(String scanId) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findAllBestPracticesIssuesByScan(scanId));
     }
 
     @Override
-    public IssuesDTO findBestPracticesIssuesByScanOrderedByFileNameCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findBestPracticesIssuesByScanOrderedByFileNameCountDesc(teriansId, limit));
+    public IssuesDTO findBestPracticesIssuesByScanOrderedByIssueCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findBestPracticesIssuesByScanOrderedByIssueCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findBestPracticesIssuesByScanOrderedByPackageCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findBestPracticesIssuesByScanOrderedByPackageCountDesc(teriansId, limit));
+    public IssuesDTO findBestPracticesIssuesByScanOrderedByCategoryCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findBestPracticesIssuesByScanOrderedByCategoryCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findBestPracticesIssuesByScanOrderedByClazzCountDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findBestPracticesIssuesByScanOrderedByClazzCountDesc(teriansId, limit));
+    public IssuesDTO findBestPracticesIssuesByScanOrderedByFileNameCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findBestPracticesIssuesByScanOrderedByFileNameCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findBestPracticesIssuesByScanOrderedByIssueTypeDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findBestPracticesIssuesByScanOrderedByIssueTypeDesc(teriansId, limit));
+    public IssuesDTO findBestPracticesIssuesByScanOrderedByPackageCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findBestPracticesIssuesByScanOrderedByPackageCountDesc(scanId, limit));
     }
 
     @Override
-    public IssuesDTO findBestPracticesIssuesByScanOrderedByTechDebtDesc(String teriansId, int limit) {
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findBestPracticesIssuesByScanOrderedByTechDebtDesc(teriansId, limit));
+    public IssuesDTO findBestPracticesIssuesByScanOrderedByClazzCountDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findBestPracticesIssuesByScanOrderedByClazzCountDesc(scanId, limit));
+    }
+
+    @Override
+    public IssuesDTO findBestPracticesIssuesByScanOrderedByIssueTypeDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findBestPracticesIssuesByScanOrderedByIssueTypeDesc(scanId, limit));
+    }
+
+    @Override
+    public IssuesDTO findBestPracticesIssuesByScanOrderedByTechDebtDesc(String scanId, int limit) {
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findBestPracticesIssuesByScanOrderedByTechDebtDesc(scanId, limit));
     }
 
 }

@@ -1,8 +1,10 @@
 package com.terians.rest.controller;
 
 import com.terians.dto.*;
+import com.terians.neo4j.service.PackageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,41 +19,39 @@ public class PackagesController {
 
     private static final Logger logger = LoggerFactory.getLogger(PackagesController.class);
 
+    @Autowired
+    private PackageService packageService;
+
     @RequestMapping(value ="/", method = RequestMethod.GET)
     public PackagesDTO getPackages() {
 
-
-        return null;
+        return packageService.findAllPackages();
     }
 
     @RequestMapping(value ="/{packageId}", method = RequestMethod.GET)
     public PackageDTO getPackage(@PathVariable("packageId") String packageId) {
 
-
-        return null;
+        return packageService.findPackage(packageId);
     }
 
     @RequestMapping(value ="/{packageId}/clazzes", method = RequestMethod.GET)
     public ClazzesDTO getClazzes(@PathVariable("packageId") String packageId) {
 
-
-        return null;
+        return packageService.findAllClazzes(packageId);
     }
 
     @RequestMapping(value ="/{packageId}/clazzes/{clazzId}", method = RequestMethod.GET)
     public ClazzDTO getClazz(@PathVariable("packageId") String packageId,
                              @PathVariable("clazzId") String clazzId) {
 
-
-        return null;
+        return packageService.findClazz(packageId, clazzId);
     }
 
     @RequestMapping(value ="/{packageId}/clazzes/{clazzId}/methods", method = RequestMethod.GET)
     public MethodsDTO getMethods(@PathVariable("packageId") String packageId,
                                  @PathVariable("clazzId") String clazzId) {
 
-
-        return null;
+        return packageService.findAllMethods(packageId, clazzId);
     }
 
     @RequestMapping(value ="/{packageId}/clazzes/{clazzId}/methods/{methodId}", method = RequestMethod.GET)
@@ -59,7 +59,6 @@ public class PackagesController {
                                @PathVariable("clazzId") String clazzId,
                                @PathVariable("methodId") String methodId) {
 
-
-        return null;
+        return packageService.findMethod(packageId, clazzId, methodId);
     }
 }

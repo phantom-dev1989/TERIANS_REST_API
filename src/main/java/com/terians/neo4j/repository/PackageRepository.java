@@ -14,12 +14,12 @@ import java.util.Set;
 public interface PackageRepository extends GraphRepository<Package> {
 
     @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_PACKAGE]->(p:Package) RETURN count(p)")
-    public Integer findPackageCountByScan(String teriansId);
+    public Integer findPackageCountByScan(String scanId);
 
     @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_PACKAGE]->(p:Package) RETURN order by p.afferent desc Limit {1}")
-    public Set<Package> findPackagesByScanOrderedByAfferentCount(String teriansId, int limit);
+    public Set<Package> findPackagesByScanOrderedByAfferentCount(String scanId, int limit);
 
     @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_PACKAGE]->(p:Package) RETURN order by p.efferent desc Limit {1}")
-    public Set<Package> findPackagesByScanOrderedByEfferentCount(String teriansId, int limit);
+    public Set<Package> findPackagesByScanOrderedByEfferentCount(String scanId, int limit);
 
 }

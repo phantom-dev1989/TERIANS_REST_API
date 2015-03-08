@@ -8,27 +8,24 @@ import com.terians.dto.*;
  */
 public interface DependencyService {
 
-    // Find all dependencies by Scan teriansId
-    public DependenciesDTO findDependenciesByScan(String scanId);
+    DependenciesDTO findAllDependencies();
 
-    public DependenciesDTO findAllDependencies();
+    DependencyDTO findDependency(String dependencyId);
 
-    public DependencyDTO findDependencyById(String dependencyId);
+    MethodsDTO findAllMethods(String dependencyId);
 
-    public MethodsDTO findAllMethods(String dependencyId);
+    MethodDTO findMethod(String dependencyId , String methodId);
 
-    public MethodDTO findMethodById(String dependencyId , String methodId);
+    DependenciesDTO findAllRelatedDependencies(String dependencyId);
 
-    public DependenciesDTO findAllRelatedDependencies(String dependencyId);
+    DependencyDTO findRelatedDependency(String dependencyId, String relatedDependencyId);
 
-    public DependencyDTO findRelatedDependencyById(String dependencyId, String relatedDependencyId);
+    VulnerabilitiesDTO findAllVulnerabilities(String dependencyId);
 
-    public VulnerabilitiesDTO findAllVulnerabilities(String dependencyId);
+    VulnerabilityDTO findVulnerability(String dependencyId, String vulnerabilityId);
 
-    public VulnerabilityDTO findVulnerabilityById(String dependencyId, String vulnerabilityId);
+    IssuesDTO findAllIssues(String id, String category, String dependencyId);
 
-    public IssuesDTO findAllIssues(String dependencyId);
-
-    public IssueDTO findIssueById(String dependencyId, String issueId);
+    IssueDTO findIssue(String dependencyId, String issueId);
 }
 

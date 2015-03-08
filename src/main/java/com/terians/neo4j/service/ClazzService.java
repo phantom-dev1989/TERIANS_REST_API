@@ -10,19 +10,19 @@ import com.terians.dto.MethodsDTO;
  */
 public interface ClazzService {
 
-    public ClazzesDTO findAllClazzes();
+    ClazzesDTO findAllClazzes();
 
-    public ClazzDTO findClazzById(String clazzId);
+    ClazzDTO findClazz(String clazzId);
 
-    public Integer findClazzCountByScan(String scanId);
+    Integer findClazzCountByScan(String scanId);
 
-    public ClazzesDTO findClazzesByScanOrderedByAfferentCount(String scanId, int limit);
+    ClazzesDTO findClazzesByScanOrderedByAfferentCount(String scanId, int limit);
 
-    public ClazzesDTO findClazzesByScanOrderedByEfferentCount(String scanId, int limit);
+    ClazzesDTO findClazzesByScanOrderedByEfferentCount(String scanId, int limit);
 
-    public MethodsDTO findAllMethods(String methodId);
+    MethodsDTO findAllMethods(String methodId);
 
-    public MethodDTO findMethodById(String clazzId, String methodId);
+    MethodDTO findMethod(String clazzId, String methodId);
 
 }
 

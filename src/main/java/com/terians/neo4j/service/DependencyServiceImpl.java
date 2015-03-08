@@ -28,17 +28,12 @@ public class DependencyServiceImpl implements DependencyService {
     private DependencyRepository dependencyRepository;
 
     @Override
-    public DependenciesDTO findDependenciesByScan(String scanId) {
-        return DTOTransformerUtil.transformDependencySetToDependenciesDTO(dependencyRepository.findDependenciesByScan(scanId));
-    }
-
-    @Override
     public DependenciesDTO findAllDependencies() {
         return DTOTransformerUtil.transformDependencySetToDependenciesDTO(dependencyRepository.findAllDependencies());
     }
 
     @Override
-    public DependencyDTO findDependencyById(String dependencyId) {
+    public DependencyDTO findDependency(String dependencyId) {
         return DTOTransformerUtil.transformDependencyToDependencyDTO(dependencyRepository.findDependencyById(dependencyId));
     }
 
@@ -51,7 +46,7 @@ public class DependencyServiceImpl implements DependencyService {
     }
 
     @Override
-    public MethodDTO findMethodById(String dependencyId, String methodId) {
+    public MethodDTO findMethod(String dependencyId, String methodId) {
 
         Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
         template.fetch(dependency.getMethods());
@@ -63,6 +58,7 @@ public class DependencyServiceImpl implements DependencyService {
             if(e.getTeriansId().equals(methodId)){
 
                 method = e;
+                break;
             }
         }
         return DTOTransformerUtil.transformMethodToMethodDTO(method);
@@ -78,7 +74,7 @@ public class DependencyServiceImpl implements DependencyService {
     }
 
     @Override
-    public DependencyDTO findRelatedDependencyById(String dependencyId, String relatedDependencyId) {
+    public DependencyDTO findRelatedDependency(String dependencyId, String relatedDependencyId) {
 
         Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
         template.fetch(dependency.getDependencies());
@@ -91,6 +87,7 @@ public class DependencyServiceImpl implements DependencyService {
             if(e.getTeriansId().equals(relatedDependencyId)){
 
                 relatedDependency = e;
+                break;
             }
         }
 
@@ -107,7 +104,7 @@ public class DependencyServiceImpl implements DependencyService {
     }
 
     @Override
-    public VulnerabilityDTO findVulnerabilityById(String dependencyId, String vulnerabilityId) {
+    public VulnerabilityDTO findVulnerability(String dependencyId, String vulnerabilityId) {
 
         Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
         template.fetch(dependency.getVulnerabilities());
@@ -120,6 +117,7 @@ public class DependencyServiceImpl implements DependencyService {
             if(e.getTeriansId().equals(vulnerabilityId)){
 
                 vulnerability = e;
+                break;
             }
         }
 
@@ -127,12 +125,12 @@ public class DependencyServiceImpl implements DependencyService {
     }
 
     @Override
-    public IssuesDTO findAllIssues(String dependencyId) {
+    public IssuesDTO findAllIssues(String id, String category, String dependencyId) {
         return null;
     }
 
     @Override
-    public IssueDTO findIssueById(String dependencyId,String issueId) {
+    public IssueDTO findIssue(String dependencyId,String issueId) {
 
         Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
         template.fetch(dependency.getIssues());
@@ -145,6 +143,7 @@ public class DependencyServiceImpl implements DependencyService {
             if(e.getTeriansId().equals(issueId)){
 
                 issue = e;
+                break;
             }
         }
 

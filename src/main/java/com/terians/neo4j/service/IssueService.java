@@ -7,117 +7,119 @@ import com.terians.dto.IssuesDTO;
 /**
  * Created by stromero on 1/4/2015.
  */
-public interface IssueService {
+ public interface IssueService {
     
-    public Integer findIssueCountByScan(String teriansId);
+     Integer findIssueCountByScan(String scanId);
 
-    public IssueDTO findIssueById(String issueId);
+     IssueDTO findIssue(String issueId);
+
+     IssuesDTO findAllIssues(String category, String orderedBy);
 
     // Queries for All Issues
-    
-    public IssuesDTO findAllIssuesByScan(String teriansId);
-    
-    public IssuesDTO findIssuesByScanOrderedByIssueCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findIssuesByScanOrderedByCategoryCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findIssuesByScanOrderedByFileNameCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findIssuesByScanOrderedByPackageCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findIssuesByScanOrderedByClazzCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findIssuesByScanOrderedByIssueTypeDesc(String teriansId, int limit);
-    
-    public IssuesDTO findIssuesByScanOrderedByTechDebtDesc(String teriansId, int limit);
+
+     IssuesDTO findAllIssuesByScan(String scanId);
+
+     IssuesDTO findIssuesByScanOrderedByIssueCountDesc(String scanId, int limit);
+
+     IssuesDTO findIssuesByScanOrderedByCategoryCountDesc(String scanId, int limit);
+
+     IssuesDTO findIssuesByScanOrderedByFileNameCountDesc(String scanId, int limit);
+
+     IssuesDTO findIssuesByScanOrderedByPackageCountDesc(String scanId, int limit);
+
+     IssuesDTO findIssuesByScanOrderedByClazzCountDesc(String scanId, int limit);
+
+     IssuesDTO findIssuesByScanOrderedByIssueTypeDesc(String scanId, int limit);
+
+     IssuesDTO findIssuesByScanOrderedByTechDebtDesc(String scanId, int limit);
 
     // Queries for Critical Issues
-    public IssuesDTO findAllCriticalIssuesByScan(String teriansId);
-    
-    public IssuesDTO findCriticalIssuesByScanOrderedByIssueCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findCriticalIssuesByScanOrderedByCategoryCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findCriticalIssuesByScanOrderedByFileNameCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findCriticalIssuesByScanOrderedByPackageCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findCriticalIssuesByScanOrderedByClazzCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findCriticalIssuesByScanOrderedByIssueTypeDesc(String teriansId, int limit);
-    
-    public IssuesDTO findCriticalIssuesByScanOrderedByTechDebtDesc(String teriansId, int limit);
+     IssuesDTO findAllCriticalIssuesByScan(String scanId);
+
+     IssuesDTO findCriticalIssuesByScanOrderedByIssueCountDesc(String scanId, int limit);
+
+     IssuesDTO findCriticalIssuesByScanOrderedByCategoryCountDesc(String scanId, int limit);
+
+     IssuesDTO findCriticalIssuesByScanOrderedByFileNameCountDesc(String scanId, int limit);
+
+     IssuesDTO findCriticalIssuesByScanOrderedByPackageCountDesc(String scanId, int limit);
+
+     IssuesDTO findCriticalIssuesByScanOrderedByClazzCountDesc(String scanId, int limit);
+
+     IssuesDTO findCriticalIssuesByScanOrderedByIssueTypeDesc(String scanId, int limit);
+
+     IssuesDTO findCriticalIssuesByScanOrderedByTechDebtDesc(String scanId, int limit);
 
     // Queries for High Issues
-    
-    public IssuesDTO findAllHighIssuesByScan(String teriansId);
-    
-    public IssuesDTO findHighIssuesByScanOrderedByIssueCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findHighIssuesByScanOrderedByCategoryCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findHighIssuesByScanOrderedByFileNameCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findHighIssuesByScanOrderedByPackageCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findHighIssuesByScanOrderedByClazzCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findHighIssuesByScanOrderedByIssueTypeDesc(String teriansId, int limit);
-    
-    public IssuesDTO findHighIssuesByScanOrderedByTechDebtDesc(String teriansId, int limit);
+
+     IssuesDTO findAllHighIssuesByScan(String scanId);
+
+     IssuesDTO findHighIssuesByScanOrderedByIssueCountDesc(String scanId, int limit);
+
+     IssuesDTO findHighIssuesByScanOrderedByCategoryCountDesc(String scanId, int limit);
+
+     IssuesDTO findHighIssuesByScanOrderedByFileNameCountDesc(String scanId, int limit);
+
+     IssuesDTO findHighIssuesByScanOrderedByPackageCountDesc(String scanId, int limit);
+
+     IssuesDTO findHighIssuesByScanOrderedByClazzCountDesc(String scanId, int limit);
+
+     IssuesDTO findHighIssuesByScanOrderedByIssueTypeDesc(String scanId, int limit);
+
+     IssuesDTO findHighIssuesByScanOrderedByTechDebtDesc(String scanId, int limit);
 
     // Queries for Medium Issues
-    
-    public IssuesDTO findAllMediumIssuesByScan(String teriansId);
-    
-    public IssuesDTO findMediumIssuesByScanOrderedByIssueCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findMediumIssuesByScanOrderedByCategoryCountDesc(String teriansId, int limit);
 
-    public IssuesDTO findMediumIssuesByScanOrderedByFileNameCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findMediumIssuesByScanOrderedByPackageCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findMediumIssuesByScanOrderedByClazzCountDesc(String teriansId, int limit);
+     IssuesDTO findAllMediumIssuesByScan(String scanId);
 
-    public IssuesDTO findMediumIssuesByScanOrderedByIssueTypeDesc(String teriansId, int limit);
-    
-    public IssuesDTO findMediumIssuesByScanOrderedByTechDebtDesc(String teriansId, int limit);
+     IssuesDTO findMediumIssuesByScanOrderedByIssueCountDesc(String scanId, int limit);
+
+     IssuesDTO findMediumIssuesByScanOrderedByCategoryCountDesc(String scanId, int limit);
+
+     IssuesDTO findMediumIssuesByScanOrderedByFileNameCountDesc(String scanId, int limit);
+
+     IssuesDTO findMediumIssuesByScanOrderedByPackageCountDesc(String scanId, int limit);
+
+     IssuesDTO findMediumIssuesByScanOrderedByClazzCountDesc(String scanId, int limit);
+
+     IssuesDTO findMediumIssuesByScanOrderedByIssueTypeDesc(String scanId, int limit);
+
+     IssuesDTO findMediumIssuesByScanOrderedByTechDebtDesc(String scanId, int limit);
 
     // Queries for Low Issues
-    public IssuesDTO findAllLowIssuesByScan(String teriansId);
-    
-    public IssuesDTO findLowIssuesByScanOrderedByIssueCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findMLowIssuesByScanOrderedByCategoryCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findLowIssuesByScanOrderedByFileNameCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findLowIssuesByScanOrderedByPackageCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findLowIssuesByScanOrderedByClazzCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findLowIssuesByScanOrderedByIssueTypeDesc(String teriansId, int limit);
-    
-    public IssuesDTO findLowIssuesByScanOrderedByTechDebtDesc(String teriansId, int limit);
+     IssuesDTO findAllLowIssuesByScan(String scanId);
+
+     IssuesDTO findLowIssuesByScanOrderedByIssueCountDesc(String scanId, int limit);
+
+     IssuesDTO findMLowIssuesByScanOrderedByCategoryCountDesc(String scanId, int limit);
+
+     IssuesDTO findLowIssuesByScanOrderedByFileNameCountDesc(String scanId, int limit);
+
+     IssuesDTO findLowIssuesByScanOrderedByPackageCountDesc(String scanId, int limit);
+
+     IssuesDTO findLowIssuesByScanOrderedByClazzCountDesc(String scanId, int limit);
+
+     IssuesDTO findLowIssuesByScanOrderedByIssueTypeDesc(String scanId, int limit);
+
+     IssuesDTO findLowIssuesByScanOrderedByTechDebtDesc(String scanId, int limit);
 
     // Queries for Best Practices Issues
-    
-    public IssuesDTO findAllBestPracticesIssuesByScan(String teriansId);
-    
-    public IssuesDTO findBestPracticesIssuesByScanOrderedByIssueCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findBestPracticesIssuesByScanOrderedByCategoryCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findBestPracticesIssuesByScanOrderedByFileNameCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findBestPracticesIssuesByScanOrderedByPackageCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findBestPracticesIssuesByScanOrderedByClazzCountDesc(String teriansId, int limit);
-    
-    public IssuesDTO findBestPracticesIssuesByScanOrderedByIssueTypeDesc(String teriansId, int limit);
-    
-    public IssuesDTO findBestPracticesIssuesByScanOrderedByTechDebtDesc(String teriansId, int limit);
+
+     IssuesDTO findAllBestPracticesIssuesByScan(String scanId);
+
+     IssuesDTO findBestPracticesIssuesByScanOrderedByIssueCountDesc(String scanId, int limit);
+
+     IssuesDTO findBestPracticesIssuesByScanOrderedByCategoryCountDesc(String scanId, int limit);
+
+     IssuesDTO findBestPracticesIssuesByScanOrderedByFileNameCountDesc(String scanId, int limit);
+
+     IssuesDTO findBestPracticesIssuesByScanOrderedByPackageCountDesc(String scanId, int limit);
+
+     IssuesDTO findBestPracticesIssuesByScanOrderedByClazzCountDesc(String scanId, int limit);
+
+     IssuesDTO findBestPracticesIssuesByScanOrderedByIssueTypeDesc(String scanId, int limit);
+
+     IssuesDTO findBestPracticesIssuesByScanOrderedByTechDebtDesc(String scanId, int limit);
 
 
 }

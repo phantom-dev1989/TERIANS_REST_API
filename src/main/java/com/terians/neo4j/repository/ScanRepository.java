@@ -18,21 +18,21 @@ public interface ScanRepository extends GraphRepository<Scan> {
     public Scan findLatestScan();
 
     @Query("MATCH (p:Project {teriansId:{0}})-[:HAS_SCAN]->(s:Scan) RETURN s")
-    public Set<Scan> findAllScansByProject(String teriansId);
+    public Set<Scan> findAllScansByProject(String projectId);
 
     @Query("MATCH (s:Scan {teriansId:{0}}) RETURN s")
-    public Scan findScanById(String teriansId);
+    public Scan findScanById(String scanId);
 
     @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_PACKAGE]->(p:Package) RETURN avg(toFloat(p.cyclomaticCom))")
-    public Integer findComplexityByScan(String teriansId);
+    public Integer findComplexityByScan(String scanId);
 
     @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_ISSUE]->(i:Issue) RETURN sum(toFloat(i.techDebtMinutes))")
-    public Integer findTechDebtByScan(String teriansId);
+    public Integer findTechDebtByScan(String scanId);
 
     @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_PACKAGE]->(p:Package) RETURN avg(toFloat(p.abstractness))")
-    public Integer findAbstractnessByScan(String teriansId);
+    public Integer findAbstractnessByScan(String scanId);
 
     @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_PACKAGE]->(p:Package) RETURN avg(toFloat(p.instability))")
-    public Integer findInstabilityByScan(String teriansId);
+    public Integer findInstabilityByScan(String scanId);
 
 }

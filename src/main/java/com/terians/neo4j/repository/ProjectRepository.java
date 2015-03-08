@@ -17,6 +17,6 @@ public interface ProjectRepository extends GraphRepository<Project> {
     public Set<Project> findAllProjects();
 
     @Query("MATCH (p:Project {teriansId:{0}}) RETURN p")
-    public Project findProjectById(String teriansId);
+    public Project findProjectById(String projectId);
 
 }

@@ -33,7 +33,7 @@ public class ClazzServiceImpl implements ClazzService {
     }
 
     @Override
-    public ClazzDTO findClazzById(String clazzId) {
+    public ClazzDTO findClazz(String clazzId) {
         return DTOTransformerUtil.transformClazzToClazzDTO(clazzRepository.findClazzById(clazzId));
     }
 
@@ -62,7 +62,7 @@ public class ClazzServiceImpl implements ClazzService {
     }
 
     @Override
-    public MethodDTO findMethodById(String clazzId, String methodId) {
+    public MethodDTO findMethod(String clazzId, String methodId) {
 
         Clazz clazz = clazzRepository.findClazzById(clazzId);
         template.fetch(clazz.getMethods());
@@ -74,6 +74,7 @@ public class ClazzServiceImpl implements ClazzService {
             if(e.getTeriansId().equals(methodId)){
 
                 method = e;
+                break;
             }
         }
         return DTOTransformerUtil.transformMethodToMethodDTO(method);

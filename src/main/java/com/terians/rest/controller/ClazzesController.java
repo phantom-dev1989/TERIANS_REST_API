@@ -32,7 +32,7 @@ public class ClazzesController {
     @RequestMapping(value ="/{clazzId}", method = RequestMethod.GET)
     public ClazzDTO getClazz(@PathVariable("clazzId") String clazzId) {
 
-        return clazzService.findClazzById(clazzId);
+        return clazzService.findClazz(clazzId);
     }
 
     @RequestMapping(value ="/{clazzId}/methods", method = RequestMethod.GET)
@@ -45,6 +45,6 @@ public class ClazzesController {
     public MethodDTO getMethod(@PathVariable("clazzId") String clazzId,
                                 @PathVariable("methodId") String methodId ) {
 
-        return clazzService.findMethodById(clazzId,methodId);
+        return clazzService.findMethod(clazzId,methodId);
     }
 }

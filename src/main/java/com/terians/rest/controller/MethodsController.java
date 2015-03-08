@@ -32,6 +32,6 @@ public class MethodsController {
     @RequestMapping(value ="/{methodId}", method = RequestMethod.GET)
     public MethodDTO getMethod(@PathVariable("methodId") String methodId) {
 
-        return methodService.findMethodById(methodId);
+        return methodService.findMethod(methodId);
     }
 }
