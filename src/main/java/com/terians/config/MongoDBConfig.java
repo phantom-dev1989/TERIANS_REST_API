@@ -1,4 +1,4 @@
-package com.terians.config;
+/*package com.terians.config;
 
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
@@ -7,9 +7,9 @@ import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-/**
+*//**
  * Created by stromero on 2/5/2015.
- */
+ *//*
 @Configuration
 @EnableTransactionManagement
 @EnableMongoRepositories("com.terians.mongodb.repository")
@@ -29,4 +29,4 @@ public class MongoDBConfig extends AbstractMongoConfiguration {
     protected String getMappingBasePackage() {
         return "com.terians.mongodb.model";
     }
-}
+}*/

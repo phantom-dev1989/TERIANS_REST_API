@@ -13,7 +13,6 @@ import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Set;
 
 /**
  * Created by stromero on 1/4/2015.
@@ -57,7 +56,6 @@ public class ClazzServiceImpl implements ClazzService {
 
         Clazz clazz = clazzRepository.findClazzById(clazzId);
         template.fetch(clazz.getMethods());
-
         return DTOTransformerUtil.transformMethodSetToMethodsDTO(clazz.getMethods());
     }
 
@@ -66,13 +64,10 @@ public class ClazzServiceImpl implements ClazzService {
 
         Clazz clazz = clazzRepository.findClazzById(clazzId);
         template.fetch(clazz.getMethods());
-        Set<Method> methodSet = clazz.getMethods();
         Method method = null;
 
-        for(Method e : methodSet){
-
+        for(Method e : clazz.getMethods()){
             if(e.getTeriansId().equals(methodId)){
-
                 method = e;
                 break;
             }

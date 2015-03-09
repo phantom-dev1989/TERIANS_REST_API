@@ -22,4 +22,10 @@ public interface PackageRepository extends GraphRepository<Package> {
     @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_PACKAGE]->(p:Package) RETURN order by p.efferent desc Limit {1}")
     public Set<Package> findPackagesByScanOrderedByEfferentCount(String scanId, int limit);
 
+    @Query("MATCH (p:Package) RETURN p")
+    public Set<Package> findAllPackages();
+
+    @Query("MATCH (p:Package {teriansId:{0}}) RETURN p")
+    public Package findPackageById(String methodId);
+
 }

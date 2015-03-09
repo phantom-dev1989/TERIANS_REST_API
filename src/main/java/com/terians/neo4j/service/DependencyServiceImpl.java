@@ -12,9 +12,6 @@ import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Set;
-
-
 /**
  * Created by stromero on 1/4/2015.
  */
@@ -50,13 +47,10 @@ public class DependencyServiceImpl implements DependencyService {
 
         Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
         template.fetch(dependency.getMethods());
-        Set<Method> methodSet = dependency.getMethods();
         Method method = null;
 
-        for(Method e : methodSet){
-
+        for(Method e : dependency.getMethods()){
             if(e.getTeriansId().equals(methodId)){
-
                 method = e;
                 break;
             }
@@ -78,14 +72,10 @@ public class DependencyServiceImpl implements DependencyService {
 
         Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
         template.fetch(dependency.getDependencies());
-
-        Set<Dependency> dependencySet = dependency.getDependencies();
         Dependency relatedDependency = null;
 
-        for(Dependency e : dependencySet){
-
+        for(Dependency e : dependency.getDependencies()){
             if(e.getTeriansId().equals(relatedDependencyId)){
-
                 relatedDependency = e;
                 break;
             }
@@ -108,14 +98,9 @@ public class DependencyServiceImpl implements DependencyService {
 
         Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
         template.fetch(dependency.getVulnerabilities());
-
-        Set<Vulnerability> vulnerabilitySet = dependency.getVulnerabilities();
         Vulnerability vulnerability = null;
-
-        for(Vulnerability e : vulnerabilitySet){
-
+        for(Vulnerability e : dependency.getVulnerabilities()){
             if(e.getTeriansId().equals(vulnerabilityId)){
-
                 vulnerability = e;
                 break;
             }
@@ -134,19 +119,13 @@ public class DependencyServiceImpl implements DependencyService {
 
         Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
         template.fetch(dependency.getIssues());
-
-        Set<Issue> issueSet = dependency.getIssues();
         Issue issue = null;
-
-        for(Issue e : issueSet){
-
+        for(Issue e : dependency.getIssues()){
             if(e.getTeriansId().equals(issueId)){
-
                 issue = e;
                 break;
             }
         }
-
         return DTOTransformerUtil.transformIssueToIssueDTO(issue);
     }
 

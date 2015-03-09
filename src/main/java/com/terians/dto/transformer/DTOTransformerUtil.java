@@ -293,4 +293,17 @@ public final class DTOTransformerUtil {
         return vulnerabilityDTO;
     }
 
+    public static PackageDTO transformPackageToPackageDTO(Package packageObj) {
+
+        PackageDTO packageDTO = new PackageDTO();
+        packageDTO.setTeriansId(packageObj.getTeriansId());
+        packageDTO.setAfferent(packageObj.getAfferent());
+        packageDTO.setCyclomaticCom(packageObj.getCyclomaticCom());
+        packageDTO.setEfferent(packageObj.getEfferent());
+        packageDTO.setName(packageObj.getName());
+        packageDTO.setInstability(packageObj.getInstability());
+        packageDTO.setAbstractness(packageObj.getAbstractness());
+
+        return packageDTO;
+    }
 }
