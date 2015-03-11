@@ -19,24 +19,25 @@ public class IssueServiceImpl implements IssueService {
     @Autowired
     private IssueRepository issueRepository;
 
+    @Override
+    public IssueDTO findIssue(String issueId) {
+
+        if (issueId != null) {
+            Issue issue = null;
+            for (Issue e : issueRepository.findAllIssues()) {
+                if (e.getTeriansId().equals(issueId)) {
+                    issue = e;
+                    break;
+                }
+            }
+            return DTOTransformerUtil.transformIssueToIssueDTO(issue);
+        }
+        return null;
+    }
 
     @Override
     public IssuesDTO findAllIssues() {
 
         return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findAllIssues());
     }
-
-    @Override
-    public IssueDTO findIssue(String issueId) {
-
-        Issue issue = null;
-        for(Issue e : issueRepository.findAllIssues()){
-            if(e.getTeriansId().equals(issueId)){
-                issue = e;
-                break;
-            }
-        }
-        return DTOTransformerUtil.transformIssueToIssueDTO(issue);
-    }
-
 }

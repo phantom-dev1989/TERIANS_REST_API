@@ -26,13 +26,13 @@ public class Method {
     @Indexed
     private String sourceCode;
 
+    public String getTeriansId() {
+        return teriansId;
+    }
+
     // Getters and Setters
     public void setTeriansId(String teriansId) {
         this.teriansId = teriansId;
-    }
-
-    public String getTeriansId() {
-        return teriansId;
     }
 
     public Double getAfferent() {
@@ -84,6 +84,18 @@ public class Method {
     }
 
     @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (teriansId != null ? teriansId.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (afferent != null ? afferent.hashCode() : 0);
+        result = 31 * result + (efferent != null ? efferent.hashCode() : 0);
+        result = 31 * result + (cyclomaticCom != null ? cyclomaticCom.hashCode() : 0);
+        result = 31 * result + (sourceCode != null ? sourceCode.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -100,18 +112,6 @@ public class Method {
         if (teriansId != null ? !teriansId.equals(method.teriansId) : method.teriansId != null) return false;
 
         return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (teriansId != null ? teriansId.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (afferent != null ? afferent.hashCode() : 0);
-        result = 31 * result + (efferent != null ? efferent.hashCode() : 0);
-        result = 31 * result + (cyclomaticCom != null ? cyclomaticCom.hashCode() : 0);
-        result = 31 * result + (sourceCode != null ? sourceCode.hashCode() : 0);
-        return result;
     }
 
     @Override

@@ -18,11 +18,6 @@ public class PackagesDTO {
     public PackagesDTO() {
     }
 
-    public PackagesDTO(List<PackageDTO> packageDTOList, int totalPackages) {
-        this.packageDTOList = packageDTOList;
-        this.totalPackages = totalPackages;
-    }
-
     public List<PackageDTO> getPackageDTOList() {
         return packageDTOList;
     }

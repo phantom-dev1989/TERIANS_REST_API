@@ -22,25 +22,13 @@ public class DependencyDTO {
 
     }
 
-    public DependencyDTO(DependenciesDTO dependenciesDTO, String description, String fileName, String filePath,
-                         IssuesDTO issuesDTO, String license, String teriansId, VulnerabilitiesDTO vulnerabilitiesDTO) {
-        this.dependenciesDTO = dependenciesDTO;
-        this.description = description;
-        this.fileName = fileName;
-        this.filePath = filePath;
-        this.issuesDTO = issuesDTO;
-        this.license = license;
-        this.teriansId = teriansId;
-        this.vulnerabilitiesDTO = vulnerabilitiesDTO;
+    public String getTeriansId() {
+        return teriansId;
     }
 
     // Getters and Setters
     public void setTeriansId(String teriansId) {
         this.teriansId = teriansId;
-    }
-
-    public String getTeriansId() {
-        return teriansId;
     }
 
     public String getDescription() {

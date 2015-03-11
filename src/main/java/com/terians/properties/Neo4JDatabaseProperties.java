@@ -5,7 +5,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Component
-@PropertySource(value={"classpath:neo4j.properties"})
+@PropertySource(value = {"classpath:neo4j.properties"})
 public class Neo4JDatabaseProperties {
 
     @Value("${db.path}")

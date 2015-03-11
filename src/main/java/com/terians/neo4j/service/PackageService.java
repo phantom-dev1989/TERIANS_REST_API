@@ -7,10 +7,6 @@ import com.terians.dto.*;
  */
 public interface PackageService {
 
-    PackagesDTO findPackagesByScanOrderedByAfferentCount(String teriansId, int limit);
-
-    PackagesDTO findPackagesByScanOrderedByEfferentCount(String teriansId, int limit);
-
     PackagesDTO findAllPackages();
 
     PackageDTO findPackage(String packageId);

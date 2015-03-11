@@ -20,10 +20,8 @@ public interface ScanRepository extends GraphRepository<Scan> {
     @Query("MATCH (s:Scan) RETURN s ORDER BY s.date ASC LIMIT 1")
     public Scan findOldestScan();
 
-    @Query("MATCH (p:Project {teriansId:{0}})-[:HAS_SCAN]->(s:Scan) RETURN s")
-    public Set<Scan> findAllScansByProject(String projectId);
-
-    @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_PACKAGE]->(p:Package)-[:HAS_CLAZZ]->(z:Clazz)-[:HAS_METHOD]->(m:Method) RETURN count(m)")
+    @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_PACKAGE]->(p:Package)-[:HAS_CLAZZ]->(z:Clazz)-[:HAS_METHOD]->(m:Method)" +
+            " RETURN count(m)")
     public Integer findMethodCountByScan(String scanId);
 
     @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_PACKAGE]->(p:Package)-[:HAS_CLAZZ]->(z:Clazz) RETURN count(z)")

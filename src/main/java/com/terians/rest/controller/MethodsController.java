@@ -23,13 +23,13 @@ public class MethodsController {
     @Autowired
     private MethodService methodService;
 
-    @RequestMapping(value ="/", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public MethodsDTO getMethods() {
 
         return methodService.findAllMethods();
     }
 
-    @RequestMapping(value ="/{methodId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{methodId}", method = RequestMethod.GET)
     public MethodDTO getMethod(@PathVariable("methodId") String methodId) {
 
         return methodService.findMethod(methodId);

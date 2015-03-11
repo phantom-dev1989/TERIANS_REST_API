@@ -20,16 +20,16 @@ public class Project {
 
     // Relationships
     @Fetch
-    @RelatedTo(type = "HAS_SCAN",elementClass = Scan.class)
+    @RelatedTo(type = "HAS_SCAN", elementClass = Scan.class)
     private Set<Scan> scans;
+
+    public String getTeriansId() {
+        return teriansId;
+    }
 
     // Getters and Setters
     public void setTeriansId(String teriansId) {
         this.teriansId = teriansId;
-    }
-
-    public String getTeriansId() {
-        return teriansId;
     }
 
     public Long getId() {
@@ -57,13 +57,11 @@ public class Project {
     }
 
     @Override
-    public String toString() {
-        return "Project{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", teriansId='" + teriansId + '\'' +
-                ", scans=" + scans +
-                '}';
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (teriansId != null ? teriansId.hashCode() : 0);
+        result = 31 * result + (scans != null ? scans.hashCode() : 0);
+        return result;
     }
 
     @Override
@@ -81,10 +79,12 @@ public class Project {
     }
 
     @Override
-    public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (teriansId != null ? teriansId.hashCode() : 0);
-        result = 31 * result + (scans != null ? scans.hashCode() : 0);
-        return result;
+    public String toString() {
+        return "Project{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", teriansId='" + teriansId + '\'' +
+                ", scans=" + scans +
+                '}';
     }
 }

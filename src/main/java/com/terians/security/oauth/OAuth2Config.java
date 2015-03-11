@@ -28,9 +28,9 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 
     */
 /**
-     * This method is used to configure who is allowed to access which parts of our
-     * resource server (i.e. the "/video" endpoint)
-     *//*
+ * This method is used to configure who is allowed to access which parts of our
+ * resource server (i.e. the "/video" endpoint)
+ *//*
 
 
     @Configuration
@@ -69,9 +69,9 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 
     */
 /**
-     * This class is used to configure how our authorization server (the "/oauth/token" endpoint)
-     * validates client credentials.
-     *//*
+ * This class is used to configure how our authorization server (the "/oauth/token" endpoint)
+ * validates client credentials.
+ *//*
 
 
     @Configuration

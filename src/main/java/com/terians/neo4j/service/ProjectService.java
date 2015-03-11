@@ -35,7 +35,7 @@ public interface ProjectService {
 
     VulnerabilityDTO findVulnerability(String projectId, String scanId, String dependencyId, String vulnerabilityId);
 
-    IssuesDTO findAllDependencyIssues(String projectId, String scanId, String dependencyId, String category, String orderedBy);
+    IssuesDTO findAllDependencyIssues(String projectId, String scanId, String dependencyId);
 
     IssueDTO findDependencyIssue(String projectId, String scanId, String dependencyId, String issueId);
 

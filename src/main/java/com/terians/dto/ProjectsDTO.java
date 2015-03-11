@@ -18,11 +18,6 @@ public class ProjectsDTO {
     public ProjectsDTO() {
     }
 
-    public ProjectsDTO(List<ProjectDTO> projectDTOList, int totalProjects) {
-        this.projectDTOList = projectDTOList;
-        this.totalProjects = totalProjects;
-    }
-
     public List<ProjectDTO> getProjectDTOList() {
         return projectDTOList;
     }

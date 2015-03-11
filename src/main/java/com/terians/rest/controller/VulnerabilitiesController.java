@@ -23,13 +23,13 @@ public class VulnerabilitiesController {
     @Autowired
     private VulnerabilityService vulnerabilityService;
 
-    @RequestMapping(value ="/", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public VulnerabilitiesDTO getVulnerabilities() {
 
         return vulnerabilityService.findAllVulnerabilities();
     }
 
-    @RequestMapping(value ="/{vulnerabilityId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{vulnerabilityId}", method = RequestMethod.GET)
     public VulnerabilityDTO getVulnerability(@PathVariable("vulnerabilityId") String vulnerabilityId) {
 
         return vulnerabilityService.findVulnerability(vulnerabilityId);

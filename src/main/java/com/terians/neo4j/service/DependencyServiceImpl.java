@@ -31,107 +31,127 @@ public class DependencyServiceImpl implements DependencyService {
 
     @Override
     public DependencyDTO findDependency(String dependencyId) {
-        return DTOTransformerUtil.transformDependencyToDependencyDTO(dependencyRepository.findDependencyById(dependencyId));
+
+        if (dependencyId != null) {
+            return DTOTransformerUtil.transformDependencyToDependencyDTO(dependencyRepository
+                    .findDependencyById(dependencyId));
+        }
+        return null;
     }
 
     @Override
     public MethodsDTO findAllMethods(String dependencyId) {
 
-        Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
-        template.fetch(dependency.getMethods());
-        return DTOTransformerUtil.transformMethodSetToMethodsDTO(dependency.getMethods());
+        if (dependencyId != null) {
+            Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
+            template.fetch(dependency.getMethods());
+            return DTOTransformerUtil.transformMethodSetToMethodsDTO(dependency.getMethods());
+        }
+        return null;
     }
 
     @Override
     public MethodDTO findMethod(String dependencyId, String methodId) {
 
-        Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
-        template.fetch(dependency.getMethods());
-        Method method = null;
-
-        for(Method e : dependency.getMethods()){
-            if(e.getTeriansId().equals(methodId)){
-                method = e;
-                break;
+        if ((dependencyId != null) && (methodId != null)) {
+            Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
+            template.fetch(dependency.getMethods());
+            Method method = null;
+            for (Method e : dependency.getMethods()) {
+                if (e.getTeriansId().equals(methodId)) {
+                    method = e;
+                    break;
+                }
             }
+            return DTOTransformerUtil.transformMethodToMethodDTO(method);
         }
-        return DTOTransformerUtil.transformMethodToMethodDTO(method);
+        return null;
     }
 
     @Override
     public DependenciesDTO findAllRelatedDependencies(String dependencyId) {
 
-        Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
-        template.fetch(dependency.getDependencies());
-
-        return DTOTransformerUtil.transformDependencySetToDependenciesDTO(dependency.getDependencies());
+        if (dependencyId != null) {
+            Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
+            template.fetch(dependency.getDependencies());
+            return DTOTransformerUtil.transformDependencySetToDependenciesDTO(dependency.getDependencies());
+        }
+        return null;
     }
 
     @Override
     public DependencyDTO findRelatedDependency(String dependencyId, String relatedDependencyId) {
 
-        Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
-        template.fetch(dependency.getDependencies());
-        Dependency relatedDependency = null;
-
-        for(Dependency e : dependency.getDependencies()){
-            if(e.getTeriansId().equals(relatedDependencyId)){
-                relatedDependency = e;
-                break;
+        if ((dependencyId != null) && (relatedDependencyId != null)) {
+            Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
+            template.fetch(dependency.getDependencies());
+            Dependency relatedDependency = null;
+            for (Dependency e : dependency.getDependencies()) {
+                if (e.getTeriansId().equals(relatedDependencyId)) {
+                    relatedDependency = e;
+                    break;
+                }
             }
+            return DTOTransformerUtil.transformDependencyToDependencyDTO(relatedDependency);
         }
-
-        return DTOTransformerUtil.transformDependencyToDependencyDTO(relatedDependency);
+        return null;
     }
 
     @Override
     public VulnerabilitiesDTO findAllVulnerabilities(String dependencyId) {
 
-        Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
-        template.fetch(dependency.getVulnerabilities());
-
-        return DTOTransformerUtil.transformVulnerabilitySetToVulnerabilitiesDTO(dependency.getVulnerabilities());
+        if (dependencyId != null) {
+            Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
+            template.fetch(dependency.getVulnerabilities());
+            return DTOTransformerUtil.transformVulnerabilitySetToVulnerabilitiesDTO(dependency.getVulnerabilities());
+        }
+        return null;
     }
 
     @Override
     public VulnerabilityDTO findVulnerability(String dependencyId, String vulnerabilityId) {
 
-        Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
-        template.fetch(dependency.getVulnerabilities());
-        Vulnerability vulnerability = null;
-        for(Vulnerability e : dependency.getVulnerabilities()){
-            if(e.getTeriansId().equals(vulnerabilityId)){
-                vulnerability = e;
-                break;
+        if ((dependencyId != null) && (vulnerabilityId != null)) {
+            Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
+            template.fetch(dependency.getVulnerabilities());
+            Vulnerability vulnerability = null;
+            for (Vulnerability e : dependency.getVulnerabilities()) {
+                if (e.getTeriansId().equals(vulnerabilityId)) {
+                    vulnerability = e;
+                    break;
+                }
             }
+            return DTOTransformerUtil.transformVulnerabilityToVulnerabilityDTO(vulnerability);
         }
-
-        return DTOTransformerUtil.transformVulnerabilityToVulnerabilityDTO(vulnerability);
+        return null;
     }
 
     @Override
     public IssuesDTO findAllIssues(String dependencyId) {
 
-        Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
-        template.fetch(dependency.getIssues());
-
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(dependency.getIssues());
+        if (dependencyId != null) {
+            Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
+            template.fetch(dependency.getIssues());
+            return DTOTransformerUtil.transformIssuesSetToIssuesDTO(dependency.getIssues());
+        }
+        return null;
     }
 
     @Override
-    public IssueDTO findIssue(String dependencyId,String issueId) {
+    public IssueDTO findIssue(String dependencyId, String issueId) {
 
-        Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
-        template.fetch(dependency.getIssues());
-        Issue issue = null;
-        for(Issue e : dependency.getIssues()){
-            if(e.getTeriansId().equals(issueId)){
-                issue = e;
-                break;
+        if ((dependencyId != null) && (issueId != null)) {
+            Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
+            template.fetch(dependency.getIssues());
+            Issue issue = null;
+            for (Issue e : dependency.getIssues()) {
+                if (e.getTeriansId().equals(issueId)) {
+                    issue = e;
+                    break;
+                }
             }
+            return DTOTransformerUtil.transformIssueToIssueDTO(issue);
         }
-        return DTOTransformerUtil.transformIssueToIssueDTO(issue);
+        return null;
     }
-
-
 }

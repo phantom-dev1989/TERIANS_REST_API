@@ -30,7 +30,7 @@ public class Package {
 
     //Relationships
     @Fetch
-    @RelatedTo(type = "HAS_CLAZZ",elementClass = Clazz.class)
+    @RelatedTo(type = "HAS_CLAZZ", elementClass = Clazz.class)
     private Set<Clazz> clazzs;
 
     // Getters and Setters
@@ -50,12 +50,12 @@ public class Package {
         this.instability = instability;
     }
 
-    public void setTeriansId(String teriansId) {
-        this.teriansId = teriansId;
-    }
-
     public String getTeriansId() {
         return teriansId;
+    }
+
+    public void setTeriansId(String teriansId) {
+        this.teriansId = teriansId;
     }
 
     public Double getAfferent() {
@@ -107,18 +107,16 @@ public class Package {
     }
 
     @Override
-    public String toString() {
-        return "Package{" +
-                "abstractness=" + abstractness +
-                ", id=" + id +
-                ", teriansId='" + teriansId + '\'' +
-                ", name='" + name + '\'' +
-                ", afferent=" + afferent +
-                ", efferent=" + efferent +
-                ", cyclomaticCom=" + cyclomaticCom +
-                ", instability=" + instability +
-                ", clazzs=" + clazzs +
-                '}';
+    public int hashCode() {
+        int result = teriansId != null ? teriansId.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (afferent != null ? afferent.hashCode() : 0);
+        result = 31 * result + (efferent != null ? efferent.hashCode() : 0);
+        result = 31 * result + (cyclomaticCom != null ? cyclomaticCom.hashCode() : 0);
+        result = 31 * result + (instability != null ? instability.hashCode() : 0);
+        result = 31 * result + (abstractness != null ? abstractness.hashCode() : 0);
+        result = 31 * result + (clazzs != null ? clazzs.hashCode() : 0);
+        return result;
     }
 
     @Override
@@ -144,15 +142,17 @@ public class Package {
     }
 
     @Override
-    public int hashCode() {
-        int result = teriansId != null ? teriansId.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (afferent != null ? afferent.hashCode() : 0);
-        result = 31 * result + (efferent != null ? efferent.hashCode() : 0);
-        result = 31 * result + (cyclomaticCom != null ? cyclomaticCom.hashCode() : 0);
-        result = 31 * result + (instability != null ? instability.hashCode() : 0);
-        result = 31 * result + (abstractness != null ? abstractness.hashCode() : 0);
-        result = 31 * result + (clazzs != null ? clazzs.hashCode() : 0);
-        return result;
+    public String toString() {
+        return "Package{" +
+                "abstractness=" + abstractness +
+                ", id=" + id +
+                ", teriansId='" + teriansId + '\'' +
+                ", name='" + name + '\'' +
+                ", afferent=" + afferent +
+                ", efferent=" + efferent +
+                ", cyclomaticCom=" + cyclomaticCom +
+                ", instability=" + instability +
+                ", clazzs=" + clazzs +
+                '}';
     }
 }

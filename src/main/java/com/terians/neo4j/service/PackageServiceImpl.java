@@ -24,85 +24,91 @@ public class PackageServiceImpl implements PackageService {
     private PackageRepository packageRepository;
 
     @Override
-    public PackagesDTO findPackagesByScanOrderedByAfferentCount(String teriansId, int limit) {
-        return DTOTransformerUtil.transformPackageSetToPackagesDTO(packageRepository.findPackagesByScanOrderedByAfferentCount(teriansId, limit));
-    }
-
-    @Override
-    public PackagesDTO findPackagesByScanOrderedByEfferentCount(String teriansId, int limit) {
-        return DTOTransformerUtil.transformPackageSetToPackagesDTO(packageRepository.findPackagesByScanOrderedByEfferentCount(teriansId, limit));
-    }
-
-    @Override
     public PackagesDTO findAllPackages() {
         return DTOTransformerUtil.transformPackageSetToPackagesDTO(packageRepository.findAllPackages());
     }
 
     @Override
     public PackageDTO findPackage(String packageId) {
-        return DTOTransformerUtil.transformPackageToPackageDTO(packageRepository.findPackageById(packageId));
+
+        if (packageId != null) {
+            return DTOTransformerUtil.transformPackageToPackageDTO(packageRepository.findPackageById(packageId));
+        }
+        return null;
     }
 
     @Override
     public ClazzesDTO findAllClazzes(String packageId) {
 
-        com.terians.neo4j.model.Package packageObj = packageRepository.findPackageById(packageId);
-        template.fetch(packageObj.getClazzs());
+        if (packageId != null) {
 
-        return DTOTransformerUtil.transformClazzSetToClazzesDTO(packageObj.getClazzs());
+            com.terians.neo4j.model.Package packageObj = packageRepository.findPackageById(packageId);
+            template.fetch(packageObj.getClazzs());
+            return DTOTransformerUtil.transformClazzSetToClazzesDTO(packageObj.getClazzs());
+        }
+        return null;
     }
 
     @Override
     public ClazzDTO findClazz(String packageId, String clazzId) {
 
-        com.terians.neo4j.model.Package packageObj = packageRepository.findPackageById(packageId);
-        template.fetch(packageObj.getClazzs());
-        Clazz clazz = null;
-        for(Clazz e : packageObj.getClazzs()){
-            if(e.getTeriansId().equals(clazzId)){
-                clazz = e;
-                break;
+        if ((packageId != null) && (clazzId != null)) {
+            com.terians.neo4j.model.Package packageObj = packageRepository.findPackageById(packageId);
+            template.fetch(packageObj.getClazzs());
+            Clazz clazz = null;
+            for (Clazz e : packageObj.getClazzs()) {
+                if (e.getTeriansId().equals(clazzId)) {
+                    clazz = e;
+                    break;
+                }
             }
+            return DTOTransformerUtil.transformClazzToClazzDTO(clazz);
         }
-        return DTOTransformerUtil.transformClazzToClazzDTO(clazz);
+        return null;
     }
 
     @Override
     public MethodsDTO findAllMethods(String packageId, String clazzId) {
 
-        com.terians.neo4j.model.Package packageObj = packageRepository.findPackageById(packageId);
-        template.fetch(packageObj.getClazzs());
-        Clazz clazz = null;
-        for(Clazz e : packageObj.getClazzs()){
-            if(e.getTeriansId().equals(clazzId)){
-                clazz = e;
-                template.fetch(clazz.getMethods());
-                break;
+        if ((packageId != null) && (clazzId != null)) {
+            com.terians.neo4j.model.Package packageObj = packageRepository.findPackageById(packageId);
+            template.fetch(packageObj.getClazzs());
+            Clazz clazz = null;
+            for (Clazz e : packageObj.getClazzs()) {
+                if (e.getTeriansId().equals(clazzId)) {
+                    clazz = e;
+                    template.fetch(clazz.getMethods());
+                    break;
+                }
             }
+            return DTOTransformerUtil.transformMethodSetToMethodsDTO(clazz.getMethods());
         }
-        return DTOTransformerUtil.transformMethodSetToMethodsDTO(clazz.getMethods());
+        return null;
     }
 
     @Override
     public MethodDTO findMethod(String packageId, String clazzId, String methodId) {
 
-        com.terians.neo4j.model.Package packageObj = packageRepository.findPackageById(packageId);
-        template.fetch(packageObj.getClazzs());
-        Clazz clazz = null;
-        Method method = null;
-        for(Clazz e : packageObj.getClazzs()){
-            if(e.getTeriansId().equals(clazzId)){
-                clazz = e;
-                template.fetch(clazz.getMethods());
-                for(Method e1 : clazz.getMethods()){
-                    if(e1.getTeriansId().equals(methodId)){
-                        method = e1;
-                        break;
+        if ((packageId != null) && (clazzId != null) && (methodId != null)) {
+            com.terians.neo4j.model.Package packageObj = packageRepository.findPackageById(packageId);
+            template.fetch(packageObj.getClazzs());
+            Clazz clazz = null;
+            Method method = null;
+            for (Clazz e : packageObj.getClazzs()) {
+                if (e.getTeriansId().equals(clazzId)) {
+                    clazz = e;
+                    template.fetch(clazz.getMethods());
+                    for (Method e1 : clazz.getMethods()) {
+                        if (e1.getTeriansId().equals(methodId)) {
+                            method = e1;
+                            break;
+                        }
                     }
+                    break;
                 }
-                break;
             }
+            return DTOTransformerUtil.transformMethodToMethodDTO(method);
         }
-        return DTOTransformerUtil.transformMethodToMethodDTO(method);
+        return null;
     }
 }

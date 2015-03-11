@@ -50,12 +50,12 @@ public class Clazz {
         this.sourceCode = sourceCode;
     }
 
-    public void setTeriansId(String teriansId) {
-        this.teriansId = teriansId;
-    }
-
     public String getTeriansId() {
         return teriansId;
+    }
+
+    public void setTeriansId(String teriansId) {
+        this.teriansId = teriansId;
     }
 
     public Double getAfferent() {
@@ -107,16 +107,14 @@ public class Clazz {
     }
 
     @Override
-    public String toString() {
-        return "Clazz{" +
-                "afferent=" + afferent +
-                ", id=" + id +
-                ", teriansId='" + teriansId + '\'' +
-                ", name='" + name + '\'' +
-                ", efferent=" + efferent +
-                ", cyclomaticCom=" + cyclomaticCom +
-                ", methods=" + methods +
-                '}';
+    public int hashCode() {
+        int result = teriansId != null ? teriansId.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (afferent != null ? afferent.hashCode() : 0);
+        result = 31 * result + (efferent != null ? efferent.hashCode() : 0);
+        result = 31 * result + (cyclomaticCom != null ? cyclomaticCom.hashCode() : 0);
+        result = 31 * result + (methods != null ? methods.hashCode() : 0);
+        return result;
     }
 
     @Override
@@ -138,13 +136,15 @@ public class Clazz {
     }
 
     @Override
-    public int hashCode() {
-        int result = teriansId != null ? teriansId.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (afferent != null ? afferent.hashCode() : 0);
-        result = 31 * result + (efferent != null ? efferent.hashCode() : 0);
-        result = 31 * result + (cyclomaticCom != null ? cyclomaticCom.hashCode() : 0);
-        result = 31 * result + (methods != null ? methods.hashCode() : 0);
-        return result;
+    public String toString() {
+        return "Clazz{" +
+                "afferent=" + afferent +
+                ", id=" + id +
+                ", teriansId='" + teriansId + '\'' +
+                ", name='" + name + '\'' +
+                ", efferent=" + efferent +
+                ", cyclomaticCom=" + cyclomaticCom +
+                ", methods=" + methods +
+                '}';
     }
 }

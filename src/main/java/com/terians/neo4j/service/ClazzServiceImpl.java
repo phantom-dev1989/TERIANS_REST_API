@@ -33,40 +33,41 @@ public class ClazzServiceImpl implements ClazzService {
 
     @Override
     public ClazzDTO findClazz(String clazzId) {
-        return DTOTransformerUtil.transformClazzToClazzDTO(clazzRepository.findClazzById(clazzId));
-    }
 
-    @Override
-    public ClazzesDTO findClazzesByScanOrderedByAfferentCount(String scanId, int limit) {
-        return DTOTransformerUtil.transformClazzSetToClazzesDTO(clazzRepository.findClazzesByScanOrderedByAfferentCount(scanId, limit));
-    }
-
-    @Override
-    public ClazzesDTO findClazzesByScanOrderedByEfferentCount(String scanId, int limit) {
-        return DTOTransformerUtil.transformClazzSetToClazzesDTO(clazzRepository.findClazzesByScanOrderedByEfferentCount(scanId, limit));
+        if (clazzId != null) {
+            return DTOTransformerUtil.transformClazzToClazzDTO(clazzRepository.findClazzById(clazzId));
+        }
+        return null;
     }
 
     @Override
     public MethodsDTO findAllMethods(String clazzId) {
 
-        Clazz clazz = clazzRepository.findClazzById(clazzId);
-        template.fetch(clazz.getMethods());
-        return DTOTransformerUtil.transformMethodSetToMethodsDTO(clazz.getMethods());
+        if (clazzId != null) {
+            Clazz clazz = clazzRepository.findClazzById(clazzId);
+            template.fetch(clazz.getMethods());
+            return DTOTransformerUtil.transformMethodSetToMethodsDTO(clazz.getMethods());
+        }
+        return null;
     }
 
     @Override
     public MethodDTO findMethod(String clazzId, String methodId) {
 
-        Clazz clazz = clazzRepository.findClazzById(clazzId);
-        template.fetch(clazz.getMethods());
-        Method method = null;
+        if ((clazzId != null) && (methodId != null)) {
 
-        for(Method e : clazz.getMethods()){
-            if(e.getTeriansId().equals(methodId)){
-                method = e;
-                break;
+            Clazz clazz = clazzRepository.findClazzById(clazzId);
+            template.fetch(clazz.getMethods());
+            Method method = null;
+
+            for (Method e : clazz.getMethods()) {
+                if (e.getTeriansId().equals(methodId)) {
+                    method = e;
+                    break;
+                }
             }
+            return DTOTransformerUtil.transformMethodToMethodDTO(method);
         }
-        return DTOTransformerUtil.transformMethodToMethodDTO(method);
+        return null;
     }
 }

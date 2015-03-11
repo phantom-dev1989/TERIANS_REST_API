@@ -26,25 +26,25 @@ public class Dependency {
 
     // Relationships
     @Fetch
-    @RelatedTo(type = "HAS_VULN",elementClass = Vulnerability.class)
+    @RelatedTo(type = "HAS_VULN", elementClass = Vulnerability.class)
     private Set<Vulnerability> vulnerabilities;
     @Fetch
-    @RelatedTo(type = "HAS_ISSUE",elementClass = Issue.class)
+    @RelatedTo(type = "HAS_ISSUE", elementClass = Issue.class)
     private Set<Issue> issues;
     @Fetch
-    @RelatedTo(type = "RELATED_DEPENDENCIES",elementClass = Dependency.class)
+    @RelatedTo(type = "RELATED_DEPENDENCIES", elementClass = Dependency.class)
     private Set<Dependency> dependencies;
     @Fetch
-    @RelatedTo(type = "USED_BY",elementClass = Method.class)
+    @RelatedTo(type = "USED_BY", elementClass = Method.class)
     private Set<Method> methods;
+
+    public String getTeriansId() {
+        return teriansId;
+    }
 
     // Getters and Setters
     public void setTeriansId(String teriansId) {
         this.teriansId = teriansId;
-    }
-
-    public String getTeriansId() {
-        return teriansId;
     }
 
     public Set<Dependency> getDependencies() {
@@ -120,19 +120,17 @@ public class Dependency {
     }
 
     @Override
-    public String toString() {
-        return "Dependency{" +
-                "dependencies=" + dependencies +
-                ", id=" + id +
-                ", teriansId='" + teriansId + '\'' +
-                ", description='" + description + '\'' +
-                ", fileName='" + fileName + '\'' +
-                ", filePath='" + filePath + '\'' +
-                ", license='" + license + '\'' +
-                ", vulnerabilities=" + vulnerabilities +
-                ", issues=" + issues +
-                ", methods=" + methods +
-                '}';
+    public int hashCode() {
+        int result = teriansId != null ? teriansId.hashCode() : 0;
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (fileName != null ? fileName.hashCode() : 0);
+        result = 31 * result + (filePath != null ? filePath.hashCode() : 0);
+        result = 31 * result + (license != null ? license.hashCode() : 0);
+        result = 31 * result + (vulnerabilities != null ? vulnerabilities.hashCode() : 0);
+        result = 31 * result + (issues != null ? issues.hashCode() : 0);
+        result = 31 * result + (dependencies != null ? dependencies.hashCode() : 0);
+        result = 31 * result + (methods != null ? methods.hashCode() : 0);
+        return result;
     }
 
     @Override
@@ -157,16 +155,18 @@ public class Dependency {
     }
 
     @Override
-    public int hashCode() {
-        int result = teriansId != null ? teriansId.hashCode() : 0;
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (fileName != null ? fileName.hashCode() : 0);
-        result = 31 * result + (filePath != null ? filePath.hashCode() : 0);
-        result = 31 * result + (license != null ? license.hashCode() : 0);
-        result = 31 * result + (vulnerabilities != null ? vulnerabilities.hashCode() : 0);
-        result = 31 * result + (issues != null ? issues.hashCode() : 0);
-        result = 31 * result + (dependencies != null ? dependencies.hashCode() : 0);
-        result = 31 * result + (methods != null ? methods.hashCode() : 0);
-        return result;
+    public String toString() {
+        return "Dependency{" +
+                "dependencies=" + dependencies +
+                ", id=" + id +
+                ", teriansId='" + teriansId + '\'' +
+                ", description='" + description + '\'' +
+                ", fileName='" + fileName + '\'' +
+                ", filePath='" + filePath + '\'' +
+                ", license='" + license + '\'' +
+                ", vulnerabilities=" + vulnerabilities +
+                ", issues=" + issues +
+                ", methods=" + methods +
+                '}';
     }
 }

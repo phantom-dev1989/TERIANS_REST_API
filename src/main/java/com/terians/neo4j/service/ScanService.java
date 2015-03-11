@@ -33,15 +33,15 @@ public interface ScanService {
 
     VulnerabilityDTO findVulnerability(String scanId, String dependencyId, String vulnerabilityId);
 
-    IssuesDTO findAllDependencyIssues(String scanId, String dependencyId, String category, String orderedBy);
+    IssuesDTO findAllDependencyIssues(String scanId, String dependencyId);
 
     IssueDTO findDependencyIssue(String scanId, String dependencyId, String issueId);
 
-    PackagesDTO findAllPackages(String scanId);
+    PackagesDTO findAllPackages(String scanId, String orderedBy, int limit);
 
     PackageDTO findPackage(String scanId, String packageId);
 
-    ClazzesDTO findAllClazzes(String scanId, String packageId);
+    ClazzesDTO findAllClazzes(String scanId, String packageId, String orderedBy, int limit);
 
     ClazzDTO findClazz(String scanId, String packageId, String clazzId);
 

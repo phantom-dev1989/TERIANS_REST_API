@@ -1,7 +1,7 @@
 package com.terians.neo4j.repository;
 
 import com.terians.dto.IssueDTO;
-import com.terians.neo4j.model.*;
+import com.terians.neo4j.model.Issue;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.repository.GraphRepository;
 import org.springframework.stereotype.Repository;
@@ -26,8 +26,8 @@ public interface IssueRepository extends GraphRepository<Issue> {
     @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_ISSUE]->(i:Issue) RETURN i")
     public Set<Issue> findAllIssuesByScan(String scanId);
 
-    @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_ISSUE]->(i:Issue) WHERE HAS(i.issue) with distinct i.issue as dissue, count(*) as cissue " +
-            "order by cissue desc Limit {1} MATCH (s:Scan {teriansId:{0}})-[:HAS_ISSUE]->(i2:Issue {issue: dissue}) return i2")
+    @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_ISSUE]->(i:Issue) WHERE HAS(i.issue) with distinct i.issue as dissue, " +
+            "count(*) as cissue order by cissue desc Limit {1} MATCH (s:Scan {teriansId:{0}})-[:HAS_ISSUE]->(i2:Issue {issue: dissue}) return i2")
     public Set<Issue> findIssuesByScanOrderedByIssueCountDesc(String scanId, int limit);
 
     @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_ISSUE]->(i:Issue) WHERE HAS(i.category) with distinct i.category as dcategory, count(*) as ccategory " +

@@ -42,13 +42,13 @@ public class Issue {
     @Indexed
     private String techDebtMinutes;
 
+    public String getTeriansId() {
+        return teriansId;
+    }
+
     // Getters and Setters
     public void setTeriansId(String teriansId) {
         this.teriansId = teriansId;
-    }
-
-    public String getTeriansId() {
-        return teriansId;
     }
 
     public String getCategory() {
@@ -164,24 +164,22 @@ public class Issue {
     }
 
     @Override
-    public String toString() {
-        return "Issue{" +
-                "category='" + category + '\'' +
-                ", id=" + id +
-                ", teriansId='" + teriansId + '\'' +
-                ", issue='" + issue + '\'' +
-                ", description='" + description + '\'' +
-                ", fileName='" + fileName + '\'' +
-                ", severity='" + severity + '\'' +
-                ", lineNumber='" + lineNumber + '\'' +
-                ", packageName='" + packageName + '\'' +
-                ", className='" + className + '\'' +
-                ", priority='" + priority + '\'' +
-                ", scanTool='" + scanTool + '\'' +
-                ", issueType='" + issueType + '\'' +
-                ", filePath='" + filePath + '\'' +
-                ", techDebtMinutes='" + techDebtMinutes + '\'' +
-                '}';
+    public int hashCode() {
+        int result = teriansId != null ? teriansId.hashCode() : 0;
+        result = 31 * result + (issue != null ? issue.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (fileName != null ? fileName.hashCode() : 0);
+        result = 31 * result + (severity != null ? severity.hashCode() : 0);
+        result = 31 * result + (lineNumber != null ? lineNumber.hashCode() : 0);
+        result = 31 * result + (packageName != null ? packageName.hashCode() : 0);
+        result = 31 * result + (className != null ? className.hashCode() : 0);
+        result = 31 * result + (priority != null ? priority.hashCode() : 0);
+        result = 31 * result + (scanTool != null ? scanTool.hashCode() : 0);
+        result = 31 * result + (issueType != null ? issueType.hashCode() : 0);
+        result = 31 * result + (category != null ? category.hashCode() : 0);
+        result = 31 * result + (filePath != null ? filePath.hashCode() : 0);
+        result = 31 * result + (techDebtMinutes != null ? techDebtMinutes.hashCode() : 0);
+        return result;
     }
 
     @Override
@@ -211,21 +209,23 @@ public class Issue {
     }
 
     @Override
-    public int hashCode() {
-        int result = teriansId != null ? teriansId.hashCode() : 0;
-        result = 31 * result + (issue != null ? issue.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (fileName != null ? fileName.hashCode() : 0);
-        result = 31 * result + (severity != null ? severity.hashCode() : 0);
-        result = 31 * result + (lineNumber != null ? lineNumber.hashCode() : 0);
-        result = 31 * result + (packageName != null ? packageName.hashCode() : 0);
-        result = 31 * result + (className != null ? className.hashCode() : 0);
-        result = 31 * result + (priority != null ? priority.hashCode() : 0);
-        result = 31 * result + (scanTool != null ? scanTool.hashCode() : 0);
-        result = 31 * result + (issueType != null ? issueType.hashCode() : 0);
-        result = 31 * result + (category != null ? category.hashCode() : 0);
-        result = 31 * result + (filePath != null ? filePath.hashCode() : 0);
-        result = 31 * result + (techDebtMinutes != null ? techDebtMinutes.hashCode() : 0);
-        return result;
+    public String toString() {
+        return "Issue{" +
+                "category='" + category + '\'' +
+                ", id=" + id +
+                ", teriansId='" + teriansId + '\'' +
+                ", issue='" + issue + '\'' +
+                ", description='" + description + '\'' +
+                ", fileName='" + fileName + '\'' +
+                ", severity='" + severity + '\'' +
+                ", lineNumber='" + lineNumber + '\'' +
+                ", packageName='" + packageName + '\'' +
+                ", className='" + className + '\'' +
+                ", priority='" + priority + '\'' +
+                ", scanTool='" + scanTool + '\'' +
+                ", issueType='" + issueType + '\'' +
+                ", filePath='" + filePath + '\'' +
+                ", techDebtMinutes='" + techDebtMinutes + '\'' +
+                '}';
     }
 }

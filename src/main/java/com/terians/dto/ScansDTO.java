@@ -18,11 +18,6 @@ public class ScansDTO {
     public ScansDTO() {
     }
 
-    public ScansDTO(List<ScanDTO> scanDTOList, int totalScans) {
-        this.scanDTOList = scanDTOList;
-        this.totalScans = totalScans;
-    }
-
     public List<ScanDTO> getScanDTOList() {
         return scanDTOList;
     }

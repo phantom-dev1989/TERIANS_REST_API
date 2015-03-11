@@ -19,11 +19,6 @@ public class VulnerabilitiesDTO {
 
     }
 
-    public VulnerabilitiesDTO(int totalVulnerabilities, List<VulnerabilityDTO> vulnerabilityDTOList) {
-        this.totalVulnerabilities = totalVulnerabilities;
-        this.vulnerabilityDTOList = vulnerabilityDTOList;
-    }
-
     public List<VulnerabilityDTO> getVulnerabilityDTOList() {
         return vulnerabilityDTOList;
     }

@@ -18,11 +18,6 @@ public class IssuesDTO {
     public IssuesDTO() {
     }
 
-    public IssuesDTO(List<IssueDTO> issueDTOList, int totalIssues) {
-        this.issueDTOList = issueDTOList;
-        this.totalIssues = totalIssues;
-    }
-
     public List<IssueDTO> getIssueDTOList() {
         return issueDTOList;
     }

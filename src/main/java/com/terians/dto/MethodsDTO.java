@@ -18,11 +18,6 @@ public class MethodsDTO {
     public MethodsDTO() {
     }
 
-    public MethodsDTO(List<MethodDTO> methodDTOList, int totalMethods) {
-        this.methodDTOList = methodDTOList;
-        this.totalMethods = totalMethods;
-    }
-
     public List<MethodDTO> getMethodDTOList() {
         return methodDTOList;
     }

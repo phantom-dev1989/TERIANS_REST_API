@@ -7,11 +7,11 @@ import com.terians.dto.IssuesDTO;
 /**
  * Created by stromero on 1/4/2015.
  */
- public interface IssueService {
+public interface IssueService {
 
-     IssueDTO findIssue(String issueId);
+    IssueDTO findIssue(String issueId);
 
-     IssuesDTO findAllIssues();
+    IssuesDTO findAllIssues();
 
 }
 

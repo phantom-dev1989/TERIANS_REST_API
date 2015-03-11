@@ -30,26 +30,7 @@ public class ScanDTO {
 
     }
 
-    public ScanDTO(int abstractness, int clazzCount, int complexity, Date date, DependenciesDTO dependenciesDTO, int instability, int issueCount,
-                   IssuesDTO issuesDTO, int methodCount, int packageCount, PackagesDTO packagesDTO, String projectVersion, int techdebt, String teriansId) {
-        this.abstractness = abstractness;
-        this.clazzCount = clazzCount;
-        this.complexity = complexity;
-        this.date = date;
-        this.dependenciesDTO = dependenciesDTO;
-        this.instability = instability;
-        this.issueCount = issueCount;
-        this.issuesDTO = issuesDTO;
-        this.methodCount = methodCount;
-        this.packageCount = packageCount;
-        this.packagesDTO = packagesDTO;
-        this.projectVersion = projectVersion;
-        this.techdebt = techdebt;
-        this.teriansId = teriansId;
-    }
-
     // Getters and Setters
-
 
     public int getIssueCount() {
         return issueCount;
@@ -115,12 +96,12 @@ public class ScanDTO {
         this.techdebt = techdebt;
     }
 
-    public void setTeriansId(String teriansId) {
-        this.teriansId = teriansId;
-    }
-
     public String getTeriansId() {
         return teriansId;
+    }
+
+    public void setTeriansId(String teriansId) {
+        this.teriansId = teriansId;
     }
 
     public Date getDate() {

@@ -9,7 +9,6 @@ import com.terians.dto.MethodsDTO;
  */
 public interface MethodService {
 
-
     MethodsDTO findAllMethods();
 
     MethodDTO findMethod(String methodId);

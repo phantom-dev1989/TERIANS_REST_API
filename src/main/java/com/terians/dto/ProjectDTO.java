@@ -16,19 +16,13 @@ public class ProjectDTO {
     public ProjectDTO() {
     }
 
-    public ProjectDTO(String name, ScansDTO scansDTO, String teriansId) {
-        this.name = name;
-        this.scansDTO = scansDTO;
-        this.teriansId = teriansId;
+    public String getTeriansId() {
+        return teriansId;
     }
 
     // Getters and Setters
     public void setTeriansId(String teriansId) {
         this.teriansId = teriansId;
-    }
-
-    public String getTeriansId() {
-        return teriansId;
     }
 
     public String getName() {

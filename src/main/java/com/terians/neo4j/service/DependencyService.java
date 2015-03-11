@@ -14,7 +14,7 @@ public interface DependencyService {
 
     MethodsDTO findAllMethods(String dependencyId);
 
-    MethodDTO findMethod(String dependencyId , String methodId);
+    MethodDTO findMethod(String dependencyId, String methodId);
 
     DependenciesDTO findAllRelatedDependencies(String dependencyId);
 

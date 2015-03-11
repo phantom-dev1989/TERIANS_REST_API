@@ -17,7 +17,13 @@ import org.springframework.context.annotation.Configuration;
 @EnableCaching
 public class CacheConfig implements CachingConfigurer {
 
-    @Bean(destroyMethod="shutdown")
+    @Bean
+    @Override
+    public CacheManager cacheManager() {
+        return new EhCacheCacheManager(ehCacheManager());
+    }
+
+    @Bean(destroyMethod = "shutdown")
     public net.sf.ehcache.CacheManager ehCacheManager() {
 
         CacheConfiguration cacheConfiguration = new CacheConfiguration();
@@ -29,12 +35,6 @@ public class CacheConfig implements CachingConfigurer {
         config.addCache(cacheConfiguration);
 
         return net.sf.ehcache.CacheManager.newInstance(config);
-    }
-
-    @Bean
-    @Override
-    public CacheManager cacheManager() {
-        return new EhCacheCacheManager(ehCacheManager());
     }
 
     @Bean

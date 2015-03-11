@@ -22,12 +22,15 @@ public class Neo4JConfig extends Neo4jConfiguration {
     @Autowired
     private Neo4JDatabaseProperties config;
 
-    public Neo4JConfig(){
+    public Neo4JConfig() {
         this.setBasePackage("com.terians.neo4j.model");
     }
 
     @Bean
     GraphDatabaseService graphDatabaseService() {
-        return new GraphDatabaseFactory().newEmbeddedDatabaseBuilder("C:\\TERIANS\\TERIANS_SEMANTIC_ENGINE\\neo4j-community-2.1.7\\data\\graph.db").newGraphDatabase();
+        return new GraphDatabaseFactory()
+                .newEmbeddedDatabaseBuilder
+                        ("C:\\TERIANS\\TERIANS_SEMANTIC_ENGINE\\neo4j-community-2.1.7\\data\\graph.db")
+                .newGraphDatabase();
     }
 }

@@ -22,17 +22,6 @@ public class PackageDTO {
 
     }
 
-    public PackageDTO(Double abstractness, Double afferent, ClazzesDTO clazzesDTO, Double cyclomaticCom, Double efferent, Double instability, String name, String teriansId) {
-        this.abstractness = abstractness;
-        this.afferent = afferent;
-        this.clazzesDTO = clazzesDTO;
-        this.cyclomaticCom = cyclomaticCom;
-        this.efferent = efferent;
-        this.instability = instability;
-        this.name = name;
-        this.teriansId = teriansId;
-    }
-
     // Getters and Setters
     public Double getAbstractness() {
         return abstractness;
@@ -50,12 +39,12 @@ public class PackageDTO {
         this.instability = instability;
     }
 
-    public void setTeriansId(String teriansId) {
-        this.teriansId = teriansId;
-    }
-
     public String getTeriansId() {
         return teriansId;
+    }
+
+    public void setTeriansId(String teriansId) {
+        this.teriansId = teriansId;
     }
 
     public Double getAfferent() {

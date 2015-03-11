@@ -26,22 +26,22 @@ public class Scan {
     @RelatedTo(type = "NEXT_SCAN")
     private Scan scan;
     @Fetch
-    @RelatedTo(type = "HAS_ISSUE",elementClass = Issue.class)
+    @RelatedTo(type = "HAS_ISSUE", elementClass = Issue.class)
     private Set<Issue> issues;
     @Fetch
-    @RelatedTo(type = "HAS_DEPENDENCY",elementClass = Dependency.class)
+    @RelatedTo(type = "HAS_DEPENDENCY", elementClass = Dependency.class)
     private Set<Dependency> dependencies;
     @Fetch
-    @RelatedTo(type = "HAS_PACKAGE",elementClass = Package.class)
+    @RelatedTo(type = "HAS_PACKAGE", elementClass = Package.class)
     private Set<Package> packages;
+
+    public String getTeriansId() {
+        return teriansId;
+    }
 
     // Getters and Setters
     public void setTeriansId(String teriansId) {
         this.teriansId = teriansId;
-    }
-
-    public String getTeriansId() {
-        return teriansId;
     }
 
     public Date getDate() {
@@ -101,17 +101,15 @@ public class Scan {
     }
 
     @Override
-    public String toString() {
-        return "Scan{" +
-                "date=" + date +
-                ", id=" + id +
-                ", teriansId='" + teriansId + '\'' +
-                ", projectVersion='" + projectVersion + '\'' +
-                ", scan=" + scan +
-                ", issues=" + issues +
-                ", dependencies=" + dependencies +
-                ", packages=" + packages +
-                '}';
+    public int hashCode() {
+        int result = teriansId != null ? teriansId.hashCode() : 0;
+        result = 31 * result + (projectVersion != null ? projectVersion.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + (scan != null ? scan.hashCode() : 0);
+        result = 31 * result + (issues != null ? issues.hashCode() : 0);
+        result = 31 * result + (dependencies != null ? dependencies.hashCode() : 0);
+        result = 31 * result + (packages != null ? packages.hashCode() : 0);
+        return result;
     }
 
     @Override
@@ -134,14 +132,16 @@ public class Scan {
     }
 
     @Override
-    public int hashCode() {
-        int result = teriansId != null ? teriansId.hashCode() : 0;
-        result = 31 * result + (projectVersion != null ? projectVersion.hashCode() : 0);
-        result = 31 * result + (date != null ? date.hashCode() : 0);
-        result = 31 * result + (scan != null ? scan.hashCode() : 0);
-        result = 31 * result + (issues != null ? issues.hashCode() : 0);
-        result = 31 * result + (dependencies != null ? dependencies.hashCode() : 0);
-        result = 31 * result + (packages != null ? packages.hashCode() : 0);
-        return result;
+    public String toString() {
+        return "Scan{" +
+                "date=" + date +
+                ", id=" + id +
+                ", teriansId='" + teriansId + '\'' +
+                ", projectVersion='" + projectVersion + '\'' +
+                ", scan=" + scan +
+                ", issues=" + issues +
+                ", dependencies=" + dependencies +
+                ", packages=" + packages +
+                '}';
     }
 }

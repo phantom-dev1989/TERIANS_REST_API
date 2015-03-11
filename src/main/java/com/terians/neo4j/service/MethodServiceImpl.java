@@ -25,6 +25,10 @@ public class MethodServiceImpl implements MethodService {
 
     @Override
     public MethodDTO findMethod(String methodId) {
-        return DTOTransformerUtil.transformMethodToMethodDTO(methodRepository.findMethodById(methodId));
+
+        if (methodId != null) {
+            return DTOTransformerUtil.transformMethodToMethodDTO(methodRepository.findMethodById(methodId));
+        }
+        return null;
     }
 }

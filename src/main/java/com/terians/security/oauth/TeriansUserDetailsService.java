@@ -51,10 +51,10 @@ public class TeriansUserDetailsService implements UserDetailsService {
 
     */
 /**
-     * Retrieves a collection of {@link org.springframework.security.core.GrantedAuthority}
-     *
-     * @return a collection of {@link org.springframework.security.core.GrantedAuthority
-     *//*
+ * Retrieves a collection of {@link org.springframework.security.core.GrantedAuthority}
+ *
+ * @return a collection of {@link org.springframework.security.core.GrantedAuthority
+ *//*
 
 
     public Collection<? extends GrantedAuthority> getAuthorities(List<String> roles) {

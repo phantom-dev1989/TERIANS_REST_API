@@ -19,15 +19,6 @@ public class MethodDTO {
     public MethodDTO() {
     }
 
-    public MethodDTO(Double afferent, Double cyclomaticCom, Double efferent, String name, String sourceCode, String teriansId) {
-        this.afferent = afferent;
-        this.cyclomaticCom = cyclomaticCom;
-        this.efferent = efferent;
-        this.name = name;
-        this.sourceCode = sourceCode;
-        this.teriansId = teriansId;
-    }
-
 // Getters and Setters
 
     public String getSourceCode() {
@@ -38,12 +29,12 @@ public class MethodDTO {
         this.sourceCode = sourceCode;
     }
 
-    public void setTeriansId(String teriansId) {
-        this.teriansId = teriansId;
-    }
-
     public String getTeriansId() {
         return teriansId;
+    }
+
+    public void setTeriansId(String teriansId) {
+        this.teriansId = teriansId;
     }
 
     public Double getAfferent() {

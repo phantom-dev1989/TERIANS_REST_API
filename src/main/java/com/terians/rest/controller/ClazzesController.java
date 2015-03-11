@@ -23,28 +23,28 @@ public class ClazzesController {
     private ClazzService clazzService;
 
     // Needs to implement Query Parameter Logic
-    @RequestMapping(value ="/", method = RequestMethod.GET)
-    public ClazzesDTO getClazzes(@RequestParam(value="category", required=false) String category) {
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ClazzesDTO getClazzes(@RequestParam(value = "category", required = false) String category) {
 
         return clazzService.findAllClazzes();
     }
 
-    @RequestMapping(value ="/{clazzId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{clazzId}", method = RequestMethod.GET)
     public ClazzDTO getClazz(@PathVariable("clazzId") String clazzId) {
 
         return clazzService.findClazz(clazzId);
     }
 
-    @RequestMapping(value ="/{clazzId}/methods", method = RequestMethod.GET)
+    @RequestMapping(value = "/{clazzId}/methods", method = RequestMethod.GET)
     public MethodsDTO getMethods(@PathVariable("clazzId") String clazzId) {
 
         return clazzService.findAllMethods(clazzId);
     }
 
-    @RequestMapping(value ="/{clazzId}/methods/{methodId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{clazzId}/methods/{methodId}", method = RequestMethod.GET)
     public MethodDTO getMethod(@PathVariable("clazzId") String clazzId,
-                                @PathVariable("methodId") String methodId ) {
+                               @PathVariable("methodId") String methodId) {
 
-        return clazzService.findMethod(clazzId,methodId);
+        return clazzService.findMethod(clazzId, methodId);
     }
 }

@@ -22,39 +22,39 @@ public class PackagesController {
     @Autowired
     private PackageService packageService;
 
-    @RequestMapping(value ="/", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public PackagesDTO getPackages() {
 
         return packageService.findAllPackages();
     }
 
-    @RequestMapping(value ="/{packageId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{packageId}", method = RequestMethod.GET)
     public PackageDTO getPackage(@PathVariable("packageId") String packageId) {
 
         return packageService.findPackage(packageId);
     }
 
-    @RequestMapping(value ="/{packageId}/clazzes", method = RequestMethod.GET)
+    @RequestMapping(value = "/{packageId}/clazzes", method = RequestMethod.GET)
     public ClazzesDTO getClazzes(@PathVariable("packageId") String packageId) {
 
         return packageService.findAllClazzes(packageId);
     }
 
-    @RequestMapping(value ="/{packageId}/clazzes/{clazzId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{packageId}/clazzes/{clazzId}", method = RequestMethod.GET)
     public ClazzDTO getClazz(@PathVariable("packageId") String packageId,
                              @PathVariable("clazzId") String clazzId) {
 
         return packageService.findClazz(packageId, clazzId);
     }
 
-    @RequestMapping(value ="/{packageId}/clazzes/{clazzId}/methods", method = RequestMethod.GET)
+    @RequestMapping(value = "/{packageId}/clazzes/{clazzId}/methods", method = RequestMethod.GET)
     public MethodsDTO getMethods(@PathVariable("packageId") String packageId,
                                  @PathVariable("clazzId") String clazzId) {
 
         return packageService.findAllMethods(packageId, clazzId);
     }
 
-    @RequestMapping(value ="/{packageId}/clazzes/{clazzId}/methods/{methodId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{packageId}/clazzes/{clazzId}/methods/{methodId}", method = RequestMethod.GET)
     public MethodDTO getMethod(@PathVariable("packageId") String packageId,
                                @PathVariable("clazzId") String clazzId,
                                @PathVariable("methodId") String methodId) {

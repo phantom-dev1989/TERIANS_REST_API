@@ -20,17 +20,6 @@ public class ClazzDTO {
     public ClazzDTO() {
     }
 
-    public ClazzDTO(Double afferent, Double cyclomaticCom, Double efferent, String lineNumbers, MethodsDTO methodsDTO, String name, String sourceCode, String teriansId) {
-        this.afferent = afferent;
-        this.cyclomaticCom = cyclomaticCom;
-        this.efferent = efferent;
-        this.lineNumbers = lineNumbers;
-        this.methodsDTO = methodsDTO;
-        this.name = name;
-        this.sourceCode = sourceCode;
-        this.teriansId = teriansId;
-    }
-
     // Getters and Setters
     public String getLineNumbers() {
         return lineNumbers;
@@ -48,12 +37,12 @@ public class ClazzDTO {
         this.sourceCode = sourceCode;
     }
 
-    public void setTeriansId(String teriansId) {
-        this.teriansId = teriansId;
-    }
-
     public String getTeriansId() {
         return teriansId;
+    }
+
+    public void setTeriansId(String teriansId) {
+        this.teriansId = teriansId;
     }
 
     public Double getAfferent() {

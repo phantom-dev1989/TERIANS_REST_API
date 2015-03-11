@@ -18,11 +18,6 @@ public class DependenciesDTO {
     public DependenciesDTO() {
     }
 
-    public DependenciesDTO(List<DependencyDTO> dependencyDTOList, int totalDependencies) {
-        this.dependencyDTOList = dependencyDTOList;
-        this.totalDependencies = totalDependencies;
-    }
-
     public List<DependencyDTO> getDependencyDTOList() {
         return dependencyDTOList;
     }

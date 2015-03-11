@@ -16,7 +16,6 @@ com\terians\dto\ProjectsDTO.class
 com\terians\rest\controller\PackagesController.class
 com\terians\dto\MethodsDTO.class
 com\terians\neo4j\service\VulnerabilityService.class
-com\terians\rest\controller\TestRestController.class
 com\terians\dto\ClazzDTO.class
 com\terians\dto\ProjectDTO.class
 com\terians\dto\ScanDTO.class
@@ -51,7 +50,6 @@ com\terians\neo4j\service\PackageService.class
 com\terians\rest\controller\ScansController.class
 com\terians\rest\controller\IssuesController.class
 com\terians\neo4j\service\ProjectService.class
-com\terians\rest\controller\UserController.class
 com\terians\neo4j\service\MethodService.class
 com\terians\neo4j\model\Clazz.class
 com\terians\neo4j\service\DependencyService.class
