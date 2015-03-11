@@ -13,9 +13,6 @@ import java.util.Set;
 @Repository
 public interface PackageRepository extends GraphRepository<Package> {
 
-    @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_PACKAGE]->(p:Package) RETURN count(p)")
-    public Integer findPackageCountByScan(String scanId);
-
     @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_PACKAGE]->(p:Package) RETURN order by p.afferent desc Limit {1}")
     public Set<Package> findPackagesByScanOrderedByAfferentCount(String scanId, int limit);
 

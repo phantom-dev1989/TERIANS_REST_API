@@ -37,11 +37,6 @@ public class ClazzServiceImpl implements ClazzService {
     }
 
     @Override
-    public Integer findClazzCountByScan(String scanId) {
-        return clazzRepository.findClazzCountByScan(scanId);
-    }
-
-    @Override
     public ClazzesDTO findClazzesByScanOrderedByAfferentCount(String scanId, int limit) {
         return DTOTransformerUtil.transformClazzSetToClazzesDTO(clazzRepository.findClazzesByScanOrderedByAfferentCount(scanId, limit));
     }

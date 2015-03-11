@@ -8,21 +8,12 @@ import com.terians.dto.*;
 public interface ScanService {
 
     // Find the latest Scan in a Project by date
-    ScanDTO findLatestScan();
 
     ScansDTO findAllScans();
 
-    ScanDTO findScan(String id, String metric, String scanId);
+    ScanDTO findScan(String scanId, String scanned);
 
-    Integer findComplexityByScan(String scanId);
-
-    Integer findTechDebtByScan(String scanId);
-
-    Integer findAbstractnessByScan(String scanId);
-
-    Integer findInstabilityByScan(String scanId);
-
-    IssuesDTO findAllIssues(String scanId, String category, String orderedBy);
+    IssuesDTO findAllIssues(String scanId, String category, String orderedBy, int limit);
 
     IssueDTO findIssue(String scanId, String issueId);
 
@@ -46,9 +37,9 @@ public interface ScanService {
 
     IssueDTO findDependencyIssue(String scanId, String dependencyId, String issueId);
 
-    PackagesDTO findAllPackges(String scanId);
+    PackagesDTO findAllPackages(String scanId);
 
-    PackageDTO findPackge(String scanId, String packageId);
+    PackageDTO findPackage(String scanId, String packageId);
 
     ClazzesDTO findAllClazzes(String scanId, String packageId);
 

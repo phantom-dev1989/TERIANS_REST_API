@@ -9,7 +9,6 @@ import com.terians.dto.MethodsDTO;
  */
 public interface MethodService {
 
-    Integer findMethodCountByScan(String scanId);
 
     MethodsDTO findAllMethods();
 

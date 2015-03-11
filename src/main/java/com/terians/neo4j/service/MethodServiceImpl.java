@@ -19,11 +19,6 @@ public class MethodServiceImpl implements MethodService {
     private MethodRepository methodRepository;
 
     @Override
-    public Integer findMethodCountByScan(String scanId) {
-        return methodRepository.findMethodCountByScan(scanId);
-    }
-
-    @Override
     public MethodsDTO findAllMethods() {
         return DTOTransformerUtil.transformMethodSetToMethodsDTO(methodRepository.findAllMethods());
     }

@@ -24,11 +24,6 @@ public class PackageServiceImpl implements PackageService {
     private PackageRepository packageRepository;
 
     @Override
-    public Integer findPackageCountByScan(String teriansId) {
-        return packageRepository.findPackageCountByScan(teriansId);
-    }
-
-    @Override
     public PackagesDTO findPackagesByScanOrderedByAfferentCount(String teriansId, int limit) {
         return DTOTransformerUtil.transformPackageSetToPackagesDTO(packageRepository.findPackagesByScanOrderedByAfferentCount(teriansId, limit));
     }

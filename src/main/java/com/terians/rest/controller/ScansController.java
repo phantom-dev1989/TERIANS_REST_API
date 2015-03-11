@@ -27,18 +27,18 @@ public class ScansController {
 
     @RequestMapping(value ="/{scanId}", method = RequestMethod.GET)
     public ScanDTO getScan(@PathVariable("scanId") String scanId,
-                           @RequestParam(value="metric", required=false) String metric,
                            @RequestParam(value="scanned", required=false) String scanned) {
 
-        return scanService.findScan(scanId,metric,scanned);
+        return scanService.findScan(scanId,scanned);
     }
 
     @RequestMapping(value ="/{scanId}/issues", method = RequestMethod.GET)
     public IssuesDTO getIssues(@PathVariable("scanId") String scanId,
                                @RequestParam(value="category", required=false) String category,
-                               @RequestParam(value="orderedBy", required=false) String orderedBy) {
+                               @RequestParam(value="orderedBy", required=false) String orderedBy,
+                               @RequestParam(value="limit", required=false) int limit) {
 
-        return scanService.findAllIssues(scanId, category, orderedBy);
+        return scanService.findAllIssues(scanId, category, orderedBy, limit);
     }
 
     @RequestMapping(value ="/{scanId}/issues/{issueId}", method = RequestMethod.GET)
@@ -126,14 +126,14 @@ public class ScansController {
     @RequestMapping(value ="/{scanId}/packages", method = RequestMethod.GET)
     public PackagesDTO getPackages(@PathVariable("scanId") String scanId) {
 
-        return scanService.findAllPackges(scanId);
+        return scanService.findAllPackages(scanId);
     }
 
     @RequestMapping(value ="/{scanId}/packages/{packageId}", method = RequestMethod.GET)
     public PackageDTO getPackage(@PathVariable("scanId") String scanId,
                                  @PathVariable("packageId") String packageId) {
 
-        return scanService.findPackge(scanId, packageId);
+        return scanService.findPackage(scanId, packageId);
     }
 
     @RequestMapping(value ="/{scanId}/packages/{packageId}/clazzes", method = RequestMethod.GET)

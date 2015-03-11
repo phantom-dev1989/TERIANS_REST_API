@@ -1,6 +1,7 @@
 package com.terians.rest.controller;
 
 import com.terians.dto.*;
+import com.terians.neo4j.repository.IssueRepository;
 import com.terians.neo4j.service.ProjectService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,19 +41,16 @@ public class ProjectsController {
     @RequestMapping(value ="/{projectId}/scans/{scanId}", method = RequestMethod.GET)
     public ScanDTO getScan(@PathVariable("projectId") String projectId,
                            @PathVariable("scanId") String scanId,
-                           @RequestParam(value="metric", required=false) String metric,
                            @RequestParam(value="scanned", required=false) String scanned) {
 
-        return projectService.findScan(projectId, scanId, metric, scanned);
+        return projectService.findScan(projectId, scanId, scanned);
     }
 
     @RequestMapping(value ="/{projectId}/scans/{scanId}/issues", method = RequestMethod.GET)
     public IssuesDTO getIssues(@PathVariable("projectId") String projectId,
-                               @PathVariable("scanId") String scanId,
-                               @RequestParam(value="category", required=false) String category,
-                               @RequestParam(value="orderedBy", required=false) String orderedBy) {
+                               @PathVariable("scanId") String scanId) {
 
-        return projectService.findAllIssues(projectId, scanId, category, orderedBy);
+        return projectService.findAllIssues(projectId, scanId);
     }
 
     @RequestMapping(value ="/{projectId}/scans/{scanId}/issues/{issueId}", method = RequestMethod.GET)

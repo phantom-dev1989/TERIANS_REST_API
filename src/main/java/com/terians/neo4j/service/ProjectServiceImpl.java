@@ -6,6 +6,7 @@ import com.terians.dto.transformer.DTOTransformerUtil;
 import com.terians.neo4j.model.*;
 import com.terians.neo4j.model.Package;
 import com.terians.neo4j.repository.ProjectRepository;
+import com.terians.neo4j.repository.ScanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,9 @@ public class ProjectServiceImpl implements ProjectService {
     private Neo4jTemplate template;
     @Autowired
     private ProjectRepository projectRepository;
+    @Autowired
+    private ScanRepository scanRepository;
+
 
     @Override
     public ProjectsDTO findAllProjects() {
@@ -44,7 +48,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public ScanDTO findScan(String projectId, String scanId, String metric, String scanned) {
+    public ScanDTO findScan(String projectId, String scanId, String scanned) {
 
         Project project = projectRepository.findProjectById(projectId);
         template.fetch(project.getScans());
@@ -55,11 +59,51 @@ public class ProjectServiceImpl implements ProjectService {
                 break;
             }
         }
-        return DTOTransformerUtil.transformScanToScanDTO(scan);
+
+        ScanDTO scanDTO = null;
+
+        if(scanned.equals("first")){
+
+            scanDTO = DTOTransformerUtil.transformScanToScanDTO(scanRepository.findOldestScan());
+            scanDTO.setAbstractness(scanRepository.findAbstractnessByScan(scanDTO.getTeriansId()));
+            scanDTO.setClazzCount(scanRepository.findClazzCountByScan(scanDTO.getTeriansId()));
+            scanDTO.setComplexity(scanRepository.findComplexityByScan(scanDTO.getTeriansId()));
+            scanDTO.setInstability(scanRepository.findInstabilityByScan(scanDTO.getTeriansId()));
+            scanDTO.setMethodCount(scanRepository.findMethodCountByScan(scanDTO.getTeriansId()));
+            scanDTO.setPackageCount(scanRepository.findPackageCountByScan(scanDTO.getTeriansId()));
+            scanDTO.setTechdebt(scanRepository.findTechDebtByScan(scanDTO.getTeriansId()));
+            scanDTO.setIssueCount(scanRepository.findIssueCountByScan(scanDTO.getTeriansId()));
+
+        }else if(scanned.equals("last")) {
+
+            scanDTO = DTOTransformerUtil.transformScanToScanDTO(scanRepository.findLatestScan());
+            scanDTO.setAbstractness(scanRepository.findAbstractnessByScan(scanDTO.getTeriansId()));
+            scanDTO.setClazzCount(scanRepository.findClazzCountByScan(scanDTO.getTeriansId()));
+            scanDTO.setComplexity(scanRepository.findComplexityByScan(scanDTO.getTeriansId()));
+            scanDTO.setInstability(scanRepository.findInstabilityByScan(scanDTO.getTeriansId()));
+            scanDTO.setMethodCount(scanRepository.findMethodCountByScan(scanDTO.getTeriansId()));
+            scanDTO.setPackageCount(scanRepository.findPackageCountByScan(scanDTO.getTeriansId()));
+            scanDTO.setTechdebt(scanRepository.findTechDebtByScan(scanDTO.getTeriansId()));
+            scanDTO.setIssueCount(scanRepository.findIssueCountByScan(scanDTO.getTeriansId()));
+
+        }else{
+
+            scanDTO = DTOTransformerUtil.transformScanToScanDTO(scan);
+            scanDTO.setAbstractness(scanRepository.findAbstractnessByScan(scanId));
+            scanDTO.setClazzCount(scanRepository.findClazzCountByScan(scanId));
+            scanDTO.setComplexity(scanRepository.findComplexityByScan(scanId));
+            scanDTO.setInstability(scanRepository.findInstabilityByScan(scanId));
+            scanDTO.setMethodCount(scanRepository.findMethodCountByScan(scanId));
+            scanDTO.setPackageCount(scanRepository.findPackageCountByScan(scanId));
+            scanDTO.setTechdebt(scanRepository.findTechDebtByScan(scanId));
+            scanDTO.setIssueCount(scanRepository.findIssueCountByScan(scanId));
+        }
+        return scanDTO;
+
     }
 
     @Override
-    public IssuesDTO findAllIssues(String projectId, String scanId, String category, String orderedBy) {
+    public IssuesDTO findAllIssues(String projectId, String scanId) {
 
         Project project = projectRepository.findProjectById(projectId);
         template.fetch(project.getScans());

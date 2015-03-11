@@ -17,6 +17,10 @@ public class ScanDTO {
     private int techdebt;
     private int abstractness;
     private int instability;
+    private int methodCount;
+    private int clazzCount;
+    private int packageCount;
+    private int issueCount;
     private Date date;
     private IssuesDTO issuesDTO;
     private DependenciesDTO dependenciesDTO;
@@ -26,14 +30,18 @@ public class ScanDTO {
 
     }
 
-    public ScanDTO(int abstractness, int complexity, Date date, DependenciesDTO dependenciesDTO, int instability,
-                   IssuesDTO issuesDTO, PackagesDTO packagesDTO, String projectVersion, int techdebt, String teriansId) {
+    public ScanDTO(int abstractness, int clazzCount, int complexity, Date date, DependenciesDTO dependenciesDTO, int instability, int issueCount,
+                   IssuesDTO issuesDTO, int methodCount, int packageCount, PackagesDTO packagesDTO, String projectVersion, int techdebt, String teriansId) {
         this.abstractness = abstractness;
+        this.clazzCount = clazzCount;
         this.complexity = complexity;
         this.date = date;
         this.dependenciesDTO = dependenciesDTO;
         this.instability = instability;
+        this.issueCount = issueCount;
         this.issuesDTO = issuesDTO;
+        this.methodCount = methodCount;
+        this.packageCount = packageCount;
         this.packagesDTO = packagesDTO;
         this.projectVersion = projectVersion;
         this.techdebt = techdebt;
@@ -41,6 +49,39 @@ public class ScanDTO {
     }
 
     // Getters and Setters
+
+
+    public int getIssueCount() {
+        return issueCount;
+    }
+
+    public void setIssueCount(int issueCount) {
+        this.issueCount = issueCount;
+    }
+
+    public int getClazzCount() {
+        return clazzCount;
+    }
+
+    public void setClazzCount(int clazzCount) {
+        this.clazzCount = clazzCount;
+    }
+
+    public int getMethodCount() {
+        return methodCount;
+    }
+
+    public void setMethodCount(int methodCount) {
+        this.methodCount = methodCount;
+    }
+
+    public int getPackageCount() {
+        return packageCount;
+    }
+
+    public void setPackageCount(int packageCount) {
+        this.packageCount = packageCount;
+    }
 
     public int getAbstractness() {
         return abstractness;

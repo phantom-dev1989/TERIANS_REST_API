@@ -20,7 +20,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 // Same as <context:component-scan base-package="com.terians" />
 @ComponentScan(basePackages = {"com.terians"})
 @Import({
-        MongoDBConfig.class,
+       // MongoDBConfig.class,
         Neo4JConfig.class,
         CacheConfig.class,
    //   OAuth2Config.class,

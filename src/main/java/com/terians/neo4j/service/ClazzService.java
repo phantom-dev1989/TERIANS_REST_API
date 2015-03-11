@@ -14,8 +14,6 @@ public interface ClazzService {
 
     ClazzDTO findClazz(String clazzId);
 
-    Integer findClazzCountByScan(String scanId);
-
     ClazzesDTO findClazzesByScanOrderedByAfferentCount(String scanId, int limit);
 
     ClazzesDTO findClazzesByScanOrderedByEfferentCount(String scanId, int limit);

@@ -14,11 +14,12 @@ import java.util.Set;
 @Repository
 public interface IssueRepository extends GraphRepository<Issue> {
 
-    @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_ISSUE]->(i:Issue) RETURN count(i)")
-    public Integer findIssueCountByScan(String scanId);
 
     @Query("MATCH (i:Issue {teriansId:{0}}) RETURN i")
     public IssueDTO findIssueById(String issueId);
+
+    @Query("MATCH (i:Issue) RETURN i")
+    public Set<Issue> findAllIssues();
 
     // Queries for All Issues
 
@@ -209,7 +210,7 @@ public interface IssueRepository extends GraphRepository<Issue> {
 
     @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_ISSUE]->(i:Issue {scanTool:\"PMD\"}) WHERE HAS(i.category) with distinct i.category as dcategory, count(*) as ccategory " +
             "order by ccategory desc Limit {1} MATCH (s:Scan {teriansId:{0}})-[:HAS_ISSUE]->(i2:Issue {category: dcategory, scanTool:\"PMD\"}) return i2")
-    public Set<Issue> findMLowIssuesByScanOrderedByCategoryCountDesc(String scanId, int limit);
+    public Set<Issue> findLowIssuesByScanOrderedByCategoryCountDesc(String scanId, int limit);
 
     @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_ISSUE]->(i:Issue {scanTool:\"PMD\"}) WHERE HAS(i.fileName) with distinct i.fileName as dfileName, count(*) as cfileName " +
             "order by cfileName desc Limit {1} MATCH (s:Scan {teriansId:{0}})-[:HAS_ISSUE]->(i2:Issue {fileName: dfileName, scanTool:\"PMD\"}) return i2")

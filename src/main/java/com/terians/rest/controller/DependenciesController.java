@@ -71,11 +71,9 @@ public class DependenciesController {
     }
 
     @RequestMapping(value ="/{dependencyId}/issues", method = RequestMethod.GET)
-    public IssuesDTO getIssues(@PathVariable("dependencyId") String dependencyId,
-                               @RequestParam(value="category", required=false) String category,
-                               @RequestParam(value="orderedBy", required=false) String orderedBy) {
+    public IssuesDTO getIssues(@PathVariable("dependencyId") String dependencyId) {
 
-        return dependencyService.findAllIssues(dependencyId,category,orderedBy);
+        return dependencyService.findAllIssues(dependencyId);
     }
 
     @RequestMapping(value ="/{dependencyId}/issues/{issueId}", method = RequestMethod.GET)

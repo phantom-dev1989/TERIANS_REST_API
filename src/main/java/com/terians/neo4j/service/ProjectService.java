@@ -13,9 +13,9 @@ public interface ProjectService {
 
     ScansDTO findAllScans(String projectId);
 
-    ScanDTO findScan(String projectId, String scanId, String metric, String scanned);
+    ScanDTO findScan(String projectId, String scanId, String scanned);
 
-    IssuesDTO findAllIssues(String projectId, String scanId, String category, String orderedBy);
+    IssuesDTO findAllIssues(String projectId, String scanId);
 
     IssueDTO findIssue(String projectId, String scanId, String issueId);
 

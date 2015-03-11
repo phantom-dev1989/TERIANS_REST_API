@@ -13,9 +13,6 @@ import java.util.Set;
 @Repository
 public interface MethodRepository extends GraphRepository<Method> {
 
-    @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_PACKAGE]->(p:Package)-[:HAS_CLAZZ]->(z:Clazz)-[:HAS_METHOD]->(m:Method) RETURN count(m)")
-    public Integer findMethodCountByScan(String scanId);
-
     @Query("MATCH (m:Method) RETURN m")
     public Set<Method> findAllMethods();
 

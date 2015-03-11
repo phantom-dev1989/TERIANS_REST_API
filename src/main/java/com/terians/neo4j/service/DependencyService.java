@@ -24,7 +24,7 @@ public interface DependencyService {
 
     VulnerabilityDTO findVulnerability(String dependencyId, String vulnerabilityId);
 
-    IssuesDTO findAllIssues(String id, String category, String dependencyId);
+    IssuesDTO findAllIssues(String dependencyId);
 
     IssueDTO findIssue(String dependencyId, String issueId);
 }

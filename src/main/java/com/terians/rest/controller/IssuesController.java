@@ -21,10 +21,9 @@ public class IssuesController {
     private IssueService issueService;
 
     @RequestMapping(value ="/", method = RequestMethod.GET)
-    public IssuesDTO getIssues(@RequestParam(value="category", required=false) String category,
-                               @RequestParam(value="orderedBy", required=false) String orderedBy) {
+    public IssuesDTO getIssues() {
 
-        return issueService.findAllIssues(category, orderedBy);
+        return issueService.findAllIssues();
     }
 
     @RequestMapping(value ="/{issueId}", method = RequestMethod.GET)

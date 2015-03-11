@@ -110,8 +110,12 @@ public class DependencyServiceImpl implements DependencyService {
     }
 
     @Override
-    public IssuesDTO findAllIssues(String id, String category, String dependencyId) {
-        return null;
+    public IssuesDTO findAllIssues(String dependencyId) {
+
+        Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
+        template.fetch(dependency.getIssues());
+
+        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(dependency.getIssues());
     }
 
     @Override
