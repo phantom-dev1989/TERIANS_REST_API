@@ -23,7 +23,7 @@ public class ClazzesController {
     private ClazzService clazzService;
 
     // Needs to implement Query Parameter Logic
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ClazzesDTO getClazzes(@RequestParam(value = "category", required = false) String category) {
 
         return clazzService.findAllClazzes();

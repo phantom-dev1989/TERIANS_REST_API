@@ -1,11 +1,11 @@
 package com.terians.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 /**
  * Created by stromero on 12/11/2014.
  */
-@JsonRootName("Dependency")
 public class DependencyDTO {
 
     // Properties
@@ -14,8 +14,11 @@ public class DependencyDTO {
     private String fileName;
     private String filePath;
     private String license;
+    @JsonProperty("issues")
     private IssuesDTO issuesDTO;
+    @JsonProperty("dependencies")
     private DependenciesDTO dependenciesDTO;
+    @JsonProperty("vulnerabilities")
     private VulnerabilitiesDTO vulnerabilitiesDTO;
 
     public DependencyDTO() {

@@ -19,7 +19,7 @@ public class ProjectsController {
     @Autowired
     private ProjectService projectService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ProjectsDTO getProjects() {
 
         return projectService.findAllProjects();

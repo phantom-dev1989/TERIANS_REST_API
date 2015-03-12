@@ -23,7 +23,7 @@ public class MethodsController {
     @Autowired
     private MethodService methodService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public MethodsDTO getMethods() {
 
         return methodService.findAllMethods();

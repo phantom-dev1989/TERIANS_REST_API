@@ -22,7 +22,7 @@ public class DependenciesController {
     @Autowired
     private DependencyService dependencyService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public DependenciesDTO getDependencies() {
 
         return dependencyService.findAllDependencies();

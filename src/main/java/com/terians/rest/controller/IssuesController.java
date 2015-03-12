@@ -23,7 +23,7 @@ public class IssuesController {
     @Autowired
     private IssueService issueService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public IssuesDTO getIssues() {
 
         return issueService.findAllIssues();

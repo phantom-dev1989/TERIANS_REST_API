@@ -1,16 +1,17 @@
 package com.terians.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 /**
  * Created by stromero on 12/11/2014.
  */
-@JsonRootName("Project")
 public class ProjectDTO {
 
     // Properties
     private String name;
     private String teriansId;
+    @JsonProperty("scans")
     private ScansDTO scansDTO;
 
     public ProjectDTO() {

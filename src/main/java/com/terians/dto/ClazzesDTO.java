@@ -8,11 +8,10 @@ import java.util.List;
 /**
  * Created by stromero on 3/1/2015.
  */
-@JsonRootName("Clazzes")
 public class ClazzesDTO {
 
     private int totalClazzes;
-    @JsonProperty("ClazzList")
+    @JsonProperty("classList")
     private List<ClazzDTO> clazzDTOList;
 
     public ClazzesDTO() {

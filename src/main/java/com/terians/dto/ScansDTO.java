@@ -8,11 +8,10 @@ import java.util.List;
 /**
  * Created by stromero on 3/1/2015.
  */
-@JsonRootName("Scans")
 public class ScansDTO {
 
     private int totalScans;
-    @JsonProperty("ScanList")
+    @JsonProperty("scanList")
     private List<ScanDTO> scanDTOList;
 
     public ScansDTO() {

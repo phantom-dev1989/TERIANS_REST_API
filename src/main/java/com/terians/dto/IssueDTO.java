@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 /**
  * Created by stromero on 12/11/2014.
  */
-@JsonRootName("Issue")
 public class IssueDTO {
 
     // Properties

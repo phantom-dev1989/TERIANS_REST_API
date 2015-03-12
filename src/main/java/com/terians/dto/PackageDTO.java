@@ -1,11 +1,11 @@
 package com.terians.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 /**
  * Created by stromero on 1/5/2015.
  */
-@JsonRootName("Package")
 public class PackageDTO {
 
     // Properties
@@ -16,6 +16,7 @@ public class PackageDTO {
     private Double cyclomaticCom;
     private Double instability;
     private Double abstractness;
+    @JsonProperty("classes")
     private ClazzesDTO clazzesDTO;
 
     public PackageDTO() {

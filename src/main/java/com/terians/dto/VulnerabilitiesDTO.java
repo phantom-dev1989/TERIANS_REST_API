@@ -8,11 +8,10 @@ import java.util.List;
 /**
  * Created by stromero on 3/1/2015.
  */
-@JsonRootName("Vulnerabilities")
 public class VulnerabilitiesDTO {
 
     private int totalVulnerabilities;
-    @JsonProperty("VulnerabilityList")
+    @JsonProperty("vulnerabilityList")
     private List<VulnerabilityDTO> vulnerabilityDTOList;
 
     public VulnerabilitiesDTO() {

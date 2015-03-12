@@ -1,13 +1,12 @@
 package com.terians.dto;
 
-import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
 
 /**
  * Created by stromero on 12/11/2014.
  */
-@JsonRootName("Scan")
 public class ScanDTO {
 
     // Properties
@@ -22,8 +21,11 @@ public class ScanDTO {
     private int packageCount;
     private int issueCount;
     private Date date;
+    @JsonProperty("issues")
     private IssuesDTO issuesDTO;
+    @JsonProperty("dependencies")
     private DependenciesDTO dependenciesDTO;
+    @JsonProperty("packages")
     private PackagesDTO packagesDTO;
 
     public ScanDTO() {

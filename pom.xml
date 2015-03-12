@@ -168,7 +168,7 @@
 
     </dependencies>
     <build>
-        <finalName>terians-1.0</finalName>
+        <finalName>terians</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

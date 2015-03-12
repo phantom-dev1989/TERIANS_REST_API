@@ -23,7 +23,7 @@ public class VulnerabilitiesController {
     @Autowired
     private VulnerabilityService vulnerabilityService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public VulnerabilitiesDTO getVulnerabilities() {
 
         return vulnerabilityService.findAllVulnerabilities();

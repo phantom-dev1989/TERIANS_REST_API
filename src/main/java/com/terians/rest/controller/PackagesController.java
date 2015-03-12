@@ -22,7 +22,7 @@ public class PackagesController {
     @Autowired
     private PackageService packageService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public PackagesDTO getPackages() {
 
         return packageService.findAllPackages();

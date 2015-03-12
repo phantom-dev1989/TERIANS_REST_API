@@ -8,11 +8,10 @@ import java.util.List;
 /**
  * Created by stromero on 3/1/2015.
  */
-@JsonRootName("Dependencies")
 public class DependenciesDTO {
 
     private int totalDependencies;
-    @JsonProperty("DependencyList")
+    @JsonProperty("dependencyList")
     private List<DependencyDTO> dependencyDTOList;
 
     public DependenciesDTO() {

@@ -8,11 +8,10 @@ import java.util.List;
 /**
  * Created by stromero on 3/1/2015.
  */
-@JsonRootName("Methods")
 public class MethodsDTO {
 
     private int totalMethods;
-    @JsonProperty("MethodList")
+    @JsonProperty("methodList")
     private List<MethodDTO> methodDTOList;
 
     public MethodsDTO() {

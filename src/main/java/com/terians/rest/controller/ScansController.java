@@ -19,7 +19,7 @@ public class ScansController {
     @Autowired
     private ScanService scanService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ScansDTO getScans() {
 
         return scanService.findAllScans();

@@ -1,11 +1,11 @@
 package com.terians.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 /**
  * Created by stromero on 1/5/2015.
  */
-@JsonRootName("Clazz")
 public class ClazzDTO {
 
     private String teriansId;
@@ -15,6 +15,7 @@ public class ClazzDTO {
     private String sourceCode;
     private String lineNumbers;
     private Double cyclomaticCom;
+    @JsonProperty("methodList")
     private MethodsDTO methodsDTO;
 
     public ClazzDTO() {
