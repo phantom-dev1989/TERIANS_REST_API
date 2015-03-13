@@ -2,6 +2,8 @@ package com.terians.rest.controller;
 
 import com.terians.dto.*;
 import com.terians.neo4j.service.ProjectService;
+import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/api/v1/projects")
+@Api(value = "projects", description = "Projects API")
 public class ProjectsController {
 
     private static final Logger logger = LoggerFactory.getLogger(ProjectsController.class);
@@ -20,24 +23,29 @@ public class ProjectsController {
     private ProjectService projectService;
 
     @RequestMapping(method = RequestMethod.GET)
+    @ApiOperation(value = "Get Projects", notes = "Returns all projects")
     public ProjectsDTO getProjects() {
 
         return projectService.findAllProjects();
     }
 
     @RequestMapping(value = "/{projectId}", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Project", notes = "Returns a project by projectId")
     public ProjectDTO getProject(@PathVariable("projectId") String projectId) {
 
         return projectService.findProject(projectId);
     }
 
     @RequestMapping(value = "/{projectId}/scans", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Scans", notes = "Returns all scans of a project by projectId")
     public ScansDTO getScans(@PathVariable("projectId") String projectId) {
 
         return projectService.findAllScans(projectId);
     }
 
     @RequestMapping(value = "/{projectId}/scans/{scanId}", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Scan", notes = "Returns a scan of a project by projectId, scanId or by first or" +
+            "last scanned")
     public ScanDTO getScan(@PathVariable("projectId") String projectId,
                            @PathVariable("scanId") String scanId,
                            @RequestParam(value = "scanned", required = false) String scanned) {
@@ -46,6 +54,8 @@ public class ProjectsController {
     }
 
     @RequestMapping(value = "/{projectId}/scans/{scanId}/issues", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Issues", notes = "Returns all issues of a scan within a project by " +
+            "projectId, scanId")
     public IssuesDTO getIssues(@PathVariable("projectId") String projectId,
                                @PathVariable("scanId") String scanId) {
 
@@ -53,6 +63,8 @@ public class ProjectsController {
     }
 
     @RequestMapping(value = "/{projectId}/scans/{scanId}/issues/{issueId}", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Issue", notes = "Returns an issue of a scan within a project by " +
+            "projectId, scanId, issueId")
     public IssueDTO getIssue(@PathVariable("projectId") String projectId,
                              @PathVariable("scanId") String scanId,
                              @PathVariable("issueId") String issueId) {
@@ -61,6 +73,8 @@ public class ProjectsController {
     }
 
     @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Dependencies", notes = "Returns all dependencies of a scan within a project by " +
+            "projectId, scanId")
     public DependenciesDTO getDependencies(@PathVariable("projectId") String projectId,
                                            @PathVariable("scanId") String scanId) {
 
@@ -68,6 +82,8 @@ public class ProjectsController {
     }
 
     @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Dependency", notes = "Returns a dependency of a scan within a project by " +
+            "projectId, scanId, dependencyId")
     public DependencyDTO getDependency(@PathVariable("projectId") String projectId,
                                        @PathVariable("scanId") String scanId,
                                        @PathVariable("dependencyId") String dependencyId) {
@@ -77,6 +93,8 @@ public class ProjectsController {
 
     @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/methods",
             method = RequestMethod.GET)
+    @ApiOperation(value = "Get Dependency Methods", notes = "Returns all dependency methods of a scan within a project by " +
+            "projectId, scanId, dependencyId")
     public MethodsDTO getMethods(@PathVariable("projectId") String projectId,
                                  @PathVariable("scanId") String scanId,
                                  @PathVariable("dependencyId") String dependencyId) {
@@ -86,6 +104,8 @@ public class ProjectsController {
 
     @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/methods/{methodId}",
             method = RequestMethod.GET)
+    @ApiOperation(value = "Get Dependency Method", notes = "Returns a dependency method of a scan within a project by " +
+            "projectId, scanId, dependencyId, methodId")
     public MethodDTO getMethod(@PathVariable("projectId") String projectId,
                                @PathVariable("scanId") String scanId,
                                @PathVariable("dependencyId") String dependencyId,
@@ -96,6 +116,8 @@ public class ProjectsController {
 
     @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/dependencies",
             method = RequestMethod.GET)
+    @ApiOperation(value = "Get Related Dependencies", notes = "Returns all related dependencies of a dependency of a " +
+            "scan within a project by projectId, scanId, dependencyId")
     public DependenciesDTO getDependencies(@PathVariable("projectId") String projectId,
                                            @PathVariable("scanId") String scanId,
                                            @PathVariable("dependencyId") String dependencyId) {
@@ -105,6 +127,8 @@ public class ProjectsController {
 
     @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/dependencies/{relatedDependencyId}",
             method = RequestMethod.GET)
+    @ApiOperation(value = "Get Related Dependency", notes = "Returns a related dependency of a dependency of a " +
+            "scan within a project by projectId, scanId, dependencyId, relatedDependencyId")
     public DependencyDTO getDependency(@PathVariable("projectId") String projectId,
                                        @PathVariable("scanId") String scanId,
                                        @PathVariable("dependencyId") String dependencyId,
@@ -115,6 +139,8 @@ public class ProjectsController {
 
     @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/vulnerabilities",
             method = RequestMethod.GET)
+    @ApiOperation(value = "Get Vulnerabilities", notes = "Returns all vulnerabilities of a dependency of a " +
+            "scan within a project by projectId, scanId, dependencyId")
     public VulnerabilitiesDTO getVulnerabilities(@PathVariable("projectId") String projectId,
                                                  @PathVariable("scanId") String scanId,
                                                  @PathVariable("dependencyId") String dependencyId) {
@@ -124,6 +150,8 @@ public class ProjectsController {
 
     @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/vulnerabilities/{vulnerabilityId}",
             method = RequestMethod.GET)
+    @ApiOperation(value = "Get Vulnerability", notes = "Returns a vulnerability of a dependency of a " +
+            "scan within a project by projectId, scanId, dependencyId, vulnerabilityId")
     public VulnerabilityDTO getVulnerability(@PathVariable("projectId") String projectId,
                                              @PathVariable("scanId") String scanId,
                                              @PathVariable("dependencyId") String dependencyId,
@@ -134,6 +162,8 @@ public class ProjectsController {
 
     @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/issues",
             method = RequestMethod.GET)
+    @ApiOperation(value = "Get Dependency Issues", notes = "Returns all issues of a dependency of a " +
+            "scan within a project by projectId, scanId, dependencyId")
     public IssuesDTO getIssues(@PathVariable("projectId") String projectId,
                                @PathVariable("scanId") String scanId,
                                @PathVariable("dependencyId") String dependencyId) {
@@ -144,6 +174,8 @@ public class ProjectsController {
 
     @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/issues/{issueId}",
             method = RequestMethod.GET)
+    @ApiOperation(value = "Get Dependency Issue", notes = "Returns an issue of a dependency of a " +
+            "scan within a project by projectId, scanId, dependencyId, issueId")
     public IssueDTO getIssue(@PathVariable("projectId") String projectId,
                              @PathVariable("scanId") String scanId,
                              @PathVariable("dependencyId") String dependencyId,
@@ -153,6 +185,8 @@ public class ProjectsController {
     }
 
     @RequestMapping(value = "/{projectId}/scans/{scanId}/packages", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Packages", notes = "Returns all packages of a " +
+            "scan within a project by projectId, scanId")
     public PackagesDTO getPackages(@PathVariable("projectId") String projectId,
                                    @PathVariable("scanId") String scanId) {
 
@@ -160,6 +194,8 @@ public class ProjectsController {
     }
 
     @RequestMapping(value = "/{projectId}/scans/{scanId}/packages/{packageId}", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Package", notes = "Returns a packages of a " +
+            "scan within a project by projectId, scanId, packageId")
     public PackageDTO getPackage(@PathVariable("projectId") String projectId,
                                  @PathVariable("scanId") String scanId,
                                  @PathVariable("packageId") String packageId) {
@@ -168,6 +204,8 @@ public class ProjectsController {
     }
 
     @RequestMapping(value = "/{projectId}/scans/{scanId}/packages/{packageId}/clazzes", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Classes", notes = "Returns all classes of a packages of a " +
+            "scan within a project by projectId, scanId, packageId")
     public ClazzesDTO getClazzes(@PathVariable("projectId") String projectId,
                                  @PathVariable("scanId") String scanId,
                                  @PathVariable("packageId") String packageId) {
@@ -177,6 +215,8 @@ public class ProjectsController {
 
     @RequestMapping(value = "/{projectId}/scans/{scanId}/packages/{packageId}/clazzes/{clazzId}",
             method = RequestMethod.GET)
+    @ApiOperation(value = "Get Class", notes = "Returns a class of a packages of a " +
+            "scan within a project by projectId, scanId, packageId, classId")
     public ClazzDTO getClazz(@PathVariable("projectId") String projectId,
                              @PathVariable("scanId") String scanId,
                              @PathVariable("packageId") String packageId,
@@ -187,6 +227,8 @@ public class ProjectsController {
 
     @RequestMapping(value = "/{projectId}/scans/{scanId}/packages/{packageId}/clazzes/{clazzId}/methods",
             method = RequestMethod.GET)
+    @ApiOperation(value = "Get Methods", notes = "Returns all methods a class of a packages of a " +
+            "scan within a project by projectId, scanId, packageId, classId")
     public MethodsDTO getMethods(@PathVariable("projectId") String projectId,
                                  @PathVariable("scanId") String scanId,
                                  @PathVariable("packageId") String packageId,
@@ -197,6 +239,8 @@ public class ProjectsController {
 
     @RequestMapping(value = "/{projectId}/scans/{scanId}/packages/{packageId}/clazzes/{clazzId}/methods/{methodId}",
             method = RequestMethod.GET)
+    @ApiOperation(value = "Get Method", notes = "Returns a method a class of a packages of a " +
+            "scan within a project by projectId, scanId, packageId, classId, methodId ")
     public MethodDTO getMethod(@PathVariable("projectId") String projectId,
                                @PathVariable("scanId") String scanId,
                                @PathVariable("packageId") String packageId,

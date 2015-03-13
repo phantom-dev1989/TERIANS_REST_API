@@ -1,11 +1,12 @@
 package com.terians.dto;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.wordnik.swagger.annotations.ApiModel;
 
 /**
  * Created by stromero on 1/5/2015.
  */
-@JsonRootName("Method")
+@ApiModel("Method")
 public class MethodDTO {
 
     // Properties

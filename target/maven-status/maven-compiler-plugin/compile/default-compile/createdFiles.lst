@@ -6,6 +6,7 @@ com\terians\dto\VulnerabilitiesDTO.class
 com\terians\neo4j\service\ProjectServiceImpl.class
 com\terians\rest\controller\ClazzesController.class
 com\terians\neo4j\model\Scan.class
+com\terians\config\SwaggerConfig.class
 com\terians\dto\PackageDTO.class
 com\terians\config\WebAppConfig.class
 com\terians\neo4j\service\ClazzServiceImpl.class

@@ -3,6 +3,8 @@ package com.terians.rest.controller;
 import com.terians.dto.VulnerabilitiesDTO;
 import com.terians.dto.VulnerabilityDTO;
 import com.terians.neo4j.service.VulnerabilityService;
+import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/v1/vulnerabilities")
+@Api(value = "vulnerabilities", description = "Vulnerabilities API")
 public class VulnerabilitiesController {
 
     private static final Logger logger = LoggerFactory.getLogger(VulnerabilitiesController.class);
@@ -24,12 +27,14 @@ public class VulnerabilitiesController {
     private VulnerabilityService vulnerabilityService;
 
     @RequestMapping(method = RequestMethod.GET)
+    @ApiOperation(value = "Get Vulnerabilities", notes = "Returns all vulnerabilities")
     public VulnerabilitiesDTO getVulnerabilities() {
 
         return vulnerabilityService.findAllVulnerabilities();
     }
 
     @RequestMapping(value = "/{vulnerabilityId}", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Vulnerability", notes = "Returns a vulnerability by vulnerabilityId")
     public VulnerabilityDTO getVulnerability(@PathVariable("vulnerabilityId") String vulnerabilityId) {
 
         return vulnerabilityService.findVulnerability(vulnerabilityId);

@@ -1,12 +1,14 @@
 package com.terians.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.wordnik.swagger.annotations.ApiModel;
 
 import java.util.Date;
 
 /**
  * Created by stromero on 12/11/2014.
  */
+@ApiModel("Scan")
 public class ScanDTO {
 
     // Properties

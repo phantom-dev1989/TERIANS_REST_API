@@ -23,11 +23,11 @@ import static org.ajar.swaggermvcui.SwaggerSpringMvcUi.*;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.terians"})
-@EnableSwagger
 @Import({
         // MongoDBConfig.class,
         Neo4JConfig.class,
         CacheConfig.class,
+        SwaggerConfig.class,
         //   OAuth2Config.class,
         //   WebAppSecurityConfig.class
 })
