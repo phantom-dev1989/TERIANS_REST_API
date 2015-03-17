@@ -27,5 +27,9 @@ public interface DependencyService {
     IssuesDTO findAllIssues(String dependencyId);
 
     IssueDTO findIssue(String dependencyId, String issueId);
+
+    ClazzesDTO findAllClazzes(String dependencyId);
+
+    ClazzDTO findClazz(String dependencyId, String clazzId);
 }
 

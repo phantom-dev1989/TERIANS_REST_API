@@ -50,4 +50,8 @@ public interface ProjectService {
     MethodsDTO findAllMethods(String projectId, String scanId, String packageId, String clazzId);
 
     MethodDTO findMethod(String projectId, String scanId, String packageId, String clazzId, String methodId);
+
+    ClazzesDTO findAllDependenyClazzes(String projectId, String scanId, String dependencyId);
+
+    ClazzDTO findDependenyClazz(String projectId, String scanId, String dependencyId, String clazzId);
 }

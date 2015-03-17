@@ -1,6 +1,9 @@
 package com.terians.neo4j.model;
 
-import org.springframework.data.neo4j.annotation.*;
+import org.springframework.data.neo4j.annotation.GraphId;
+import org.springframework.data.neo4j.annotation.Indexed;
+import org.springframework.data.neo4j.annotation.NodeEntity;
+import org.springframework.data.neo4j.annotation.RelatedTo;
 
 import java.util.Set;
 
@@ -19,8 +22,7 @@ public class Project {
     private String teriansId;
 
     // Relationships
-    @Fetch
-    @RelatedTo(type = "HAS_SCAN", elementClass = Scan.class)
+    @RelatedTo(type = "HAS_SCAN")
     private Set<Scan> scans;
 
     public String getTeriansId() {

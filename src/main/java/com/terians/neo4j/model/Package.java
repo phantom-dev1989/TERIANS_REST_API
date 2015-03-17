@@ -1,6 +1,9 @@
 package com.terians.neo4j.model;
 
-import org.springframework.data.neo4j.annotation.*;
+import org.springframework.data.neo4j.annotation.GraphId;
+import org.springframework.data.neo4j.annotation.Indexed;
+import org.springframework.data.neo4j.annotation.NodeEntity;
+import org.springframework.data.neo4j.annotation.RelatedTo;
 
 import java.util.Set;
 
@@ -29,8 +32,7 @@ public class Package {
     private Double abstractness;
 
     //Relationships
-    @Fetch
-    @RelatedTo(type = "HAS_CLAZZ", elementClass = Clazz.class)
+    @RelatedTo(type = "HAS_CLAZZ")
     private Set<Clazz> clazzs;
 
     // Getters and Setters

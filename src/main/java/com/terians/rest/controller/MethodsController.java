@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "methods", description = "Methods API")
 public class MethodsController {
 
-    private static final Logger logger = LoggerFactory.getLogger(MethodsController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodsController.class);
 
     @Autowired
     private MethodService methodService;

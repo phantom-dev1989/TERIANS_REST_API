@@ -48,4 +48,8 @@ public interface ScanService {
     MethodsDTO findAllMethods(String scanId, String packageId, String clazzId);
 
     MethodDTO findMethod(String scanId, String packageId, String clazzId, String methodId);
+
+    ClazzesDTO findAllDependenyClazzes(String scanId, String dependencyId);
+
+    ClazzDTO findDependenyClazz(String scanId, String dependencyId, String clazzId);
 }

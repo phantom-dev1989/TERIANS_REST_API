@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "scans", description = "Scans API")
 public class ScansController {
 
-    private static final Logger logger = LoggerFactory.getLogger(ScansController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ScansController.class);
 
     @Autowired
     private ScanService scanService;
@@ -44,9 +44,10 @@ public class ScansController {
     public IssuesDTO getIssues(@PathVariable("scanId") String scanId,
                                @RequestParam(value = "category", required = false) String category,
                                @RequestParam(value = "orderedBy", required = false) String orderedBy,
-                               @RequestParam(value = "limit", required = false) int limit) {
+                               @RequestParam(value = "limit", required = false) String limit) {
 
-        return scanService.findAllIssues(scanId, category, orderedBy, limit);
+        int limitInteger = Integer.parseInt(limit);
+        return scanService.findAllIssues(scanId, category, orderedBy, limitInteger);
     }
 
     @RequestMapping(value = "/{scanId}/issues/{issueId}", method = RequestMethod.GET)
@@ -70,6 +71,27 @@ public class ScansController {
                                        @PathVariable("dependencyId") String dependencyId) {
 
         return scanService.findDependency(scanId, dependencyId);
+    }
+
+    @RequestMapping(value = "/{scanId}/dependencies/{dependencyId}/clazzes",
+            method = RequestMethod.GET)
+    @ApiOperation(value = "Get Dependency Classes", notes = "Returns all dependency classes of a scan by " +
+            "scanId, dependencyId")
+    public ClazzesDTO getDependencyClazzes(@PathVariable("scanId") String scanId,
+                                           @PathVariable("dependencyId") String dependencyId) {
+
+        return scanService.findAllDependenyClazzes(scanId, dependencyId);
+    }
+
+    @RequestMapping(value = "/{scanId}/dependencies/{dependencyId}/clazzes/{clazzId}",
+            method = RequestMethod.GET)
+    @ApiOperation(value = "Get Dependency Class", notes = "Returns a dependency class of a scan by " +
+            "scanId, dependencyId, classId")
+    public ClazzDTO getDependencyClazz(@PathVariable("scanId") String scanId,
+                                       @PathVariable("dependencyId") String dependencyId,
+                                       @PathVariable("clazzId") String clazzId) {
+
+        return scanService.findDependenyClazz(scanId, dependencyId, clazzId);
     }
 
     @RequestMapping(value = "/{scanId}/dependencies/{dependencyId}/methods", method = RequestMethod.GET)
@@ -154,9 +176,10 @@ public class ScansController {
             "scan by scanId and ordered by: afferrent or efferent coupling, and filtered by result limit")
     public PackagesDTO getPackages(@PathVariable("scanId") String scanId,
                                    @RequestParam(value = "orderedBy", required = false) String orderedBy,
-                                   @RequestParam(value = "limit", required = false) int limit) {
+                                   @RequestParam(value = "limit", required = false) String limit) {
 
-        return scanService.findAllPackages(scanId, orderedBy, limit);
+        int limitInteger = Integer.parseInt(limit);
+        return scanService.findAllPackages(scanId, orderedBy, limitInteger);
     }
 
     @RequestMapping(value = "/{scanId}/packages/{packageId}", method = RequestMethod.GET)
@@ -173,9 +196,10 @@ public class ScansController {
     public ClazzesDTO getClazzes(@PathVariable("scanId") String scanId,
                                  @PathVariable("packageId") String packageId,
                                  @RequestParam(value = "orderedBy", required = false) String orderedBy,
-                                 @RequestParam(value = "limit", required = false) int limit) {
+                                 @RequestParam(value = "limit", required = false) String limit) {
 
-        return scanService.findAllClazzes(scanId, packageId, orderedBy, limit);
+        int limitInteger = Integer.parseInt(limit);
+        return scanService.findAllClazzes(scanId, packageId, orderedBy, limitInteger);
     }
 
     @RequestMapping(value = "/{scanId}/packages/{packageId}/clazzes/{clazzId}", method = RequestMethod.GET)

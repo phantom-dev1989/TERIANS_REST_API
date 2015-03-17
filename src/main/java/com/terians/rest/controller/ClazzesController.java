@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "classes", description = "Classes API")
 public class ClazzesController {
 
-    private static final Logger logger = LoggerFactory.getLogger(ClazzesController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ClazzesController.class);
 
     @Autowired
     private ClazzService clazzService;

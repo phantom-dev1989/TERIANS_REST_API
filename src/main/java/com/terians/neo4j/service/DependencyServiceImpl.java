@@ -2,13 +2,8 @@ package com.terians.neo4j.service;
 
 import com.terians.dto.*;
 import com.terians.dto.transformer.DTOTransformerUtil;
-import com.terians.neo4j.model.Dependency;
-import com.terians.neo4j.model.Issue;
-import com.terians.neo4j.model.Method;
-import com.terians.neo4j.model.Vulnerability;
 import com.terians.neo4j.repository.DependencyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,8 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class DependencyServiceImpl implements DependencyService {
 
-    @Autowired
-    private Neo4jTemplate template;
     @Autowired
     private DependencyRepository dependencyRepository;
 
@@ -34,7 +27,7 @@ public class DependencyServiceImpl implements DependencyService {
 
         if (dependencyId != null) {
             return DTOTransformerUtil.transformDependencyToDependencyDTO(dependencyRepository
-                    .findDependencyById(dependencyId));
+                    .findDependency(dependencyId));
         }
         return null;
     }
@@ -43,9 +36,8 @@ public class DependencyServiceImpl implements DependencyService {
     public MethodsDTO findAllMethods(String dependencyId) {
 
         if (dependencyId != null) {
-            Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
-            template.fetch(dependency.getMethods());
-            return DTOTransformerUtil.transformMethodSetToMethodsDTO(dependency.getMethods());
+            return DTOTransformerUtil.transformMethodSetToMethodsDTO(dependencyRepository
+                    .findAllMethods(dependencyId));
         }
         return null;
     }
@@ -54,16 +46,8 @@ public class DependencyServiceImpl implements DependencyService {
     public MethodDTO findMethod(String dependencyId, String methodId) {
 
         if ((dependencyId != null) && (methodId != null)) {
-            Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
-            template.fetch(dependency.getMethods());
-            Method method = null;
-            for (Method e : dependency.getMethods()) {
-                if (e.getTeriansId().equals(methodId)) {
-                    method = e;
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformMethodToMethodDTO(method);
+            return DTOTransformerUtil.transformMethodToMethodDTO(dependencyRepository
+                    .findMethod(dependencyId, methodId));
         }
         return null;
     }
@@ -72,9 +56,8 @@ public class DependencyServiceImpl implements DependencyService {
     public DependenciesDTO findAllRelatedDependencies(String dependencyId) {
 
         if (dependencyId != null) {
-            Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
-            template.fetch(dependency.getDependencies());
-            return DTOTransformerUtil.transformDependencySetToDependenciesDTO(dependency.getDependencies());
+            return DTOTransformerUtil.transformDependencySetToDependenciesDTO(dependencyRepository
+                    .findAllRelatedDependencies(dependencyId));
         }
         return null;
     }
@@ -83,16 +66,8 @@ public class DependencyServiceImpl implements DependencyService {
     public DependencyDTO findRelatedDependency(String dependencyId, String relatedDependencyId) {
 
         if ((dependencyId != null) && (relatedDependencyId != null)) {
-            Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
-            template.fetch(dependency.getDependencies());
-            Dependency relatedDependency = null;
-            for (Dependency e : dependency.getDependencies()) {
-                if (e.getTeriansId().equals(relatedDependencyId)) {
-                    relatedDependency = e;
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformDependencyToDependencyDTO(relatedDependency);
+            return DTOTransformerUtil.transformDependencyToDependencyDTO(dependencyRepository
+                    .findRelatedDependency(dependencyId, relatedDependencyId));
         }
         return null;
     }
@@ -101,9 +76,8 @@ public class DependencyServiceImpl implements DependencyService {
     public VulnerabilitiesDTO findAllVulnerabilities(String dependencyId) {
 
         if (dependencyId != null) {
-            Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
-            template.fetch(dependency.getVulnerabilities());
-            return DTOTransformerUtil.transformVulnerabilitySetToVulnerabilitiesDTO(dependency.getVulnerabilities());
+            return DTOTransformerUtil.transformVulnerabilitySetToVulnerabilitiesDTO(dependencyRepository
+                    .findAllVulnerabilities(dependencyId));
         }
         return null;
     }
@@ -112,16 +86,8 @@ public class DependencyServiceImpl implements DependencyService {
     public VulnerabilityDTO findVulnerability(String dependencyId, String vulnerabilityId) {
 
         if ((dependencyId != null) && (vulnerabilityId != null)) {
-            Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
-            template.fetch(dependency.getVulnerabilities());
-            Vulnerability vulnerability = null;
-            for (Vulnerability e : dependency.getVulnerabilities()) {
-                if (e.getTeriansId().equals(vulnerabilityId)) {
-                    vulnerability = e;
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformVulnerabilityToVulnerabilityDTO(vulnerability);
+            return DTOTransformerUtil.transformVulnerabilityToVulnerabilityDTO(dependencyRepository
+                    .findVulnerability(dependencyId, vulnerabilityId));
         }
         return null;
     }
@@ -130,9 +96,7 @@ public class DependencyServiceImpl implements DependencyService {
     public IssuesDTO findAllIssues(String dependencyId) {
 
         if (dependencyId != null) {
-            Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
-            template.fetch(dependency.getIssues());
-            return DTOTransformerUtil.transformIssuesSetToIssuesDTO(dependency.getIssues());
+            return DTOTransformerUtil.transformIssuesSetToIssuesDTO(dependencyRepository.findAllIssues(dependencyId));
         }
         return null;
     }
@@ -141,16 +105,25 @@ public class DependencyServiceImpl implements DependencyService {
     public IssueDTO findIssue(String dependencyId, String issueId) {
 
         if ((dependencyId != null) && (issueId != null)) {
-            Dependency dependency = dependencyRepository.findDependencyById(dependencyId);
-            template.fetch(dependency.getIssues());
-            Issue issue = null;
-            for (Issue e : dependency.getIssues()) {
-                if (e.getTeriansId().equals(issueId)) {
-                    issue = e;
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformIssueToIssueDTO(issue);
+            return DTOTransformerUtil.transformIssueToIssueDTO(dependencyRepository.findIssue(dependencyId, issueId));
+        }
+        return null;
+    }
+
+    @Override
+    public ClazzesDTO findAllClazzes(String dependencyId) {
+
+        if (dependencyId != null) {
+            return DTOTransformerUtil.transformClazzSetToClazzesDTO(dependencyRepository.findAllClazzes(dependencyId));
+        }
+        return null;
+    }
+
+    @Override
+    public ClazzDTO findClazz(String dependencyId, String clazzId) {
+
+        if ((dependencyId != null) && (clazzId != null)) {
+            return DTOTransformerUtil.transformClazzToClazzDTO(dependencyRepository.findClazz(dependencyId, clazzId));
         }
         return null;
     }

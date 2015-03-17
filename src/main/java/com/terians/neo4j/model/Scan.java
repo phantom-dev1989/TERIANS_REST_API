@@ -1,6 +1,9 @@
 package com.terians.neo4j.model;
 
-import org.springframework.data.neo4j.annotation.*;
+import org.springframework.data.neo4j.annotation.GraphId;
+import org.springframework.data.neo4j.annotation.Indexed;
+import org.springframework.data.neo4j.annotation.NodeEntity;
+import org.springframework.data.neo4j.annotation.RelatedTo;
 
 import java.util.Date;
 import java.util.Set;
@@ -22,17 +25,13 @@ public class Scan {
     private Date date;
 
     //Relationships
-    @Fetch
     @RelatedTo(type = "NEXT_SCAN")
     private Scan scan;
-    @Fetch
-    @RelatedTo(type = "HAS_ISSUE", elementClass = Issue.class)
+    @RelatedTo(type = "HAS_ISSUE")
     private Set<Issue> issues;
-    @Fetch
-    @RelatedTo(type = "HAS_DEPENDENCY", elementClass = Dependency.class)
+    @RelatedTo(type = "HAS_DEPENDENCY")
     private Set<Dependency> dependencies;
-    @Fetch
-    @RelatedTo(type = "HAS_PACKAGE", elementClass = Package.class)
+    @RelatedTo(type = "HAS_PACKAGE")
     private Set<Package> packages;
 
     public String getTeriansId() {

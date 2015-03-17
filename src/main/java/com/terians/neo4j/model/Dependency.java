@@ -1,6 +1,9 @@
 package com.terians.neo4j.model;
 
-import org.springframework.data.neo4j.annotation.*;
+import org.springframework.data.neo4j.annotation.GraphId;
+import org.springframework.data.neo4j.annotation.Indexed;
+import org.springframework.data.neo4j.annotation.NodeEntity;
+import org.springframework.data.neo4j.annotation.RelatedTo;
 
 import java.util.Set;
 
@@ -25,24 +28,30 @@ public class Dependency {
     private String license;
 
     // Relationships
-    @Fetch
-    @RelatedTo(type = "HAS_VULN", elementClass = Vulnerability.class)
+    @RelatedTo(type = "HAS_VULN")
     private Set<Vulnerability> vulnerabilities;
-    @Fetch
-    @RelatedTo(type = "HAS_ISSUE", elementClass = Issue.class)
+    @RelatedTo(type = "HAS_ISSUE")
     private Set<Issue> issues;
-    @Fetch
-    @RelatedTo(type = "RELATED_DEPENDENCIES", elementClass = Dependency.class)
+    @RelatedTo(type = "RELATED_DEPENDENCIES")
     private Set<Dependency> dependencies;
-    @Fetch
-    @RelatedTo(type = "USED_BY", elementClass = Method.class)
+    @RelatedTo(type = "USED_BY_METHOD")
     private Set<Method> methods;
+    @RelatedTo(type = "USED_BY_CLAZZ")
+    private Set<Clazz> clazzes;
+
+    // Getters and Setters
+    public Set<Clazz> getClazzes() {
+        return clazzes;
+    }
+
+    public void setClazzes(Set<Clazz> clazzes) {
+        this.clazzes = clazzes;
+    }
 
     public String getTeriansId() {
         return teriansId;
     }
 
-    // Getters and Setters
     public void setTeriansId(String teriansId) {
         this.teriansId = teriansId;
     }

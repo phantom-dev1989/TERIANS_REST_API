@@ -1,6 +1,7 @@
 package com.terians.neo4j.repository;
 
 import com.terians.neo4j.model.Clazz;
+import com.terians.neo4j.model.Method;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.repository.GraphRepository;
 import org.springframework.stereotype.Repository;
@@ -17,7 +18,13 @@ public interface ClazzRepository extends GraphRepository<Clazz> {
     public Set<Clazz> findAllClazzes();
 
     @Query("MATCH (c:Clazz {teriansId:{0}}) RETURN c")
-    public Clazz findClazzById(String clazzId);
+    public Clazz findClazz(String clazzId);
+
+    @Query("MATCH(c:Clazz {teriansId:{0}})-[:HAS_METHOD]->(m:Method) RETURN m")
+    public Set<Method> findAllMethods(String clazzId);
+
+    @Query("MATCH(c:Clazz {teriansId:{0}})-[:HAS_METHOD]->(m:Method {teriansId:{1}}) RETURN m")
+    public Method findMethod(String clazzId, String methodId);
 
     @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_PACKAGE]->(p:Package)-[:HAS_CLAZZ]->(c:Clazz) " +
             "RETURN order by c.afferent desc Limit {1}")

@@ -5,14 +5,10 @@ import com.terians.dto.ClazzesDTO;
 import com.terians.dto.MethodDTO;
 import com.terians.dto.MethodsDTO;
 import com.terians.dto.transformer.DTOTransformerUtil;
-import com.terians.neo4j.model.Clazz;
-import com.terians.neo4j.model.Method;
 import com.terians.neo4j.repository.ClazzRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 
 /**
  * Created by stromero on 1/4/2015.
@@ -21,8 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ClazzServiceImpl implements ClazzService {
 
-    @Autowired
-    private Neo4jTemplate template;
     @Autowired
     private ClazzRepository clazzRepository;
 
@@ -35,7 +29,7 @@ public class ClazzServiceImpl implements ClazzService {
     public ClazzDTO findClazz(String clazzId) {
 
         if (clazzId != null) {
-            return DTOTransformerUtil.transformClazzToClazzDTO(clazzRepository.findClazzById(clazzId));
+            return DTOTransformerUtil.transformClazzToClazzDTO(clazzRepository.findClazz(clazzId));
         }
         return null;
     }
@@ -44,9 +38,7 @@ public class ClazzServiceImpl implements ClazzService {
     public MethodsDTO findAllMethods(String clazzId) {
 
         if (clazzId != null) {
-            Clazz clazz = clazzRepository.findClazzById(clazzId);
-            template.fetch(clazz.getMethods());
-            return DTOTransformerUtil.transformMethodSetToMethodsDTO(clazz.getMethods());
+            return DTOTransformerUtil.transformMethodSetToMethodsDTO(clazzRepository.findAllMethods(clazzId));
         }
         return null;
     }
@@ -55,18 +47,7 @@ public class ClazzServiceImpl implements ClazzService {
     public MethodDTO findMethod(String clazzId, String methodId) {
 
         if ((clazzId != null) && (methodId != null)) {
-
-            Clazz clazz = clazzRepository.findClazzById(clazzId);
-            template.fetch(clazz.getMethods());
-            Method method = null;
-
-            for (Method e : clazz.getMethods()) {
-                if (e.getTeriansId().equals(methodId)) {
-                    method = e;
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformMethodToMethodDTO(method);
+            return DTOTransformerUtil.transformMethodToMethodDTO(clazzRepository.findMethod(clazzId, methodId));
         }
         return null;
     }

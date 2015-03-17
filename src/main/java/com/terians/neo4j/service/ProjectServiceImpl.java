@@ -3,15 +3,13 @@ package com.terians.neo4j.service;
 
 import com.terians.dto.*;
 import com.terians.dto.transformer.DTOTransformerUtil;
-import com.terians.neo4j.model.*;
-import com.terians.neo4j.model.Package;
 import com.terians.neo4j.repository.ProjectRepository;
 import com.terians.neo4j.repository.ScanRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 
 /**
  * Created by stromero on 1/4/2015.
@@ -20,13 +18,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ProjectServiceImpl implements ProjectService {
 
-    @Autowired
-    private Neo4jTemplate template;
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProjectServiceImpl.class);
     @Autowired
     private ProjectRepository projectRepository;
     @Autowired
     private ScanRepository scanRepository;
-
 
     @Override
     public ProjectsDTO findAllProjects() {
@@ -37,7 +33,7 @@ public class ProjectServiceImpl implements ProjectService {
     public ProjectDTO findProject(String projectId) {
 
         if (projectId != null) {
-            return DTOTransformerUtil.transformProjectToProjectDTO(projectRepository.findProjectById(projectId));
+            return DTOTransformerUtil.transformProjectToProjectDTO(projectRepository.findProject(projectId));
         }
         return null;
     }
@@ -46,9 +42,7 @@ public class ProjectServiceImpl implements ProjectService {
     public ScansDTO findAllScans(String projectId) {
 
         if (projectId != null) {
-            Project project = projectRepository.findProjectById(projectId);
-            template.fetch(project.getScans());
-            return DTOTransformerUtil.transformScanSetToScansDTO(project.getScans());
+            return DTOTransformerUtil.transformScanSetToScansDTO(projectRepository.findAllScans(projectId));
         }
         return null;
     }
@@ -62,17 +56,7 @@ public class ProjectServiceImpl implements ProjectService {
 
             if (scanned == null) {
 
-                Project project = projectRepository.findProjectById(projectId);
-                template.fetch(project.getScans());
-                Scan scan = null;
-                for (Scan e : project.getScans()) {
-                    if (e.getTeriansId().equals(scanId)) {
-                        scan = e;
-                        break;
-                    }
-                }
-
-                scanDTO = DTOTransformerUtil.transformScanToScanDTO(scan);
+                scanDTO = DTOTransformerUtil.transformScanToScanDTO(projectRepository.findScan(projectId, scanId));
                 scanDTO.setAbstractness(scanRepository.findAbstractnessByScan(scanId));
                 scanDTO.setClazzCount(scanRepository.findClazzCountByScan(scanId));
                 scanDTO.setComplexity(scanRepository.findComplexityByScan(scanId));
@@ -118,17 +102,7 @@ public class ProjectServiceImpl implements ProjectService {
     public IssuesDTO findAllIssues(String projectId, String scanId) {
 
         if ((projectId != null) && (scanId != null)) {
-            Project project = projectRepository.findProjectById(projectId);
-            template.fetch(project.getScans());
-            Scan scan = null;
-            for (Scan e : project.getScans()) {
-                if (e.getTeriansId().equals(scanId)) {
-                    scan = e;
-                    template.fetch(scan.getIssues());
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformIssuesSetToIssuesDTO(scan.getIssues());
+            return DTOTransformerUtil.transformIssuesSetToIssuesDTO(projectRepository.findAllIssues(projectId, scanId));
         }
         return null;
     }
@@ -137,24 +111,7 @@ public class ProjectServiceImpl implements ProjectService {
     public IssueDTO findIssue(String projectId, String scanId, String issueId) {
 
         if ((projectId != null) && (scanId != null) && (issueId != null)) {
-            Project project = projectRepository.findProjectById(projectId);
-            template.fetch(project.getScans());
-            Scan scan = null;
-            Issue issue = null;
-            for (Scan e : project.getScans()) {
-                if (e.getTeriansId().equals(scanId)) {
-                    scan = e;
-                    template.fetch(scan.getIssues());
-                    for (Issue e1 : scan.getIssues()) {
-                        if (e1.getTeriansId().equals(issueId)) {
-                            issue = e1;
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformIssueToIssueDTO(issue);
+            return DTOTransformerUtil.transformIssueToIssueDTO(projectRepository.findIssue(projectId, scanId, issueId));
         }
         return null;
     }
@@ -163,17 +120,8 @@ public class ProjectServiceImpl implements ProjectService {
     public DependenciesDTO findAllDependencies(String projectId, String scanId) {
 
         if ((projectId != null) && (scanId != null)) {
-            Project project = projectRepository.findProjectById(projectId);
-            template.fetch(project.getScans());
-            Scan scan = null;
-            for (Scan e : project.getScans()) {
-                if (e.getTeriansId().equals(scanId)) {
-                    scan = e;
-                    template.fetch(scan.getDependencies());
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformDependencySetToDependenciesDTO(scan.getDependencies());
+            return DTOTransformerUtil.transformDependencySetToDependenciesDTO(projectRepository
+                    .findAllDependencies(projectId, scanId));
         }
         return null;
     }
@@ -182,24 +130,8 @@ public class ProjectServiceImpl implements ProjectService {
     public DependencyDTO findDependeny(String projectId, String scanId, String dependencyId) {
 
         if ((projectId != null) && (scanId != null) && (dependencyId != null)) {
-            Project project = projectRepository.findProjectById(projectId);
-            template.fetch(project.getScans());
-            Scan scan = null;
-            Dependency dependency = null;
-            for (Scan e : project.getScans()) {
-                if (e.getTeriansId().equals(scanId)) {
-                    scan = e;
-                    template.fetch(scan.getDependencies());
-                    for (Dependency e1 : scan.getDependencies()) {
-                        if (e1.getTeriansId().equals(dependencyId)) {
-                            dependency = e1;
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformDependencyToDependencyDTO(dependency);
+            return DTOTransformerUtil.transformDependencyToDependencyDTO(projectRepository
+                    .findDependency(projectId, scanId, dependencyId));
         }
         return null;
     }
@@ -208,25 +140,8 @@ public class ProjectServiceImpl implements ProjectService {
     public MethodsDTO findAllDependenyMethods(String projectId, String scanId, String dependencyId) {
 
         if ((projectId != null) && (scanId != null) && (dependencyId != null)) {
-            Project project = projectRepository.findProjectById(projectId);
-            template.fetch(project.getScans());
-            Scan scan = null;
-            Dependency dependency = null;
-            for (Scan e : project.getScans()) {
-                if (e.getTeriansId().equals(scanId)) {
-                    scan = e;
-                    template.fetch(scan.getDependencies());
-                    for (Dependency e1 : scan.getDependencies()) {
-                        if (e1.getTeriansId().equals(dependencyId)) {
-                            dependency = e1;
-                            template.fetch(dependency.getMethods());
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformMethodSetToMethodsDTO(dependency.getMethods());
+            return DTOTransformerUtil.transformMethodSetToMethodsDTO(projectRepository
+                    .findAllDependencyMethods(projectId, scanId, dependencyId));
         }
         return null;
     }
@@ -235,32 +150,8 @@ public class ProjectServiceImpl implements ProjectService {
     public MethodDTO findDependenyMethod(String projectId, String scanId, String dependencyId, String methodId) {
 
         if ((projectId != null) && (scanId != null) && (dependencyId != null) && (methodId != null)) {
-            Project project = projectRepository.findProjectById(projectId);
-            template.fetch(project.getScans());
-            Scan scan = null;
-            Dependency dependency = null;
-            Method method = null;
-            for (Scan e : project.getScans()) {
-                if (e.getTeriansId().equals(scanId)) {
-                    scan = e;
-                    template.fetch(scan.getDependencies());
-                    for (Dependency e1 : scan.getDependencies()) {
-                        if (e1.getTeriansId().equals(dependencyId)) {
-                            dependency = e1;
-                            template.fetch(dependency.getMethods());
-                            for (Method e2 : dependency.getMethods()) {
-                                if (e2.getTeriansId().equals(methodId)) {
-                                    method = e2;
-                                    break;
-                                }
-                            }
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformMethodToMethodDTO(method);
+            return DTOTransformerUtil.transformMethodToMethodDTO(projectRepository
+                    .findDependencyMethod(projectId, scanId, dependencyId, methodId));
         }
         return null;
     }
@@ -269,25 +160,8 @@ public class ProjectServiceImpl implements ProjectService {
     public DependenciesDTO findAllRelatedDependencies(String projectId, String scanId, String dependencyId) {
 
         if ((projectId != null) && (scanId != null) && (dependencyId != null)) {
-            Project project = projectRepository.findProjectById(projectId);
-            template.fetch(project.getScans());
-            Scan scan = null;
-            Dependency dependency = null;
-            for (Scan e : project.getScans()) {
-                if (e.getTeriansId().equals(scanId)) {
-                    scan = e;
-                    template.fetch(scan.getDependencies());
-                    for (Dependency e1 : scan.getDependencies()) {
-                        if (e1.getTeriansId().equals(dependencyId)) {
-                            dependency = e1;
-                            template.fetch(dependency.getDependencies());
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformDependencySetToDependenciesDTO(dependency.getDependencies());
+            return DTOTransformerUtil.transformDependencySetToDependenciesDTO(projectRepository
+                    .findAllRelatedDependencies(projectId, scanId, dependencyId));
         }
         return null;
     }
@@ -296,31 +170,8 @@ public class ProjectServiceImpl implements ProjectService {
     public DependencyDTO findRelatedDependency(String projectId, String scanId, String dependencyId, String relatedDependencyId) {
 
         if ((projectId != null) && (scanId != null) && (dependencyId != null) && (relatedDependencyId != null)) {
-            Project project = projectRepository.findProjectById(projectId);
-            template.fetch(project.getScans());
-            Scan scan = null;
-            Dependency dependency = null;
-            Dependency relatedDependency = null;
-            for (Scan e : project.getScans()) {
-                if (e.getTeriansId().equals(scanId)) {
-                    scan = e;
-                    template.fetch(scan.getDependencies());
-                    for (Dependency e1 : scan.getDependencies()) {
-                        if (e1.getTeriansId().equals(dependencyId)) {
-                            dependency = e1;
-                            template.fetch(dependency.getDependencies());
-                            for (Dependency e2 : dependency.getDependencies()) {
-                                if (e2.getTeriansId().equals(relatedDependencyId)) {
-                                    relatedDependency = e2;
-                                }
-                            }
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformDependencyToDependencyDTO(relatedDependency);
+            return DTOTransformerUtil.transformDependencyToDependencyDTO(projectRepository
+                    .findRelatedDependency(projectId, scanId, dependencyId, relatedDependencyId));
         }
         return null;
     }
@@ -329,25 +180,8 @@ public class ProjectServiceImpl implements ProjectService {
     public VulnerabilitiesDTO findAllVulnerabilities(String projectId, String scanId, String dependencyId) {
 
         if ((projectId != null) && (scanId != null) && (dependencyId != null)) {
-            Project project = projectRepository.findProjectById(projectId);
-            template.fetch(project.getScans());
-            Scan scan = null;
-            Dependency dependency = null;
-            for (Scan e : project.getScans()) {
-                if (e.getTeriansId().equals(scanId)) {
-                    scan = e;
-                    template.fetch(scan.getDependencies());
-                    for (Dependency e1 : scan.getDependencies()) {
-                        if (e1.getTeriansId().equals(dependencyId)) {
-                            dependency = e1;
-                            template.fetch(dependency.getVulnerabilities());
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformVulnerabilitySetToVulnerabilitiesDTO(dependency.getVulnerabilities());
+            return DTOTransformerUtil.transformVulnerabilitySetToVulnerabilitiesDTO(projectRepository
+                    .findAllDependencyVulnerabilities(projectId, scanId, dependencyId));
         }
         return null;
     }
@@ -356,32 +190,8 @@ public class ProjectServiceImpl implements ProjectService {
     public VulnerabilityDTO findVulnerability(String projectId, String scanId, String dependencyId, String vulnerabilityId) {
 
         if ((projectId != null) && (scanId != null) && (dependencyId != null) && (vulnerabilityId != null)) {
-            Project project = projectRepository.findProjectById(projectId);
-            template.fetch(project.getScans());
-            Scan scan = null;
-            Dependency dependency = null;
-            Vulnerability vulnerability = null;
-            for (Scan e : project.getScans()) {
-                if (e.getTeriansId().equals(scanId)) {
-                    scan = e;
-                    template.fetch(scan.getDependencies());
-                    for (Dependency e1 : scan.getDependencies()) {
-                        if (e1.getTeriansId().equals(dependencyId)) {
-                            dependency = e1;
-                            template.fetch(dependency.getVulnerabilities());
-                            for (Vulnerability e2 : dependency.getVulnerabilities()) {
-                                if (e2.getTeriansId().equals(vulnerabilityId)) {
-                                    vulnerability = e2;
-                                    break;
-                                }
-                            }
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformVulnerabilityToVulnerabilityDTO(vulnerability);
+            return DTOTransformerUtil.transformVulnerabilityToVulnerabilityDTO(projectRepository
+                    .findDependencyVulnerability(projectId, scanId, dependencyId, vulnerabilityId));
         }
         return null;
     }
@@ -390,25 +200,8 @@ public class ProjectServiceImpl implements ProjectService {
     public IssuesDTO findAllDependencyIssues(String projectId, String scanId, String dependencyId) {
 
         if ((projectId != null) && (scanId != null) && (dependencyId != null)) {
-            Project project = projectRepository.findProjectById(projectId);
-            template.fetch(project.getScans());
-            Scan scan = null;
-            Dependency dependency = null;
-            for (Scan e : project.getScans()) {
-                if (e.getTeriansId().equals(scanId)) {
-                    scan = e;
-                    template.fetch(scan.getDependencies());
-                    for (Dependency e1 : scan.getDependencies()) {
-                        if (e1.getTeriansId().equals(dependencyId)) {
-                            dependency = e1;
-                            template.fetch(dependency.getIssues());
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformIssuesSetToIssuesDTO(dependency.getIssues());
+            return DTOTransformerUtil.transformIssuesSetToIssuesDTO(projectRepository
+                    .findAllDependencyIssues(projectId, scanId, dependencyId));
         }
         return null;
     }
@@ -417,32 +210,8 @@ public class ProjectServiceImpl implements ProjectService {
     public IssueDTO findDependencyIssue(String projectId, String scanId, String dependencyId, String issueId) {
 
         if ((projectId != null) && (scanId != null) && (dependencyId != null) && (issueId != null)) {
-            Project project = projectRepository.findProjectById(projectId);
-            template.fetch(project.getScans());
-            Scan scan = null;
-            Dependency dependency = null;
-            Issue issue = null;
-            for (Scan e : project.getScans()) {
-                if (e.getTeriansId().equals(scanId)) {
-                    scan = e;
-                    template.fetch(scan.getDependencies());
-                    for (Dependency e1 : scan.getDependencies()) {
-                        if (e1.getTeriansId().equals(dependencyId)) {
-                            dependency = e1;
-                            template.fetch(dependency.getIssues());
-                            for (Issue e2 : dependency.getIssues()) {
-                                if (e2.getTeriansId().equals(issueId)) {
-                                    issue = e2;
-                                    break;
-                                }
-                            }
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformIssueToIssueDTO(issue);
+            return DTOTransformerUtil.transformIssueToIssueDTO(projectRepository
+                    .findDependencyIssue(projectId, scanId, dependencyId, issueId));
         }
         return null;
     }
@@ -451,17 +220,9 @@ public class ProjectServiceImpl implements ProjectService {
     public PackagesDTO findAllPackages(String projectId, String scanId) {
 
         if ((projectId != null) && (scanId != null)) {
-            Project project = projectRepository.findProjectById(projectId);
-            template.fetch(project.getScans());
-            Scan scan = null;
-            for (Scan e : project.getScans()) {
-                if (e.getTeriansId().equals(scanId)) {
-                    scan = e;
-                    template.fetch(scan.getPackages());
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformPackageSetToPackagesDTO(scan.getPackages());
+
+            return DTOTransformerUtil.transformPackageSetToPackagesDTO(projectRepository
+                    .findAllPackages(projectId, scanId));
         }
         return null;
     }
@@ -470,24 +231,8 @@ public class ProjectServiceImpl implements ProjectService {
     public PackageDTO findPackage(String projectId, String scanId, String packageId) {
 
         if ((projectId != null) && (scanId != null) && (packageId != null)) {
-            Project project = projectRepository.findProjectById(projectId);
-            template.fetch(project.getScans());
-            Scan scan = null;
-            Package packageObj = null;
-            for (Scan e : project.getScans()) {
-                if (e.getTeriansId().equals(scanId)) {
-                    scan = e;
-                    template.fetch(scan.getPackages());
-                    for (Package e1 : scan.getPackages()) {
-                        if (e.getTeriansId().equals(packageId)) {
-                            packageObj = e1;
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformPackageToPackageDTO(packageObj);
+            return DTOTransformerUtil.transformPackageToPackageDTO(projectRepository
+                    .findPackage(projectId, scanId, packageId));
         }
         return null;
     }
@@ -496,25 +241,8 @@ public class ProjectServiceImpl implements ProjectService {
     public ClazzesDTO findAllClazzes(String projectId, String scanId, String packageId) {
 
         if ((projectId != null) && (scanId != null) && (packageId != null)) {
-            Project project = projectRepository.findProjectById(projectId);
-            template.fetch(project.getScans());
-            Scan scan = null;
-            Package packageObj = null;
-            for (Scan e : project.getScans()) {
-                if (e.getTeriansId().equals(scanId)) {
-                    scan = e;
-                    template.fetch(scan.getPackages());
-                    for (Package e1 : scan.getPackages()) {
-                        if (e.getTeriansId().equals(packageId)) {
-                            packageObj = e1;
-                            template.fetch(packageObj.getClazzs());
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformClazzSetToClazzesDTO(packageObj.getClazzs());
+            return DTOTransformerUtil.transformClazzSetToClazzesDTO(projectRepository
+                    .findAllClazzes(projectId, scanId, packageId));
         }
         return null;
     }
@@ -523,32 +251,8 @@ public class ProjectServiceImpl implements ProjectService {
     public ClazzDTO findClazz(String projectId, String scanId, String packageId, String clazzId) {
 
         if ((projectId != null) && (scanId != null) && (packageId != null) && (clazzId != null)) {
-            Project project = projectRepository.findProjectById(projectId);
-            template.fetch(project.getScans());
-            Scan scan = null;
-            Package packageObj = null;
-            Clazz clazz = null;
-            for (Scan e : project.getScans()) {
-                if (e.getTeriansId().equals(scanId)) {
-                    scan = e;
-                    template.fetch(scan.getPackages());
-                    for (Package e1 : scan.getPackages()) {
-                        if (e.getTeriansId().equals(packageId)) {
-                            packageObj = e1;
-                            template.fetch(packageObj.getClazzs());
-                            for (Clazz e2 : packageObj.getClazzs()) {
-                                if (e2.getTeriansId().equals(clazzId)) {
-                                    clazz = e2;
-                                    break;
-                                }
-                            }
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformClazzToClazzDTO(clazz);
+            return DTOTransformerUtil.transformClazzToClazzDTO(projectRepository
+                    .findClazz(projectId, scanId, packageId, clazzId));
         }
         return null;
     }
@@ -557,33 +261,8 @@ public class ProjectServiceImpl implements ProjectService {
     public MethodsDTO findAllMethods(String projectId, String scanId, String packageId, String clazzId) {
 
         if ((projectId != null) && (scanId != null) && (packageId != null) && (clazzId != null)) {
-            Project project = projectRepository.findProjectById(projectId);
-            template.fetch(project.getScans());
-            Scan scan = null;
-            Package packageObj = null;
-            Clazz clazz = null;
-            for (Scan e : project.getScans()) {
-                if (e.getTeriansId().equals(scanId)) {
-                    scan = e;
-                    template.fetch(scan.getPackages());
-                    for (Package e1 : scan.getPackages()) {
-                        if (e.getTeriansId().equals(packageId)) {
-                            packageObj = e1;
-                            template.fetch(packageObj.getClazzs());
-                            for (Clazz e2 : packageObj.getClazzs()) {
-                                if (e2.getTeriansId().equals(clazzId)) {
-                                    clazz = e2;
-                                    template.fetch(clazz.getMethods());
-                                    break;
-                                }
-                            }
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformMethodSetToMethodsDTO(clazz.getMethods());
+            return DTOTransformerUtil.transformMethodSetToMethodsDTO(projectRepository
+                    .findAllMethods(projectId, scanId, packageId, clazzId));
         }
         return null;
     }
@@ -592,38 +271,28 @@ public class ProjectServiceImpl implements ProjectService {
     public MethodDTO findMethod(String projectId, String scanId, String packageId, String clazzId, String methodId) {
 
         if ((projectId != null) && (scanId != null) && (packageId != null) && (clazzId != null) && (methodId != null)) {
-            Project project = projectRepository.findProjectById(projectId);
-            template.fetch(project.getScans());
-            Scan scan = null;
-            Package packageObj = null;
-            Clazz clazz = null;
-            Method method = null;
-            for (Scan e : project.getScans()) {
-                if (e.getTeriansId().equals(scanId)) {
-                    scan = e;
-                    template.fetch(scan.getPackages());
-                    for (Package e1 : scan.getPackages()) {
-                        if (e.getTeriansId().equals(packageId)) {
-                            packageObj = e1;
-                            template.fetch(packageObj.getClazzs());
-                            for (Clazz e2 : packageObj.getClazzs()) {
-                                if (e2.getTeriansId().equals(clazzId)) {
-                                    clazz = e2;
-                                    template.fetch(clazz.getMethods());
-                                    for (Method e3 : clazz.getMethods()) {
-                                        method = e3;
-                                        break;
-                                    }
-                                    break;
-                                }
-                            }
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformMethodToMethodDTO(method);
+            return DTOTransformerUtil.transformMethodToMethodDTO(projectRepository
+                    .findMethod(projectId, scanId, packageId, clazzId, methodId));
+        }
+        return null;
+    }
+
+    @Override
+    public ClazzesDTO findAllDependenyClazzes(String projectId, String scanId, String dependencyId) {
+
+        if ((projectId != null) && (scanId != null) && (dependencyId != null)) {
+            return DTOTransformerUtil.transformClazzSetToClazzesDTO(projectRepository
+                    .findAllDependencyClazzes(projectId, scanId, dependencyId));
+        }
+        return null;
+    }
+
+    @Override
+    public ClazzDTO findDependenyClazz(String projectId, String scanId, String dependencyId, String clazzId) {
+
+        if ((projectId != null) && (scanId != null) && (dependencyId != null) && (clazzId != null)) {
+            return DTOTransformerUtil.transformClazzToClazzDTO(projectRepository
+                    .findDependencyClazz(projectId, scanId, dependencyId, clazzId));
         }
         return null;
     }

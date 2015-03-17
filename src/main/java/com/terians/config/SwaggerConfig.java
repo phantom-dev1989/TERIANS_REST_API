@@ -23,14 +23,14 @@ public class SwaggerConfig {
     }
 
     @Bean //Don't forget the @Bean annotation
-    public SwaggerSpringMvcPlugin customImplementation(){
+    public SwaggerSpringMvcPlugin customImplementation() {
         return new SwaggerSpringMvcPlugin(this.springSwaggerConfig)
                 .apiInfo(apiInfo());
     }
 
     private ApiInfo apiInfo() {
         ApiInfo apiInfo = new ApiInfo(
-                "TERIAN WEB API",
+                "TERIANS WEB API",
                 "RESTful Service to access TERIANS Work Bench Data",
                 "Terms of Service - Not Applicable",
                 "stromero@deloitte.com",

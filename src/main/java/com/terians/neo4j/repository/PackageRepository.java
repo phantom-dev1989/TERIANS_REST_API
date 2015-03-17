@@ -1,5 +1,7 @@
 package com.terians.neo4j.repository;
 
+import com.terians.neo4j.model.Clazz;
+import com.terians.neo4j.model.Method;
 import com.terians.neo4j.model.Package;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.repository.GraphRepository;
@@ -23,6 +25,19 @@ public interface PackageRepository extends GraphRepository<Package> {
     public Set<Package> findAllPackages();
 
     @Query("MATCH (p:Package {teriansId:{0}}) RETURN p")
-    public Package findPackageById(String methodId);
+    public Package findPackage(String packageId);
+
+    @Query("MATCH (p:Package {teriansId:{0}})-[:HAS_CLAZZ]->(c:Clazz) RETURN c")
+    public Set<Clazz> findAllClazzes(String packageId);
+
+    @Query("MATCH (p:Package {teriansId:{0}})-[:HAS_CLAZZ]->(c:Clazz {teriansId:{1}}) RETURN c")
+    public Clazz findClazz(String packageId, String clazzId);
+
+    @Query("MATCH (p:Package {teriansId:{0}})-[:HAS_CLAZZ]->(c:Clazz {teriansId:{1}})-[:HAS_METHOD]->(m:Method) RETURN m")
+    public Set<Method> findAllMethods(String packageId, String clazzId);
+
+    @Query("MATCH (p:Package {teriansId:{0}})-[:HAS_CLAZZ]->(c:Clazz {teriansId:{1}})-[:HAS_METHOD]->" +
+            "(m:Method {teriansId:{2}}) RETURN m")
+    public Method findMethod(String packageId, String clazzId, String methodId);
 
 }

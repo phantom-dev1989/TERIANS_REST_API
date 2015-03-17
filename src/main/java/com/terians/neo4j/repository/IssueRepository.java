@@ -1,6 +1,5 @@
 package com.terians.neo4j.repository;
 
-import com.terians.dto.IssueDTO;
 import com.terians.neo4j.model.Issue;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.repository.GraphRepository;
@@ -16,7 +15,7 @@ public interface IssueRepository extends GraphRepository<Issue> {
 
 
     @Query("MATCH (i:Issue {teriansId:{0}}) RETURN i")
-    public IssueDTO findIssueById(String issueId);
+    public Issue findIssue(String issueId);
 
     @Query("MATCH (i:Issue) RETURN i")
     public Set<Issue> findAllIssues();

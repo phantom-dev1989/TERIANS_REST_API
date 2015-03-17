@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "issues", description = "Issues API")
 public class IssuesController {
 
-    private static final Logger logger = LoggerFactory.getLogger(IssuesController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(IssuesController.class);
 
     @Autowired
     private IssueService issueService;

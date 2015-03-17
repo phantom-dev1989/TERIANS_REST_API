@@ -1,6 +1,9 @@
 package com.terians.neo4j.model;
 
-import org.springframework.data.neo4j.annotation.*;
+import org.springframework.data.neo4j.annotation.GraphId;
+import org.springframework.data.neo4j.annotation.Indexed;
+import org.springframework.data.neo4j.annotation.NodeEntity;
+import org.springframework.data.neo4j.annotation.RelatedTo;
 
 import java.util.Set;
 
@@ -29,8 +32,7 @@ public class Clazz {
     private String lineNumbers;
 
     //Relationships
-    @Fetch
-    @RelatedTo(type = "HAS_METHOD", elementClass = Method.class)
+    @RelatedTo(type = "HAS_METHOD")
     private Set<Method> methods;
 
     // Getters and Setters

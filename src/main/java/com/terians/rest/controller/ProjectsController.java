@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "projects", description = "Projects API")
 public class ProjectsController {
 
-    private static final Logger logger = LoggerFactory.getLogger(ProjectsController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProjectsController.class);
 
     @Autowired
     private ProjectService projectService;
@@ -112,6 +112,29 @@ public class ProjectsController {
                                @PathVariable("methodId") String methodId) {
 
         return projectService.findDependenyMethod(projectId, scanId, dependencyId, methodId);
+    }
+
+    @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/clazzes",
+            method = RequestMethod.GET)
+    @ApiOperation(value = "Get Dependency Classes", notes = "Returns all dependency classes of a scan within a project by " +
+            "projectId, scanId, dependencyId")
+    public ClazzesDTO getDependencyClazzes(@PathVariable("projectId") String projectId,
+                                           @PathVariable("scanId") String scanId,
+                                           @PathVariable("dependencyId") String dependencyId) {
+
+        return projectService.findAllDependenyClazzes(projectId, scanId, dependencyId);
+    }
+
+    @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/clazzes/{clazzId}",
+            method = RequestMethod.GET)
+    @ApiOperation(value = "Get Dependency Class", notes = "Returns a dependency class of a scan within a project by " +
+            "projectId, scanId, dependencyId, classId")
+    public ClazzDTO getDependencyClazz(@PathVariable("projectId") String projectId,
+                                       @PathVariable("scanId") String scanId,
+                                       @PathVariable("dependencyId") String dependencyId,
+                                       @PathVariable("clazzId") String clazzId) {
+
+        return projectService.findDependenyClazz(projectId, scanId, dependencyId, clazzId);
     }
 
     @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/dependencies",

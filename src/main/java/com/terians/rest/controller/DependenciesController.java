@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "dependencies", description = "Dependencies API")
 public class DependenciesController {
 
-    private static final Logger logger = LoggerFactory.getLogger(DependenciesController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DependenciesController.class);
 
     @Autowired
     private DependencyService dependencyService;
@@ -52,6 +52,21 @@ public class DependenciesController {
                                @PathVariable("methodId") String methodId) {
 
         return dependencyService.findMethod(dependencyId, methodId);
+    }
+
+    @RequestMapping(value = "/{dependencyId}/clazzes", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Classes", notes = "Returns all classes of a dependency by dependencyId")
+    public ClazzesDTO getClazzes(@PathVariable("dependencyId") String dependencyId) {
+
+        return dependencyService.findAllClazzes(dependencyId);
+    }
+
+    @RequestMapping(value = "/{dependencyId}/clazzes/{clazzId}", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Class", notes = "Returns a class of a dependency by dependencyId, classId")
+    public ClazzDTO getClazz(@PathVariable("dependencyId") String dependencyId,
+                             @PathVariable("clazzId") String clazzId) {
+
+        return dependencyService.findClazz(dependencyId, clazzId);
     }
 
     @RequestMapping(value = "/{dependencyId}/dependencies", method = RequestMethod.GET)

@@ -22,9 +22,29 @@ public class DependencyDTO {
     private DependenciesDTO dependenciesDTO;
     @JsonProperty("vulnerabilities")
     private VulnerabilitiesDTO vulnerabilitiesDTO;
+    @JsonProperty("methods")
+    private MethodsDTO methodsDTO;
+    @JsonProperty("classes")
+    private ClazzesDTO clazzesDTO;
 
     public DependencyDTO() {
 
+    }
+
+    public ClazzesDTO getClazzesDTO() {
+        return clazzesDTO;
+    }
+
+    public void setClazzesDTO(ClazzesDTO clazzesDTO) {
+        this.clazzesDTO = clazzesDTO;
+    }
+
+    public MethodsDTO getMethodsDTO() {
+        return methodsDTO;
+    }
+
+    public void setMethodsDTO(MethodsDTO methodsDTO) {
+        this.methodsDTO = methodsDTO;
     }
 
     public String getTeriansId() {

@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "vulnerabilities", description = "Vulnerabilities API")
 public class VulnerabilitiesController {
 
-    private static final Logger logger = LoggerFactory.getLogger(VulnerabilitiesController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(VulnerabilitiesController.class);
 
     @Autowired
     private VulnerabilityService vulnerabilityService;

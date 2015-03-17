@@ -27,7 +27,7 @@ public class MethodServiceImpl implements MethodService {
     public MethodDTO findMethod(String methodId) {
 
         if (methodId != null) {
-            return DTOTransformerUtil.transformMethodToMethodDTO(methodRepository.findMethodById(methodId));
+            return DTOTransformerUtil.transformMethodToMethodDTO(methodRepository.findMethod(methodId));
         }
         return null;
     }

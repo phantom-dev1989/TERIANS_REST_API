@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "packages", description = "Packages API")
 public class PackagesController {
 
-    private static final Logger logger = LoggerFactory.getLogger(PackagesController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PackagesController.class);
 
     @Autowired
     private PackageService packageService;

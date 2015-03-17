@@ -1,6 +1,5 @@
 package com.terians.config;
 
-import com.mangofactory.swagger.plugin.EnableSwagger;
 import com.terians.neo4j.service.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

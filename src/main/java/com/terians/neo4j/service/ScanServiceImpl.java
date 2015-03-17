@@ -3,13 +3,11 @@ package com.terians.neo4j.service;
 import com.terians.dto.*;
 import com.terians.dto.transformer.DTOTransformerUtil;
 import com.terians.dto.transformer.IssuesDTOUtil;
-import com.terians.neo4j.model.*;
 import com.terians.neo4j.repository.ClazzRepository;
 import com.terians.neo4j.repository.IssueRepository;
 import com.terians.neo4j.repository.PackageRepository;
 import com.terians.neo4j.repository.ScanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,8 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class ScanServiceImpl implements ScanService {
 
     @Autowired
-    private Neo4jTemplate template;
-    @Autowired
     private ScanRepository scanRepository;
     @Autowired
     private IssueRepository issueRepository;
@@ -30,7 +26,6 @@ public class ScanServiceImpl implements ScanService {
     private PackageRepository packageRepository;
     @Autowired
     private ClazzRepository clazzRepository;
-
 
     @Override
     public ScansDTO findAllScans() {
@@ -45,7 +40,7 @@ public class ScanServiceImpl implements ScanService {
         if (scanId != null) {
 
             if (scanned == null) {
-                scanDTO = DTOTransformerUtil.transformScanToScanDTO(scanRepository.findScanById(scanId));
+                scanDTO = DTOTransformerUtil.transformScanToScanDTO(scanRepository.findScan(scanId));
                 scanDTO.setAbstractness(scanRepository.findAbstractnessByScan(scanId));
                 scanDTO.setClazzCount(scanRepository.findClazzCountByScan(scanId));
                 scanDTO.setComplexity(scanRepository.findComplexityByScan(scanId));
@@ -101,16 +96,7 @@ public class ScanServiceImpl implements ScanService {
     public IssueDTO findIssue(String scanId, String issueId) {
 
         if ((scanId != null) && (issueId != null)) {
-            Scan scan = scanRepository.findScanById(scanId);
-            template.fetch(scan.getIssues());
-            Issue issue = null;
-            for (Issue e1 : scan.getIssues()) {
-                if (e1.getTeriansId().equals(issueId)) {
-                    issue = e1;
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformIssueToIssueDTO(issue);
+            return DTOTransformerUtil.transformIssueToIssueDTO(scanRepository.findIssue(scanId, issueId));
         }
         return null;
     }
@@ -119,9 +105,8 @@ public class ScanServiceImpl implements ScanService {
     public DependenciesDTO findAllDependencies(String scanId) {
 
         if ((scanId != null)) {
-            Scan scan = scanRepository.findScanById(scanId);
-            template.fetch(scan.getDependencies());
-            return DTOTransformerUtil.transformDependencySetToDependenciesDTO(scan.getDependencies());
+            return DTOTransformerUtil.transformDependencySetToDependenciesDTO(scanRepository
+                    .findAllDependencies(scanId));
         }
         return null;
     }
@@ -130,16 +115,8 @@ public class ScanServiceImpl implements ScanService {
     public DependencyDTO findDependency(String scanId, String dependencyId) {
 
         if ((scanId != null) && (dependencyId != null)) {
-            Scan scan = scanRepository.findScanById(scanId);
-            template.fetch(scan.getDependencies());
-            Dependency dependency = null;
-            for (Dependency e : scan.getDependencies()) {
-                if (e.getTeriansId().equals(dependencyId)) {
-                    dependency = e;
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformDependencyToDependencyDTO(dependency);
+            return DTOTransformerUtil.transformDependencyToDependencyDTO(scanRepository
+                    .findDependency(scanId, dependencyId));
         }
         return null;
     }
@@ -148,17 +125,8 @@ public class ScanServiceImpl implements ScanService {
     public MethodsDTO findAllDependencyMethods(String scanId, String dependencyId) {
 
         if ((scanId != null) && (dependencyId != null)) {
-            Scan scan = scanRepository.findScanById(scanId);
-            template.fetch(scan.getDependencies());
-            Dependency dependency = null;
-            for (Dependency e : scan.getDependencies()) {
-                if (e.getTeriansId().equals(dependencyId)) {
-                    dependency = e;
-                    template.fetch(dependency.getMethods());
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformMethodSetToMethodsDTO(dependency.getMethods());
+            return DTOTransformerUtil.transformMethodSetToMethodsDTO(scanRepository
+                    .findAllDependencyMethods(scanId, dependencyId));
         }
         return null;
     }
@@ -167,24 +135,8 @@ public class ScanServiceImpl implements ScanService {
     public MethodDTO findDependencyMethod(String scanId, String dependencyId, String methodId) {
 
         if ((scanId != null) && (dependencyId != null) && (methodId != null)) {
-            Scan scan = scanRepository.findScanById(scanId);
-            template.fetch(scan.getDependencies());
-            Dependency dependency = null;
-            Method method = null;
-            for (Dependency e : scan.getDependencies()) {
-                if (e.getTeriansId().equals(dependencyId)) {
-                    dependency = e;
-                    template.fetch(dependency.getMethods());
-                    for (Method e1 : dependency.getMethods()) {
-                        if (e1.getTeriansId().equals(methodId)) {
-                            method = e1;
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformMethodToMethodDTO(method);
+            return DTOTransformerUtil.transformMethodToMethodDTO(scanRepository
+                    .findDependencyMethod(scanId, dependencyId, methodId));
         }
         return null;
     }
@@ -193,17 +145,8 @@ public class ScanServiceImpl implements ScanService {
     public DependenciesDTO findAllRelatedDependencies(String scanId, String dependencyId) {
 
         if ((scanId != null) && (dependencyId != null)) {
-            Scan scan = scanRepository.findScanById(scanId);
-            template.fetch(scan.getDependencies());
-            Dependency dependency = null;
-            for (Dependency e : scan.getDependencies()) {
-                if (e.getTeriansId().equals(dependencyId)) {
-                    dependency = e;
-                    template.fetch(dependency.getDependencies());
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformDependencySetToDependenciesDTO(dependency.getDependencies());
+            return DTOTransformerUtil.transformDependencySetToDependenciesDTO(scanRepository
+                    .findAllRelatedDependencies(scanId, dependencyId));
         }
         return null;
     }
@@ -212,22 +155,8 @@ public class ScanServiceImpl implements ScanService {
     public DependencyDTO findRelatedDependency(String scanId, String dependencyId, String relatedDependencyId) {
 
         if ((scanId != null) && (dependencyId != null) && (relatedDependencyId != null)) {
-            Scan scan = scanRepository.findScanById(scanId);
-            template.fetch(scan.getDependencies());
-            Dependency dependency = null;
-            Dependency relatedDependency = null;
-            for (Dependency e : scan.getDependencies()) {
-                if (e.getTeriansId().equals(dependencyId)) {
-                    dependency = e;
-                    template.fetch(dependency.getDependencies());
-                    for (Dependency e2 : dependency.getDependencies()) {
-                        relatedDependency = e2;
-                        break;
-                    }
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformDependencyToDependencyDTO(relatedDependency);
+            return DTOTransformerUtil.transformDependencyToDependencyDTO(scanRepository
+                    .findRelatedDependency(scanId, dependencyId, relatedDependencyId));
         }
         return null;
     }
@@ -236,17 +165,8 @@ public class ScanServiceImpl implements ScanService {
     public VulnerabilitiesDTO findAllVulnerabilities(String scanId, String dependencyId) {
 
         if ((scanId != null) && (dependencyId != null)) {
-            Scan scan = scanRepository.findScanById(scanId);
-            template.fetch(scan.getDependencies());
-            Dependency dependency = null;
-            for (Dependency e : scan.getDependencies()) {
-                if (e.getTeriansId().equals(dependencyId)) {
-                    dependency = e;
-                    template.fetch(dependency.getVulnerabilities());
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformVulnerabilitySetToVulnerabilitiesDTO(dependency.getVulnerabilities());
+            return DTOTransformerUtil.transformVulnerabilitySetToVulnerabilitiesDTO(scanRepository
+                    .findAllDependencyVulnerabilities(scanId, dependencyId));
         }
         return null;
     }
@@ -255,24 +175,8 @@ public class ScanServiceImpl implements ScanService {
     public VulnerabilityDTO findVulnerability(String scanId, String dependencyId, String vulnerabilityId) {
 
         if ((scanId != null) && (dependencyId != null) && (vulnerabilityId != null)) {
-            Scan scan = scanRepository.findScanById(scanId);
-            template.fetch(scan.getDependencies());
-            Dependency dependency = null;
-            Vulnerability vulnerability = null;
-            for (Dependency e : scan.getDependencies()) {
-                if (e.getTeriansId().equals(dependencyId)) {
-                    dependency = e;
-                    template.fetch(dependency.getVulnerabilities());
-                    for (Vulnerability e1 : dependency.getVulnerabilities()) {
-                        if (e1.getTeriansId().equals(vulnerabilityId)) {
-                            vulnerability = e1;
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformVulnerabilityToVulnerabilityDTO(vulnerability);
+            return DTOTransformerUtil.transformVulnerabilityToVulnerabilityDTO(scanRepository
+                    .findDependencyVulnerability(scanId, dependencyId, vulnerabilityId));
         }
         return null;
     }
@@ -281,17 +185,8 @@ public class ScanServiceImpl implements ScanService {
     public IssuesDTO findAllDependencyIssues(String scanId, String dependencyId) {
 
         if ((scanId != null) && (dependencyId != null)) {
-            Scan scan = scanRepository.findScanById(scanId);
-            template.fetch(scan.getDependencies());
-            Dependency dependency = null;
-            for (Dependency e : scan.getDependencies()) {
-                if (e.getTeriansId().equals(dependencyId)) {
-                    dependency = e;
-                    template.fetch(dependency.getIssues());
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformIssuesSetToIssuesDTO(dependency.getIssues());
+            return DTOTransformerUtil.transformIssuesSetToIssuesDTO(scanRepository
+                    .findAllDependencyIssues(scanId, dependencyId));
         }
         return null;
     }
@@ -300,24 +195,8 @@ public class ScanServiceImpl implements ScanService {
     public IssueDTO findDependencyIssue(String scanId, String dependencyId, String issueId) {
 
         if ((scanId != null) && (dependencyId != null) && (issueId != null)) {
-            Scan scan = scanRepository.findScanById(scanId);
-            template.fetch(scan.getDependencies());
-            Dependency dependency = null;
-            Issue issue = null;
-            for (Dependency e : scan.getDependencies()) {
-                if (e.getTeriansId().equals(dependencyId)) {
-                    dependency = e;
-                    template.fetch(dependency.getIssues());
-                    for (Issue e1 : dependency.getIssues()) {
-                        if (e1.getTeriansId().equals(issueId)) {
-                            issue = e1;
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformIssueToIssueDTO(issue);
+            return DTOTransformerUtil.transformIssueToIssueDTO(scanRepository
+                    .findDependencyIssue(scanId, dependencyId, issueId));
         }
         return null;
     }
@@ -329,10 +208,7 @@ public class ScanServiceImpl implements ScanService {
 
         if ((scanId != null) && (orderedBy == null)) {
 
-            Scan scan = scanRepository.findScanById(scanId);
-            template.fetch(scan.getPackages());
-            packagesDTO = DTOTransformerUtil.transformPackageSetToPackagesDTO(scan.getPackages());
-            return packagesDTO;
+            return DTOTransformerUtil.transformPackageSetToPackagesDTO(scanRepository.findAllPackages(scanId));
 
         } else if (scanId != null) {
 
@@ -365,17 +241,7 @@ public class ScanServiceImpl implements ScanService {
     public PackageDTO findPackage(String scanId, String packageId) {
 
         if ((scanId != null) && (packageId != null)) {
-            Scan scan = scanRepository.findScanById(scanId);
-            template.fetch(scan.getPackages());
-            com.terians.neo4j.model.Package packageObj = null;
-            for (com.terians.neo4j.model.Package e : scan.getPackages()) {
-                if (e.getTeriansId().equals(packageId)) {
-                    packageObj = e;
-                    break;
-                }
-
-            }
-            return DTOTransformerUtil.transformPackageToPackageDTO(packageObj);
+            return DTOTransformerUtil.transformPackageToPackageDTO(scanRepository.findPackage(scanId, packageId));
         }
         return null;
     }
@@ -387,18 +253,8 @@ public class ScanServiceImpl implements ScanService {
 
         if ((scanId != null) && (packageId != null) && (orderedBy == null)) {
 
-            Scan scan = scanRepository.findScanById(scanId);
-            template.fetch(scan.getPackages());
-            com.terians.neo4j.model.Package packageObj = null;
-            for (com.terians.neo4j.model.Package e : scan.getPackages()) {
-                if (e.getTeriansId().equals(packageId)) {
-                    packageObj = e;
-                    template.fetch(packageObj.getClazzs());
-                    clazzesDTO = DTOTransformerUtil.transformClazzSetToClazzesDTO(packageObj.getClazzs());
-                    break;
-                }
-            }
-            return clazzesDTO;
+            return DTOTransformerUtil.transformClazzSetToClazzesDTO(scanRepository.findAllClazzes(scanId, packageId));
+
         } else if ((scanId != null) && (packageId != null)) {
 
             String[] orderedByArray = orderedBy.split(",");
@@ -429,24 +285,7 @@ public class ScanServiceImpl implements ScanService {
     public ClazzDTO findClazz(String scanId, String packageId, String clazzId) {
 
         if ((scanId != null) && (packageId != null) && (clazzId != null)) {
-            Scan scan = scanRepository.findScanById(scanId);
-            template.fetch(scan.getPackages());
-            com.terians.neo4j.model.Package packageObj = null;
-            Clazz clazz = null;
-            for (com.terians.neo4j.model.Package e : scan.getPackages()) {
-                if (e.getTeriansId().equals(packageId)) {
-                    packageObj = e;
-                    template.fetch(packageObj.getClazzs());
-                    for (Clazz e1 : packageObj.getClazzs()) {
-                        if (e1.getTeriansId().equals(clazzId)) {
-                            clazz = e1;
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformClazzToClazzDTO(clazz);
+            return DTOTransformerUtil.transformClazzToClazzDTO(scanRepository.findClazz(scanId, packageId, clazzId));
         }
         return null;
     }
@@ -455,25 +294,8 @@ public class ScanServiceImpl implements ScanService {
     public MethodsDTO findAllMethods(String scanId, String packageId, String clazzId) {
 
         if ((scanId != null) && (packageId != null) && (clazzId != null)) {
-            Scan scan = scanRepository.findScanById(scanId);
-            template.fetch(scan.getPackages());
-            com.terians.neo4j.model.Package packageObj = null;
-            Clazz clazz = null;
-            for (com.terians.neo4j.model.Package e : scan.getPackages()) {
-                if (e.getTeriansId().equals(packageId)) {
-                    packageObj = e;
-                    template.fetch(packageObj.getClazzs());
-                    for (Clazz e1 : packageObj.getClazzs()) {
-                        if (e1.getTeriansId().equals(clazzId)) {
-                            clazz = e1;
-                            template.fetch(clazz.getMethods());
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformMethodSetToMethodsDTO(clazz.getMethods());
+            return DTOTransformerUtil.transformMethodSetToMethodsDTO(scanRepository
+                    .findAllMethods(scanId, packageId, clazzId));
         }
         return null;
     }
@@ -481,33 +303,29 @@ public class ScanServiceImpl implements ScanService {
     @Override
     public MethodDTO findMethod(String scanId, String packageId, String clazzId, String methodId) {
 
-        if ((scanId != null) && (packageId != null) && (clazzId != null) && (methodId == null)) {
-            Scan scan = scanRepository.findScanById(scanId);
-            template.fetch(scan.getPackages());
-            com.terians.neo4j.model.Package packageObj = null;
-            Clazz clazz = null;
-            Method method = null;
-            for (com.terians.neo4j.model.Package e : scan.getPackages()) {
-                if (e.getTeriansId().equals(packageId)) {
-                    packageObj = e;
-                    template.fetch(packageObj.getClazzs());
-                    for (Clazz e1 : packageObj.getClazzs()) {
-                        if (e1.getTeriansId().equals(clazzId)) {
-                            clazz = e1;
-                            template.fetch(clazz.getMethods());
-                            for (Method e2 : clazz.getMethods()) {
-                                if (e2.getTeriansId().equals(methodId)) {
-                                    method = e2;
-                                    break;
-                                }
-                            }
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            return DTOTransformerUtil.transformMethodToMethodDTO(method);
+        if ((scanId != null) && (packageId != null) && (clazzId != null) && (methodId != null)) {
+            return DTOTransformerUtil.transformMethodToMethodDTO(scanRepository
+                    .findMethod(scanId, packageId, clazzId, methodId));
+        }
+        return null;
+    }
+
+    @Override
+    public ClazzesDTO findAllDependenyClazzes(String scanId, String dependencyId) {
+
+        if ((scanId != null) && (dependencyId != null)) {
+            return DTOTransformerUtil.transformClazzSetToClazzesDTO(scanRepository
+                    .findAllDependencyClazzes(scanId, dependencyId));
+        }
+        return null;
+    }
+
+    @Override
+    public ClazzDTO findDependenyClazz(String scanId, String dependencyId, String clazzId) {
+
+        if ((scanId != null) && (dependencyId != null) && (clazzId != null)) {
+            return DTOTransformerUtil.transformClazzToClazzDTO(scanRepository
+                    .findDependencyClazz(scanId, dependencyId, clazzId));
         }
         return null;
     }
