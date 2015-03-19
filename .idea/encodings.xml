@@ -44,7 +44,6 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/service/VulnerabilityService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/neo4j/service/VulnerabilityServiceImpl.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/terians/properties/Neo4JDatabaseProperties.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/terians/security/oauth/TeriansUserDetailsService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/neo4j.properties" charset="UTF-8" />
   </component>
 </project>
