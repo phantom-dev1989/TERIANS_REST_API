@@ -2,7 +2,6 @@ package com.terians.neo4j.service;
 
 import com.terians.dto.*;
 import com.terians.dto.transformer.DTOTransformerUtil;
-import com.terians.dto.transformer.IssuesDTOUtil;
 import com.terians.neo4j.repository.ClazzRepository;
 import com.terians.neo4j.repository.IssueRepository;
 import com.terians.neo4j.repository.PackageRepository;
@@ -84,10 +83,32 @@ public class ScanServiceImpl implements ScanService {
     }
 
     @Override
-    public IssuesDTO findAllIssues(String scanId, String category, String orderedBy, int limit) {
+    public IssuesDTO findAllIssues(String scanId, String category) {
 
-        if (scanId != null) {
-            return IssuesDTOUtil.findAllIssues(issueRepository, scanId, category, orderedBy, limit);
+        if ((scanId != null) && (category != null)) {
+
+            switch (category) {
+                case "critical":
+                    return  DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository
+                            .findAllCriticalIssuesByScan(scanId));
+                case "high":
+                    return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository
+                            .findAllHighIssuesByScan(scanId));
+                case "medium":
+                    return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository
+                            .findAllMediumIssuesByScan(scanId));
+                case "low":
+                    return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository
+                            .findAllLowIssuesByScan(scanId));
+                case "bestpractices":
+                    return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository
+                            .findAllBestPracticesIssuesByScan(scanId));
+                default:
+                    return  DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository
+                            .findAllCriticalIssuesByScan(scanId));
+            }
+        }else if(scanId != null){
+            return DTOTransformerUtil.transformIssuesSetToIssuesDTO(scanRepository.findAllIssues(scanId));
         }
         return null;
     }
@@ -202,38 +223,11 @@ public class ScanServiceImpl implements ScanService {
     }
 
     @Override
-    public PackagesDTO findAllPackages(String scanId, String orderedBy, int limit) {
+    public PackagesDTO findAllPackages(String scanId) {
 
-        PackagesDTO packagesDTO = null;
-
-        if ((scanId != null) && (orderedBy == null)) {
-
+        if ((scanId != null) ) {
             return DTOTransformerUtil.transformPackageSetToPackagesDTO(scanRepository.findAllPackages(scanId));
-
-        } else if (scanId != null) {
-
-            String[] orderedByArray = orderedBy.split(",");
-            String orderedByValue = orderedByArray[0];
-            String descOrAsc = orderedByArray[1];
-
-            if ((orderedByValue != null) && (orderedBy.equals("afferent"))) {
-
-                if ((descOrAsc != null) && (descOrAsc.equals("desc"))) {
-                    packagesDTO = DTOTransformerUtil.transformPackageSetToPackagesDTO(packageRepository
-                            .findPackagesByScanOrderedByAfferentCount(scanId, limit));
-                    return packagesDTO;
-                }
-
-            } else if ((orderedByValue != null) && (orderedBy.equals("efferent"))) {
-
-                if ((descOrAsc != null) && (descOrAsc.equals("desc"))) {
-                    packagesDTO = DTOTransformerUtil.transformPackageSetToPackagesDTO(packageRepository
-                            .findPackagesByScanOrderedByEfferentCount(scanId, limit));
-                    return packagesDTO;
-                }
-
             }
-        }
         return null;
     }
 
@@ -247,36 +241,10 @@ public class ScanServiceImpl implements ScanService {
     }
 
     @Override
-    public ClazzesDTO findAllClazzes(String scanId, String packageId, String orderedBy, int limit) {
+    public ClazzesDTO findAllClazzes(String scanId, String packageId) {
 
-        ClazzesDTO clazzesDTO = null;
-
-        if ((scanId != null) && (packageId != null) && (orderedBy == null)) {
-
+        if ((scanId != null) && (packageId != null)) {
             return DTOTransformerUtil.transformClazzSetToClazzesDTO(scanRepository.findAllClazzes(scanId, packageId));
-
-        } else if ((scanId != null) && (packageId != null)) {
-
-            String[] orderedByArray = orderedBy.split(",");
-            String orderedByValue = orderedByArray[0];
-            String descOrAsc = orderedByArray[1];
-
-            if ((orderedByValue != null) && (orderedBy.equals("afferent"))) {
-
-                if ((descOrAsc != null) && (descOrAsc.equals("desc"))) {
-                    clazzesDTO = DTOTransformerUtil.transformClazzSetToClazzesDTO(clazzRepository
-                            .findClazzesByScanOrderedByAfferentCount(scanId, limit));
-                    return clazzesDTO;
-                }
-
-            } else if ((orderedByValue != null) && (orderedBy.equals("efferent"))) {
-
-                if ((descOrAsc != null) && (descOrAsc.equals("desc"))) {
-                    clazzesDTO = DTOTransformerUtil.transformClazzSetToClazzesDTO(clazzRepository
-                            .findClazzesByScanOrderedByEfferentCount(scanId, limit));
-                    return clazzesDTO;
-                }
-            }
         }
         return null;
     }

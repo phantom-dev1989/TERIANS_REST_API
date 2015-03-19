@@ -28,7 +28,7 @@ public class ClazzesController {
     // Needs to implement Query Parameter Logic
     @RequestMapping(method = RequestMethod.GET)
     @ApiOperation(value = "Get Classes", notes = "Returns all classes")
-    public ClazzesDTO getClazzes(@RequestParam(value = "category", required = false) String category) {
+    public ClazzesDTO getClazzes() {
 
         return clazzService.findAllClazzes();
     }

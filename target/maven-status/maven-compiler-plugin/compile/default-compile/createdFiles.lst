@@ -35,7 +35,6 @@ com\terians\neo4j\repository\ClazzRepository.class
 com\terians\config\WebAppInitializer.class
 com\terians\dto\DependencyDTO.class
 com\terians\neo4j\service\ClazzService.class
-com\terians\dto\transformer\IssuesDTOUtil.class
 com\terians\neo4j\repository\VulnerabilityRepository.class
 com\terians\neo4j\service\MethodServiceImpl.class
 com\terians\config\Neo4JConfig.class

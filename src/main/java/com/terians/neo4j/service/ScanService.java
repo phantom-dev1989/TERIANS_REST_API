@@ -13,7 +13,7 @@ public interface ScanService {
 
     ScanDTO findScan(String scanId, String scanned);
 
-    IssuesDTO findAllIssues(String scanId, String category, String orderedBy, int limit);
+    IssuesDTO findAllIssues(String scanId, String category);
 
     IssueDTO findIssue(String scanId, String issueId);
 
@@ -37,11 +37,11 @@ public interface ScanService {
 
     IssueDTO findDependencyIssue(String scanId, String dependencyId, String issueId);
 
-    PackagesDTO findAllPackages(String scanId, String orderedBy, int limit);
+    PackagesDTO findAllPackages(String scanId);
 
     PackageDTO findPackage(String scanId, String packageId);
 
-    ClazzesDTO findAllClazzes(String scanId, String packageId, String orderedBy, int limit);
+    ClazzesDTO findAllClazzes(String scanId, String packageId);
 
     ClazzDTO findClazz(String scanId, String packageId, String clazzId);
 
@@ -52,4 +52,5 @@ public interface ScanService {
     ClazzesDTO findAllDependenyClazzes(String scanId, String dependencyId);
 
     ClazzDTO findDependenyClazz(String scanId, String dependencyId, String clazzId);
+
 }

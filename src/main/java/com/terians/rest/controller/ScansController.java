@@ -38,16 +38,11 @@ public class ScansController {
     }
 
     @RequestMapping(value = "/{scanId}/issues", method = RequestMethod.GET)
-    @ApiOperation(value = "Get Issues", notes = "Returns all Issues of a scan by scanId " +
-            "ordered by: issuecount, categorycount, filenamecount, packagecount, clazzcount, " +
-            "issuetype, techdebt and categorized by critical, high, medium, low, best practices and filtered by result limit")
+    @ApiOperation(value = "Get Issues", notes = "Returns all Issues of a scan by scanId")
     public IssuesDTO getIssues(@PathVariable("scanId") String scanId,
-                               @RequestParam(value = "category", required = false) String category,
-                               @RequestParam(value = "orderedBy", required = false) String orderedBy,
-                               @RequestParam(value = "limit", required = false) String limit) {
+                               @RequestParam(value = "category", required = false) String category) {
 
-        int limitInteger = Integer.parseInt(limit);
-        return scanService.findAllIssues(scanId, category, orderedBy, limitInteger);
+        return scanService.findAllIssues(scanId, category);
     }
 
     @RequestMapping(value = "/{scanId}/issues/{issueId}", method = RequestMethod.GET)
@@ -155,7 +150,7 @@ public class ScansController {
     @RequestMapping(value = "/{scanId}/dependencies/{dependencyId}/issues", method = RequestMethod.GET)
     @ApiOperation(value = "Get Dependency Issues", notes = "Returns all issues of a dependency within a " +
             "scan by scanId, dependencyId")
-    public IssuesDTO getIssues(@PathVariable("scanId") String scanId,
+    public IssuesDTO getDependencyIssues(@PathVariable("scanId") String scanId,
                                @PathVariable("dependencyId") String dependencyId) {
 
         return scanService.findAllDependencyIssues(scanId, dependencyId);
@@ -164,7 +159,7 @@ public class ScansController {
     @RequestMapping(value = "/{scanId}/dependencies/{dependencyId}/issues/{issueId}", method = RequestMethod.GET)
     @ApiOperation(value = "Get Dependency Issue", notes = "Returns a dependency issue of a dependency within a " +
             "scan by scanId, dependencyId, issueId")
-    public IssueDTO getIssue(@PathVariable("scanId") String scanId,
+    public IssueDTO getDependencyIssue(@PathVariable("scanId") String scanId,
                              @PathVariable("dependencyId") String dependencyId,
                              @PathVariable("issueId") String issueId) {
 
@@ -173,13 +168,10 @@ public class ScansController {
 
     @RequestMapping(value = "/{scanId}/packages", method = RequestMethod.GET)
     @ApiOperation(value = "Get Packages", notes = "Returns all packages of a " +
-            "scan by scanId and ordered by: afferrent or efferent coupling, and filtered by result limit")
-    public PackagesDTO getPackages(@PathVariable("scanId") String scanId,
-                                   @RequestParam(value = "orderedBy", required = false) String orderedBy,
-                                   @RequestParam(value = "limit", required = false) String limit) {
+            "scan by scanId")
+    public PackagesDTO getPackages(@PathVariable("scanId") String scanId) {
 
-        int limitInteger = Integer.parseInt(limit);
-        return scanService.findAllPackages(scanId, orderedBy, limitInteger);
+        return scanService.findAllPackages(scanId);
     }
 
     @RequestMapping(value = "/{scanId}/packages/{packageId}", method = RequestMethod.GET)
@@ -194,12 +186,9 @@ public class ScansController {
     @ApiOperation(value = "Get Classes", notes = "Returns all classes of a package within" +
             "scan by scanId, packageId and ordered by: afferrent or efferent coupling, and filtered by result limit")
     public ClazzesDTO getClazzes(@PathVariable("scanId") String scanId,
-                                 @PathVariable("packageId") String packageId,
-                                 @RequestParam(value = "orderedBy", required = false) String orderedBy,
-                                 @RequestParam(value = "limit", required = false) String limit) {
+                                 @PathVariable("packageId") String packageId) {
 
-        int limitInteger = Integer.parseInt(limit);
-        return scanService.findAllClazzes(scanId, packageId, orderedBy, limitInteger);
+        return scanService.findAllClazzes(scanId, packageId);
     }
 
     @RequestMapping(value = "/{scanId}/packages/{packageId}/clazzes/{clazzId}", method = RequestMethod.GET)
