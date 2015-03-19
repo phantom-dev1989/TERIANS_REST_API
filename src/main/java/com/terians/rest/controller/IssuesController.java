@@ -21,22 +21,23 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "issues", description = "Issues API")
 public class IssuesController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(IssuesController.class);
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(IssuesController.class);
 
-    @Autowired
-    private IssueService issueService;
+	@Autowired
+	private IssueService issueService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    @ApiOperation(value = "Get Issues", notes = "Returns all issues")
-    public IssuesDTO getIssues() {
+	@RequestMapping(method = RequestMethod.GET)
+	@ApiOperation(value = "Get Issues", notes = "Returns all issues")
+	public IssuesDTO getIssues() {
 
-        return issueService.findAllIssues();
-    }
+		return issueService.findAllIssues();
+	}
 
-    @RequestMapping(value = "/{issueId}", method = RequestMethod.GET)
-    @ApiOperation(value = "Get Issue", notes = "Returns an issue by issueId")
-    public IssueDTO getIssue(@PathVariable("issueId") String issueId) {
+	@RequestMapping(value = "/{issueId}", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Issue", notes = "Returns an issue by issueId")
+	public IssueDTO getIssue(@PathVariable("issueId") String issueId) {
 
-        return issueService.findIssue(issueId);
-    }
+		return issueService.findIssue(issueId);
+	}
 }

@@ -21,22 +21,24 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "vulnerabilities", description = "Vulnerabilities API")
 public class VulnerabilitiesController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(VulnerabilitiesController.class);
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(VulnerabilitiesController.class);
 
-    @Autowired
-    private VulnerabilityService vulnerabilityService;
+	@Autowired
+	private VulnerabilityService vulnerabilityService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    @ApiOperation(value = "Get Vulnerabilities", notes = "Returns all vulnerabilities")
-    public VulnerabilitiesDTO getVulnerabilities() {
+	@RequestMapping(method = RequestMethod.GET)
+	@ApiOperation(value = "Get Vulnerabilities", notes = "Returns all vulnerabilities")
+	public VulnerabilitiesDTO getVulnerabilities() {
 
-        return vulnerabilityService.findAllVulnerabilities();
-    }
+		return vulnerabilityService.findAllVulnerabilities();
+	}
 
-    @RequestMapping(value = "/{vulnerabilityId}", method = RequestMethod.GET)
-    @ApiOperation(value = "Get Vulnerability", notes = "Returns a vulnerability by vulnerabilityId")
-    public VulnerabilityDTO getVulnerability(@PathVariable("vulnerabilityId") String vulnerabilityId) {
+	@RequestMapping(value = "/{vulnerabilityId}", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Vulnerability", notes = "Returns a vulnerability by vulnerabilityId")
+	public VulnerabilityDTO getVulnerability(
+			@PathVariable("vulnerabilityId") String vulnerabilityId) {
 
-        return vulnerabilityService.findVulnerability(vulnerabilityId);
-    }
+		return vulnerabilityService.findVulnerability(vulnerabilityId);
+	}
 }

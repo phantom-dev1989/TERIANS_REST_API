@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 /**
  * Created by stromero on 1/4/2015.
  */
@@ -15,58 +14,69 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class PackageServiceImpl implements PackageService {
 
-    @Autowired
-    private PackageRepository packageRepository;
+	@Autowired
+	private PackageRepository packageRepository;
 
-    @Override
-    public PackagesDTO findAllPackages() {
-        return DTOTransformerUtil.transformPackageSetToPackagesDTO(packageRepository.findAllPackages());
-    }
+	@Override
+	public PackagesDTO findAllPackages() {
+		return DTOTransformerUtil
+				.transformPackageSetToPackagesDTO(packageRepository
+						.findAllPackages());
+	}
 
-    @Override
-    public PackageDTO findPackage(String packageId) {
+	@Override
+	public PackageDTO findPackage(String packageId) {
 
-        if (packageId != null) {
-            return DTOTransformerUtil.transformPackageToPackageDTO(packageRepository.findPackage(packageId));
-        }
-        return null;
-    }
+		if (packageId != null) {
+			return DTOTransformerUtil
+					.transformPackageToPackageDTO(packageRepository
+							.findPackage(packageId));
+		}
+		return null;
+	}
 
-    @Override
-    public ClazzesDTO findAllClazzes(String packageId) {
+	@Override
+	public ClazzesDTO findAllClazzes(String packageId) {
 
-        if (packageId != null) {
-            return DTOTransformerUtil.transformClazzSetToClazzesDTO(packageRepository.findAllClazzes(packageId));
-        }
-        return null;
-    }
+		if (packageId != null) {
+			return DTOTransformerUtil
+					.transformClazzSetToClazzesDTO(packageRepository
+							.findAllClazzes(packageId));
+		}
+		return null;
+	}
 
-    @Override
-    public ClazzDTO findClazz(String packageId, String clazzId) {
+	@Override
+	public ClazzDTO findClazz(String packageId, String clazzId) {
 
-        if ((packageId != null) && (clazzId != null)) {
-            return DTOTransformerUtil.transformClazzToClazzDTO(packageRepository.findClazz(packageId, clazzId));
-        }
-        return null;
-    }
+		if ((packageId != null) && (clazzId != null)) {
+			return DTOTransformerUtil
+					.transformClazzToClazzDTO(packageRepository.findClazz(
+							packageId, clazzId));
+		}
+		return null;
+	}
 
-    @Override
-    public MethodsDTO findAllMethods(String packageId, String clazzId) {
+	@Override
+	public MethodsDTO findAllMethods(String packageId, String clazzId) {
 
-        if ((packageId != null) && (clazzId != null)) {
-            return DTOTransformerUtil.transformMethodSetToMethodsDTO(packageRepository
-                    .findAllMethods(packageId, clazzId));
-        }
-        return null;
-    }
+		if ((packageId != null) && (clazzId != null)) {
+			return DTOTransformerUtil
+					.transformMethodSetToMethodsDTO(packageRepository
+							.findAllMethods(packageId, clazzId));
+		}
+		return null;
+	}
 
-    @Override
-    public MethodDTO findMethod(String packageId, String clazzId, String methodId) {
+	@Override
+	public MethodDTO findMethod(String packageId, String clazzId,
+			String methodId) {
 
-        if ((packageId != null) && (clazzId != null) && (methodId != null)) {
-            return DTOTransformerUtil.transformMethodToMethodDTO(packageRepository
-                    .findMethod(packageId, clazzId, methodId));
-        }
-        return null;
-    }
+		if ((packageId != null) && (clazzId != null) && (methodId != null)) {
+			return DTOTransformerUtil
+					.transformMethodToMethodDTO(packageRepository.findMethod(
+							packageId, clazzId, methodId));
+		}
+		return null;
+	}
 }

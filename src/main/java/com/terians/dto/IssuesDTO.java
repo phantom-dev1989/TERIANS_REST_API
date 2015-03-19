@@ -11,26 +11,26 @@ import java.util.List;
 @ApiModel("Issues")
 public class IssuesDTO {
 
-    private int totalIssues;
-    @JsonProperty("issueList")
-    private List<IssueDTO> issueDTOList;
+	private int totalIssues;
+	@JsonProperty("issueList")
+	private List<IssueDTO> issueDTOList;
 
-    public IssuesDTO() {
-    }
+	public IssuesDTO() {
+	}
 
-    public List<IssueDTO> getIssueDTOList() {
-        return issueDTOList;
-    }
+	public List<IssueDTO> getIssueDTOList() {
+		return issueDTOList;
+	}
 
-    public void setIssueDTOList(List<IssueDTO> issueDTOList) {
-        this.issueDTOList = issueDTOList;
-    }
+	public void setIssueDTOList(List<IssueDTO> issueDTOList) {
+		this.issueDTOList = issueDTOList;
+	}
 
-    public int getTotalIssues() {
-        return totalIssues;
-    }
+	public int getTotalIssues() {
+		return totalIssues;
+	}
 
-    public void setTotalIssues(int totalIssues) {
-        this.totalIssues = totalIssues;
-    }
+	public void setTotalIssues(int totalIssues) {
+		this.totalIssues = totalIssues;
+	}
 }

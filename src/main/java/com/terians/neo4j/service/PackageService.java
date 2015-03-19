@@ -7,17 +7,16 @@ import com.terians.dto.*;
  */
 public interface PackageService {
 
-    PackagesDTO findAllPackages();
+	PackagesDTO findAllPackages();
 
-    PackageDTO findPackage(String packageId);
+	PackageDTO findPackage(String packageId);
 
-    ClazzesDTO findAllClazzes(String packageId);
+	ClazzesDTO findAllClazzes(String packageId);
 
-    ClazzDTO findClazz(String packageId, String clazzId);
+	ClazzDTO findClazz(String packageId, String clazzId);
 
-    MethodsDTO findAllMethods(String packageId, String clazzId);
+	MethodsDTO findAllMethods(String packageId, String clazzId);
 
-    MethodDTO findMethod(String packageId, String clazzId, String methodId);
+	MethodDTO findMethod(String packageId, String clazzId, String methodId);
 
 }
-

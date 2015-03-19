@@ -11,27 +11,28 @@ import java.util.List;
 @ApiModel("Vulnerabilities")
 public class VulnerabilitiesDTO {
 
-    private int totalVulnerabilities;
-    @JsonProperty("vulnerabilityList")
-    private List<VulnerabilityDTO> vulnerabilityDTOList;
+	private int totalVulnerabilities;
+	@JsonProperty("vulnerabilityList")
+	private List<VulnerabilityDTO> vulnerabilityDTOList;
 
-    public VulnerabilitiesDTO() {
+	public VulnerabilitiesDTO() {
 
-    }
+	}
 
-    public List<VulnerabilityDTO> getVulnerabilityDTOList() {
-        return vulnerabilityDTOList;
-    }
+	public List<VulnerabilityDTO> getVulnerabilityDTOList() {
+		return vulnerabilityDTOList;
+	}
 
-    public void setVulnerabilityDTOList(List<VulnerabilityDTO> vulnerabilityDTOList) {
-        this.vulnerabilityDTOList = vulnerabilityDTOList;
-    }
+	public void setVulnerabilityDTOList(
+			List<VulnerabilityDTO> vulnerabilityDTOList) {
+		this.vulnerabilityDTOList = vulnerabilityDTOList;
+	}
 
-    public int getTotalVulnerabilities() {
-        return totalVulnerabilities;
-    }
+	public int getTotalVulnerabilities() {
+		return totalVulnerabilities;
+	}
 
-    public void setTotalVulnerabilities(int totalVulnerabilities) {
-        this.totalVulnerabilities = totalVulnerabilities;
-    }
+	public void setTotalVulnerabilities(int totalVulnerabilities) {
+		this.totalVulnerabilities = totalVulnerabilities;
+	}
 }

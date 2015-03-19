@@ -11,26 +11,26 @@ import java.util.List;
 @ApiModel("Dependencies")
 public class DependenciesDTO {
 
-    private int totalDependencies;
-    @JsonProperty("dependencyList")
-    private List<DependencyDTO> dependencyDTOList;
+	private int totalDependencies;
+	@JsonProperty("dependencyList")
+	private List<DependencyDTO> dependencyDTOList;
 
-    public DependenciesDTO() {
-    }
+	public DependenciesDTO() {
+	}
 
-    public List<DependencyDTO> getDependencyDTOList() {
-        return dependencyDTOList;
-    }
+	public List<DependencyDTO> getDependencyDTOList() {
+		return dependencyDTOList;
+	}
 
-    public void setDependencyDTOList(List<DependencyDTO> dependencyDTOList) {
-        this.dependencyDTOList = dependencyDTOList;
-    }
+	public void setDependencyDTOList(List<DependencyDTO> dependencyDTOList) {
+		this.dependencyDTOList = dependencyDTOList;
+	}
 
-    public int getTotalDependencies() {
-        return totalDependencies;
-    }
+	public int getTotalDependencies() {
+		return totalDependencies;
+	}
 
-    public void setTotalDependencies(int totalDependencies) {
-        this.totalDependencies = totalDependencies;
-    }
+	public void setTotalDependencies(int totalDependencies) {
+		this.totalDependencies = totalDependencies;
+	}
 }

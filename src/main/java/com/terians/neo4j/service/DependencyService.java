@@ -1,6 +1,5 @@
 package com.terians.neo4j.service;
 
-
 import com.terians.dto.*;
 
 /**
@@ -8,28 +7,29 @@ import com.terians.dto.*;
  */
 public interface DependencyService {
 
-    DependenciesDTO findAllDependencies();
+	DependenciesDTO findAllDependencies();
 
-    DependencyDTO findDependency(String dependencyId);
+	DependencyDTO findDependency(String dependencyId);
 
-    MethodsDTO findAllMethods(String dependencyId);
+	MethodsDTO findAllMethods(String dependencyId);
 
-    MethodDTO findMethod(String dependencyId, String methodId);
+	MethodDTO findMethod(String dependencyId, String methodId);
 
-    DependenciesDTO findAllRelatedDependencies(String dependencyId);
+	DependenciesDTO findAllRelatedDependencies(String dependencyId);
 
-    DependencyDTO findRelatedDependency(String dependencyId, String relatedDependencyId);
+	DependencyDTO findRelatedDependency(String dependencyId,
+			String relatedDependencyId);
 
-    VulnerabilitiesDTO findAllVulnerabilities(String dependencyId);
+	VulnerabilitiesDTO findAllVulnerabilities(String dependencyId);
 
-    VulnerabilityDTO findVulnerability(String dependencyId, String vulnerabilityId);
+	VulnerabilityDTO findVulnerability(String dependencyId,
+			String vulnerabilityId);
 
-    IssuesDTO findAllIssues(String dependencyId);
+	IssuesDTO findAllIssues(String dependencyId);
 
-    IssueDTO findIssue(String dependencyId, String issueId);
+	IssueDTO findIssue(String dependencyId, String issueId);
 
-    ClazzesDTO findAllClazzes(String dependencyId);
+	ClazzesDTO findAllClazzes(String dependencyId);
 
-    ClazzDTO findClazz(String dependencyId, String clazzId);
+	ClazzDTO findClazz(String dependencyId, String clazzId);
 }
-

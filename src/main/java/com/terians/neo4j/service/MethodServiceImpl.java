@@ -15,20 +15,24 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class MethodServiceImpl implements MethodService {
 
-    @Autowired
-    private MethodRepository methodRepository;
+	@Autowired
+	private MethodRepository methodRepository;
 
-    @Override
-    public MethodsDTO findAllMethods() {
-        return DTOTransformerUtil.transformMethodSetToMethodsDTO(methodRepository.findAllMethods());
-    }
+	@Override
+	public MethodsDTO findAllMethods() {
+		return DTOTransformerUtil
+				.transformMethodSetToMethodsDTO(methodRepository
+						.findAllMethods());
+	}
 
-    @Override
-    public MethodDTO findMethod(String methodId) {
+	@Override
+	public MethodDTO findMethod(String methodId) {
 
-        if (methodId != null) {
-            return DTOTransformerUtil.transformMethodToMethodDTO(methodRepository.findMethod(methodId));
-        }
-        return null;
-    }
+		if (methodId != null) {
+			return DTOTransformerUtil
+					.transformMethodToMethodDTO(methodRepository
+							.findMethod(methodId));
+		}
+		return null;
+	}
 }

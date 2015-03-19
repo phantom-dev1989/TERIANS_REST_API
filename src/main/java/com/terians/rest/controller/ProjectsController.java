@@ -17,260 +17,268 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "projects", description = "Projects API")
 public class ProjectsController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProjectsController.class);
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(ProjectsController.class);
 
-    @Autowired
-    private ProjectService projectService;
+	@Autowired
+	private ProjectService projectService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    @ApiOperation(value = "Get Projects", notes = "Returns all projects")
-    public ProjectsDTO getProjects() {
+	@RequestMapping(method = RequestMethod.GET)
+	@ApiOperation(value = "Get Projects", notes = "Returns all projects")
+	public ProjectsDTO getProjects() {
 
-        return projectService.findAllProjects();
-    }
+		return projectService.findAllProjects();
+	}
 
-    @RequestMapping(value = "/{projectId}", method = RequestMethod.GET)
-    @ApiOperation(value = "Get Project", notes = "Returns a project by projectId")
-    public ProjectDTO getProject(@PathVariable("projectId") String projectId) {
+	@RequestMapping(value = "/{projectId}", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Project", notes = "Returns a project by projectId")
+	public ProjectDTO getProject(@PathVariable("projectId") String projectId) {
 
-        return projectService.findProject(projectId);
-    }
+		return projectService.findProject(projectId);
+	}
 
-    @RequestMapping(value = "/{projectId}/scans", method = RequestMethod.GET)
-    @ApiOperation(value = "Get Scans", notes = "Returns all scans of a project by projectId")
-    public ScansDTO getScans(@PathVariable("projectId") String projectId) {
+	@RequestMapping(value = "/{projectId}/scans", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Scans", notes = "Returns all scans of a project by projectId")
+	public ScansDTO getScans(@PathVariable("projectId") String projectId) {
 
-        return projectService.findAllScans(projectId);
-    }
+		return projectService.findAllScans(projectId);
+	}
 
-    @RequestMapping(value = "/{projectId}/scans/{scanId}", method = RequestMethod.GET)
-    @ApiOperation(value = "Get Scan", notes = "Returns a scan of a project by projectId, scanId or by first or" +
-            "last scanned")
-    public ScanDTO getScan(@PathVariable("projectId") String projectId,
-                           @PathVariable("scanId") String scanId,
-                           @RequestParam(value = "scanned", required = false) String scanned) {
+	@RequestMapping(value = "/{projectId}/scans/{scanId}", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Scan", notes = "Returns a scan of a project by projectId, scanId or by first or"
+			+ "last scanned")
+	public ScanDTO getScan(@PathVariable("projectId") String projectId,
+			@PathVariable("scanId") String scanId,
+			@RequestParam(value = "scanned", required = false) String scanned) {
 
-        return projectService.findScan(projectId, scanId, scanned);
-    }
+		return projectService.findScan(projectId, scanId, scanned);
+	}
 
-    @RequestMapping(value = "/{projectId}/scans/{scanId}/issues", method = RequestMethod.GET)
-    @ApiOperation(value = "Get Issues", notes = "Returns all issues of a scan within a project by " +
-            "projectId, scanId")
-    public IssuesDTO getIssues(@PathVariable("projectId") String projectId,
-                               @PathVariable("scanId") String scanId) {
+	@RequestMapping(value = "/{projectId}/scans/{scanId}/issues", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Issues", notes = "Returns all issues of a scan within a project by "
+			+ "projectId, scanId")
+	public IssuesDTO getIssues(@PathVariable("projectId") String projectId,
+			@PathVariable("scanId") String scanId) {
 
-        return projectService.findAllIssues(projectId, scanId);
-    }
+		return projectService.findAllIssues(projectId, scanId);
+	}
 
-    @RequestMapping(value = "/{projectId}/scans/{scanId}/issues/{issueId}", method = RequestMethod.GET)
-    @ApiOperation(value = "Get Issue", notes = "Returns an issue of a scan within a project by " +
-            "projectId, scanId, issueId")
-    public IssueDTO getIssue(@PathVariable("projectId") String projectId,
-                             @PathVariable("scanId") String scanId,
-                             @PathVariable("issueId") String issueId) {
+	@RequestMapping(value = "/{projectId}/scans/{scanId}/issues/{issueId}", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Issue", notes = "Returns an issue of a scan within a project by "
+			+ "projectId, scanId, issueId")
+	public IssueDTO getIssue(@PathVariable("projectId") String projectId,
+			@PathVariable("scanId") String scanId,
+			@PathVariable("issueId") String issueId) {
 
-        return projectService.findIssue(projectId, scanId, issueId);
-    }
+		return projectService.findIssue(projectId, scanId, issueId);
+	}
 
-    @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies", method = RequestMethod.GET)
-    @ApiOperation(value = "Get Dependencies", notes = "Returns all dependencies of a scan within a project by " +
-            "projectId, scanId")
-    public DependenciesDTO getDependencies(@PathVariable("projectId") String projectId,
-                                           @PathVariable("scanId") String scanId) {
+	@RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Dependencies", notes = "Returns all dependencies of a scan within a project by "
+			+ "projectId, scanId")
+	public DependenciesDTO getDependencies(
+			@PathVariable("projectId") String projectId,
+			@PathVariable("scanId") String scanId) {
 
-        return projectService.findAllDependencies(projectId, scanId);
-    }
+		return projectService.findAllDependencies(projectId, scanId);
+	}
 
-    @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}", method = RequestMethod.GET)
-    @ApiOperation(value = "Get Dependency", notes = "Returns a dependency of a scan within a project by " +
-            "projectId, scanId, dependencyId")
-    public DependencyDTO getDependency(@PathVariable("projectId") String projectId,
-                                       @PathVariable("scanId") String scanId,
-                                       @PathVariable("dependencyId") String dependencyId) {
+	@RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Dependency", notes = "Returns a dependency of a scan within a project by "
+			+ "projectId, scanId, dependencyId")
+	public DependencyDTO getDependency(
+			@PathVariable("projectId") String projectId,
+			@PathVariable("scanId") String scanId,
+			@PathVariable("dependencyId") String dependencyId) {
 
-        return projectService.findDependeny(projectId, scanId, dependencyId);
-    }
+		return projectService.findDependeny(projectId, scanId, dependencyId);
+	}
 
-    @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/methods",
-            method = RequestMethod.GET)
-    @ApiOperation(value = "Get Dependency Methods", notes = "Returns all dependency methods of a scan within a project by " +
-            "projectId, scanId, dependencyId")
-    public MethodsDTO getMethods(@PathVariable("projectId") String projectId,
-                                 @PathVariable("scanId") String scanId,
-                                 @PathVariable("dependencyId") String dependencyId) {
+	@RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/methods", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Dependency Methods", notes = "Returns all dependency methods of a scan within a project by "
+			+ "projectId, scanId, dependencyId")
+	public MethodsDTO getMethods(@PathVariable("projectId") String projectId,
+			@PathVariable("scanId") String scanId,
+			@PathVariable("dependencyId") String dependencyId) {
 
-        return projectService.findAllDependenyMethods(projectId, scanId, dependencyId);
-    }
+		return projectService.findAllDependenyMethods(projectId, scanId,
+				dependencyId);
+	}
 
-    @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/methods/{methodId}",
-            method = RequestMethod.GET)
-    @ApiOperation(value = "Get Dependency Method", notes = "Returns a dependency method of a scan within a project by " +
-            "projectId, scanId, dependencyId, methodId")
-    public MethodDTO getMethod(@PathVariable("projectId") String projectId,
-                               @PathVariable("scanId") String scanId,
-                               @PathVariable("dependencyId") String dependencyId,
-                               @PathVariable("methodId") String methodId) {
+	@RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/methods/{methodId}", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Dependency Method", notes = "Returns a dependency method of a scan within a project by "
+			+ "projectId, scanId, dependencyId, methodId")
+	public MethodDTO getMethod(@PathVariable("projectId") String projectId,
+			@PathVariable("scanId") String scanId,
+			@PathVariable("dependencyId") String dependencyId,
+			@PathVariable("methodId") String methodId) {
 
-        return projectService.findDependenyMethod(projectId, scanId, dependencyId, methodId);
-    }
+		return projectService.findDependenyMethod(projectId, scanId,
+				dependencyId, methodId);
+	}
 
-    @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/clazzes",
-            method = RequestMethod.GET)
-    @ApiOperation(value = "Get Dependency Classes", notes = "Returns all dependency classes of a scan within a project by " +
-            "projectId, scanId, dependencyId")
-    public ClazzesDTO getDependencyClazzes(@PathVariable("projectId") String projectId,
-                                           @PathVariable("scanId") String scanId,
-                                           @PathVariable("dependencyId") String dependencyId) {
+	@RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/clazzes", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Dependency Classes", notes = "Returns all dependency classes of a scan within a project by "
+			+ "projectId, scanId, dependencyId")
+	public ClazzesDTO getDependencyClazzes(
+			@PathVariable("projectId") String projectId,
+			@PathVariable("scanId") String scanId,
+			@PathVariable("dependencyId") String dependencyId) {
 
-        return projectService.findAllDependenyClazzes(projectId, scanId, dependencyId);
-    }
+		return projectService.findAllDependenyClazzes(projectId, scanId,
+				dependencyId);
+	}
 
-    @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/clazzes/{clazzId}",
-            method = RequestMethod.GET)
-    @ApiOperation(value = "Get Dependency Class", notes = "Returns a dependency class of a scan within a project by " +
-            "projectId, scanId, dependencyId, classId")
-    public ClazzDTO getDependencyClazz(@PathVariable("projectId") String projectId,
-                                       @PathVariable("scanId") String scanId,
-                                       @PathVariable("dependencyId") String dependencyId,
-                                       @PathVariable("clazzId") String clazzId) {
+	@RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/clazzes/{clazzId}", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Dependency Class", notes = "Returns a dependency class of a scan within a project by "
+			+ "projectId, scanId, dependencyId, classId")
+	public ClazzDTO getDependencyClazz(
+			@PathVariable("projectId") String projectId,
+			@PathVariable("scanId") String scanId,
+			@PathVariable("dependencyId") String dependencyId,
+			@PathVariable("clazzId") String clazzId) {
 
-        return projectService.findDependenyClazz(projectId, scanId, dependencyId, clazzId);
-    }
+		return projectService.findDependenyClazz(projectId, scanId,
+				dependencyId, clazzId);
+	}
 
-    @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/dependencies",
-            method = RequestMethod.GET)
-    @ApiOperation(value = "Get Related Dependencies", notes = "Returns all related dependencies of a dependency of a " +
-            "scan within a project by projectId, scanId, dependencyId")
-    public DependenciesDTO getDependencies(@PathVariable("projectId") String projectId,
-                                           @PathVariable("scanId") String scanId,
-                                           @PathVariable("dependencyId") String dependencyId) {
+	@RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/dependencies", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Related Dependencies", notes = "Returns all related dependencies of a dependency of a "
+			+ "scan within a project by projectId, scanId, dependencyId")
+	public DependenciesDTO getDependencies(
+			@PathVariable("projectId") String projectId,
+			@PathVariable("scanId") String scanId,
+			@PathVariable("dependencyId") String dependencyId) {
 
-        return projectService.findAllRelatedDependencies(projectId, scanId, dependencyId);
-    }
+		return projectService.findAllRelatedDependencies(projectId, scanId,
+				dependencyId);
+	}
 
-    @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/dependencies/{relatedDependencyId}",
-            method = RequestMethod.GET)
-    @ApiOperation(value = "Get Related Dependency", notes = "Returns a related dependency of a dependency of a " +
-            "scan within a project by projectId, scanId, dependencyId, relatedDependencyId")
-    public DependencyDTO getDependency(@PathVariable("projectId") String projectId,
-                                       @PathVariable("scanId") String scanId,
-                                       @PathVariable("dependencyId") String dependencyId,
-                                       @PathVariable("relatedDependencyId") String relatedDependencyId) {
+	@RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/dependencies/{relatedDependencyId}", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Related Dependency", notes = "Returns a related dependency of a dependency of a "
+			+ "scan within a project by projectId, scanId, dependencyId, relatedDependencyId")
+	public DependencyDTO getDependency(
+			@PathVariable("projectId") String projectId,
+			@PathVariable("scanId") String scanId,
+			@PathVariable("dependencyId") String dependencyId,
+			@PathVariable("relatedDependencyId") String relatedDependencyId) {
 
-        return projectService.findRelatedDependency(projectId, scanId, dependencyId, relatedDependencyId);
-    }
+		return projectService.findRelatedDependency(projectId, scanId,
+				dependencyId, relatedDependencyId);
+	}
 
-    @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/vulnerabilities",
-            method = RequestMethod.GET)
-    @ApiOperation(value = "Get Vulnerabilities", notes = "Returns all vulnerabilities of a dependency of a " +
-            "scan within a project by projectId, scanId, dependencyId")
-    public VulnerabilitiesDTO getVulnerabilities(@PathVariable("projectId") String projectId,
-                                                 @PathVariable("scanId") String scanId,
-                                                 @PathVariable("dependencyId") String dependencyId) {
+	@RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/vulnerabilities", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Vulnerabilities", notes = "Returns all vulnerabilities of a dependency of a "
+			+ "scan within a project by projectId, scanId, dependencyId")
+	public VulnerabilitiesDTO getVulnerabilities(
+			@PathVariable("projectId") String projectId,
+			@PathVariable("scanId") String scanId,
+			@PathVariable("dependencyId") String dependencyId) {
 
-        return projectService.findAllVulnerabilities(projectId, scanId, dependencyId);
-    }
+		return projectService.findAllVulnerabilities(projectId, scanId,
+				dependencyId);
+	}
 
-    @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/vulnerabilities/{vulnerabilityId}",
-            method = RequestMethod.GET)
-    @ApiOperation(value = "Get Vulnerability", notes = "Returns a vulnerability of a dependency of a " +
-            "scan within a project by projectId, scanId, dependencyId, vulnerabilityId")
-    public VulnerabilityDTO getVulnerability(@PathVariable("projectId") String projectId,
-                                             @PathVariable("scanId") String scanId,
-                                             @PathVariable("dependencyId") String dependencyId,
-                                             @PathVariable("vulnerabilityId") String vulnerabilityId) {
+	@RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/vulnerabilities/{vulnerabilityId}", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Vulnerability", notes = "Returns a vulnerability of a dependency of a "
+			+ "scan within a project by projectId, scanId, dependencyId, vulnerabilityId")
+	public VulnerabilityDTO getVulnerability(
+			@PathVariable("projectId") String projectId,
+			@PathVariable("scanId") String scanId,
+			@PathVariable("dependencyId") String dependencyId,
+			@PathVariable("vulnerabilityId") String vulnerabilityId) {
 
-        return projectService.findVulnerability(projectId, scanId, dependencyId, vulnerabilityId);
-    }
+		return projectService.findVulnerability(projectId, scanId,
+				dependencyId, vulnerabilityId);
+	}
 
-    @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/issues",
-            method = RequestMethod.GET)
-    @ApiOperation(value = "Get Dependency Issues", notes = "Returns all issues of a dependency of a " +
-            "scan within a project by projectId, scanId, dependencyId")
-    public IssuesDTO getIssues(@PathVariable("projectId") String projectId,
-                               @PathVariable("scanId") String scanId,
-                               @PathVariable("dependencyId") String dependencyId) {
+	@RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/issues", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Dependency Issues", notes = "Returns all issues of a dependency of a "
+			+ "scan within a project by projectId, scanId, dependencyId")
+	public IssuesDTO getIssues(@PathVariable("projectId") String projectId,
+			@PathVariable("scanId") String scanId,
+			@PathVariable("dependencyId") String dependencyId) {
 
-        return projectService.findAllDependencyIssues(projectId, scanId, dependencyId);
+		return projectService.findAllDependencyIssues(projectId, scanId,
+				dependencyId);
 
-    }
+	}
 
-    @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/issues/{issueId}",
-            method = RequestMethod.GET)
-    @ApiOperation(value = "Get Dependency Issue", notes = "Returns an issue of a dependency of a " +
-            "scan within a project by projectId, scanId, dependencyId, issueId")
-    public IssueDTO getIssue(@PathVariable("projectId") String projectId,
-                             @PathVariable("scanId") String scanId,
-                             @PathVariable("dependencyId") String dependencyId,
-                             @PathVariable("issueId") String issueId) {
+	@RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/issues/{issueId}", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Dependency Issue", notes = "Returns an issue of a dependency of a "
+			+ "scan within a project by projectId, scanId, dependencyId, issueId")
+	public IssueDTO getIssue(@PathVariable("projectId") String projectId,
+			@PathVariable("scanId") String scanId,
+			@PathVariable("dependencyId") String dependencyId,
+			@PathVariable("issueId") String issueId) {
 
-        return projectService.findDependencyIssue(projectId, scanId, dependencyId, issueId);
-    }
+		return projectService.findDependencyIssue(projectId, scanId,
+				dependencyId, issueId);
+	}
 
-    @RequestMapping(value = "/{projectId}/scans/{scanId}/packages", method = RequestMethod.GET)
-    @ApiOperation(value = "Get Packages", notes = "Returns all packages of a " +
-            "scan within a project by projectId, scanId")
-    public PackagesDTO getPackages(@PathVariable("projectId") String projectId,
-                                   @PathVariable("scanId") String scanId) {
+	@RequestMapping(value = "/{projectId}/scans/{scanId}/packages", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Packages", notes = "Returns all packages of a "
+			+ "scan within a project by projectId, scanId")
+	public PackagesDTO getPackages(@PathVariable("projectId") String projectId,
+			@PathVariable("scanId") String scanId) {
 
-        return projectService.findAllPackages(projectId, scanId);
-    }
+		return projectService.findAllPackages(projectId, scanId);
+	}
 
-    @RequestMapping(value = "/{projectId}/scans/{scanId}/packages/{packageId}", method = RequestMethod.GET)
-    @ApiOperation(value = "Get Package", notes = "Returns a packages of a " +
-            "scan within a project by projectId, scanId, packageId")
-    public PackageDTO getPackage(@PathVariable("projectId") String projectId,
-                                 @PathVariable("scanId") String scanId,
-                                 @PathVariable("packageId") String packageId) {
+	@RequestMapping(value = "/{projectId}/scans/{scanId}/packages/{packageId}", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Package", notes = "Returns a packages of a "
+			+ "scan within a project by projectId, scanId, packageId")
+	public PackageDTO getPackage(@PathVariable("projectId") String projectId,
+			@PathVariable("scanId") String scanId,
+			@PathVariable("packageId") String packageId) {
 
-        return projectService.findPackage(projectId, scanId, packageId);
-    }
+		return projectService.findPackage(projectId, scanId, packageId);
+	}
 
-    @RequestMapping(value = "/{projectId}/scans/{scanId}/packages/{packageId}/clazzes", method = RequestMethod.GET)
-    @ApiOperation(value = "Get Classes", notes = "Returns all classes of a packages of a " +
-            "scan within a project by projectId, scanId, packageId")
-    public ClazzesDTO getClazzes(@PathVariable("projectId") String projectId,
-                                 @PathVariable("scanId") String scanId,
-                                 @PathVariable("packageId") String packageId) {
+	@RequestMapping(value = "/{projectId}/scans/{scanId}/packages/{packageId}/clazzes", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Classes", notes = "Returns all classes of a packages of a "
+			+ "scan within a project by projectId, scanId, packageId")
+	public ClazzesDTO getClazzes(@PathVariable("projectId") String projectId,
+			@PathVariable("scanId") String scanId,
+			@PathVariable("packageId") String packageId) {
 
-        return projectService.findAllClazzes(projectId, scanId, packageId);
-    }
+		return projectService.findAllClazzes(projectId, scanId, packageId);
+	}
 
-    @RequestMapping(value = "/{projectId}/scans/{scanId}/packages/{packageId}/clazzes/{clazzId}",
-            method = RequestMethod.GET)
-    @ApiOperation(value = "Get Class", notes = "Returns a class of a packages of a " +
-            "scan within a project by projectId, scanId, packageId, classId")
-    public ClazzDTO getClazz(@PathVariable("projectId") String projectId,
-                             @PathVariable("scanId") String scanId,
-                             @PathVariable("packageId") String packageId,
-                             @PathVariable("clazzId") String clazzId) {
+	@RequestMapping(value = "/{projectId}/scans/{scanId}/packages/{packageId}/clazzes/{clazzId}", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Class", notes = "Returns a class of a packages of a "
+			+ "scan within a project by projectId, scanId, packageId, classId")
+	public ClazzDTO getClazz(@PathVariable("projectId") String projectId,
+			@PathVariable("scanId") String scanId,
+			@PathVariable("packageId") String packageId,
+			@PathVariable("clazzId") String clazzId) {
 
-        return projectService.findClazz(projectId, scanId, packageId, clazzId);
-    }
+		return projectService.findClazz(projectId, scanId, packageId, clazzId);
+	}
 
-    @RequestMapping(value = "/{projectId}/scans/{scanId}/packages/{packageId}/clazzes/{clazzId}/methods",
-            method = RequestMethod.GET)
-    @ApiOperation(value = "Get Methods", notes = "Returns all methods a class of a packages of a " +
-            "scan within a project by projectId, scanId, packageId, classId")
-    public MethodsDTO getMethods(@PathVariable("projectId") String projectId,
-                                 @PathVariable("scanId") String scanId,
-                                 @PathVariable("packageId") String packageId,
-                                 @PathVariable("clazzId") String clazzId) {
+	@RequestMapping(value = "/{projectId}/scans/{scanId}/packages/{packageId}/clazzes/{clazzId}/methods", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Methods", notes = "Returns all methods a class of a packages of a "
+			+ "scan within a project by projectId, scanId, packageId, classId")
+	public MethodsDTO getMethods(@PathVariable("projectId") String projectId,
+			@PathVariable("scanId") String scanId,
+			@PathVariable("packageId") String packageId,
+			@PathVariable("clazzId") String clazzId) {
 
-        return projectService.findAllMethods(projectId, scanId, packageId, clazzId);
-    }
+		return projectService.findAllMethods(projectId, scanId, packageId,
+				clazzId);
+	}
 
-    @RequestMapping(value = "/{projectId}/scans/{scanId}/packages/{packageId}/clazzes/{clazzId}/methods/{methodId}",
-            method = RequestMethod.GET)
-    @ApiOperation(value = "Get Method", notes = "Returns a method a class of a packages of a " +
-            "scan within a project by projectId, scanId, packageId, classId, methodId ")
-    public MethodDTO getMethod(@PathVariable("projectId") String projectId,
-                               @PathVariable("scanId") String scanId,
-                               @PathVariable("packageId") String packageId,
-                               @PathVariable("clazzId") String clazzId,
-                               @PathVariable("methodId") String methodId) {
+	@RequestMapping(value = "/{projectId}/scans/{scanId}/packages/{packageId}/clazzes/{clazzId}/methods/{methodId}", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Method", notes = "Returns a method a class of a packages of a "
+			+ "scan within a project by projectId, scanId, packageId, classId, methodId ")
+	public MethodDTO getMethod(@PathVariable("projectId") String projectId,
+			@PathVariable("scanId") String scanId,
+			@PathVariable("packageId") String packageId,
+			@PathVariable("clazzId") String clazzId,
+			@PathVariable("methodId") String methodId) {
 
-        return projectService.findMethod(projectId, scanId, packageId, clazzId, methodId);
-    }
+		return projectService.findMethod(projectId, scanId, packageId, clazzId,
+				methodId);
+	}
 
 }

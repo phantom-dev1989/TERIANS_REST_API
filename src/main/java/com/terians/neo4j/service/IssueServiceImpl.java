@@ -15,21 +15,23 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class IssueServiceImpl implements IssueService {
 
-    @Autowired
-    private IssueRepository issueRepository;
+	@Autowired
+	private IssueRepository issueRepository;
 
-    @Override
-    public IssueDTO findIssue(String issueId) {
+	@Override
+	public IssueDTO findIssue(String issueId) {
 
-        if (issueId != null) {
-            return DTOTransformerUtil.transformIssueToIssueDTO(issueRepository.findIssue(issueId));
-        }
-        return null;
-    }
+		if (issueId != null) {
+			return DTOTransformerUtil.transformIssueToIssueDTO(issueRepository
+					.findIssue(issueId));
+		}
+		return null;
+	}
 
-    @Override
-    public IssuesDTO findAllIssues() {
+	@Override
+	public IssuesDTO findAllIssues() {
 
-        return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository.findAllIssues());
-    }
+		return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository
+				.findAllIssues());
+	}
 }

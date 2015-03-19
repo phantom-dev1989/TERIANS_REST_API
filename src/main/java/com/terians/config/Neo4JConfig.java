@@ -19,18 +19,18 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableNeo4jRepositories("com.terians.neo4j.repository")
 public class Neo4JConfig extends Neo4jConfiguration {
 
-    @Autowired
-    private Neo4JDatabaseProperties config;
+	@Autowired
+	private Neo4JDatabaseProperties config;
 
-    public Neo4JConfig() {
-        this.setBasePackage("com.terians.neo4j.model");
-    }
+	public Neo4JConfig() {
+		this.setBasePackage("com.terians.neo4j.model");
+	}
 
-    @Bean
-    GraphDatabaseService graphDatabaseService() {
-        return new GraphDatabaseFactory()
-                .newEmbeddedDatabaseBuilder
-                        ("C:\\TERIANS\\TERIANS_SEMANTIC_ENGINE\\neo4j-community-2.1.7\\data\\graph.db")
-                .newGraphDatabase();
-    }
+	@Bean
+	GraphDatabaseService graphDatabaseService() {
+		return new GraphDatabaseFactory()
+				.newEmbeddedDatabaseBuilder(
+						"C:\\TERIANS\\TERIANS_SEMANTIC_ENGINE\\neo4j-community-2.1.7\\data\\graph.db")
+				.newGraphDatabase();
+	}
 }

@@ -20,38 +20,39 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "classes", description = "Classes API")
 public class ClazzesController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ClazzesController.class);
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(ClazzesController.class);
 
-    @Autowired
-    private ClazzService clazzService;
+	@Autowired
+	private ClazzService clazzService;
 
-    // Needs to implement Query Parameter Logic
-    @RequestMapping(method = RequestMethod.GET)
-    @ApiOperation(value = "Get Classes", notes = "Returns all classes")
-    public ClazzesDTO getClazzes() {
+	// Needs to implement Query Parameter Logic
+	@RequestMapping(method = RequestMethod.GET)
+	@ApiOperation(value = "Get Classes", notes = "Returns all classes")
+	public ClazzesDTO getClazzes() {
 
-        return clazzService.findAllClazzes();
-    }
+		return clazzService.findAllClazzes();
+	}
 
-    @RequestMapping(value = "/{clazzId}", method = RequestMethod.GET)
-    @ApiOperation(value = "Get Class", notes = "Returns a class by classId")
-    public ClazzDTO getClazz(@PathVariable("clazzId") String clazzId) {
+	@RequestMapping(value = "/{clazzId}", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Class", notes = "Returns a class by classId")
+	public ClazzDTO getClazz(@PathVariable("clazzId") String clazzId) {
 
-        return clazzService.findClazz(clazzId);
-    }
+		return clazzService.findClazz(clazzId);
+	}
 
-    @RequestMapping(value = "/{clazzId}/methods", method = RequestMethod.GET)
-    @ApiOperation(value = "Get Methods", notes = "Returns all methods of a class by classId")
-    public MethodsDTO getMethods(@PathVariable("clazzId") String clazzId) {
+	@RequestMapping(value = "/{clazzId}/methods", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Methods", notes = "Returns all methods of a class by classId")
+	public MethodsDTO getMethods(@PathVariable("clazzId") String clazzId) {
 
-        return clazzService.findAllMethods(clazzId);
-    }
+		return clazzService.findAllMethods(clazzId);
+	}
 
-    @RequestMapping(value = "/{clazzId}/methods/{methodId}", method = RequestMethod.GET)
-    @ApiOperation(value = "Get Method", notes = "Returns a method of a class by classId, methodId")
-    public MethodDTO getMethod(@PathVariable("clazzId") String clazzId,
-                               @PathVariable("methodId") String methodId) {
+	@RequestMapping(value = "/{clazzId}/methods/{methodId}", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Method", notes = "Returns a method of a class by classId, methodId")
+	public MethodDTO getMethod(@PathVariable("clazzId") String clazzId,
+			@PathVariable("methodId") String methodId) {
 
-        return clazzService.findMethod(clazzId, methodId);
-    }
+		return clazzService.findMethod(clazzId, methodId);
+	}
 }

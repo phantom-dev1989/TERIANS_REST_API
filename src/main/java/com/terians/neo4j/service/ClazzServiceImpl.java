@@ -17,38 +17,44 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ClazzServiceImpl implements ClazzService {
 
-    @Autowired
-    private ClazzRepository clazzRepository;
+	@Autowired
+	private ClazzRepository clazzRepository;
 
-    @Override
-    public ClazzesDTO findAllClazzes() {
-        return DTOTransformerUtil.transformClazzSetToClazzesDTO(clazzRepository.findAllClazzes());
-    }
+	@Override
+	public ClazzesDTO findAllClazzes() {
+		return DTOTransformerUtil.transformClazzSetToClazzesDTO(clazzRepository
+				.findAllClazzes());
+	}
 
-    @Override
-    public ClazzDTO findClazz(String clazzId) {
+	@Override
+	public ClazzDTO findClazz(String clazzId) {
 
-        if (clazzId != null) {
-            return DTOTransformerUtil.transformClazzToClazzDTO(clazzRepository.findClazz(clazzId));
-        }
-        return null;
-    }
+		if (clazzId != null) {
+			return DTOTransformerUtil.transformClazzToClazzDTO(clazzRepository
+					.findClazz(clazzId));
+		}
+		return null;
+	}
 
-    @Override
-    public MethodsDTO findAllMethods(String clazzId) {
+	@Override
+	public MethodsDTO findAllMethods(String clazzId) {
 
-        if (clazzId != null) {
-            return DTOTransformerUtil.transformMethodSetToMethodsDTO(clazzRepository.findAllMethods(clazzId));
-        }
-        return null;
-    }
+		if (clazzId != null) {
+			return DTOTransformerUtil
+					.transformMethodSetToMethodsDTO(clazzRepository
+							.findAllMethods(clazzId));
+		}
+		return null;
+	}
 
-    @Override
-    public MethodDTO findMethod(String clazzId, String methodId) {
+	@Override
+	public MethodDTO findMethod(String clazzId, String methodId) {
 
-        if ((clazzId != null) && (methodId != null)) {
-            return DTOTransformerUtil.transformMethodToMethodDTO(clazzRepository.findMethod(clazzId, methodId));
-        }
-        return null;
-    }
+		if ((clazzId != null) && (methodId != null)) {
+			return DTOTransformerUtil
+					.transformMethodToMethodDTO(clazzRepository.findMethod(
+							clazzId, methodId));
+		}
+		return null;
+	}
 }

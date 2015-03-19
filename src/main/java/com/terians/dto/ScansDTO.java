@@ -11,26 +11,26 @@ import java.util.List;
 @ApiModel("Scans")
 public class ScansDTO {
 
-    private int totalScans;
-    @JsonProperty("scanList")
-    private List<ScanDTO> scanDTOList;
+	private int totalScans;
+	@JsonProperty("scanList")
+	private List<ScanDTO> scanDTOList;
 
-    public ScansDTO() {
-    }
+	public ScansDTO() {
+	}
 
-    public List<ScanDTO> getScanDTOList() {
-        return scanDTOList;
-    }
+	public List<ScanDTO> getScanDTOList() {
+		return scanDTOList;
+	}
 
-    public void setScanDTOList(List<ScanDTO> scanDTOList) {
-        this.scanDTOList = scanDTOList;
-    }
+	public void setScanDTOList(List<ScanDTO> scanDTOList) {
+		this.scanDTOList = scanDTOList;
+	}
 
-    public int getTotalScans() {
-        return totalScans;
-    }
+	public int getTotalScans() {
+		return totalScans;
+	}
 
-    public void setTotalScans(int totalScans) {
-        this.totalScans = totalScans;
-    }
+	public void setTotalScans(int totalScans) {
+		this.totalScans = totalScans;
+	}
 }

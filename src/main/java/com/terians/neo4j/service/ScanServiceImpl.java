@@ -17,284 +17,353 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ScanServiceImpl implements ScanService {
 
-    @Autowired
-    private ScanRepository scanRepository;
-    @Autowired
-    private IssueRepository issueRepository;
-    @Autowired
-    private PackageRepository packageRepository;
-    @Autowired
-    private ClazzRepository clazzRepository;
+	@Autowired
+	private ScanRepository scanRepository;
+	@Autowired
+	private IssueRepository issueRepository;
+	@Autowired
+	private PackageRepository packageRepository;
+	@Autowired
+	private ClazzRepository clazzRepository;
 
-    @Override
-    public ScansDTO findAllScans() {
+	@Override
+	public ScansDTO findAllScans() {
 
-        return DTOTransformerUtil.transformScanSetToScansDTO(scanRepository.findAllScans());
-    }
+		return DTOTransformerUtil.transformScanSetToScansDTO(scanRepository
+				.findAllScans());
+	}
 
-    @Override
-    public ScanDTO findScan(String scanId, String scanned) {
+	@Override
+	public ScanDTO findScan(String scanId, String scanned) {
 
-        ScanDTO scanDTO = null;
-        if (scanId != null) {
+		ScanDTO scanDTO = null;
+		if (scanId != null) {
 
-            if (scanned == null) {
-                scanDTO = DTOTransformerUtil.transformScanToScanDTO(scanRepository.findScan(scanId));
-                scanDTO.setAbstractness(scanRepository.findAbstractnessByScan(scanId));
-                scanDTO.setClazzCount(scanRepository.findClazzCountByScan(scanId));
-                scanDTO.setComplexity(scanRepository.findComplexityByScan(scanId));
-                scanDTO.setInstability(scanRepository.findInstabilityByScan(scanId));
-                scanDTO.setMethodCount(scanRepository.findMethodCountByScan(scanId));
-                scanDTO.setPackageCount(scanRepository.findPackageCountByScan(scanId));
-                scanDTO.setTechdebt(scanRepository.findTechDebtByScan(scanId));
-                scanDTO.setIssueCount(scanRepository.findIssueCountByScan(scanId));
-                return scanDTO;
+			if (scanned == null) {
+				scanDTO = DTOTransformerUtil
+						.transformScanToScanDTO(scanRepository.findScan(scanId));
+				scanDTO.setAbstractness(scanRepository
+						.findAbstractnessByScan(scanId));
+				scanDTO.setClazzCount(scanRepository
+						.findClazzCountByScan(scanId));
+				scanDTO.setComplexity(scanRepository
+						.findComplexityByScan(scanId));
+				scanDTO.setInstability(scanRepository
+						.findInstabilityByScan(scanId));
+				scanDTO.setMethodCount(scanRepository
+						.findMethodCountByScan(scanId));
+				scanDTO.setPackageCount(scanRepository
+						.findPackageCountByScan(scanId));
+				scanDTO.setTechdebt(scanRepository.findTechDebtByScan(scanId));
+				scanDTO.setIssueCount(scanRepository
+						.findIssueCountByScan(scanId));
+				return scanDTO;
 
-            } else if (scanned.equals("last")) {
+			} else if ("last".equals(scanned)) {
 
-                scanDTO = DTOTransformerUtil.transformScanToScanDTO(scanRepository.findLatestScan());
-                scanDTO.setAbstractness(scanRepository.findAbstractnessByScan(scanDTO.getTeriansId()));
-                scanDTO.setClazzCount(scanRepository.findClazzCountByScan(scanDTO.getTeriansId()));
-                scanDTO.setComplexity(scanRepository.findComplexityByScan(scanDTO.getTeriansId()));
-                scanDTO.setInstability(scanRepository.findInstabilityByScan(scanDTO.getTeriansId()));
-                scanDTO.setMethodCount(scanRepository.findMethodCountByScan(scanDTO.getTeriansId()));
-                scanDTO.setPackageCount(scanRepository.findPackageCountByScan(scanDTO.getTeriansId()));
-                scanDTO.setTechdebt(scanRepository.findTechDebtByScan(scanDTO.getTeriansId()));
-                scanDTO.setIssueCount(scanRepository.findIssueCountByScan(scanDTO.getTeriansId()));
-                return scanDTO;
+				scanDTO = DTOTransformerUtil
+						.transformScanToScanDTO(scanRepository.findLatestScan());
+				scanDTO.setAbstractness(scanRepository
+						.findAbstractnessByScan(scanDTO.getTeriansId()));
+				scanDTO.setClazzCount(scanRepository
+						.findClazzCountByScan(scanDTO.getTeriansId()));
+				scanDTO.setComplexity(scanRepository
+						.findComplexityByScan(scanDTO.getTeriansId()));
+				scanDTO.setInstability(scanRepository
+						.findInstabilityByScan(scanDTO.getTeriansId()));
+				scanDTO.setMethodCount(scanRepository
+						.findMethodCountByScan(scanDTO.getTeriansId()));
+				scanDTO.setPackageCount(scanRepository
+						.findPackageCountByScan(scanDTO.getTeriansId()));
+				scanDTO.setTechdebt(scanRepository.findTechDebtByScan(scanDTO
+						.getTeriansId()));
+				scanDTO.setIssueCount(scanRepository
+						.findIssueCountByScan(scanDTO.getTeriansId()));
+				return scanDTO;
 
-            } else if (scanned.equals("first")) {
+			} else if ("first".equals(scanned)) {
 
-                scanDTO = DTOTransformerUtil.transformScanToScanDTO(scanRepository.findOldestScan());
-                scanDTO.setAbstractness(scanRepository.findAbstractnessByScan(scanDTO.getTeriansId()));
-                scanDTO.setClazzCount(scanRepository.findClazzCountByScan(scanDTO.getTeriansId()));
-                scanDTO.setComplexity(scanRepository.findComplexityByScan(scanDTO.getTeriansId()));
-                scanDTO.setInstability(scanRepository.findInstabilityByScan(scanDTO.getTeriansId()));
-                scanDTO.setMethodCount(scanRepository.findMethodCountByScan(scanDTO.getTeriansId()));
-                scanDTO.setPackageCount(scanRepository.findPackageCountByScan(scanDTO.getTeriansId()));
-                scanDTO.setTechdebt(scanRepository.findTechDebtByScan(scanDTO.getTeriansId()));
-                scanDTO.setIssueCount(scanRepository.findIssueCountByScan(scanDTO.getTeriansId()));
-                return scanDTO;
+				scanDTO = DTOTransformerUtil
+						.transformScanToScanDTO(scanRepository.findOldestScan());
+				scanDTO.setAbstractness(scanRepository
+						.findAbstractnessByScan(scanDTO.getTeriansId()));
+				scanDTO.setClazzCount(scanRepository
+						.findClazzCountByScan(scanDTO.getTeriansId()));
+				scanDTO.setComplexity(scanRepository
+						.findComplexityByScan(scanDTO.getTeriansId()));
+				scanDTO.setInstability(scanRepository
+						.findInstabilityByScan(scanDTO.getTeriansId()));
+				scanDTO.setMethodCount(scanRepository
+						.findMethodCountByScan(scanDTO.getTeriansId()));
+				scanDTO.setPackageCount(scanRepository
+						.findPackageCountByScan(scanDTO.getTeriansId()));
+				scanDTO.setTechdebt(scanRepository.findTechDebtByScan(scanDTO
+						.getTeriansId()));
+				scanDTO.setIssueCount(scanRepository
+						.findIssueCountByScan(scanDTO.getTeriansId()));
+				return scanDTO;
 
-            }
-        }
+			}
+		}
 
-        return null;
-    }
+		return null;
+	}
 
-    @Override
-    public IssuesDTO findAllIssues(String scanId, String category) {
+	@Override
+	public IssuesDTO findAllIssues(String scanId, String category) {
 
-        if ((scanId != null) && (category != null)) {
+		if ((scanId != null) && (category != null)) {
 
-            switch (category) {
-                case "critical":
-                    return  DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository
-                            .findAllCriticalIssuesByScan(scanId));
-                case "high":
-                    return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository
-                            .findAllHighIssuesByScan(scanId));
-                case "medium":
-                    return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository
-                            .findAllMediumIssuesByScan(scanId));
-                case "low":
-                    return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository
-                            .findAllLowIssuesByScan(scanId));
-                case "bestpractices":
-                    return DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository
-                            .findAllBestPracticesIssuesByScan(scanId));
-                default:
-                    return  DTOTransformerUtil.transformIssuesSetToIssuesDTO(issueRepository
-                            .findAllCriticalIssuesByScan(scanId));
-            }
-        }else if(scanId != null){
-            return DTOTransformerUtil.transformIssuesSetToIssuesDTO(scanRepository.findAllIssues(scanId));
-        }
-        return null;
-    }
+			switch (category) {
+				case "critical" :
+					return DTOTransformerUtil
+							.transformIssuesSetToIssuesDTO(issueRepository
+									.findAllCriticalIssuesByScan(scanId));
+				case "high" :
+					return DTOTransformerUtil
+							.transformIssuesSetToIssuesDTO(issueRepository
+									.findAllHighIssuesByScan(scanId));
+				case "medium" :
+					return DTOTransformerUtil
+							.transformIssuesSetToIssuesDTO(issueRepository
+									.findAllMediumIssuesByScan(scanId));
+				case "low" :
+					return DTOTransformerUtil
+							.transformIssuesSetToIssuesDTO(issueRepository
+									.findAllLowIssuesByScan(scanId));
+				case "bestpractices" :
+					return DTOTransformerUtil
+							.transformIssuesSetToIssuesDTO(issueRepository
+									.findAllBestPracticesIssuesByScan(scanId));
+				default :
+					return DTOTransformerUtil
+							.transformIssuesSetToIssuesDTO(issueRepository
+									.findAllCriticalIssuesByScan(scanId));
+			}
+		} else if (scanId != null) {
+			return DTOTransformerUtil
+					.transformIssuesSetToIssuesDTO(scanRepository
+							.findAllIssues(scanId));
+		}
+		return null;
+	}
 
-    @Override
-    public IssueDTO findIssue(String scanId, String issueId) {
+	@Override
+	public IssueDTO findIssue(String scanId, String issueId) {
 
-        if ((scanId != null) && (issueId != null)) {
-            return DTOTransformerUtil.transformIssueToIssueDTO(scanRepository.findIssue(scanId, issueId));
-        }
-        return null;
-    }
+		if ((scanId != null) && (issueId != null)) {
+			return DTOTransformerUtil.transformIssueToIssueDTO(scanRepository
+					.findIssue(scanId, issueId));
+		}
+		return null;
+	}
 
-    @Override
-    public DependenciesDTO findAllDependencies(String scanId) {
+	@Override
+	public DependenciesDTO findAllDependencies(String scanId) {
 
-        if ((scanId != null)) {
-            return DTOTransformerUtil.transformDependencySetToDependenciesDTO(scanRepository
-                    .findAllDependencies(scanId));
-        }
-        return null;
-    }
+		if (scanId != null) {
+			return DTOTransformerUtil
+					.transformDependencySetToDependenciesDTO(scanRepository
+							.findAllDependencies(scanId));
+		}
+		return null;
+	}
 
-    @Override
-    public DependencyDTO findDependency(String scanId, String dependencyId) {
+	@Override
+	public DependencyDTO findDependency(String scanId, String dependencyId) {
 
-        if ((scanId != null) && (dependencyId != null)) {
-            return DTOTransformerUtil.transformDependencyToDependencyDTO(scanRepository
-                    .findDependency(scanId, dependencyId));
-        }
-        return null;
-    }
+		if ((scanId != null) && (dependencyId != null)) {
+			return DTOTransformerUtil
+					.transformDependencyToDependencyDTO(scanRepository
+							.findDependency(scanId, dependencyId));
+		}
+		return null;
+	}
 
-    @Override
-    public MethodsDTO findAllDependencyMethods(String scanId, String dependencyId) {
+	@Override
+	public MethodsDTO findAllDependencyMethods(String scanId,
+			String dependencyId) {
 
-        if ((scanId != null) && (dependencyId != null)) {
-            return DTOTransformerUtil.transformMethodSetToMethodsDTO(scanRepository
-                    .findAllDependencyMethods(scanId, dependencyId));
-        }
-        return null;
-    }
+		if ((scanId != null) && (dependencyId != null)) {
+			return DTOTransformerUtil
+					.transformMethodSetToMethodsDTO(scanRepository
+							.findAllDependencyMethods(scanId, dependencyId));
+		}
+		return null;
+	}
 
-    @Override
-    public MethodDTO findDependencyMethod(String scanId, String dependencyId, String methodId) {
+	@Override
+	public MethodDTO findDependencyMethod(String scanId, String dependencyId,
+			String methodId) {
 
-        if ((scanId != null) && (dependencyId != null) && (methodId != null)) {
-            return DTOTransformerUtil.transformMethodToMethodDTO(scanRepository
-                    .findDependencyMethod(scanId, dependencyId, methodId));
-        }
-        return null;
-    }
+		if ((scanId != null) && (dependencyId != null) && (methodId != null)) {
+			return DTOTransformerUtil.transformMethodToMethodDTO(scanRepository
+					.findDependencyMethod(scanId, dependencyId, methodId));
+		}
+		return null;
+	}
 
-    @Override
-    public DependenciesDTO findAllRelatedDependencies(String scanId, String dependencyId) {
+	@Override
+	public DependenciesDTO findAllRelatedDependencies(String scanId,
+			String dependencyId) {
 
-        if ((scanId != null) && (dependencyId != null)) {
-            return DTOTransformerUtil.transformDependencySetToDependenciesDTO(scanRepository
-                    .findAllRelatedDependencies(scanId, dependencyId));
-        }
-        return null;
-    }
+		if ((scanId != null) && (dependencyId != null)) {
+			return DTOTransformerUtil
+					.transformDependencySetToDependenciesDTO(scanRepository
+							.findAllRelatedDependencies(scanId, dependencyId));
+		}
+		return null;
+	}
 
-    @Override
-    public DependencyDTO findRelatedDependency(String scanId, String dependencyId, String relatedDependencyId) {
+	@Override
+	public DependencyDTO findRelatedDependency(String scanId,
+			String dependencyId, String relatedDependencyId) {
 
-        if ((scanId != null) && (dependencyId != null) && (relatedDependencyId != null)) {
-            return DTOTransformerUtil.transformDependencyToDependencyDTO(scanRepository
-                    .findRelatedDependency(scanId, dependencyId, relatedDependencyId));
-        }
-        return null;
-    }
+		if ((scanId != null) && (dependencyId != null)
+				&& (relatedDependencyId != null)) {
+			return DTOTransformerUtil
+					.transformDependencyToDependencyDTO(scanRepository
+							.findRelatedDependency(scanId, dependencyId,
+									relatedDependencyId));
+		}
+		return null;
+	}
 
-    @Override
-    public VulnerabilitiesDTO findAllVulnerabilities(String scanId, String dependencyId) {
+	@Override
+	public VulnerabilitiesDTO findAllVulnerabilities(String scanId,
+			String dependencyId) {
 
-        if ((scanId != null) && (dependencyId != null)) {
-            return DTOTransformerUtil.transformVulnerabilitySetToVulnerabilitiesDTO(scanRepository
-                    .findAllDependencyVulnerabilities(scanId, dependencyId));
-        }
-        return null;
-    }
+		if ((scanId != null) && (dependencyId != null)) {
+			return DTOTransformerUtil
+					.transformVulnerabilitySetToVulnerabilitiesDTO(scanRepository
+							.findAllDependencyVulnerabilities(scanId,
+									dependencyId));
+		}
+		return null;
+	}
 
-    @Override
-    public VulnerabilityDTO findVulnerability(String scanId, String dependencyId, String vulnerabilityId) {
+	@Override
+	public VulnerabilityDTO findVulnerability(String scanId,
+			String dependencyId, String vulnerabilityId) {
 
-        if ((scanId != null) && (dependencyId != null) && (vulnerabilityId != null)) {
-            return DTOTransformerUtil.transformVulnerabilityToVulnerabilityDTO(scanRepository
-                    .findDependencyVulnerability(scanId, dependencyId, vulnerabilityId));
-        }
-        return null;
-    }
+		if ((scanId != null) && (dependencyId != null)
+				&& (vulnerabilityId != null)) {
+			return DTOTransformerUtil
+					.transformVulnerabilityToVulnerabilityDTO(scanRepository
+							.findDependencyVulnerability(scanId, dependencyId,
+									vulnerabilityId));
+		}
+		return null;
+	}
 
-    @Override
-    public IssuesDTO findAllDependencyIssues(String scanId, String dependencyId) {
+	@Override
+	public IssuesDTO findAllDependencyIssues(String scanId, String dependencyId) {
 
-        if ((scanId != null) && (dependencyId != null)) {
-            return DTOTransformerUtil.transformIssuesSetToIssuesDTO(scanRepository
-                    .findAllDependencyIssues(scanId, dependencyId));
-        }
-        return null;
-    }
+		if ((scanId != null) && (dependencyId != null)) {
+			return DTOTransformerUtil
+					.transformIssuesSetToIssuesDTO(scanRepository
+							.findAllDependencyIssues(scanId, dependencyId));
+		}
+		return null;
+	}
 
-    @Override
-    public IssueDTO findDependencyIssue(String scanId, String dependencyId, String issueId) {
+	@Override
+	public IssueDTO findDependencyIssue(String scanId, String dependencyId,
+			String issueId) {
 
-        if ((scanId != null) && (dependencyId != null) && (issueId != null)) {
-            return DTOTransformerUtil.transformIssueToIssueDTO(scanRepository
-                    .findDependencyIssue(scanId, dependencyId, issueId));
-        }
-        return null;
-    }
+		if ((scanId != null) && (dependencyId != null) && (issueId != null)) {
+			return DTOTransformerUtil.transformIssueToIssueDTO(scanRepository
+					.findDependencyIssue(scanId, dependencyId, issueId));
+		}
+		return null;
+	}
 
-    @Override
-    public PackagesDTO findAllPackages(String scanId) {
+	@Override
+	public PackagesDTO findAllPackages(String scanId) {
 
-        if ((scanId != null) ) {
-            return DTOTransformerUtil.transformPackageSetToPackagesDTO(scanRepository.findAllPackages(scanId));
-            }
-        return null;
-    }
+		if (scanId != null) {
+			return DTOTransformerUtil
+					.transformPackageSetToPackagesDTO(scanRepository
+							.findAllPackages(scanId));
+		}
+		return null;
+	}
 
-    @Override
-    public PackageDTO findPackage(String scanId, String packageId) {
+	@Override
+	public PackageDTO findPackage(String scanId, String packageId) {
 
-        if ((scanId != null) && (packageId != null)) {
-            return DTOTransformerUtil.transformPackageToPackageDTO(scanRepository.findPackage(scanId, packageId));
-        }
-        return null;
-    }
+		if ((scanId != null) && (packageId != null)) {
+			return DTOTransformerUtil
+					.transformPackageToPackageDTO(scanRepository.findPackage(
+							scanId, packageId));
+		}
+		return null;
+	}
 
-    @Override
-    public ClazzesDTO findAllClazzes(String scanId, String packageId) {
+	@Override
+	public ClazzesDTO findAllClazzes(String scanId, String packageId) {
 
-        if ((scanId != null) && (packageId != null)) {
-            return DTOTransformerUtil.transformClazzSetToClazzesDTO(scanRepository.findAllClazzes(scanId, packageId));
-        }
-        return null;
-    }
+		if ((scanId != null) && (packageId != null)) {
+			return DTOTransformerUtil
+					.transformClazzSetToClazzesDTO(scanRepository
+							.findAllClazzes(scanId, packageId));
+		}
+		return null;
+	}
 
-    @Override
-    public ClazzDTO findClazz(String scanId, String packageId, String clazzId) {
+	@Override
+	public ClazzDTO findClazz(String scanId, String packageId, String clazzId) {
 
-        if ((scanId != null) && (packageId != null) && (clazzId != null)) {
-            return DTOTransformerUtil.transformClazzToClazzDTO(scanRepository.findClazz(scanId, packageId, clazzId));
-        }
-        return null;
-    }
+		if ((scanId != null) && (packageId != null) && (clazzId != null)) {
+			return DTOTransformerUtil.transformClazzToClazzDTO(scanRepository
+					.findClazz(scanId, packageId, clazzId));
+		}
+		return null;
+	}
 
-    @Override
-    public MethodsDTO findAllMethods(String scanId, String packageId, String clazzId) {
+	@Override
+	public MethodsDTO findAllMethods(String scanId, String packageId,
+			String clazzId) {
 
-        if ((scanId != null) && (packageId != null) && (clazzId != null)) {
-            return DTOTransformerUtil.transformMethodSetToMethodsDTO(scanRepository
-                    .findAllMethods(scanId, packageId, clazzId));
-        }
-        return null;
-    }
+		if ((scanId != null) && (packageId != null) && (clazzId != null)) {
+			return DTOTransformerUtil
+					.transformMethodSetToMethodsDTO(scanRepository
+							.findAllMethods(scanId, packageId, clazzId));
+		}
+		return null;
+	}
 
-    @Override
-    public MethodDTO findMethod(String scanId, String packageId, String clazzId, String methodId) {
+	@Override
+	public MethodDTO findMethod(String scanId, String packageId,
+			String clazzId, String methodId) {
 
-        if ((scanId != null) && (packageId != null) && (clazzId != null) && (methodId != null)) {
-            return DTOTransformerUtil.transformMethodToMethodDTO(scanRepository
-                    .findMethod(scanId, packageId, clazzId, methodId));
-        }
-        return null;
-    }
+		if ((scanId != null) && (packageId != null) && (clazzId != null)
+				&& (methodId != null)) {
+			return DTOTransformerUtil.transformMethodToMethodDTO(scanRepository
+					.findMethod(scanId, packageId, clazzId, methodId));
+		}
+		return null;
+	}
 
-    @Override
-    public ClazzesDTO findAllDependenyClazzes(String scanId, String dependencyId) {
+	@Override
+	public ClazzesDTO findAllDependenyClazzes(String scanId, String dependencyId) {
 
-        if ((scanId != null) && (dependencyId != null)) {
-            return DTOTransformerUtil.transformClazzSetToClazzesDTO(scanRepository
-                    .findAllDependencyClazzes(scanId, dependencyId));
-        }
-        return null;
-    }
+		if ((scanId != null) && (dependencyId != null)) {
+			return DTOTransformerUtil
+					.transformClazzSetToClazzesDTO(scanRepository
+							.findAllDependencyClazzes(scanId, dependencyId));
+		}
+		return null;
+	}
 
-    @Override
-    public ClazzDTO findDependenyClazz(String scanId, String dependencyId, String clazzId) {
+	@Override
+	public ClazzDTO findDependenyClazz(String scanId, String dependencyId,
+			String clazzId) {
 
-        if ((scanId != null) && (dependencyId != null) && (clazzId != null)) {
-            return DTOTransformerUtil.transformClazzToClazzDTO(scanRepository
-                    .findDependencyClazz(scanId, dependencyId, clazzId));
-        }
-        return null;
-    }
+		if ((scanId != null) && (dependencyId != null) && (clazzId != null)) {
+			return DTOTransformerUtil.transformClazzToClazzDTO(scanRepository
+					.findDependencyClazz(scanId, dependencyId, clazzId));
+		}
+		return null;
+	}
 }
