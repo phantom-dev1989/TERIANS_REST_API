@@ -35,7 +35,19 @@ public class Clazz {
 	@RelatedTo(type = "HAS_METHOD")
 	private Set<Method> methods;
 
-	// Getters and Setters
+    @RelatedTo(type = "HAS_ISSUE")
+    private Set<Issue> issues;
+
+    // Getters and Setters
+
+    public Set<Issue> getIssues() {
+        return issues;
+    }
+
+    public void setIssues(Set<Issue> issues) {
+        this.issues = issues;
+    }
+
 	public String getLineNumbers() {
 		return lineNumbers;
 	}
