@@ -20,57 +20,57 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "packages", description = "Packages API")
 public class PackagesController {
 
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(PackagesController.class);
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(PackagesController.class);
 
-	@Autowired
-	private PackageService packageService;
+    @Autowired
+    private PackageService packageService;
 
-	@RequestMapping(method = RequestMethod.GET)
-	@ApiOperation(value = "Get Packages", notes = "Returns all packages")
-	public PackagesDTO getPackages() {
+    @RequestMapping(method = RequestMethod.GET)
+    @ApiOperation(value = "Get Packages", notes = "Returns all packages")
+    public PackagesDTO getPackages() {
 
-		return packageService.findAllPackages();
-	}
+        return packageService.findAllPackages();
+    }
 
-	@RequestMapping(value = "/{packageId}", method = RequestMethod.GET)
-	@ApiOperation(value = "Get Package", notes = "Returns a package by packageId")
-	public PackageDTO getPackage(@PathVariable("packageId") String packageId) {
+    @RequestMapping(value = "/{packageId}", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Package", notes = "Returns a package by packageId")
+    public PackageDTO getPackage(@PathVariable("packageId") String packageId) {
 
-		return packageService.findPackage(packageId);
-	}
+        return packageService.findPackage(packageId);
+    }
 
-	@RequestMapping(value = "/{packageId}/clazzes", method = RequestMethod.GET)
-	@ApiOperation(value = "Get Classes", notes = "Returns all classes of a package by packageId")
-	public ClazzesDTO getClazzes(@PathVariable("packageId") String packageId) {
+    @RequestMapping(value = "/{packageId}/clazzes", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Classes", notes = "Returns all classes of a package by packageId")
+    public ClazzesDTO getClazzes(@PathVariable("packageId") String packageId) {
 
-		return packageService.findAllClazzes(packageId);
-	}
+        return packageService.findAllClazzes(packageId);
+    }
 
-	@RequestMapping(value = "/{packageId}/clazzes/{clazzId}", method = RequestMethod.GET)
-	@ApiOperation(value = "Get Class", notes = "Returns a class of a package by packageId, classId")
-	public ClazzDTO getClazz(@PathVariable("packageId") String packageId,
-			@PathVariable("clazzId") String clazzId) {
+    @RequestMapping(value = "/{packageId}/clazzes/{clazzId}", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Class", notes = "Returns a class of a package by packageId, classId")
+    public ClazzDTO getClazz(@PathVariable("packageId") String packageId,
+                             @PathVariable("clazzId") String clazzId) {
 
-		return packageService.findClazz(packageId, clazzId);
-	}
+        return packageService.findClazz(packageId, clazzId);
+    }
 
-	@RequestMapping(value = "/{packageId}/clazzes/{clazzId}/methods", method = RequestMethod.GET)
-	@ApiOperation(value = "Get Methods", notes = "Returns all methods of a class within a "
-			+ "package by packageId, classId")
-	public MethodsDTO getMethods(@PathVariable("packageId") String packageId,
-			@PathVariable("clazzId") String clazzId) {
+    @RequestMapping(value = "/{packageId}/clazzes/{clazzId}/methods", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Methods", notes = "Returns all methods of a class within a "
+            + "package by packageId, classId")
+    public MethodsDTO getMethods(@PathVariable("packageId") String packageId,
+                                 @PathVariable("clazzId") String clazzId) {
 
-		return packageService.findAllMethods(packageId, clazzId);
-	}
+        return packageService.findAllMethods(packageId, clazzId);
+    }
 
-	@RequestMapping(value = "/{packageId}/clazzes/{clazzId}/methods/{methodId}", method = RequestMethod.GET)
-	@ApiOperation(value = "Get Method", notes = "Returns a method of a class within a package "
-			+ "by packageId, classId, methodId")
-	public MethodDTO getMethod(@PathVariable("packageId") String packageId,
-			@PathVariable("clazzId") String clazzId,
-			@PathVariable("methodId") String methodId) {
+    @RequestMapping(value = "/{packageId}/clazzes/{clazzId}/methods/{methodId}", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Method", notes = "Returns a method of a class within a package "
+            + "by packageId, classId, methodId")
+    public MethodDTO getMethod(@PathVariable("packageId") String packageId,
+                               @PathVariable("clazzId") String clazzId,
+                               @PathVariable("methodId") String methodId) {
 
-		return packageService.findMethod(packageId, clazzId, methodId);
-	}
+        return packageService.findMethod(packageId, clazzId, methodId);
+    }
 }

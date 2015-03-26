@@ -20,110 +20,110 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "dependencies", description = "Dependencies API")
 public class DependenciesController {
 
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(DependenciesController.class);
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(DependenciesController.class);
 
-	@Autowired
-	private DependencyService dependencyService;
+    @Autowired
+    private DependencyService dependencyService;
 
-	@RequestMapping(method = RequestMethod.GET)
-	@ApiOperation(value = "Get Dependencies", notes = "Returns all dependencies")
-	public DependenciesDTO getDependencies() {
+    @RequestMapping(method = RequestMethod.GET)
+    @ApiOperation(value = "Get Dependencies", notes = "Returns all dependencies")
+    public DependenciesDTO getDependencies() {
 
-		return dependencyService.findAllDependencies();
-	}
+        return dependencyService.findAllDependencies();
+    }
 
-	@RequestMapping(value = "/{dependencyId}", method = RequestMethod.GET)
-	@ApiOperation(value = "Get Dependency", notes = "Returns a dependency by dependencyId")
-	public DependencyDTO getDependency(
-			@PathVariable("dependencyId") String dependencyId) {
+    @RequestMapping(value = "/{dependencyId}", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Dependency", notes = "Returns a dependency by dependencyId")
+    public DependencyDTO getDependency(
+            @PathVariable("dependencyId") String dependencyId) {
 
-		return dependencyService.findDependency(dependencyId);
-	}
+        return dependencyService.findDependency(dependencyId);
+    }
 
-	@RequestMapping(value = "/{dependencyId}/methods", method = RequestMethod.GET)
-	@ApiOperation(value = "Get Methods", notes = "Returns all methods of a dependency by dependencyId")
-	public MethodsDTO getMethods(
-			@PathVariable("dependencyId") String dependencyId) {
+    @RequestMapping(value = "/{dependencyId}/methods", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Methods", notes = "Returns all methods of a dependency by dependencyId")
+    public MethodsDTO getMethods(
+            @PathVariable("dependencyId") String dependencyId) {
 
-		return dependencyService.findAllMethods(dependencyId);
-	}
+        return dependencyService.findAllMethods(dependencyId);
+    }
 
-	@RequestMapping(value = "/{dependencyId}/methods/{methodId}", method = RequestMethod.GET)
-	@ApiOperation(value = "Get Method", notes = "Returns a method of a dependency by dependencyId, methodId")
-	public MethodDTO getMethod(
-			@PathVariable("dependencyId") String dependencyId,
-			@PathVariable("methodId") String methodId) {
+    @RequestMapping(value = "/{dependencyId}/methods/{methodId}", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Method", notes = "Returns a method of a dependency by dependencyId, methodId")
+    public MethodDTO getMethod(
+            @PathVariable("dependencyId") String dependencyId,
+            @PathVariable("methodId") String methodId) {
 
-		return dependencyService.findMethod(dependencyId, methodId);
-	}
+        return dependencyService.findMethod(dependencyId, methodId);
+    }
 
-	@RequestMapping(value = "/{dependencyId}/clazzes", method = RequestMethod.GET)
-	@ApiOperation(value = "Get Classes", notes = "Returns all classes of a dependency by dependencyId")
-	public ClazzesDTO getClazzes(
-			@PathVariable("dependencyId") String dependencyId) {
+    @RequestMapping(value = "/{dependencyId}/clazzes", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Classes", notes = "Returns all classes of a dependency by dependencyId")
+    public ClazzesDTO getClazzes(
+            @PathVariable("dependencyId") String dependencyId) {
 
-		return dependencyService.findAllClazzes(dependencyId);
-	}
+        return dependencyService.findAllClazzes(dependencyId);
+    }
 
-	@RequestMapping(value = "/{dependencyId}/clazzes/{clazzId}", method = RequestMethod.GET)
-	@ApiOperation(value = "Get Class", notes = "Returns a class of a dependency by dependencyId, classId")
-	public ClazzDTO getClazz(@PathVariable("dependencyId") String dependencyId,
-			@PathVariable("clazzId") String clazzId) {
+    @RequestMapping(value = "/{dependencyId}/clazzes/{clazzId}", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Class", notes = "Returns a class of a dependency by dependencyId, classId")
+    public ClazzDTO getClazz(@PathVariable("dependencyId") String dependencyId,
+                             @PathVariable("clazzId") String clazzId) {
 
-		return dependencyService.findClazz(dependencyId, clazzId);
-	}
+        return dependencyService.findClazz(dependencyId, clazzId);
+    }
 
-	@RequestMapping(value = "/{dependencyId}/dependencies", method = RequestMethod.GET)
-	@ApiOperation(value = "Get Related Dependencies", notes = "Returns all related dependencies of a dependency "
-			+ "by dependencyId")
-	public DependenciesDTO getDependencies(
-			@PathVariable("dependencyId") String dependencyId) {
+    @RequestMapping(value = "/{dependencyId}/dependencies", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Related Dependencies", notes = "Returns all related dependencies of a dependency "
+            + "by dependencyId")
+    public DependenciesDTO getDependencies(
+            @PathVariable("dependencyId") String dependencyId) {
 
-		return dependencyService.findAllRelatedDependencies(dependencyId);
-	}
+        return dependencyService.findAllRelatedDependencies(dependencyId);
+    }
 
-	@RequestMapping(value = "/{dependencyId}/dependencies/{relatedDependencyId}", method = RequestMethod.GET)
-	@ApiOperation(value = "Get Related Dependency", notes = "Returns a related dependency of a dependency by "
-			+ "dependencyId, relatedDependencyId")
-	public DependencyDTO getDependency(
-			@PathVariable("dependencyId") String dependencyId,
-			@PathVariable("relatedDependencyId") String relatedDependencyId) {
+    @RequestMapping(value = "/{dependencyId}/dependencies/{relatedDependencyId}", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Related Dependency", notes = "Returns a related dependency of a dependency by "
+            + "dependencyId, relatedDependencyId")
+    public DependencyDTO getDependency(
+            @PathVariable("dependencyId") String dependencyId,
+            @PathVariable("relatedDependencyId") String relatedDependencyId) {
 
-		return dependencyService.findRelatedDependency(dependencyId,
-				relatedDependencyId);
-	}
+        return dependencyService.findRelatedDependency(dependencyId,
+                relatedDependencyId);
+    }
 
-	@RequestMapping(value = "/{dependencyId}/vulnerabilities", method = RequestMethod.GET)
-	@ApiOperation(value = "Get Vulnerabilities", notes = "Returns all vulnerabilities of a dependency by dependencyId")
-	public VulnerabilitiesDTO getVulnerabilities(
-			@PathVariable("dependencyId") String dependencyId) {
+    @RequestMapping(value = "/{dependencyId}/vulnerabilities", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Vulnerabilities", notes = "Returns all vulnerabilities of a dependency by dependencyId")
+    public VulnerabilitiesDTO getVulnerabilities(
+            @PathVariable("dependencyId") String dependencyId) {
 
-		return dependencyService.findAllVulnerabilities(dependencyId);
-	}
+        return dependencyService.findAllVulnerabilities(dependencyId);
+    }
 
-	@RequestMapping(value = "/{dependencyId}/vulnerabilities/{vulnerabilityId}", method = RequestMethod.GET)
-	@ApiOperation(value = "Get Vulnerability", notes = "Returns a vulnerability of a dependency by dependencyId, vulnerabilityId")
-	public VulnerabilityDTO getVulnerability(
-			@PathVariable("dependencyId") String dependencyId,
-			@PathVariable("vulnerabilityId") String vulnerabilityId) {
+    @RequestMapping(value = "/{dependencyId}/vulnerabilities/{vulnerabilityId}", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Vulnerability", notes = "Returns a vulnerability of a dependency by dependencyId, vulnerabilityId")
+    public VulnerabilityDTO getVulnerability(
+            @PathVariable("dependencyId") String dependencyId,
+            @PathVariable("vulnerabilityId") String vulnerabilityId) {
 
-		return dependencyService.findVulnerability(dependencyId,
-				vulnerabilityId);
-	}
+        return dependencyService.findVulnerability(dependencyId,
+                vulnerabilityId);
+    }
 
-	@RequestMapping(value = "/{dependencyId}/issues", method = RequestMethod.GET)
-	@ApiOperation(value = "Get Issues", notes = "Returns all issues of a dependency by dependencyId")
-	public IssuesDTO getIssues(@PathVariable("dependencyId") String dependencyId) {
+    @RequestMapping(value = "/{dependencyId}/issues", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Issues", notes = "Returns all issues of a dependency by dependencyId")
+    public IssuesDTO getIssues(@PathVariable("dependencyId") String dependencyId) {
 
-		return dependencyService.findAllIssues(dependencyId);
-	}
+        return dependencyService.findAllIssues(dependencyId);
+    }
 
-	@RequestMapping(value = "/{dependencyId}/issues/{issueId}", method = RequestMethod.GET)
-	@ApiOperation(value = "Get Issue", notes = "Returns an issue of a dependency by dependencyId, issueId")
-	public IssueDTO getIssue(@PathVariable("dependencyId") String dependencyId,
-			@PathVariable("issueId") String issueId) {
+    @RequestMapping(value = "/{dependencyId}/issues/{issueId}", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Issue", notes = "Returns an issue of a dependency by dependencyId, issueId")
+    public IssueDTO getIssue(@PathVariable("dependencyId") String dependencyId,
+                             @PathVariable("issueId") String issueId) {
 
-		return dependencyService.findIssue(dependencyId, issueId);
-	}
+        return dependencyService.findIssue(dependencyId, issueId);
+    }
 }

@@ -21,23 +21,23 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "methods", description = "Methods API")
 public class MethodsController {
 
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(MethodsController.class);
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(MethodsController.class);
 
-	@Autowired
-	private MethodService methodService;
+    @Autowired
+    private MethodService methodService;
 
-	@RequestMapping(method = RequestMethod.GET)
-	@ApiOperation(value = "Get Methods", notes = "Returns all methods")
-	public MethodsDTO getMethods() {
+    @RequestMapping(method = RequestMethod.GET)
+    @ApiOperation(value = "Get Methods", notes = "Returns all methods")
+    public MethodsDTO getMethods() {
 
-		return methodService.findAllMethods();
-	}
+        return methodService.findAllMethods();
+    }
 
-	@RequestMapping(value = "/{methodId}", method = RequestMethod.GET)
-	@ApiOperation(value = "Get Method", notes = "Returns a method by methodId")
-	public MethodDTO getMethod(@PathVariable("methodId") String methodId) {
+    @RequestMapping(value = "/{methodId}", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Method", notes = "Returns a method by methodId")
+    public MethodDTO getMethod(@PathVariable("methodId") String methodId) {
 
-		return methodService.findMethod(methodId);
-	}
+        return methodService.findMethod(methodId);
+    }
 }

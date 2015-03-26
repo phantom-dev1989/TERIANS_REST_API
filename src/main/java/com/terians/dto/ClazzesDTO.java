@@ -1,5 +1,6 @@
 package com.terians.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wordnik.swagger.annotations.ApiModel;
 
@@ -9,33 +10,34 @@ import java.util.List;
  * Created by stromero on 3/1/2015.
  */
 @ApiModel("Classes")
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class ClazzesDTO {
 
-	private int totalClazzes;
-	@JsonProperty("classList")
-	private List<ClazzDTO> clazzDTOList;
+    private int size;
+    @JsonProperty("data")
+    private List<ClazzDTO> clazzDTOList;
 
-	public ClazzesDTO() {
-	}
+    public ClazzesDTO() {
+    }
 
-	public ClazzesDTO(int totalClazzes, List<ClazzDTO> clazzDTOList) {
-		this.totalClazzes = totalClazzes;
-		this.clazzDTOList = clazzDTOList;
-	}
+    public ClazzesDTO(int size, List<ClazzDTO> clazzDTOList) {
+        this.size = size;
+        this.clazzDTOList = clazzDTOList;
+    }
 
-	public List<ClazzDTO> getClazzDTOList() {
-		return clazzDTOList;
-	}
+    public List<ClazzDTO> getClazzDTOList() {
+        return clazzDTOList;
+    }
 
-	public void setClazzDTOList(List<ClazzDTO> clazzDTOList) {
-		this.clazzDTOList = clazzDTOList;
-	}
+    public void setClazzDTOList(List<ClazzDTO> clazzDTOList) {
+        this.clazzDTOList = clazzDTOList;
+    }
 
-	public int getTotalClazzes() {
-		return totalClazzes;
-	}
+    public int getSize() {
+        return size;
+    }
 
-	public void setTotalClazzes(int totalClazzes) {
-		this.totalClazzes = totalClazzes;
-	}
+    public void setSize(int size) {
+        this.size = size;
+    }
 }

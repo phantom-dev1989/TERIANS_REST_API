@@ -17,29 +17,29 @@ import org.springframework.context.annotation.Configuration;
 @EnableCaching
 public class CacheConfig implements CachingConfigurer {
 
-	@Bean
-	@Override
-	public CacheManager cacheManager() {
-		return new EhCacheCacheManager(ehCacheManager());
-	}
+    @Bean
+    @Override
+    public CacheManager cacheManager() {
+        return new EhCacheCacheManager(ehCacheManager());
+    }
 
-	@Bean(destroyMethod = "shutdown")
-	public net.sf.ehcache.CacheManager ehCacheManager() {
+    @Bean(destroyMethod = "shutdown")
+    public net.sf.ehcache.CacheManager ehCacheManager() {
 
-		CacheConfiguration cacheConfiguration = new CacheConfiguration();
-		cacheConfiguration.setName("teriansCache");
-		cacheConfiguration.setMemoryStoreEvictionPolicy("LRU");
-		cacheConfiguration.setMaxEntriesLocalHeap(1000);
+        CacheConfiguration cacheConfiguration = new CacheConfiguration();
+        cacheConfiguration.setName("teriansCache");
+        cacheConfiguration.setMemoryStoreEvictionPolicy("LRU");
+        cacheConfiguration.setMaxEntriesLocalHeap(1000);
 
-		net.sf.ehcache.config.Configuration config = new net.sf.ehcache.config.Configuration();
-		config.addCache(cacheConfiguration);
+        net.sf.ehcache.config.Configuration config = new net.sf.ehcache.config.Configuration();
+        config.addCache(cacheConfiguration);
 
-		return net.sf.ehcache.CacheManager.newInstance(config);
-	}
+        return net.sf.ehcache.CacheManager.newInstance(config);
+    }
 
-	@Bean
-	@Override
-	public KeyGenerator keyGenerator() {
-		return new SimpleKeyGenerator();
-	}
+    @Bean
+    @Override
+    public KeyGenerator keyGenerator() {
+        return new SimpleKeyGenerator();
+    }
 }

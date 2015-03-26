@@ -15,24 +15,24 @@ import javax.servlet.ServletRegistration;
  */
 public class WebAppInitializer implements WebApplicationInitializer {
 
-	@Override
-	public void onStartup(ServletContext servletContext)
-			throws ServletException {
+    @Override
+    public void onStartup(ServletContext servletContext)
+            throws ServletException {
 
-		AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
-		ctx.register(WebAppConfig.class);
+        AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
+        ctx.register(WebAppConfig.class);
 
-		ctx.setServletContext(servletContext);
+        ctx.setServletContext(servletContext);
 
-		ServletRegistration.Dynamic servlet = servletContext.addServlet(
-				"dispatcher", new DispatcherServlet(ctx));
-		servlet.addMapping("/*");
-		servlet.setLoadOnStartup(1);
+        ServletRegistration.Dynamic servlet = servletContext.addServlet(
+                "dispatcher", new DispatcherServlet(ctx));
+        servlet.addMapping("/*");
+        servlet.setLoadOnStartup(1);
 
-		// Code for Filters
-		FilterRegistration.Dynamic corsFilter = servletContext.addFilter(
-				"corsFilter", CORSFilter.class);
-		corsFilter.addMappingForUrlPatterns(null, false, "/*");
+        // Code for Filters
+        FilterRegistration.Dynamic corsFilter = servletContext.addFilter(
+                "corsFilter", CORSFilter.class);
+        corsFilter.addMappingForUrlPatterns(null, false, "/*");
 
-	}
+    }
 }

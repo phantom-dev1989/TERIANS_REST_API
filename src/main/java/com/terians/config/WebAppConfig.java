@@ -24,95 +24,95 @@ import static org.ajar.swaggermvcui.SwaggerSpringMvcUi.*;
 @ComponentScan(basePackages = {"com.terians"})
 @Import({
 // MongoDBConfig.class,
-		Neo4JConfig.class, CacheConfig.class, SwaggerConfig.class,
+        Neo4JConfig.class, CacheConfig.class, SwaggerConfig.class,
 // OAuth2Config.class,
 // WebAppSecurityConfig.class
 })
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 
-	/**
-	 * inclusion The PropertySourcesPlaceholderConfigurer automatically lets the
-	 * annotation included property files to be scanned. setting it static to
-	 * spawn on startup.
-	 *
-	 * @return
-	 */
-	@Bean
-	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-		PropertySourcesPlaceholderConfigurer ph = new PropertySourcesPlaceholderConfigurer();
+    /**
+     * inclusion The PropertySourcesPlaceholderConfigurer automatically lets the
+     * annotation included property files to be scanned. setting it static to
+     * spawn on startup.
+     *
+     * @return
+     */
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+        PropertySourcesPlaceholderConfigurer ph = new PropertySourcesPlaceholderConfigurer();
 
-		ph.setIgnoreUnresolvablePlaceholders(true);
+        ph.setIgnoreUnresolvablePlaceholders(true);
 
-		return ph;
-	}
+        return ph;
+    }
 
-	@Bean
-	public ClazzService clazzService() {
+    @Bean
+    public ClazzService clazzService() {
 
-		return new ClazzServiceImpl();
-	}
+        return new ClazzServiceImpl();
+    }
 
-	@Bean
-	public IssueService issueService() {
+    @Bean
+    public IssueService issueService() {
 
-		return new IssueServiceImpl();
-	}
+        return new IssueServiceImpl();
+    }
 
-	@Bean
-	public MethodService methodService() {
+    @Bean
+    public MethodService methodService() {
 
-		return new MethodServiceImpl();
-	}
+        return new MethodServiceImpl();
+    }
 
-	@Bean
-	public PackageService packageService() {
+    @Bean
+    public PackageService packageService() {
 
-		return new PackageServiceImpl();
-	}
+        return new PackageServiceImpl();
+    }
 
-	@Bean
-	public VulnerabilityService vulnerabilityService() {
+    @Bean
+    public VulnerabilityService vulnerabilityService() {
 
-		return new VulnerabilityServiceImpl();
-	}
+        return new VulnerabilityServiceImpl();
+    }
 
-	@Bean
-	public ScanService scanService() {
+    @Bean
+    public ScanService scanService() {
 
-		return new ScanServiceImpl();
-	}
+        return new ScanServiceImpl();
+    }
 
-	@Bean
-	public DependencyService dependencyService() {
+    @Bean
+    public DependencyService dependencyService() {
 
-		return new DependencyServiceImpl();
-	}
+        return new DependencyServiceImpl();
+    }
 
-	@Bean
-	public ProjectService projectService() {
+    @Bean
+    public ProjectService projectService() {
 
-		return new ProjectServiceImpl();
-	}
+        return new ProjectServiceImpl();
+    }
 
-	// Swagger Related Code
-	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler(WEB_JAR_RESOURCE_PATTERNS)
-				.addResourceLocations(WEB_JAR_RESOURCE_LOCATION)
-				.setCachePeriod(0);
-	}
+    // Swagger Related Code
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler(WEB_JAR_RESOURCE_PATTERNS)
+                .addResourceLocations(WEB_JAR_RESOURCE_LOCATION)
+                .setCachePeriod(0);
+    }
 
-	@Override
-	public void configureDefaultServletHandling(
-			DefaultServletHandlerConfigurer configurer) {
-		configurer.enable();
-	}
+    @Override
+    public void configureDefaultServletHandling(
+            DefaultServletHandlerConfigurer configurer) {
+        configurer.enable();
+    }
 
-	@Bean
-	public InternalResourceViewResolver getInternalResourceViewResolver() {
-		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-		resolver.setPrefix(WEB_JAR_VIEW_RESOLVER_PREFIX);
-		resolver.setSuffix(WEB_JAR_VIEW_RESOLVER_SUFFIX);
-		return resolver;
-	}
+    @Bean
+    public InternalResourceViewResolver getInternalResourceViewResolver() {
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+        resolver.setPrefix(WEB_JAR_VIEW_RESOLVER_PREFIX);
+        resolver.setSuffix(WEB_JAR_VIEW_RESOLVER_SUFFIX);
+        return resolver;
+    }
 }

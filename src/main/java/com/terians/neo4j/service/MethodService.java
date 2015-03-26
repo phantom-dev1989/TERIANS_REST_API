@@ -8,8 +8,8 @@ import com.terians.dto.MethodsDTO;
  */
 public interface MethodService {
 
-	MethodsDTO findAllMethods();
+    MethodsDTO findAllMethods();
 
-	MethodDTO findMethod(String methodId);
+    MethodDTO findMethod(String methodId);
 
 }

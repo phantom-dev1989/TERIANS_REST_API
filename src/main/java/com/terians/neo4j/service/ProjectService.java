@@ -7,65 +7,65 @@ import com.terians.dto.*;
  */
 public interface ProjectService {
 
-	ProjectsDTO findAllProjects();
+    ProjectsDTO findAllProjects();
 
-	ProjectDTO findProject(String projectId);
+    ProjectDTO findProject(String projectId);
 
-	ScansDTO findAllScans(String projectId);
+    ScansDTO findAllScans(String projectId);
 
-	ScanDTO findScan(String projectId, String scanId, String scanned);
+    ScanDTO findScan(String projectId, String scanId, String scanned);
 
-	IssuesDTO findAllIssues(String projectId, String scanId);
+    IssuesDTO findAllIssues(String projectId, String scanId);
 
-	IssueDTO findIssue(String projectId, String scanId, String issueId);
+    IssueDTO findIssue(String projectId, String scanId, String issueId);
 
-	DependenciesDTO findAllDependencies(String projectId, String scanId);
+    DependenciesDTO findAllDependencies(String projectId, String scanId);
 
-	DependencyDTO findDependeny(String projectId, String scanId,
-			String dependencyId);
+    DependencyDTO findDependeny(String projectId, String scanId,
+                                String dependencyId);
 
-	MethodsDTO findAllDependenyMethods(String projectId, String scanId,
-			String dependencyId);
+    MethodsDTO findAllDependenyMethods(String projectId, String scanId,
+                                       String dependencyId);
 
-	MethodDTO findDependenyMethod(String projectId, String scanId,
-			String dependencyId, String methodId);
+    MethodDTO findDependenyMethod(String projectId, String scanId,
+                                  String dependencyId, String methodId);
 
-	DependenciesDTO findAllRelatedDependencies(String projectId, String scanId,
-			String dependencyId);
+    DependenciesDTO findAllRelatedDependencies(String projectId, String scanId,
+                                               String dependencyId);
 
-	DependencyDTO findRelatedDependency(String projectId, String scanId,
-			String dependencyId, String relatedDependencyId);
+    DependencyDTO findRelatedDependency(String projectId, String scanId,
+                                        String dependencyId, String relatedDependencyId);
 
-	VulnerabilitiesDTO findAllVulnerabilities(String projectId, String scanId,
-			String dependencyId);
+    VulnerabilitiesDTO findAllVulnerabilities(String projectId, String scanId,
+                                              String dependencyId);
 
-	VulnerabilityDTO findVulnerability(String projectId, String scanId,
-			String dependencyId, String vulnerabilityId);
+    VulnerabilityDTO findVulnerability(String projectId, String scanId,
+                                       String dependencyId, String vulnerabilityId);
 
-	IssuesDTO findAllDependencyIssues(String projectId, String scanId,
-			String dependencyId);
+    IssuesDTO findAllDependencyIssues(String projectId, String scanId,
+                                      String dependencyId);
 
-	IssueDTO findDependencyIssue(String projectId, String scanId,
-			String dependencyId, String issueId);
+    IssueDTO findDependencyIssue(String projectId, String scanId,
+                                 String dependencyId, String issueId);
 
-	PackagesDTO findAllPackages(String projectId, String scanId);
+    PackagesDTO findAllPackages(String projectId, String scanId);
 
-	PackageDTO findPackage(String projectId, String scanId, String packageId);
+    PackageDTO findPackage(String projectId, String scanId, String packageId);
 
-	ClazzesDTO findAllClazzes(String projectId, String scanId, String packageId);
+    ClazzesDTO findAllClazzes(String projectId, String scanId, String packageId);
 
-	ClazzDTO findClazz(String projectId, String scanId, String packageId,
-			String clazzId);
+    ClazzDTO findClazz(String projectId, String scanId, String packageId,
+                       String clazzId);
 
-	MethodsDTO findAllMethods(String projectId, String scanId,
-			String packageId, String clazzId);
+    MethodsDTO findAllMethods(String projectId, String scanId,
+                              String packageId, String clazzId);
 
-	MethodDTO findMethod(String projectId, String scanId, String packageId,
-			String clazzId, String methodId);
+    MethodDTO findMethod(String projectId, String scanId, String packageId,
+                         String clazzId, String methodId);
 
-	ClazzesDTO findAllDependenyClazzes(String projectId, String scanId,
-			String dependencyId);
+    ClazzesDTO findAllDependenyClazzes(String projectId, String scanId,
+                                       String dependencyId);
 
-	ClazzDTO findDependenyClazz(String projectId, String scanId,
-			String dependencyId, String clazzId);
+    ClazzDTO findDependenyClazz(String projectId, String scanId,
+                                String dependencyId, String clazzId);
 }

@@ -8,8 +8,8 @@ import com.terians.dto.IssuesDTO;
  */
 public interface IssueService {
 
-	IssueDTO findIssue(String issueId);
+    IssueDTO findIssue(String issueId);
 
-	IssuesDTO findAllIssues();
+    IssuesDTO findAllIssues();
 
 }

@@ -8,14 +8,14 @@ import org.springframework.stereotype.Component;
 @PropertySource(value = {"classpath:neo4j.properties"})
 public class Neo4JDatabaseProperties {
 
-	@Value("${db.path}")
-	private String path;
+    @Value("${db.path}")
+    private String path;
 
-	public String getPath() {
-		return path;
-	}
+    public String getPath() {
+        return path;
+    }
 
-	public void setPath(String path) {
-		this.path = path;
-	}
+    public void setPath(String path) {
+        this.path = path;
+    }
 }

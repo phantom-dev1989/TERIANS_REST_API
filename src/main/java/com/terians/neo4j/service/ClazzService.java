@@ -10,12 +10,12 @@ import com.terians.dto.MethodsDTO;
  */
 public interface ClazzService {
 
-	ClazzesDTO findAllClazzes();
+    ClazzesDTO findAllClazzes();
 
-	ClazzDTO findClazz(String clazzId);
+    ClazzDTO findClazz(String clazzId);
 
-	MethodsDTO findAllMethods(String methodId);
+    MethodsDTO findAllMethods(String methodId);
 
-	MethodDTO findMethod(String clazzId, String methodId);
+    MethodDTO findMethod(String clazzId, String methodId);
 
 }
