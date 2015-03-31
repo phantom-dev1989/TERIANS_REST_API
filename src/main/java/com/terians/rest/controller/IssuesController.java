@@ -5,8 +5,6 @@ import com.terians.dto.IssuesDTO;
 import com.terians.neo4j.service.IssueService;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/issues")
 @Api(value = "issues", description = "Issues API")
 public class IssuesController {
-
-    private static final Logger LOGGER = LoggerFactory
-            .getLogger(IssuesController.class);
 
     @Autowired
     private IssueService issueService;

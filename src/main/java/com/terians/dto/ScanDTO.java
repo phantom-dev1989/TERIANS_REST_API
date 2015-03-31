@@ -23,6 +23,8 @@ public class ScanDTO {
     private int clazzCount;
     private int packageCount;
     private int issueCount;
+    private int loc;
+    private int circularDependencyCount;
     private Date date;
     private IssuesDTO issuesDTO;
     private DependenciesDTO dependenciesDTO;
@@ -144,5 +146,21 @@ public class ScanDTO {
 
     public void setPackagesDTO(PackagesDTO packagesDTO) {
         this.packagesDTO = packagesDTO;
+    }
+
+    public int getCircularDependencyCount() {
+        return circularDependencyCount;
+    }
+
+    public void setCircularDependencyCount(int circularDependencyCount) {
+        this.circularDependencyCount = circularDependencyCount;
+    }
+
+    public int getLoc() {
+        return loc;
+    }
+
+    public void setLoc(int loc) {
+        this.loc = loc;
     }
 }

@@ -17,13 +17,13 @@ public final class DTOTransformerUtil {
 
     }
 
-    public static final ClazzesDTO transformClazzSetToClazzesDTO(
+    public static ClazzesDTO transformClazzSetToClazzesDTO(
             Set<Clazz> clazzSet) {
 
         ClazzesDTO clazzesDTO = new ClazzesDTO();
         List<ClazzDTO> clazzDTOList = new ArrayList<>();
-        for (Clazz e : clazzSet) {
 
+        for (Clazz e : clazzSet) {
             ClazzDTO clazzDTO = new ClazzDTO();
             clazzDTO.setTeriansId(e.getTeriansId());
             clazzDTO.setAfferent(e.getAfferent());
@@ -42,7 +42,7 @@ public final class DTOTransformerUtil {
         return clazzesDTO;
     }
 
-    public static final ClazzDTO transformClazzToClazzDTO(Clazz clazz) {
+    public static ClazzDTO transformClazzToClazzDTO(Clazz clazz) {
 
         ClazzDTO clazzDTO = new ClazzDTO();
         clazzDTO.setTeriansId(clazz.getTeriansId());
@@ -56,7 +56,7 @@ public final class DTOTransformerUtil {
         return clazzDTO;
     }
 
-    public static final DependencyDTO transformDependencyToDependencyDTO(
+    public static DependencyDTO transformDependencyToDependencyDTO(
             Dependency dependency) {
 
         DependencyDTO dependencyDTO = new DependencyDTO();
@@ -69,7 +69,7 @@ public final class DTOTransformerUtil {
         return dependencyDTO;
     }
 
-    public static final DependenciesDTO transformDependencySetToDependenciesDTO(
+    public static DependenciesDTO transformDependencySetToDependenciesDTO(
             Set<Dependency> dependencySet) {
 
         DependenciesDTO dependenciesDTO = new DependenciesDTO();
@@ -92,7 +92,7 @@ public final class DTOTransformerUtil {
         return dependenciesDTO;
     }
 
-    public static final IssueDTO transformIssueToIssueDTO(Issue issue) {
+    public static IssueDTO transformIssueToIssueDTO(Issue issue) {
 
         IssueDTO issueDTO = new IssueDTO();
         issueDTO.setTeriansId(issue.getTeriansId());
@@ -114,7 +114,7 @@ public final class DTOTransformerUtil {
 
     }
 
-    public static final IssuesDTO transformIssuesSetToIssuesDTO(
+    public static IssuesDTO transformIssuesSetToIssuesDTO(
             Set<Issue> issueSet) {
 
         IssuesDTO issuesDTO = new IssuesDTO();
@@ -147,7 +147,7 @@ public final class DTOTransformerUtil {
 
     }
 
-    public static final PackagesDTO transformPackageSetToPackagesDTO(
+    public static PackagesDTO transformPackageSetToPackagesDTO(
             Set<com.terians.neo4j.model.Package> packageSet) {
 
         PackagesDTO packagesDTO = new PackagesDTO();
@@ -172,7 +172,7 @@ public final class DTOTransformerUtil {
         return packagesDTO;
     }
 
-    public static final ProjectDTO transformProjectToProjectDTO(Project project) {
+    public static ProjectDTO transformProjectToProjectDTO(Project project) {
 
         ProjectDTO projectDTO = new ProjectDTO();
         projectDTO.setTeriansId(project.getTeriansId());
@@ -181,7 +181,7 @@ public final class DTOTransformerUtil {
         return projectDTO;
     }
 
-    public static final ProjectsDTO transformProjectSetToProjectsDTO(
+    public static ProjectsDTO transformProjectSetToProjectsDTO(
             Set<Project> projectSet) {
 
         ProjectsDTO projectsDTO = new ProjectsDTO();
@@ -201,16 +201,18 @@ public final class DTOTransformerUtil {
         return projectsDTO;
     }
 
-    public static final ScanDTO transformScanToScanDTO(Scan scan) {
+    public static ScanDTO transformScanToScanDTO(Scan scan) {
 
         ScanDTO scanDTO = new ScanDTO();
         scanDTO.setTeriansId(scan.getTeriansId());
         scanDTO.setDate(scan.getDate());
         scanDTO.setProjectVersion(scan.getProjectVersion());
+        scanDTO.setCircularDependencyCount(scan.getCircularDependencyCount());
+        scanDTO.setLoc(scan.getLoc());
         return scanDTO;
     }
 
-    public static final ScansDTO transformScanSetToScansDTO(Set<Scan> scanSet) {
+    public static ScansDTO transformScanSetToScansDTO(Set<Scan> scanSet) {
 
         ScansDTO scansDTO = new ScansDTO();
         List<ScanDTO> scanDTOList = new ArrayList<>();
@@ -230,7 +232,7 @@ public final class DTOTransformerUtil {
         return scansDTO;
     }
 
-    public static final MethodsDTO transformMethodSetToMethodsDTO(
+    public static MethodsDTO transformMethodSetToMethodsDTO(
             Set<Method> methodSet) {
 
         MethodsDTO methodsDTO = new MethodsDTO();
@@ -253,7 +255,7 @@ public final class DTOTransformerUtil {
         return methodsDTO;
     }
 
-    public static final MethodDTO transformMethodToMethodDTO(Method method) {
+    public static MethodDTO transformMethodToMethodDTO(Method method) {
 
         MethodDTO methodDTO = new MethodDTO();
         methodDTO.setTeriansId(method.getTeriansId());
@@ -266,7 +268,7 @@ public final class DTOTransformerUtil {
         return methodDTO;
     }
 
-    public static final VulnerabilitiesDTO transformVulnerabilitySetToVulnerabilitiesDTO(
+    public static VulnerabilitiesDTO transformVulnerabilitySetToVulnerabilitiesDTO(
             Set<Vulnerability> vulnerabilitySet) {
 
         VulnerabilitiesDTO vulnerabilitiesDTO = new VulnerabilitiesDTO();
@@ -292,7 +294,7 @@ public final class DTOTransformerUtil {
         return vulnerabilitiesDTO;
     }
 
-    public static final VulnerabilityDTO transformVulnerabilityToVulnerabilityDTO(
+    public static VulnerabilityDTO transformVulnerabilityToVulnerabilityDTO(
             Vulnerability vulnerability) {
 
         VulnerabilityDTO vulnerabilityDTO = new VulnerabilityDTO();

@@ -13,7 +13,7 @@ public interface ProjectService {
 
     ScansDTO findAllScans(String projectId);
 
-    ScanDTO findScan(String projectId, String scanId, String scanned);
+    ScanDTO findScan(String projectId, String scanId);
 
     IssuesDTO findAllIssues(String projectId, String scanId);
 

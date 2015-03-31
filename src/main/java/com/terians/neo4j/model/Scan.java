@@ -22,6 +22,10 @@ public class Scan {
     @Indexed
     private String projectVersion;
     @Indexed
+    private Integer loc;
+    @Indexed
+    private Integer circularDependencyCount;
+    @Indexed
     private Date date;
 
     // Relationships
@@ -99,62 +103,73 @@ public class Scan {
         this.scan = scan;
     }
 
-    @Override
-    public int hashCode() {
-        int result = teriansId != null ? teriansId.hashCode() : 0;
-        result = 31 * result
-                + (projectVersion != null ? projectVersion.hashCode() : 0);
-        result = 31 * result + (date != null ? date.hashCode() : 0);
-        result = 31 * result + (scan != null ? scan.hashCode() : 0);
-        result = 31 * result + (issues != null ? issues.hashCode() : 0);
-        result = 31 * result
-                + (dependencies != null ? dependencies.hashCode() : 0);
-        result = 31 * result + (packages != null ? packages.hashCode() : 0);
-        return result;
+    public Integer getLoc() {
+        return loc;
+    }
+
+    public void setLoc(Integer loc) {
+        this.loc = loc;
+    }
+
+    public Integer getCircularDependencyCount() {
+        return circularDependencyCount;
+    }
+
+    public void setCircularDependencyCount(Integer circularDependencyCount) {
+        this.circularDependencyCount = circularDependencyCount;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         Scan scan1 = (Scan) o;
 
-        if (date != null ? !date.equals(scan1.date) : scan1.date != null)
+        if (circularDependencyCount != null ? !circularDependencyCount.equals(scan1.circularDependencyCount) : scan1.circularDependencyCount != null)
             return false;
-        if (dependencies != null
-                ? !dependencies.equals(scan1.dependencies)
-                : scan1.dependencies != null)
+        if (date != null ? !date.equals(scan1.date) : scan1.date != null) return false;
+        if (dependencies != null ? !dependencies.equals(scan1.dependencies) : scan1.dependencies != null) return false;
+        if (id != null ? !id.equals(scan1.id) : scan1.id != null) return false;
+        if (issues != null ? !issues.equals(scan1.issues) : scan1.issues != null) return false;
+        if (loc != null ? !loc.equals(scan1.loc) : scan1.loc != null) return false;
+        if (packages != null ? !packages.equals(scan1.packages) : scan1.packages != null) return false;
+        if (projectVersion != null ? !projectVersion.equals(scan1.projectVersion) : scan1.projectVersion != null)
             return false;
-        if (issues != null
-                ? !issues.equals(scan1.issues)
-                : scan1.issues != null)
-            return false;
-        if (packages != null
-                ? !packages.equals(scan1.packages)
-                : scan1.packages != null)
-            return false;
-        if (projectVersion != null ? !projectVersion
-                .equals(scan1.projectVersion) : scan1.projectVersion != null)
-            return false;
-        if (scan != null ? !scan.equals(scan1.scan) : scan1.scan != null)
-            return false;
-        if (teriansId != null
-                ? !teriansId.equals(scan1.teriansId)
-                : scan1.teriansId != null)
-            return false;
+        if (scan != null ? !scan.equals(scan1.scan) : scan1.scan != null) return false;
+        if (teriansId != null ? !teriansId.equals(scan1.teriansId) : scan1.teriansId != null) return false;
 
         return true;
     }
 
     @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (teriansId != null ? teriansId.hashCode() : 0);
+        result = 31 * result + (projectVersion != null ? projectVersion.hashCode() : 0);
+        result = 31 * result + (loc != null ? loc.hashCode() : 0);
+        result = 31 * result + (circularDependencyCount != null ? circularDependencyCount.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + (scan != null ? scan.hashCode() : 0);
+        result = 31 * result + (issues != null ? issues.hashCode() : 0);
+        result = 31 * result + (dependencies != null ? dependencies.hashCode() : 0);
+        result = 31 * result + (packages != null ? packages.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
-        return "Scan{" + "date=" + date + ", id=" + id + ", teriansId='"
-                + teriansId + '\'' + ", projectVersion='" + projectVersion
-                + '\'' + ", scan=" + scan + ", issues=" + issues
-                + ", dependencies=" + dependencies + ", packages=" + packages
-                + '}';
+        return "Scan{" +
+                "circularDependencyCount=" + circularDependencyCount +
+                ", id=" + id +
+                ", teriansId='" + teriansId + '\'' +
+                ", projectVersion='" + projectVersion + '\'' +
+                ", loc=" + loc +
+                ", date=" + date +
+                ", scan=" + scan +
+                ", issues=" + issues +
+                ", dependencies=" + dependencies +
+                ", packages=" + packages +
+                '}';
     }
 }

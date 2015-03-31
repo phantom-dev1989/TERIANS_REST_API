@@ -11,7 +11,7 @@ public interface ScanService {
 
     ScansDTO findAllScans();
 
-    ScanDTO findScan(String scanId, String scanned);
+    ScanDTO findScan(String scanId);
 
     IssuesDTO findAllIssues(String scanId, String category);
 
@@ -60,4 +60,5 @@ public interface ScanService {
     ClazzDTO findDependenyClazz(String scanId, String dependencyId,
                                 String clazzId);
 
+    ScanDTO findScanByDate(String scanned);
 }

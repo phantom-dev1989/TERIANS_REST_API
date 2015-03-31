@@ -4,8 +4,6 @@ import com.terians.dto.*;
 import com.terians.neo4j.service.ScanService;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +15,6 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "scans", description = "Scans API")
 public class ScansController {
 
-    private static final Logger LOGGER = LoggerFactory
-            .getLogger(ScansController.class);
-
     @Autowired
     private ScanService scanService;
 
@@ -30,12 +25,19 @@ public class ScansController {
         return scanService.findAllScans();
     }
 
-    @RequestMapping(value = "/{scanId}", method = RequestMethod.GET)
-    @ApiOperation(value = "Get Scan", notes = "Returns a scan by scanId or by first or last scanned")
-    public ScanDTO getScan(@PathVariable("scanId") String scanId,
-                           @RequestParam(value = "scanned", required = false) String scanned) {
+    @RequestMapping(value = "/date", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Scan by Date", notes = "Returns scan by date")
+    public ScanDTO getScanByDate(@RequestParam(value = "scanned", required = true) String scanned) {
 
-        return scanService.findScan(scanId, scanned);
+        return scanService.findScanByDate(scanned);
+
+    }
+
+    @RequestMapping(value = "/{scanId}", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Scan", notes = "Returns a scan by scanId")
+    public ScanDTO getScan(@PathVariable("scanId") String scanId) {
+
+        return scanService.findScan(scanId);
     }
 
     @RequestMapping(value = "/{scanId}/issues", method = RequestMethod.GET)

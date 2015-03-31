@@ -4,10 +4,11 @@ import com.terians.dto.*;
 import com.terians.neo4j.service.ProjectService;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by stromero on 12/31/2014.
@@ -16,9 +17,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/projects")
 @Api(value = "projects", description = "Projects API")
 public class ProjectsController {
-
-    private static final Logger LOGGER = LoggerFactory
-            .getLogger(ProjectsController.class);
 
     @Autowired
     private ProjectService projectService;
@@ -45,13 +43,11 @@ public class ProjectsController {
     }
 
     @RequestMapping(value = "/{projectId}/scans/{scanId}", method = RequestMethod.GET)
-    @ApiOperation(value = "Get Scan", notes = "Returns a scan of a project by projectId, scanId or by first or"
-            + "last scanned")
+    @ApiOperation(value = "Get Scan", notes = "Returns a scan of a project by projectId, scanId")
     public ScanDTO getScan(@PathVariable("projectId") String projectId,
-                           @PathVariable("scanId") String scanId,
-                           @RequestParam(value = "scanned", required = false) String scanned) {
+                           @PathVariable("scanId") String scanId) {
 
-        return projectService.findScan(projectId, scanId, scanned);
+        return projectService.findScan(projectId, scanId);
     }
 
     @RequestMapping(value = "/{projectId}/scans/{scanId}/issues", method = RequestMethod.GET)

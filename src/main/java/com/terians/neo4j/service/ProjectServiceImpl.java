@@ -4,8 +4,6 @@ import com.terians.dto.*;
 import com.terians.dto.transformer.DTOTransformerUtil;
 import com.terians.neo4j.repository.ProjectRepository;
 import com.terians.neo4j.repository.ScanRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,8 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ProjectServiceImpl implements ProjectService {
 
-    private static final Logger LOGGER = LoggerFactory
-            .getLogger(ProjectServiceImpl.class);
     @Autowired
     private ProjectRepository projectRepository;
     @Autowired
@@ -54,79 +50,31 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public ScanDTO findScan(String projectId, String scanId, String scanned) {
+    public ScanDTO findScan(String projectId, String scanId) {
 
-        ScanDTO scanDTO = null;
+        ScanDTO scanDTO;
 
         if ((projectId != null) && (scanId != null)) {
 
-            if (scanned == null) {
-
-                scanDTO = DTOTransformerUtil
-                        .transformScanToScanDTO(projectRepository.findScan(
-                                projectId, scanId));
-                scanDTO.setAbstractness(scanRepository
-                        .findAbstractnessByScan(scanId));
-                scanDTO.setClazzCount(scanRepository
-                        .findClazzCountByScan(scanId));
-                scanDTO.setComplexity(scanRepository
-                        .findComplexityByScan(scanId));
-                scanDTO.setInstability(scanRepository
-                        .findInstabilityByScan(scanId));
-                scanDTO.setMethodCount(scanRepository
-                        .findMethodCountByScan(scanId));
-                scanDTO.setPackageCount(scanRepository
-                        .findPackageCountByScan(scanId));
-                scanDTO.setTechdebt(scanRepository.findTechDebtByScan(scanId));
-                scanDTO.setIssueCount(scanRepository
-                        .findIssueCountByScan(scanId));
-                return scanDTO;
-
-            } else if ("last".equals(scanned)) {
-
-                scanDTO = DTOTransformerUtil
-                        .transformScanToScanDTO(scanRepository.findLatestScan());
-                scanDTO.setAbstractness(scanRepository
-                        .findAbstractnessByScan(scanDTO.getTeriansId()));
-                scanDTO.setClazzCount(scanRepository
-                        .findClazzCountByScan(scanDTO.getTeriansId()));
-                scanDTO.setComplexity(scanRepository
-                        .findComplexityByScan(scanDTO.getTeriansId()));
-                scanDTO.setInstability(scanRepository
-                        .findInstabilityByScan(scanDTO.getTeriansId()));
-                scanDTO.setMethodCount(scanRepository
-                        .findMethodCountByScan(scanDTO.getTeriansId()));
-                scanDTO.setPackageCount(scanRepository
-                        .findPackageCountByScan(scanDTO.getTeriansId()));
-                scanDTO.setTechdebt(scanRepository.findTechDebtByScan(scanDTO
-                        .getTeriansId()));
-                scanDTO.setIssueCount(scanRepository
-                        .findIssueCountByScan(scanDTO.getTeriansId()));
-                return scanDTO;
-
-            } else if ("first".equals(scanned)) {
-
-                scanDTO = DTOTransformerUtil
-                        .transformScanToScanDTO(scanRepository.findOldestScan());
-                scanDTO.setAbstractness(scanRepository
-                        .findAbstractnessByScan(scanDTO.getTeriansId()));
-                scanDTO.setClazzCount(scanRepository
-                        .findClazzCountByScan(scanDTO.getTeriansId()));
-                scanDTO.setComplexity(scanRepository
-                        .findComplexityByScan(scanDTO.getTeriansId()));
-                scanDTO.setInstability(scanRepository
-                        .findInstabilityByScan(scanDTO.getTeriansId()));
-                scanDTO.setMethodCount(scanRepository
-                        .findMethodCountByScan(scanDTO.getTeriansId()));
-                scanDTO.setPackageCount(scanRepository
-                        .findPackageCountByScan(scanDTO.getTeriansId()));
-                scanDTO.setTechdebt(scanRepository.findTechDebtByScan(scanDTO
-                        .getTeriansId()));
-                scanDTO.setIssueCount(scanRepository
-                        .findIssueCountByScan(scanDTO.getTeriansId()));
-                return scanDTO;
-
-            }
+            scanDTO = DTOTransformerUtil
+                    .transformScanToScanDTO(projectRepository.findScan(
+                            projectId, scanId));
+            scanDTO.setAbstractness(scanRepository
+                    .findAbstractnessByScan(scanId));
+            scanDTO.setClazzCount(scanRepository
+                    .findClazzCountByScan(scanId));
+            scanDTO.setComplexity(scanRepository
+                    .findComplexityByScan(scanId));
+            scanDTO.setInstability(scanRepository
+                    .findInstabilityByScan(scanId));
+            scanDTO.setMethodCount(scanRepository
+                    .findMethodCountByScan(scanId));
+            scanDTO.setPackageCount(scanRepository
+                    .findPackageCountByScan(scanId));
+            scanDTO.setTechdebt(scanRepository.findTechDebtByScan(scanId));
+            scanDTO.setIssueCount(scanRepository
+                    .findIssueCountByScan(scanId));
+            return scanDTO;
         }
         return null;
     }
