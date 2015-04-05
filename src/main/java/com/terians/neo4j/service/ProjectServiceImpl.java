@@ -152,33 +152,6 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public DependenciesDTO findAllRelatedDependencies(String projectId,
-                                                      String scanId, String dependencyId) {
-
-        if ((projectId != null) && (scanId != null) && (dependencyId != null)) {
-            return DTOTransformerUtil
-                    .transformDependencySetToDependenciesDTO(projectRepository
-                            .findAllRelatedDependencies(projectId, scanId,
-                                    dependencyId));
-        }
-        return null;
-    }
-
-    @Override
-    public DependencyDTO findRelatedDependency(String projectId, String scanId,
-                                               String dependencyId, String relatedDependencyId) {
-
-        if ((projectId != null) && (scanId != null) && (dependencyId != null)
-                && (relatedDependencyId != null)) {
-            return DTOTransformerUtil
-                    .transformDependencyToDependencyDTO(projectRepository
-                            .findRelatedDependency(projectId, scanId,
-                                    dependencyId, relatedDependencyId));
-        }
-        return null;
-    }
-
-    @Override
     public VulnerabilitiesDTO findAllVulnerabilities(String projectId,
                                                      String scanId, String dependencyId) {
 

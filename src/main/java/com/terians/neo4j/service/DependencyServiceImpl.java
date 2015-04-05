@@ -58,30 +58,6 @@ public class DependencyServiceImpl implements DependencyService {
     }
 
     @Override
-    public DependenciesDTO findAllRelatedDependencies(String dependencyId) {
-
-        if (dependencyId != null) {
-            return DTOTransformerUtil
-                    .transformDependencySetToDependenciesDTO(dependencyRepository
-                            .findAllRelatedDependencies(dependencyId));
-        }
-        return null;
-    }
-
-    @Override
-    public DependencyDTO findRelatedDependency(String dependencyId,
-                                               String relatedDependencyId) {
-
-        if ((dependencyId != null) && (relatedDependencyId != null)) {
-            return DTOTransformerUtil
-                    .transformDependencyToDependencyDTO(dependencyRepository
-                            .findRelatedDependency(dependencyId,
-                                    relatedDependencyId));
-        }
-        return null;
-    }
-
-    @Override
     public VulnerabilitiesDTO findAllVulnerabilities(String dependencyId) {
 
         if (dependencyId != null) {

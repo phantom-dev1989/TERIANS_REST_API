@@ -49,10 +49,4 @@ public interface DependencyRepository extends GraphRepository<Dependency> {
     @Query("MATCH (d:Dependency {teriansId:{0}})-[:HAS_ISSUE]->(i:Issue {teriansId:{1}}) RETURN i")
     public Issue findIssue(String dependencyId, String issueId);
 
-    @Query("MATCH (d:Dependency {teriansId:{0}})-[:RELATED_DEPENDENCIES]->(rd:Dependency) RETURN rd")
-    public Set<Dependency> findAllRelatedDependencies(String dependencyId);
-
-    @Query("MATCH (d:Dependency {teriansId:{0}})-[:RELATED_DEPENDENCIES]->(rd:Dependency {teriansId:{1}}) RETURN rd")
-    public Dependency findRelatedDependency(String dependencyId,
-                                            String relatedDependencyId);
 }

@@ -69,25 +69,6 @@ public class DependenciesController {
         return dependencyService.findClazz(dependencyId, clazzId);
     }
 
-    @RequestMapping(value = "/{dependencyId}/dependencies", method = RequestMethod.GET)
-    @ApiOperation(value = "Get Related Dependencies", notes = "Returns all related dependencies of a dependency "
-            + "by dependencyId")
-    public DependenciesDTO getDependencies(
-            @PathVariable("dependencyId") String dependencyId) {
-
-        return dependencyService.findAllRelatedDependencies(dependencyId);
-    }
-
-    @RequestMapping(value = "/{dependencyId}/dependencies/{relatedDependencyId}", method = RequestMethod.GET)
-    @ApiOperation(value = "Get Related Dependency", notes = "Returns a related dependency of a dependency by "
-            + "dependencyId, relatedDependencyId")
-    public DependencyDTO getDependency(
-            @PathVariable("dependencyId") String dependencyId,
-            @PathVariable("relatedDependencyId") String relatedDependencyId) {
-
-        return dependencyService.findRelatedDependency(dependencyId,
-                relatedDependencyId);
-    }
 
     @RequestMapping(value = "/{dependencyId}/vulnerabilities", method = RequestMethod.GET)
     @ApiOperation(value = "Get Vulnerabilities", notes = "Returns all vulnerabilities of a dependency by dependencyId")

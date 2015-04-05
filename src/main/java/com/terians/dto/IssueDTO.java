@@ -19,9 +19,6 @@ public class IssueDTO {
     private String lineNumber;
     private String packageName;
     private String className;
-    private String priority;
-    private String scanTool;
-    private String issueType;
     private String category;
     private String filePath;
     private String techDebtMinutes;
@@ -78,14 +75,6 @@ public class IssueDTO {
         this.filePath = filePath;
     }
 
-    public String getIssueType() {
-        return issueType;
-    }
-
-    public void setIssueType(String issueType) {
-        this.issueType = issueType;
-    }
-
     public String getLineNumber() {
         return lineNumber;
     }
@@ -100,22 +89,6 @@ public class IssueDTO {
 
     public void setPackageName(String packageName) {
         this.packageName = packageName;
-    }
-
-    public String getPriority() {
-        return priority;
-    }
-
-    public void setPriority(String priority) {
-        this.priority = priority;
-    }
-
-    public String getScanTool() {
-        return scanTool;
-    }
-
-    public void setScanTool(String scanTool) {
-        this.scanTool = scanTool;
     }
 
     public String getSeverity() {

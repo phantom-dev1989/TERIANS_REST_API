@@ -138,31 +138,6 @@ public class ProjectsController {
                 dependencyId, clazzId);
     }
 
-    @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/dependencies", method = RequestMethod.GET)
-    @ApiOperation(value = "Get Related Dependencies", notes = "Returns all related dependencies of a dependency of a "
-            + "scan within a project by projectId, scanId, dependencyId")
-    public DependenciesDTO getDependencies(
-            @PathVariable("projectId") String projectId,
-            @PathVariable("scanId") String scanId,
-            @PathVariable("dependencyId") String dependencyId) {
-
-        return projectService.findAllRelatedDependencies(projectId, scanId,
-                dependencyId);
-    }
-
-    @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/dependencies/{relatedDependencyId}", method = RequestMethod.GET)
-    @ApiOperation(value = "Get Related Dependency", notes = "Returns a related dependency of a dependency of a "
-            + "scan within a project by projectId, scanId, dependencyId, relatedDependencyId")
-    public DependencyDTO getDependency(
-            @PathVariable("projectId") String projectId,
-            @PathVariable("scanId") String scanId,
-            @PathVariable("dependencyId") String dependencyId,
-            @PathVariable("relatedDependencyId") String relatedDependencyId) {
-
-        return projectService.findRelatedDependency(projectId, scanId,
-                dependencyId, relatedDependencyId);
-    }
-
     @RequestMapping(value = "/{projectId}/scans/{scanId}/dependencies/{dependencyId}/vulnerabilities", method = RequestMethod.GET)
     @ApiOperation(value = "Get Vulnerabilities", notes = "Returns all vulnerabilities of a dependency of a "
             + "scan within a project by projectId, scanId, dependencyId")

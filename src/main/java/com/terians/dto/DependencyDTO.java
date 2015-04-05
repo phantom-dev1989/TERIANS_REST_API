@@ -18,7 +18,6 @@ public class DependencyDTO {
     private String filePath;
     private String license;
     private IssuesDTO issuesDTO;
-    private DependenciesDTO dependenciesDTO;
     private VulnerabilitiesDTO vulnerabilitiesDTO;
     private MethodsDTO methodsDTO;
     private ClazzesDTO clazzesDTO;
@@ -82,14 +81,6 @@ public class DependencyDTO {
 
     public void setLicense(String license) {
         this.license = license;
-    }
-
-    public DependenciesDTO getDependenciesDTO() {
-        return dependenciesDTO;
-    }
-
-    public void setDependenciesDTO(DependenciesDTO dependenciesDTO) {
-        this.dependenciesDTO = dependenciesDTO;
     }
 
     public IssuesDTO getIssuesDTO() {

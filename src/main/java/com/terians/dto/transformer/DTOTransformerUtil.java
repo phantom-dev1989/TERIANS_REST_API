@@ -103,12 +103,9 @@ public final class DTOTransformerUtil {
         issueDTO.setFilePath(issue.getFilePath());
         issueDTO.setLineNumber(issue.getLineNumber());
         issueDTO.setPackageName(issue.getPackageName());
-        issueDTO.setPriority(issue.getPriority());
-        issueDTO.setScanTool(issue.getScanTool());
         issueDTO.setSeverity(issue.getSeverity());
         issueDTO.setTechDebtMinutes(issue.getTechDebtMinutes());
         issueDTO.setIssue(issue.getIssue());
-        issueDTO.setIssueType(issue.getIssueType());
 
         return issueDTO;
 
@@ -130,12 +127,9 @@ public final class DTOTransformerUtil {
             issueDTO.setFilePath(e.getFilePath());
             issueDTO.setLineNumber(e.getLineNumber());
             issueDTO.setPackageName(e.getPackageName());
-            issueDTO.setPriority(e.getPriority());
-            issueDTO.setScanTool(e.getScanTool());
             issueDTO.setSeverity(e.getSeverity());
             issueDTO.setTechDebtMinutes(e.getTechDebtMinutes());
             issueDTO.setIssue(e.getIssue());
-            issueDTO.setIssueType(e.getIssueType());
 
             issueDTOList.add(issueDTO);
         }

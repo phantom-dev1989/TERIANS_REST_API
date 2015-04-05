@@ -15,11 +15,6 @@ public interface DependencyService {
 
     MethodDTO findMethod(String dependencyId, String methodId);
 
-    DependenciesDTO findAllRelatedDependencies(String dependencyId);
-
-    DependencyDTO findRelatedDependency(String dependencyId,
-                                        String relatedDependencyId);
-
     VulnerabilitiesDTO findAllVulnerabilities(String dependencyId);
 
     VulnerabilityDTO findVulnerability(String dependencyId,

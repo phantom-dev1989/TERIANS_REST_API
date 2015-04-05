@@ -26,12 +26,6 @@ public interface ScanService {
     MethodDTO findDependencyMethod(String scanId, String dependencyId,
                                    String methodId);
 
-    DependenciesDTO findAllRelatedDependencies(String scanId,
-                                               String dependencyId);
-
-    DependencyDTO findRelatedDependency(String scanId, String dependencyId,
-                                        String relatedDependencyId);
-
     VulnerabilitiesDTO findAllVulnerabilities(String scanId, String dependencyId);
 
     VulnerabilityDTO findVulnerability(String scanId, String dependencyId,

@@ -32,8 +32,6 @@ public class Dependency {
     private Set<Vulnerability> vulnerabilities;
     @RelatedTo(type = "HAS_ISSUE")
     private Set<Issue> issues;
-    @RelatedTo(type = "RELATED_DEPENDENCIES")
-    private Set<Dependency> dependencies;
     @RelatedTo(type = "USED_BY_METHOD")
     private Set<Method> methods;
     @RelatedTo(type = "USED_BY_CLAZZ")
@@ -54,14 +52,6 @@ public class Dependency {
 
     public void setTeriansId(String teriansId) {
         this.teriansId = teriansId;
-    }
-
-    public Set<Dependency> getDependencies() {
-        return dependencies;
-    }
-
-    public void setDependencies(Set<Dependency> dependencies) {
-        this.dependencies = dependencies;
     }
 
     public String getDescription() {
@@ -129,75 +119,54 @@ public class Dependency {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Dependency that = (Dependency) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (teriansId != null ? !teriansId.equals(that.teriansId) : that.teriansId != null) return false;
+        if (description != null ? !description.equals(that.description) : that.description != null) return false;
+        if (fileName != null ? !fileName.equals(that.fileName) : that.fileName != null) return false;
+        if (filePath != null ? !filePath.equals(that.filePath) : that.filePath != null) return false;
+        if (license != null ? !license.equals(that.license) : that.license != null) return false;
+        if (vulnerabilities != null ? !vulnerabilities.equals(that.vulnerabilities) : that.vulnerabilities != null)
+            return false;
+        if (issues != null ? !issues.equals(that.issues) : that.issues != null) return false;
+        if (methods != null ? !methods.equals(that.methods) : that.methods != null) return false;
+        return !(clazzes != null ? !clazzes.equals(that.clazzes) : that.clazzes != null);
+
+    }
+
+    @Override
     public int hashCode() {
-        int result = teriansId != null ? teriansId.hashCode() : 0;
-        result = 31 * result
-                + (description != null ? description.hashCode() : 0);
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (teriansId != null ? teriansId.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (fileName != null ? fileName.hashCode() : 0);
         result = 31 * result + (filePath != null ? filePath.hashCode() : 0);
         result = 31 * result + (license != null ? license.hashCode() : 0);
-        result = 31 * result
-                + (vulnerabilities != null ? vulnerabilities.hashCode() : 0);
+        result = 31 * result + (vulnerabilities != null ? vulnerabilities.hashCode() : 0);
         result = 31 * result + (issues != null ? issues.hashCode() : 0);
-        result = 31 * result
-                + (dependencies != null ? dependencies.hashCode() : 0);
         result = 31 * result + (methods != null ? methods.hashCode() : 0);
+        result = 31 * result + (clazzes != null ? clazzes.hashCode() : 0);
         return result;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-
-        Dependency that = (Dependency) o;
-
-        if (dependencies != null
-                ? !dependencies.equals(that.dependencies)
-                : that.dependencies != null)
-            return false;
-        if (description != null
-                ? !description.equals(that.description)
-                : that.description != null)
-            return false;
-        if (fileName != null
-                ? !fileName.equals(that.fileName)
-                : that.fileName != null)
-            return false;
-        if (filePath != null
-                ? !filePath.equals(that.filePath)
-                : that.filePath != null)
-            return false;
-        if (issues != null ? !issues.equals(that.issues) : that.issues != null)
-            return false;
-        if (license != null
-                ? !license.equals(that.license)
-                : that.license != null)
-            return false;
-        if (methods != null
-                ? !methods.equals(that.methods)
-                : that.methods != null)
-            return false;
-        if (teriansId != null
-                ? !teriansId.equals(that.teriansId)
-                : that.teriansId != null)
-            return false;
-        if (vulnerabilities != null ? !vulnerabilities
-                .equals(that.vulnerabilities) : that.vulnerabilities != null)
-            return false;
-
-        return true;
-    }
-
-    @Override
     public String toString() {
-        return "Dependency{" + "dependencies=" + dependencies + ", id=" + id
-                + ", teriansId='" + teriansId + '\'' + ", description='"
-                + description + '\'' + ", fileName='" + fileName + '\''
-                + ", filePath='" + filePath + '\'' + ", license='" + license
-                + '\'' + ", vulnerabilities=" + vulnerabilities + ", issues="
-                + issues + ", methods=" + methods + '}';
+        return "Dependency{" +
+                "clazzes=" + clazzes +
+                ", id=" + id +
+                ", teriansId='" + teriansId + '\'' +
+                ", description='" + description + '\'' +
+                ", fileName='" + fileName + '\'' +
+                ", filePath='" + filePath + '\'' +
+                ", license='" + license + '\'' +
+                ", vulnerabilities=" + vulnerabilities +
+                ", issues=" + issues +
+                ", methods=" + methods +
+                '}';
     }
 }

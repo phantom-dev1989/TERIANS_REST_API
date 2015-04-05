@@ -30,11 +30,6 @@ public interface ProjectService {
     MethodDTO findDependenyMethod(String projectId, String scanId,
                                   String dependencyId, String methodId);
 
-    DependenciesDTO findAllRelatedDependencies(String projectId, String scanId,
-                                               String dependencyId);
-
-    DependencyDTO findRelatedDependency(String projectId, String scanId,
-                                        String dependencyId, String relatedDependencyId);
 
     VulnerabilitiesDTO findAllVulnerabilities(String projectId, String scanId,
                                               String dependencyId);

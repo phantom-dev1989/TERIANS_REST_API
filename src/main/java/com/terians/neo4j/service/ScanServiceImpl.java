@@ -156,32 +156,6 @@ public class ScanServiceImpl implements ScanService {
     }
 
     @Override
-    public DependenciesDTO findAllRelatedDependencies(String scanId,
-                                                      String dependencyId) {
-
-        if ((scanId != null) && (dependencyId != null)) {
-            return DTOTransformerUtil
-                    .transformDependencySetToDependenciesDTO(scanRepository
-                            .findAllRelatedDependencies(scanId, dependencyId));
-        }
-        return null;
-    }
-
-    @Override
-    public DependencyDTO findRelatedDependency(String scanId,
-                                               String dependencyId, String relatedDependencyId) {
-
-        if ((scanId != null) && (dependencyId != null)
-                && (relatedDependencyId != null)) {
-            return DTOTransformerUtil
-                    .transformDependencyToDependencyDTO(scanRepository
-                            .findRelatedDependency(scanId, dependencyId,
-                                    relatedDependencyId));
-        }
-        return null;
-    }
-
-    @Override
     public VulnerabilitiesDTO findAllVulnerabilities(String scanId,
                                                      String dependencyId) {
 
