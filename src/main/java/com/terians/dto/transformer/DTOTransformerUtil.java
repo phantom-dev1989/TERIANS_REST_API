@@ -201,8 +201,8 @@ public final class DTOTransformerUtil {
         scanDTO.setTeriansId(scan.getTeriansId());
         scanDTO.setDate(scan.getDate());
         scanDTO.setProjectVersion(scan.getProjectVersion());
-        scanDTO.setCircularDependencyCount(scan.getCircularDependencyCount());
-        scanDTO.setLoc(scan.getLoc());
+        //scanDTO.setCircularDependencyCount(scan.getCircularDependencyCount());
+        //scanDTO.setLoc(scan.getLoc());
         return scanDTO;
     }
 

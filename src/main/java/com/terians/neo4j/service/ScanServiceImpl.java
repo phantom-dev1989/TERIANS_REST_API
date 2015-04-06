@@ -62,11 +62,11 @@ public class ScanServiceImpl implements ScanService {
     }
 
     @Override
-    public IssuesDTO findAllIssues(String scanId, String category) {
+    public IssuesDTO findAllIssues(String scanId, String severity) {
 
-        if ((scanId != null) && (category != null)) {
+        if ((scanId != null) && (severity != null)) {
 
-            switch (category) {
+            switch (severity) {
                 case "critical":
                     return DTOTransformerUtil
                             .transformIssuesSetToIssuesDTO(issueRepository

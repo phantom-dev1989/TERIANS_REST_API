@@ -43,9 +43,9 @@ public class ScansController {
     @RequestMapping(value = "/{scanId}/issues", method = RequestMethod.GET)
     @ApiOperation(value = "Get Issues", notes = "Returns all Issues of a scan by scanId")
     public IssuesDTO getIssues(@PathVariable("scanId") String scanId,
-                               @RequestParam(value = "category", required = false) String category) {
+                               @RequestParam(value = "severity", required = false) String severity) {
 
-        return scanService.findAllIssues(scanId, category);
+        return scanService.findAllIssues(scanId, severity);
     }
 
     @RequestMapping(value = "/{scanId}/issues/{issueId}", method = RequestMethod.GET)
