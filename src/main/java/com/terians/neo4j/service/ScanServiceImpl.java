@@ -26,6 +26,7 @@ public class ScanServiceImpl implements ScanService {
     @Autowired
     private ClazzRepository clazzRepository;
 
+
     @Override
     public ScansDTO findAllScans() {
 
@@ -56,6 +57,16 @@ public class ScanServiceImpl implements ScanService {
             scanDTO.setTechdebt(scanRepository.findTechDebtByScan(scanId));
             scanDTO.setIssueCount(scanRepository
                     .findIssueCountByScan(scanId));
+            scanDTO.setIssueCriticalCount(scanRepository
+                    .findIssueCriticalCountByScan(scanId));
+            scanDTO.setIssueHighCount(scanRepository
+                    .findIssueHighCountByScan(scanId));
+            scanDTO.setIssueMediumCount(scanRepository
+                    .findIssueMediumCountByScan(scanId));
+            scanDTO.setIssueLowCount(scanRepository
+                    .findIssueLowCountByScan(scanId));
+            scanDTO.setIssueBestPracticeCount(scanRepository
+                    .findIssueBestPracticeCountByScan(scanId));
             return scanDTO;
         }
         return null;

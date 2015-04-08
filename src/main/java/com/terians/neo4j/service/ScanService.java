@@ -7,8 +7,6 @@ import com.terians.dto.*;
  */
 public interface ScanService {
 
-    // Find the latest Scan in a Project by date
-
     ScansDTO findAllScans();
 
     ScanDTO findScan(String scanId);

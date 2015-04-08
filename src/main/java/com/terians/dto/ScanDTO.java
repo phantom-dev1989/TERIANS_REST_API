@@ -23,6 +23,11 @@ public class ScanDTO {
     private int clazzCount;
     private int packageCount;
     private int issueCount;
+    private int issueCriticalCount;
+    private int issueHighCount;
+    private int issueMediumCount;
+    private int issueLowCount;
+    private int issueBestPracticeCount;
     private int loc;
     private int circularDependencyCount;
     private Date date;
@@ -35,6 +40,47 @@ public class ScanDTO {
     }
 
     // Getters and Setters
+
+
+    public int getIssueBestPracticeCount() {
+        return issueBestPracticeCount;
+    }
+
+    public void setIssueBestPracticeCount(int issueBestPracticeCount) {
+        this.issueBestPracticeCount = issueBestPracticeCount;
+    }
+
+    public int getIssueCriticalCount() {
+        return issueCriticalCount;
+    }
+
+    public void setIssueCriticalCount(int issueCriticalCount) {
+        this.issueCriticalCount = issueCriticalCount;
+    }
+
+    public int getIssueHighCount() {
+        return issueHighCount;
+    }
+
+    public void setIssueHighCount(int issueHighCount) {
+        this.issueHighCount = issueHighCount;
+    }
+
+    public int getIssueLowCount() {
+        return issueLowCount;
+    }
+
+    public void setIssueLowCount(int issueLowCount) {
+        this.issueLowCount = issueLowCount;
+    }
+
+    public int getIssueMediumCount() {
+        return issueMediumCount;
+    }
+
+    public void setIssueMediumCount(int issueMediumCount) {
+        this.issueMediumCount = issueMediumCount;
+    }
 
     public int getIssueCount() {
         return issueCount;

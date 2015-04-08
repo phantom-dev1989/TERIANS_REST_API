@@ -14,6 +14,9 @@ import java.util.Set;
 @Repository
 public interface ScanRepository extends GraphRepository<Scan> {
 
+    @Query("MATCH (p:Project)-[:HAS_SCAN]->(:Scan {teriansId:{0}}) RETURN p")
+    public Project findProject(String scanId);
+
     // Find the latest Scan in a Project by date
     @Query("MATCH (s:Scan) RETURN s ORDER BY s.date DESC LIMIT 1")
     public Scan findLatestScan();
@@ -33,6 +36,21 @@ public interface ScanRepository extends GraphRepository<Scan> {
 
     @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_ISSUE]->(i:Issue) RETURN count(i)")
     public Integer findIssueCountByScan(String scanId);
+
+    @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_ISSUE]->(i:Issue {severity:\"Critical\"}) RETURN count(i)")
+    public Integer findIssueCriticalCountByScan(String scanId);
+
+    @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_ISSUE]->(i:Issue {severity:\"High\"}) RETURN count(i)")
+    public Integer findIssueHighCountByScan(String scanId);
+
+    @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_ISSUE]->(i:Issue {severity:\"Medium\"}) RETURN count(i)")
+    public Integer findIssueMediumCountByScan(String scanId);
+
+    @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_ISSUE]->(i:Issue {severity:\"Low\"}) RETURN count(i)")
+    public Integer findIssueLowCountByScan(String scanId);
+
+    @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_ISSUE]->(i:Issue {severity:\"Best Practices\"}) RETURN count(i)")
+    public Integer findIssueBestPracticeCountByScan(String scanId);
 
     @Query("MATCH (s:Scan {teriansId:{0}})-[:HAS_PACKAGE]->(p:Package) RETURN avg(toFloat(p.cyclomaticCom))")
     public Integer findComplexityByScan(String scanId);

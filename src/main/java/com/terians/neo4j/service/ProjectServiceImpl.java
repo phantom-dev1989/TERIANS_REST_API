@@ -28,23 +28,65 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public ProjectDTO findProject(String projectId) {
+    public ProjectDTO findProject(String id, String byScan) {
 
-        if (projectId != null) {
-            return DTOTransformerUtil
-                    .transformProjectToProjectDTO(projectRepository
-                            .findProject(projectId));
+        if("true".equals(byScan)){
+            if (id != null) {
+                return DTOTransformerUtil
+                        .transformProjectToProjectDTO(scanRepository
+                                .findProject(id));
+            }else{
+                return null;
+            }
+        }else{
+            if (id != null) {
+                return DTOTransformerUtil
+                        .transformProjectToProjectDTO(projectRepository
+                                .findProject(id));
+            }else{
+                return null;
+            }
         }
-        return null;
     }
 
     @Override
     public ScansDTO findAllScans(String projectId) {
 
         if (projectId != null) {
-            return DTOTransformerUtil
-                    .transformScanSetToScansDTO(projectRepository
-                            .findAllScans(projectId));
+            ScansDTO scans = DTOTransformerUtil.transformScanSetToScansDTO(projectRepository
+                    .findAllScans(projectId));
+
+            scans.getScanDTOList().stream().forEach((scanDTO) -> {
+                scanDTO.setAbstractness(scanRepository
+                        .findAbstractnessByScan(scanDTO.getTeriansId()));
+                scanDTO.setClazzCount(scanRepository
+                        .findClazzCountByScan(scanDTO.getTeriansId()));
+                scanDTO.setComplexity(scanRepository
+                        .findComplexityByScan(scanDTO.getTeriansId()));
+                scanDTO.setInstability(scanRepository
+                        .findInstabilityByScan(scanDTO.getTeriansId()));
+                scanDTO.setMethodCount(scanRepository
+                        .findMethodCountByScan(scanDTO.getTeriansId()));
+                scanDTO.setPackageCount(scanRepository
+                        .findPackageCountByScan(scanDTO.getTeriansId()));
+                scanDTO.setTechdebt(scanRepository.findTechDebtByScan(scanDTO.getTeriansId()));
+                scanDTO.setIssueCount(scanRepository
+                        .findIssueCountByScan(scanDTO.getTeriansId()));
+                scanDTO.setIssueCriticalCount(scanRepository
+                        .findIssueCriticalCountByScan(scanDTO.getTeriansId()));
+                scanDTO.setIssueHighCount(scanRepository
+                        .findIssueHighCountByScan(scanDTO.getTeriansId()));
+                scanDTO.setIssueMediumCount(scanRepository
+                        .findIssueMediumCountByScan(scanDTO.getTeriansId()));
+                scanDTO.setIssueLowCount(scanRepository
+                        .findIssueLowCountByScan(scanDTO.getTeriansId()));
+                scanDTO.setIssueBestPracticeCount(scanRepository
+                        .findIssueBestPracticeCountByScan(scanDTO.getTeriansId()));
+
+            });
+
+            return scans;
+
         }
         return null;
     }
@@ -74,6 +116,16 @@ public class ProjectServiceImpl implements ProjectService {
             scanDTO.setTechdebt(scanRepository.findTechDebtByScan(scanId));
             scanDTO.setIssueCount(scanRepository
                     .findIssueCountByScan(scanId));
+            scanDTO.setIssueCriticalCount(scanRepository
+                    .findIssueCriticalCountByScan(scanId));
+            scanDTO.setIssueHighCount(scanRepository
+                    .findIssueHighCountByScan(scanId));
+            scanDTO.setIssueMediumCount(scanRepository
+                    .findIssueMediumCountByScan(scanId));
+            scanDTO.setIssueLowCount(scanRepository
+                    .findIssueLowCountByScan(scanId));
+            scanDTO.setIssueBestPracticeCount(scanRepository
+                    .findIssueBestPracticeCountByScan(scanId));
             return scanDTO;
         }
         return null;

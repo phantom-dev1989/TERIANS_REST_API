@@ -2,13 +2,11 @@ package com.terians.rest.controller;
 
 import com.terians.dto.*;
 import com.terians.neo4j.service.ProjectService;
+import com.terians.neo4j.service.ScanService;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by stromero on 12/31/2014.
@@ -28,11 +26,12 @@ public class ProjectsController {
         return projectService.findAllProjects();
     }
 
-    @RequestMapping(value = "/{projectId}", method = RequestMethod.GET)
-    @ApiOperation(value = "Get Project", notes = "Returns a project by projectId")
-    public ProjectDTO getProject(@PathVariable("projectId") String projectId) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ApiOperation(value = "Get Project", notes = "Returns a project by projectId or by scanId if byScan is set to \"true\"")
+    public ProjectDTO getProject(@PathVariable("id") String id,
+                                 @RequestParam(value = "byScan", required = false) String byScan) {
 
-        return projectService.findProject(projectId);
+        return projectService.findProject(id, byScan);
     }
 
     @RequestMapping(value = "/{projectId}/scans", method = RequestMethod.GET)

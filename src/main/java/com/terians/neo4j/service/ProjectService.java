@@ -9,7 +9,7 @@ public interface ProjectService {
 
     ProjectsDTO findAllProjects();
 
-    ProjectDTO findProject(String projectId);
+    ProjectDTO findProject(String projectId, String byScan);
 
     ScansDTO findAllScans(String projectId);
 
